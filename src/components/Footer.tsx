@@ -1,6 +1,7 @@
+
 import {
   Linkedin,
-  Twitter,
+  Instagram,
   Facebook,
   MapPin,
   Phone,
@@ -156,6 +157,8 @@ export function Footer() {
             </div>
 
             {/* Social media */}
+    
+            {/* Social media */}
             <div className="flex gap-3">
               {[
                 {
@@ -164,9 +167,9 @@ export function Footer() {
                   label: 'LinkedIn',
                 },
                 {
-                  icon: Twitter,
-                  href: COMPANY.social.twitter,
-                  label: 'Twitter',
+                  icon: Instagram,
+                  href: COMPANY.social.instagram,
+                  label: 'Instagram',
                 },
                 {
                   icon: Facebook,
@@ -186,7 +189,15 @@ export function Footer() {
                 </a>
               ))}
             </div>
-          </div>
+          </div> {/* خاص تسد Brand & Socials هنا */}
+
+          {/* Navigation */}
+          <FooterColumn
+            title="Navigation"
+            links={navigationLinks}
+            onSectionClick={handleSectionClick}
+          />
+
 
           {/* Navigation */}
           <FooterColumn

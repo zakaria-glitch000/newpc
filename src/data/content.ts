@@ -27,6 +27,7 @@ import {
   Briefcase,
   Building2,
   type LucideIcon,
+  Instagram,
 } from 'lucide-react';
 
 /* =========================================================
@@ -983,7 +984,7 @@ export const COMPANY = {
 
   social: {
     linkedin: '#',
-    twitter: '#',
+    instagram: 'https://www.instagram.com/oralisystems?vrfl=MTRoa202bzd0eG5peA==',
     facebook: '#',
   },
 } as const;
