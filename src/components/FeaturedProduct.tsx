@@ -32,7 +32,7 @@ export function FeaturedProduct() {
       {/* Fond décoratif */}
       <div className="pointer-events-none absolute inset-0 grid-bg-fine opacity-50" />
 
-      <div className="pointer-events-none absolute left-1/2 top-1/2 h-[400px] w-[600px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-brand-500/[0.05] blur-[120px]" />
+      <div className="pointer-events-none absolute left-1/2 top-1/2 h-[400px] w-[600px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-orange-500/[0.05] blur-[120px]" />
 
       <div className="relative mx-auto max-w-7xl px-6 lg:px-8">
         <div className="grid grid-cols-1 items-center gap-8 lg:grid-cols-2 lg:gap-12">
@@ -48,7 +48,7 @@ export function FeaturedProduct() {
 
               <h2 className="mt-4 text-balance font-display text-3xl font-bold leading-tight tracking-tight text-slate-900 sm:text-4xl lg:text-[2.75rem]">
                 Une technologie pensée pour{' '}
-                <span className="bg-gradient-to-r from-sky-500 to-blue-700 bg-clip-text text-transparent">
+                <span className="bg-gradient-to-r from-amber-500 to-orange-600 bg-clip-text text-transparent">
                   votre quotidien.
                 </span>
               </h2>
@@ -69,16 +69,16 @@ export function FeaturedProduct() {
                   return (
                     <div
                       key={feature}
-                      className="group/feature relative flex items-center gap-3 overflow-hidden rounded-xl border border-slate-200/80 bg-white px-4 py-3 transition-all duration-300 hover:-translate-y-0.5 hover:border-blue-200 hover:bg-blue-50/40 hover:shadow-md hover:shadow-blue-100/50"
+                      className="group/feature relative flex items-center gap-3 overflow-hidden rounded-xl border border-slate-200/80 bg-white px-4 py-3 transition-all duration-300 hover:-translate-y-0.5 hover:border-orange-200 hover:bg-orange-50/40 hover:shadow-md hover:shadow-orange-100/50"
                     >
-                      {/* Ligne cyan/bleue au survol */}
-                      <div className="absolute left-0 top-0 h-full w-1 origin-top scale-y-0 bg-gradient-to-b from-sky-400 to-blue-600 transition-transform duration-300 group-hover/feature:scale-y-100" />
+                      {/* Ligne orange au survol */}
+                      <div className="absolute left-0 top-0 h-full w-1 origin-top scale-y-0 bg-gradient-to-b from-amber-400 to-orange-600 transition-transform duration-300 group-hover/feature:scale-y-100" />
 
-                      <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg bg-brand-50 transition-all duration-300 group-hover/feature:bg-brand-600">
-                        <Icon className="h-4 w-4 text-brand-600 transition-colors duration-300 group-hover/feature:text-white" />
+                      <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg bg-orange-50 transition-all duration-300 group-hover/feature:bg-orange-600">
+                        <Icon className="h-4 w-4 text-orange-600 transition-colors duration-300 group-hover/feature:text-white" />
                       </div>
 
-                      <span className="text-sm font-medium text-slate-700 transition-colors duration-300 group-hover/feature:text-blue-700">
+                      <span className="text-sm font-medium text-slate-700 transition-colors duration-300 group-hover/feature:text-orange-700">
                         {feature}
                       </span>
                     </div>
@@ -91,7 +91,7 @@ export function FeaturedProduct() {
             <Reveal delay={0.3}>
               <a
                 href="#contact"
-                className="group mt-6 inline-flex items-center gap-2 rounded-xl bg-brand-500 px-6 py-3 text-sm font-semibold text-white shadow-lg shadow-brand-500/20 transition-all duration-300 hover:-translate-y-0.5 hover:bg-brand-400 hover:shadow-xl hover:shadow-brand-500/30 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-500"
+                className="group mt-6 inline-flex items-center gap-2 rounded-xl bg-orange-600 px-6 py-3 text-sm font-semibold text-white shadow-lg shadow-orange-600/20 transition-all duration-300 hover:-translate-y-0.5 hover:bg-orange-700 hover:shadow-xl hover:shadow-orange-600/30 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-orange-600"
               >
                 Demander une démo
                 <ArrowRight className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1" />
@@ -108,14 +108,14 @@ function ProductMockup() {
   return (
     <div className="group/mockup relative">
       {/* Halo */}
-      <div className="absolute inset-0 -z-10 rounded-3xl bg-brand-500/8 blur-3xl transition-colors duration-500 group-hover/mockup:bg-blue-500/15" />
+      <div className="absolute inset-0 -z-10 rounded-3xl bg-orange-500/8 blur-3xl transition-colors duration-500 group-hover/mockup:bg-orange-500/15" />
 
       {/* Fenêtre du logiciel */}
-      <div className="overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-2xl shadow-slate-300/40 transition-all duration-500 hover:-translate-y-1 hover:shadow-blue-100/70">
+      <div className="overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-2xl shadow-slate-300/40 transition-all duration-500 hover:-translate-y-1 hover:shadow-orange-100/70">
         {/* Barre supérieure */}
         <div className="flex items-center justify-between border-b border-slate-100 px-4 py-3 sm:px-5">
           <div className="flex items-center gap-2">
-            <div className="flex h-7 w-7 items-center justify-center rounded-lg bg-gradient-to-br from-brand-400 to-brand-600 shadow-sm">
+            <div className="flex h-7 w-7 items-center justify-center rounded-lg bg-gradient-to-br from-amber-400 to-orange-600 shadow-sm">
               <Layers className="h-4 w-4 text-white" />
             </div>
 
@@ -153,13 +153,13 @@ function ProductMockup() {
                   key={label}
                   className={`flex items-center gap-2 rounded-lg px-3 py-2 text-[10px] transition-colors ${
                     i === 0
-                      ? 'bg-brand-50 font-semibold text-brand-600'
+                      ? 'bg-orange-50 font-semibold text-orange-600'
                       : 'text-slate-500 hover:bg-slate-100'
                   }`}
                 >
                   <div
                     className={`h-3.5 w-3.5 shrink-0 rounded ${
-                      i === 0 ? 'bg-brand-400/60' : 'bg-slate-200'
+                      i === 0 ? 'bg-orange-400/60' : 'bg-slate-200'
                     }`}
                   />
                   {label}
@@ -235,7 +235,7 @@ function ProductMockup() {
                 </span>
 
                 <div className="flex items-center gap-1.5">
-                  <div className="h-2 w-2 rounded-full bg-brand-500" />
+                  <div className="h-2 w-2 rounded-full bg-orange-500" />
                   <span className="text-[9px] text-slate-400 sm:text-[10px]">
                     Cette semaine
                   </span>
@@ -254,7 +254,7 @@ function ProductMockup() {
                       delay: i * 0.08,
                       ease: 'easeOut',
                     }}
-                    className="flex-1 rounded-t-sm bg-gradient-to-t from-brand-600/40 to-brand-400/80 transition-opacity duration-300 hover:opacity-70 sm:rounded-t-md"
+                    className="flex-1 rounded-t-sm bg-gradient-to-t from-orange-600/40 to-amber-400/80 transition-opacity duration-300 hover:opacity-70 sm:rounded-t-md"
                   />
                 ))}
               </div>
@@ -288,10 +288,10 @@ function ProductMockup() {
               ].map((transaction) => (
                 <div
                   key={transaction.id}
-                  className="flex min-w-0 items-center gap-2 rounded-lg border border-slate-100 bg-white px-2 py-2 transition-colors duration-300 hover:border-blue-100 hover:bg-blue-50/30 sm:gap-3 sm:px-3"
+                  className="flex min-w-0 items-center gap-2 rounded-lg border border-slate-100 bg-white px-2 py-2 transition-colors duration-300 hover:border-orange-100 hover:bg-orange-50/30 sm:gap-3 sm:px-3"
                 >
-                  <div className="flex h-6 w-6 shrink-0 items-center justify-center rounded-md bg-brand-50">
-                    <FileText className="h-3 w-3 text-brand-600" />
+                  <div className="flex h-6 w-6 shrink-0 items-center justify-center rounded-md bg-orange-50">
+                    <FileText className="h-3 w-3 text-orange-600" />
                   </div>
 
                   <div className="min-w-0 flex-1">

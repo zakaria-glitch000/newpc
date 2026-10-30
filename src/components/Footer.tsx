@@ -1,4 +1,3 @@
-
 import {
   Linkedin,
   Instagram,
@@ -131,15 +130,15 @@ export function Footer() {
   }));
 
   return (
-    <footer className="relative isolate overflow-hidden border-t border-blue-300/60 bg-gradient-to-br from-sky-300 via-blue-400 to-indigo-500 text-slate-950">
+    <footer className="relative isolate overflow-hidden border-t border-orange-300/60 bg-gradient-to-br from-amber-300 via-orange-400 to-amber-600 text-slate-950">
       {/* Background effects */}
       <div className="pointer-events-none absolute inset-0 -z-10 grid-bg-fine opacity-20" />
 
-      <div className="pointer-events-none absolute inset-0 -z-10 bg-gradient-to-tr from-white/30 via-transparent to-blue-700/20" />
+      <div className="pointer-events-none absolute inset-0 -z-10 bg-gradient-to-tr from-white/30 via-transparent to-orange-700/20" />
 
       <div className="pointer-events-none absolute -right-24 -top-32 -z-10 h-96 w-96 rounded-full bg-white/25 blur-3xl" />
 
-      <div className="pointer-events-none absolute -bottom-40 -left-20 -z-10 h-96 w-96 rounded-full bg-sky-200/30 blur-3xl" />
+      <div className="pointer-events-none absolute -bottom-40 -left-20 -z-10 h-96 w-96 rounded-full bg-amber-200/30 blur-3xl" />
 
       <div className="relative mx-auto max-w-7xl px-6 lg:px-8">
         {/* Main footer layout */}
@@ -156,8 +155,6 @@ export function Footer() {
               </p>
             </div>
 
-            {/* Social media */}
-    
             {/* Social media */}
             <div className="flex gap-3">
               {[
@@ -183,21 +180,13 @@ export function Footer() {
                   aria-label={social.label}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="flex h-10 w-10 items-center justify-center rounded-xl border border-blue-900/15 bg-white/30 text-slate-950 shadow-sm backdrop-blur-sm transition-all duration-300 hover:-translate-y-1 hover:border-white/50 hover:bg-white/50 hover:shadow-lg"
+                  className="flex h-10 w-10 items-center justify-center rounded-xl border border-orange-900/15 bg-white/30 text-slate-950 shadow-sm backdrop-blur-sm transition-all duration-300 hover:-translate-y-1 hover:border-white/50 hover:bg-white/50 hover:shadow-lg"
                 >
                   <social.icon className="h-4 w-4" />
                 </a>
               ))}
             </div>
-          </div> {/* خاص تسد Brand & Socials هنا */}
-
-          {/* Navigation */}
-          <FooterColumn
-            title="Navigation"
-            links={navigationLinks}
-            onSectionClick={handleSectionClick}
-          />
-
+          </div>
 
           {/* Navigation */}
           <FooterColumn
@@ -313,7 +302,7 @@ export function Footer() {
         </div>
 
         {/* Bottom bar */}
-        <div className="flex flex-col items-center justify-between gap-4 border-t border-blue-900/20 py-6 sm:flex-row">
+        <div className="flex flex-col items-center justify-between gap-4 border-t border-orange-900/20 py-6 sm:flex-row">
           <p className="text-center text-xs text-slate-900 sm:text-left">
             © 2026 {COMPANY.name} By ARTIS Consulting. Tous droits réservés.
           </p>

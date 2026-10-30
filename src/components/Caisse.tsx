@@ -79,18 +79,17 @@ const products: Product[] = [
         brand: 'Varipos 850',
         description: 'Identification sécurisée du personnel',
       },
-   
       {
         icon: <PanelTop className="h-5 w-5" />,
         title: 'Afficheur client',
         description: 'Affichage du montant',
       },
-         {
+      {
         icon: <Monitor className="h-5 w-5" />,
         title: 'Écran client 10"',
         description: 'Publicité et affichage',
       },
-            {
+      {
         icon: <Monitor className="h-5 w-5" />,
         title: 'Écran client 7"',
         description: 'Publicité et affichage',
@@ -133,7 +132,7 @@ const products: Product[] = [
 
 const features: FeatureProps[] = [
   { icon: <Utensils className="h-5 w-5" />, title: 'Gestion des ventes', description: 'Encaissement rapide et intuitif, en salle, au bar ou en magasin.', color: 'orange' },
-  { icon: <LayoutGrid className="h-5 w-5" />, title: 'Gestion des tables et plans de salle', description: 'Organisation simple du service et suivi en temps réel.', color: 'blue' },
+  { icon: <LayoutGrid className="h-5 w-5" />, title: 'Gestion des tables et plans de salle', description: 'Organisation simple du service et suivi en temps réel.', color: 'amber' },
   { icon: <Soup className="h-5 w-5" />, title: 'Menus et formules', description: 'Gestion des menus, formules, options et suppléments.', color: 'rose' },
   { icon: <Tag className="h-5 w-5" />, title: 'Promotions et offres', description: 'Création de promotions, remises et prix spéciaux.', color: 'emerald' },
   { icon: <Users className="h-5 w-5" />, title: 'Gestion des clients', description: 'Fidélisation et suivi de la clientèle.', color: 'purple' },
@@ -141,7 +140,7 @@ const features: FeatureProps[] = [
   { icon: <Printer className="h-5 w-5" />, title: 'Impression et cuisine', description: 'Impression des tickets, commandes cuisine et bons de préparation.', color: 'indigo' },
   { icon: <Share2 className="h-5 w-5" />, title: 'Multi-postes et périphériques', description: 'Connexion des imprimantes, tiroirs-caisses, écrans cuisine KDS et PDA.', color: 'teal' },
   { icon: <Settings className="h-5 w-5" />, title: 'Paramétrage simple', description: 'Interface claire et personnalisable selon votre activité.', color: 'red' },
-  { icon: <Store className="h-5 w-5" />, title: 'Adaptée à plusieurs secteurs', description: 'Restauration, cafés, bars, commerces de proximité et retail.', color: 'sky' },
+  { icon: <Store className="h-5 w-5" />, title: 'Adaptée à plusieurs secteurs', description: 'Restauration, cafés, bars, commerces de proximité et retail.', color: 'orange' },
 ];
 
 const supportItems: SupportItemProps[] = [
@@ -209,7 +208,7 @@ export default function OraliPage() {
 
         {/* ACCOMPAGNEMENT */}
         <section>
-          <div className="overflow-hidden rounded-3xl bg-[#f1f6ff] shadow-lg shadow-slate-200/50 border border-slate-200/80">
+          <div className="overflow-hidden rounded-3xl bg-orange-50/50 shadow-lg shadow-slate-200/50 border border-orange-100/80">
             <div className="grid lg:grid-cols-[2fr_3fr]">
               <div className="relative min-h-[260px] bg-slate-200/70 lg:min-h-full">
                 <img
@@ -220,11 +219,11 @@ export default function OraliPage() {
               </div>
 
               <div className="flex flex-col justify-center p-6 sm:p-8 lg:p-10">
-                <span className="text-[12px] font-extrabold uppercase tracking-[0.16em] text-slate-500">
+                <span className="text-[12px] font-extrabold uppercase tracking-[0.16em] text-orange-600">
                   NOTRE ACCOMPAGNEMENT
                 </span>
 
-                <h2 className="mt-2 text-2xl font-black tracking-tight text-[#0b2a5b] sm:text-3xl">
+                <h2 className="mt-2 text-2xl font-black tracking-tight text-slate-900 sm:text-3xl">
                   Installation, formation et support
                 </h2>
 
@@ -235,28 +234,28 @@ export default function OraliPage() {
                 <div className="mt-6 flex flex-wrap items-center justify-between gap-6">
                   <div className="grid grid-cols-2 gap-3 sm:grid-cols-4">
                     <div className="flex flex-col items-center rounded-2xl bg-white p-3 text-center shadow-sm border border-slate-100">
-                      <Wrench className="h-6 w-6 text-[#f26522]" strokeWidth={2} />
+                      <Wrench className="h-6 w-6 text-orange-500" strokeWidth={2} />
                       <span className="mt-2 text-[11px] font-bold leading-tight text-slate-700">
                         Installation et paramétrage
                       </span>
                     </div>
 
                     <div className="flex flex-col items-center rounded-2xl bg-white p-3 text-center shadow-sm border border-slate-100">
-                      <Users className="h-6 w-6 text-[#f26522]" strokeWidth={2} />
+                      <Users className="h-6 w-6 text-orange-500" strokeWidth={2} />
                       <span className="mt-2 text-[11px] font-bold leading-tight text-slate-700">
                         Formation des équipes
                       </span>
                     </div>
 
                     <div className="flex flex-col items-center rounded-2xl bg-white p-3 text-center shadow-sm border border-slate-100">
-                      <Headphones className="h-6 w-6 text-[#f26522]" strokeWidth={2} />
+                      <Headphones className="h-6 w-6 text-orange-500" strokeWidth={2} />
                       <span className="mt-2 text-[11px] font-bold leading-tight text-slate-700">
                         Assistance technique
                       </span>
                     </div>
 
                     <div className="flex flex-col items-center rounded-2xl bg-white p-3 text-center shadow-sm border border-slate-100">
-                      <Settings className="h-6 w-6 text-[#f26522]" strokeWidth={2} />
+                      <Settings className="h-6 w-6 text-orange-500" strokeWidth={2} />
                       <span className="mt-2 text-[11px] font-bold leading-tight text-slate-700">
                         Suivi et maintenance
                       </span>
@@ -265,7 +264,7 @@ export default function OraliPage() {
 
                   <Link
                     to="/#contact"
-                    className="inline-flex items-center gap-2 whitespace-nowrap rounded-full bg-[#f26522] px-6 py-3.5 text-sm font-bold text-white shadow-lg shadow-orange-950/20 transition duration-200 hover:-translate-y-0.5 hover:bg-[#d95316]"
+                    className="inline-flex items-center gap-2 whitespace-nowrap rounded-full bg-orange-600 px-6 py-3.5 text-sm font-bold text-white shadow-lg shadow-orange-950/20 transition duration-200 hover:-translate-y-0.5 hover:bg-orange-700"
                   >
                     Demander une démonstration <ArrowRight className="h-4 w-4" />
                   </Link>
@@ -399,15 +398,13 @@ function ProductCard({ product }: { product: Product }) {
 function Feature({ icon, title, description, color }: FeatureProps) {
   const colorClasses: Record<string, string> = {
     orange: 'bg-orange-50 text-orange-600 ring-orange-100',
-    blue: 'bg-blue-50 text-blue-600 ring-blue-100',
+    amber: 'bg-amber-50 text-amber-600 ring-amber-100',
     rose: 'bg-rose-50 text-rose-600 ring-rose-100',
     emerald: 'bg-emerald-50 text-emerald-600 ring-emerald-100',
     purple: 'bg-purple-50 text-purple-600 ring-purple-100',
-    amber: 'bg-amber-50 text-amber-600 ring-amber-100',
     indigo: 'bg-indigo-50 text-indigo-600 ring-indigo-100',
     teal: 'bg-teal-50 text-teal-600 ring-teal-100',
     red: 'bg-red-50 text-red-600 ring-red-100',
-    sky: 'bg-sky-50 text-sky-600 ring-sky-100',
   };
 
   return (

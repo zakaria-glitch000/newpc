@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { motion } from 'framer-motion';
 import { ArrowRight, ShieldCheck } from 'lucide-react';
@@ -70,26 +69,26 @@ export default function ProductsSection() {
   return (
     <section
       id="Produit"
-      className="scroll-mt-24 relative overflow-hidden bg-white px-4 py-8 sm:px-6 lg:py-12"
+      className="scroll-mt-24 relative overflow-hidden bg-slate-950 px-4 py-8 sm:px-6 lg:py-12 text-slate-100 selection:bg-orange-600 selection:text-white"
     >
       {/* DÉCORATION DE FOND */}
-      <div className="pointer-events-none absolute -top-24 left-1/2 h-72 w-72 -translate-x-1/2 rounded-full bg-blue-100/40 blur-3xl" />
+      <div className="pointer-events-none absolute -top-24 left-1/2 h-72 w-72 -translate-x-1/2 rounded-full bg-orange-600/10 blur-3xl" />
 
       <div className="relative mx-auto max-w-7xl">
         {/* EN-TÊTE */}
         <div className="mb-8 text-center">
-          <span className="mb-3 inline-flex rounded-full border border-blue-100 bg-white px-4 py-1.5 text-xs font-bold uppercase tracking-[0.2em] text-blue-600 shadow-sm">
+          <span className="mb-3 inline-flex rounded-full border border-orange-500/20 bg-orange-500/10 px-4 py-1.5 text-xs font-bold uppercase tracking-[0.2em] text-orange-400 shadow-sm">
             Nos produits
           </span>
 
-          <h2 className="mx-auto mb-3 max-w-3xl text-3xl font-extrabold leading-tight tracking-tight text-slate-900 sm:text-4xl md:text-5xl">
+          <h2 className="mx-auto mb-3 max-w-3xl text-3xl font-extrabold leading-tight tracking-tight text-white sm:text-4xl md:text-5xl">
             Des équipements{' '}
-            <span className="bg-gradient-to-r from-sky-500 to-blue-700 bg-clip-text text-transparent">
+            <span className="bg-gradient-to-r from-amber-400 to-orange-500 bg-clip-text text-transparent">
               performants
             </span>
           </h2>
 
-          <p className="mx-auto max-w-2xl text-sm leading-7 text-slate-500 sm:text-base">
+          <p className="mx-auto max-w-2xl text-sm leading-7 text-slate-300 sm:text-base">
             Découvrez notre sélection de produits pour équiper, connecter et
             optimiser votre activité.
           </p>
@@ -109,17 +108,17 @@ export default function ProductsSection() {
               <Link
                 to={product.link}
                 aria-label={`Découvrir ${product.title}`}
-                className="group block h-full rounded-2xl focus-visible:outline focus-visible:outline-4 focus-visible:outline-offset-4 focus-visible:outline-blue-500"
+                className="group block h-full rounded-2xl focus-visible:outline focus-visible:outline-4 focus-visible:outline-offset-4 focus-visible:outline-orange-500"
               >
-                <article className="relative flex h-full flex-col overflow-hidden rounded-2xl border border-slate-200/80 bg-white p-4 transition-all duration-300 hover:-translate-y-1 hover:border-blue-200 hover:shadow-xl hover:shadow-slate-200/60">
+                <article className="relative flex h-full flex-col overflow-hidden rounded-2xl border border-slate-800 bg-slate-900 p-4 transition-all duration-300 hover:-translate-y-1 hover:border-orange-500/50 hover:shadow-xl hover:shadow-orange-950/40">
                   {/* LIGNE DÉCORATIVE */}
                   <div
-                    className="pointer-events-none absolute left-0 top-0 z-20 h-full w-1 origin-top scale-y-0 bg-gradient-to-b from-sky-400 to-blue-600 transition-transform duration-300 group-hover:scale-y-100"
+                    className="pointer-events-none absolute left-0 top-0 z-20 h-full w-1 origin-top scale-y-0 bg-gradient-to-b from-amber-400 to-orange-600 transition-transform duration-300 group-hover:scale-y-100"
                     aria-hidden="true"
                   />
 
                   {/* IMAGE */}
-                  <div className="relative mb-3 flex h-36 items-center justify-center overflow-hidden rounded-xl border border-slate-100 bg-slate-50 p-2">
+                  <div className="relative mb-3 flex h-36 items-center justify-center overflow-hidden rounded-xl border border-slate-800 bg-slate-950 p-2">
                     <img
                       src={product.image}
                       alt={product.title}
@@ -129,28 +128,28 @@ export default function ProductsSection() {
 
                     {/* HALO */}
                     <div
-                      className="pointer-events-none absolute -bottom-10 -right-10 h-24 w-24 rounded-full bg-blue-100/70 opacity-0 blur-2xl transition-opacity duration-500 group-hover:opacity-100"
+                      className="pointer-events-none absolute -bottom-10 -right-10 h-24 w-24 rounded-full bg-orange-600/10 opacity-0 blur-2xl transition-opacity duration-500 group-hover:opacity-100"
                       aria-hidden="true"
                     />
                   </div>
 
                   {/* INFORMATIONS */}
                   <div className="flex flex-1 flex-col">
-                    <h3 className="mb-1.5 text-sm font-bold leading-5 text-slate-900 transition-colors duration-300 group-hover:text-blue-700">
+                    <h3 className="mb-1.5 text-sm font-bold leading-5 text-white transition-colors duration-300 group-hover:text-orange-400">
                       {product.title}
                     </h3>
 
-                    <p className="flex-1 text-xs leading-5 text-slate-500">
+                    <p className="flex-1 text-xs leading-5 text-slate-400">
                       {product.description}
                     </p>
 
                     {/* BOUTON VISUEL */}
-                    <div className="mt-4 inline-flex w-full items-center justify-center gap-2 rounded-xl bg-blue-600 px-4 py-2.5 text-sm font-semibold text-white transition-all duration-300 group-hover:-translate-y-0.5 group-hover:bg-blue-700 group-hover:shadow-lg group-hover:shadow-blue-600/20">
+                    <div className="mt-4 inline-flex w-full items-center justify-center gap-2 rounded-xl bg-orange-600 px-4 py-2.5 text-sm font-semibold text-white transition-all duration-300 group-hover:-translate-y-0.5 group-hover:bg-orange-700 group-hover:shadow-lg group-hover:shadow-orange-600/20">
                       Savoir plus
                       <ArrowRight className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1" />
                     </div>
 
-                    <div className="mt-3 h-px w-full bg-slate-100 transition-colors duration-300 group-hover:bg-blue-100" />
+                    <div className="mt-3 h-px w-full bg-slate-800 transition-colors duration-300 group-hover:bg-orange-500/30" />
                   </div>
                 </article>
               </Link>
@@ -164,23 +163,23 @@ export default function ProductsSection() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, amount: 0.15 }}
           transition={{ duration: 0.6 }}
-          className="group/nf relative mt-10 overflow-hidden rounded-3xl border border-slate-200 bg-white shadow-lg shadow-slate-200/40 transition-all duration-300 hover:border-blue-200 hover:shadow-xl hover:shadow-slate-200/60 md:mt-12"
+          className="group/nf relative mt-10 overflow-hidden rounded-3xl border border-slate-800 bg-slate-900 shadow-xl transition-all duration-300 hover:border-orange-500/50 hover:shadow-2xl md:mt-12"
         >
           {/* LIGNE DÉCORATIVE */}
           <div
-            className="absolute left-0 top-0 z-20 h-full w-1 origin-top scale-y-0 bg-gradient-to-b from-sky-400 to-blue-600 transition-transform duration-500 group-hover/nf:scale-y-100"
+            className="absolute left-0 top-0 z-20 h-full w-1 origin-top scale-y-0 bg-gradient-to-b from-amber-400 to-orange-600 transition-transform duration-500 group-hover/nf:scale-y-100"
             aria-hidden="true"
           />
 
           {/* DÉCORATIONS DE FOND */}
-          <div className="pointer-events-none absolute -right-20 -top-20 h-64 w-64 rounded-full bg-rose-500/[0.06] blur-3xl transition-opacity duration-500 group-hover/nf:bg-rose-500/[0.10]" />
+          <div className="pointer-events-none absolute -right-20 -top-20 h-64 w-64 rounded-full bg-orange-600/10 blur-3xl transition-opacity duration-500 group-hover/nf:bg-orange-600/20" />
 
-          <div className="pointer-events-none absolute -bottom-24 -left-20 h-64 w-64 rounded-full bg-blue-500/[0.06] blur-3xl" />
+          <div className="pointer-events-none absolute -bottom-24 -left-20 h-64 w-64 rounded-full bg-amber-500/10 blur-3xl" />
 
           <div className="relative grid grid-cols-1 items-center gap-6 p-6 sm:p-8 lg:grid-cols-[220px_1fr] lg:gap-10 lg:p-8">
             {/* LOGO NF525 */}
             <div className="flex justify-center">
-              <div className="flex h-36 w-48 items-center justify-center rounded-2xl border border-slate-100 bg-slate-50 p-4 shadow-sm transition-all duration-300 group-hover/nf:scale-[1.03] group-hover/nf:border-blue-100 group-hover/nf:shadow-md">
+              <div className="flex h-36 w-48 items-center justify-center rounded-2xl border border-slate-800 bg-slate-950 p-4 shadow-sm transition-all duration-300 group-hover/nf:scale-[1.03] group-hover/nf:border-orange-500/30 group-hover/nf:shadow-md">
                 <img
                   src={nfLogo}
                   alt="Logo NF525"
@@ -192,19 +191,19 @@ export default function ProductsSection() {
 
             {/* TEXTE CERTIFICATION */}
             <div className="space-y-4 text-center lg:text-left">
-              <div className="inline-flex items-center gap-2 rounded-full border border-slate-200 bg-slate-50 px-3 py-1.5 text-xs font-semibold text-slate-700 transition-colors duration-300 group-hover/nf:border-blue-100 group-hover/nf:bg-blue-50">
-                <ShieldCheck className="h-4 w-4 text-blue-600" />
+              <div className="inline-flex items-center gap-2 rounded-full border border-orange-500/20 bg-orange-500/10 px-3 py-1.5 text-xs font-semibold text-orange-300 transition-colors duration-300 group-hover/nf:border-orange-500/40 group-hover/nf:bg-orange-500/20">
+                <ShieldCheck className="h-4 w-4 text-orange-400" />
                 Certification Officielle
               </div>
 
-              <h3 className="font-display text-2xl font-bold leading-tight tracking-tight text-slate-900 sm:text-3xl lg:text-4xl">
+              <h3 className="font-display text-2xl font-bold leading-tight tracking-tight text-white sm:text-3xl lg:text-4xl">
                 Solution de caisse{' '}
-                <span className="bg-gradient-to-r from-sky-500 to-blue-700 bg-clip-text text-transparent">
+                <span className="bg-gradient-to-r from-amber-400 to-orange-500 bg-clip-text text-transparent">
                   Certifiée NF525
                 </span>
               </h3>
 
-              <p className="mx-auto max-w-3xl text-sm leading-7 text-slate-600 sm:text-base lg:mx-0">
+              <p className="mx-auto max-w-3xl text-sm leading-7 text-slate-300 sm:text-base lg:mx-0">
                 Une caisse simple et intuitive conçue pour répondre aux besoins
                 des professionnels. La certification NF525 concerne les
                 exigences applicables aux systèmes de caisse en France.
@@ -215,7 +214,7 @@ export default function ProductsSection() {
               <div className="flex justify-center pt-1 lg:justify-start">
                 <Link
                   to="/nf"
-                  className="group/link inline-flex items-center gap-2 rounded-xl bg-rose-500 px-6 py-3 text-sm font-semibold text-white transition-all duration-300 hover:-translate-y-0.5 hover:bg-rose-600 hover:shadow-lg hover:shadow-rose-500/25 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-rose-500"
+                  className="group/link inline-flex items-center gap-2 rounded-xl bg-orange-600 px-6 py-3 text-sm font-semibold text-white transition-all duration-300 hover:-translate-y-0.5 hover:bg-orange-700 hover:shadow-lg hover:shadow-orange-600/25 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-orange-500"
                 >
                   En savoir plus sur la NF525
                   <ArrowRight className="h-4 w-4 transition-transform duration-300 group-hover/link:translate-x-1" />

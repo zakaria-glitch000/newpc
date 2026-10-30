@@ -15,8 +15,8 @@ export function About() {
       className="relative overflow-hidden bg-white py-8 lg:py-12"
     >
       {/* Background effects */}
-      <div className="pointer-events-none absolute -left-32 top-1/4 h-[400px] w-[400px] rounded-full bg-sky-400/[0.07] blur-[100px]" />
-      <div className="pointer-events-none absolute -right-32 bottom-0 h-[350px] w-[350px] rounded-full bg-blue-400/[0.06] blur-[100px]" />
+      <div className="pointer-events-none absolute -left-32 top-1/4 h-[400px] w-[400px] rounded-full bg-orange-400/[0.07] blur-[100px]" />
+      <div className="pointer-events-none absolute -right-32 bottom-0 h-[350px] w-[350px] rounded-full bg-amber-400/[0.06] blur-[100px]" />
 
       <div className="relative z-10 mx-auto max-w-7xl px-6 lg:px-8">
         <div className="grid grid-cols-1 items-center gap-10 lg:grid-cols-2 lg:gap-14">
@@ -28,7 +28,7 @@ export function About() {
               className="group relative"
             >
               {/* Image glow */}
-              <div className="pointer-events-none absolute -inset-3 rounded-[2rem] bg-gradient-to-br from-sky-400/10 via-blue-500/5 to-transparent opacity-70 blur-2xl transition-opacity duration-500 group-hover:opacity-100" />
+              <div className="pointer-events-none absolute -inset-3 rounded-[2rem] bg-gradient-to-br from-amber-400/10 via-orange-500/5 to-transparent opacity-70 blur-2xl transition-opacity duration-500 group-hover:opacity-100" />
 
               {/* Main image */}
               <div className="relative overflow-hidden rounded-3xl border border-slate-200/80 bg-white shadow-xl shadow-slate-300/20">
@@ -43,7 +43,7 @@ export function About() {
                 <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-slate-950/20 via-transparent to-transparent opacity-60 transition-opacity duration-300 group-hover:opacity-30" />
 
                 {/* Animated vertical accent */}
-                <div className="absolute bottom-0 left-0 h-1 w-full origin-left scale-x-0 bg-gradient-to-r from-sky-400 to-blue-600 transition-transform duration-500 group-hover:scale-x-100" />
+                <div className="absolute bottom-0 left-0 h-1 w-full origin-left scale-x-0 bg-gradient-to-r from-amber-400 to-orange-600 transition-transform duration-500 group-hover:scale-x-100" />
               </div>
 
               {/* Floating experience card */}
@@ -52,9 +52,9 @@ export function About() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.5, delay: 0.2 }}
-                className="absolute -bottom-5 -right-2 rounded-2xl border border-slate-200/80 bg-white/95 p-4 shadow-xl shadow-slate-900/10 backdrop-blur-sm transition-all duration-300 hover:-translate-y-1 hover:border-sky-200 sm:-right-4 sm:p-5"
+                className="absolute -bottom-5 -right-2 rounded-2xl border border-slate-200/80 bg-white/95 p-4 shadow-xl shadow-slate-900/10 backdrop-blur-sm transition-all duration-300 hover:-translate-y-1 hover:border-orange-200 sm:-right-4 sm:p-5"
               >
-                <div className="font-display text-3xl font-bold tracking-tight text-transparent bg-gradient-to-r from-sky-500 to-blue-700 bg-clip-text sm:text-4xl">
+                <div className="font-display text-3xl font-bold tracking-tight text-transparent bg-gradient-to-r from-amber-500 to-orange-600 bg-clip-text sm:text-4xl">
                   10+
                 </div>
 
@@ -62,11 +62,11 @@ export function About() {
                   ans d'expertise IT
                 </div>
 
-                <div className="mt-2 h-0.5 w-10 rounded-full bg-gradient-to-r from-sky-400 to-blue-600" />
+                <div className="mt-2 h-0.5 w-10 rounded-full bg-gradient-to-r from-amber-400 to-orange-600" />
               </motion.div>
 
               {/* Decorative corner */}
-              <div className="pointer-events-none absolute -left-3 -top-3 -z-10 h-20 w-20 rounded-tl-3xl border-l-2 border-t-2 border-sky-300/60 sm:-left-4 sm:-top-4" />
+              <div className="pointer-events-none absolute -left-3 -top-3 -z-10 h-20 w-20 rounded-tl-3xl border-l-2 border-t-2 border-orange-300/60 sm:-left-4 sm:-top-4" />
             </motion.div>
           </Reveal>
 
@@ -77,7 +77,7 @@ export function About() {
 
               <h2 className="mt-4 text-balance font-display text-3xl font-bold leading-tight tracking-tight text-slate-900 sm:text-4xl lg:text-[2.75rem]">
                 Votre partenaire{' '}
-                <span className="bg-gradient-to-r from-sky-500 to-blue-700 bg-clip-text text-transparent">
+                <span className="bg-gradient-to-r from-amber-500 to-orange-600 bg-clip-text text-transparent">
                   technologique.
                 </span>
               </h2>
@@ -111,9 +111,9 @@ export function About() {
                       duration: 0.35,
                       delay: index * 0.1,
                     }}
-                    className="group/point flex items-start gap-3 rounded-xl border border-transparent px-3 py-2 transition-all duration-300 hover:border-sky-100 hover:bg-sky-50/60"
+                    className="group/point flex items-start gap-3 rounded-xl border border-transparent px-3 py-2 transition-all duration-300 hover:border-orange-100 hover:bg-orange-50/60"
                   >
-                    <CheckCircle2 className="mt-0.5 h-5 w-5 shrink-0 text-sky-500 transition-colors duration-300 group-hover/point:text-blue-600" />
+                    <CheckCircle2 className="mt-0.5 h-5 w-5 shrink-0 text-amber-500 transition-colors duration-300 group-hover/point:text-orange-600" />
 
                     <span className="text-sm leading-6 text-slate-600 transition-colors duration-300 group-hover/point:text-slate-900">
                       {item}
@@ -127,9 +127,9 @@ export function About() {
             <Reveal delay={0.3}>
               <a
                 href="#contact"
-                className="group relative mt-6 inline-flex items-center gap-3 overflow-hidden rounded-xl border border-slate-200 bg-white px-6 py-3 text-sm font-semibold text-slate-700 shadow-sm transition-all duration-300 hover:-translate-y-0.5 hover:border-blue-200 hover:text-blue-700 hover:shadow-lg hover:shadow-blue-900/5 sm:mt-8"
+                className="group relative mt-6 inline-flex items-center gap-3 overflow-hidden rounded-xl border border-slate-200 bg-white px-6 py-3 text-sm font-semibold text-slate-700 shadow-sm transition-all duration-300 hover:-translate-y-0.5 hover:border-orange-200 hover:text-orange-700 hover:shadow-lg hover:shadow-orange-900/5 sm:mt-8"
               >
-                <span className="absolute inset-0 -translate-x-full bg-gradient-to-r from-sky-50 to-blue-50 transition-transform duration-500 group-hover:translate-x-0" />
+                <span className="absolute inset-0 -translate-x-full bg-gradient-to-r from-orange-50 to-amber-50 transition-transform duration-500 group-hover:translate-x-0" />
 
                 <span className="relative z-10">
                   Discutons de votre projet

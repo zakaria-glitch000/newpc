@@ -133,9 +133,9 @@ export function Hero() {
       </div>
 
       {/* NOTRE EXPERTISE */}
-{/* ✅ L-Code L-Jdid */}
-<div className="relative overflow-hidden border-y border-slate-100 bg-slate-50/70 px-6 py-10 lg:px-8 lg:py-12">        {/* Décoration de fond */}
-        <div className="pointer-events-none absolute -top-24 left-1/2 h-72 w-72 -translate-x-1/2 rounded-full bg-blue-100/40 blur-3xl" />
+      <div className="relative overflow-hidden border-y border-slate-100 bg-slate-50/70 px-6 py-10 lg:px-8 lg:py-12">
+        {/* Décoration de fond */}
+        <div className="pointer-events-none absolute -top-24 left-1/2 h-72 w-72 -translate-x-1/2 rounded-full bg-orange-100/40 blur-3xl" />
 
         <div className="relative mx-auto max-w-7xl text-center">
           <motion.div
@@ -146,7 +146,7 @@ export function Hero() {
           >
             <motion.span
               variants={item}
-              className="mb-4 inline-flex rounded-full border border-blue-100 bg-white px-4 py-2 text-xs font-bold uppercase tracking-[0.18em] text-brand-600 shadow-sm"
+              className="mb-4 inline-flex rounded-full border border-orange-100 bg-white px-4 py-2 text-xs font-bold uppercase tracking-[0.18em] text-brand-600 shadow-sm"
             >
               Notre Expertise
             </motion.span>
@@ -156,15 +156,15 @@ export function Hero() {
               className="mx-auto mt-3 max-w-3xl text-3xl font-extrabold leading-tight tracking-tight text-slate-900 sm:text-4xl"
             >
               Un partenaire pour la réussite de{' '}
-              <span className="bg-gradient-to-r from-sky-500 to-blue-700 bg-clip-text text-transparent">
+              <span className="bg-gradient-to-r from-amber-500 to-orange-600 bg-clip-text text-transparent">
                 vos projets
               </span>
             </motion.h2>
-{/* ✅ L-Code L-Jdid */}
-<motion.p
-  variants={item}
-  className="mx-auto mb-8 mt-4 max-w-3xl text-sm leading-7 text-slate-600 sm:text-base"
->
+
+            <motion.p
+              variants={item}
+              className="mx-auto mb-8 mt-4 max-w-3xl text-sm leading-7 text-slate-600 sm:text-base"
+            >
               Nous concevons, intégrons et déployons des solutions
               technologiques adaptées aux besoins des professionnels. De
               l'encaissement au développement d'applications sur mesure, nous
@@ -183,24 +183,21 @@ export function Hero() {
                   <motion.article
                     key={step.title}
                     variants={item}
-                    className="group relative flex h-full flex-col items-center overflow-hidden rounded-2xl border border-slate-200/80 bg-white px-6 py-8 text-center transition-all duration-300 hover:-translate-y-1 hover:border-blue-200 hover:shadow-xl hover:shadow-slate-200/60"
+                    className="group relative flex h-full flex-col items-center overflow-hidden rounded-2xl border border-slate-200/80 bg-white px-6 py-8 text-center transition-all duration-300 hover:-translate-y-1 hover:border-orange-200 hover:shadow-xl hover:shadow-slate-200/60"
                   >
-                    {/* Ligne verticale cyan/bleue au survol */}
-                    <div className="absolute left-0 top-0 z-20 h-full w-1 origin-top scale-y-0 bg-gradient-to-b from-sky-400 to-blue-600 transition-transform duration-300 group-hover:scale-y-100" />
+                    <div className="absolute left-0 top-0 z-20 h-full w-1 origin-top scale-y-0 bg-gradient-to-b from-amber-400 to-orange-600 transition-transform duration-300 group-hover:scale-y-100" />
 
-                    {/* Halo décoratif */}
-                    <div className="pointer-events-none absolute -bottom-10 -right-10 h-28 w-28 rounded-full bg-blue-50 opacity-0 blur-2xl transition-opacity duration-500 group-hover:opacity-100" />
+                    <div className="pointer-events-none absolute -bottom-10 -right-10 h-28 w-28 rounded-full bg-orange-50 opacity-0 blur-2xl transition-opacity duration-500 group-hover:opacity-100" />
 
                     {/* Icône */}
-                    <div className="relative z-10 mb-6 flex h-20 w-20 items-center justify-center rounded-2xl border border-blue-100 bg-blue-50 transition-all duration-300 group-hover:scale-105 group-hover:border-blue-200 group-hover:bg-blue-600 group-hover:shadow-lg group-hover:shadow-blue-600/20">
+                    <div className="relative z-10 mb-6 flex h-20 w-20 items-center justify-center rounded-2xl border border-orange-100 bg-orange-50 transition-all duration-300 group-hover:scale-105 group-hover:border-orange-200 group-hover:bg-orange-600 group-hover:shadow-lg group-hover:shadow-orange-600/20">
                       <Icon
                         className="h-8 w-8 text-brand-600 transition-colors duration-300 group-hover:text-white"
                         strokeWidth={1.75}
                       />
                     </div>
 
-                    {/* Texte */}
-                    <h3 className="relative z-10 mb-3 text-lg font-bold text-slate-900 transition-colors duration-300 group-hover:text-blue-700">
+                    <h3 className="relative z-10 mb-3 text-lg font-bold text-slate-900 transition-colors duration-300 group-hover:text-orange-700">
                       {step.title}
                     </h3>
 

@@ -195,8 +195,8 @@ function FeatureCard({
       transition={{ duration: 0.25 }}
       className="rounded-2xl border border-slate-200 bg-white p-7 shadow-sm transition-shadow hover:shadow-premium"
     >
-      <div className="flex h-12 w-12 items-center justify-center rounded-xl border border-brand-100 bg-brand-50">
-        <Icon className="h-6 w-6 text-brand-600" />
+      <div className="flex h-12 w-12 items-center justify-center rounded-xl border border-orange-100 bg-orange-50">
+        <Icon className="h-6 w-6 text-orange-600" />
       </div>
 
       <h3 className="mt-5 font-display text-xl font-semibold text-slate-900">
@@ -213,7 +213,7 @@ function FeatureCard({
             key={item}
             className="flex items-start gap-2 text-sm text-slate-700"
           >
-            <Check className="mt-0.5 h-4 w-4 shrink-0 text-accent-500" />
+            <Check className="mt-0.5 h-4 w-4 shrink-0 text-amber-500" />
             <span>{item}</span>
           </li>
         ))}
@@ -257,7 +257,7 @@ function SectorCard({
             key={item}
             className="flex items-center gap-2 text-sm text-slate-700"
           >
-            <Check className="h-3.5 w-3.5 text-accent-500" />
+            <Check className="h-3.5 w-3.5 text-amber-500" />
             {item}
           </li>
         ))}
@@ -277,8 +277,8 @@ function SmartFeature({
 }) {
   return (
     <div className="flex gap-4">
-      <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl border border-brand-200 bg-brand-50">
-        <Icon className="h-5 w-5 text-brand-600" />
+      <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl border border-orange-200 bg-orange-50">
+        <Icon className="h-5 w-5 text-orange-600" />
       </div>
 
       <div>
@@ -298,12 +298,12 @@ export function BornesCommande() {
           HERO
       ========================================================== */}
       <section className="relative overflow-hidden bg-slate-50 py-20 lg:py-28">
-        <div className="absolute inset-0 bg-gradient-to-br from-brand-50/70 via-transparent to-accent-50/30" />
+        <div className="absolute inset-0 bg-gradient-to-br from-orange-50/70 via-transparent to-amber-50/30" />
 
         <div className="relative mx-auto max-w-7xl px-6 lg:px-8">
           <Link
             to="/#solutions"
-            className="inline-flex items-center gap-2 text-sm font-medium text-slate-500 transition-colors hover:text-brand-600"
+            className="inline-flex items-center gap-2 text-sm font-medium text-slate-500 transition-colors hover:text-orange-600"
           >
             <ArrowLeft className="h-4 w-4" />
             Retour aux solutions
@@ -315,14 +315,14 @@ export function BornesCommande() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6 }}
             >
-              <div className="inline-flex items-center gap-2 rounded-full border border-brand-200 bg-white px-4 py-2 text-sm font-semibold text-brand-700 shadow-sm">
+              <div className="inline-flex items-center gap-2 rounded-full border border-orange-200 bg-white px-4 py-2 text-sm font-semibold text-orange-700 shadow-sm">
                 <Monitor className="h-4 w-4" />
                 Bornes interactives
               </div>
 
               <h1 className="mt-6 font-display text-4xl font-bold leading-tight tracking-tight text-slate-900 sm:text-5xl lg:text-6xl">
                 Bornes de commande
-                <span className="block text-brand-600">
+                <span className="block text-orange-600">
                   intelligentes
                 </span>
               </h1>
@@ -353,7 +353,7 @@ export function BornesCommande() {
               <div className="mt-9 flex flex-wrap gap-4">
                 <Link
                   to="/#contact"
-                  className="inline-flex items-center gap-2 rounded-xl bg-brand-600 px-6 py-3.5 text-sm font-semibold text-white shadow-sm transition-all hover:bg-brand-700 hover:shadow-lg"
+                  className="inline-flex items-center gap-2 rounded-xl bg-orange-600 px-6 py-3.5 text-sm font-semibold text-white shadow-sm transition-all hover:bg-orange-700 hover:shadow-lg"
                 >
                   Demander une étude
                   <ArrowUpRight className="h-4 w-4" />
@@ -361,7 +361,7 @@ export function BornesCommande() {
 
                 <a
                   href="#fonctionnalites"
-                  className="inline-flex items-center gap-2 rounded-xl border border-slate-200 bg-white px-6 py-3.5 text-sm font-semibold text-slate-700 transition-all hover:border-brand-200 hover:text-brand-600"
+                  className="inline-flex items-center gap-2 rounded-xl border border-slate-200 bg-white px-6 py-3.5 text-sm font-semibold text-slate-700 transition-all hover:border-orange-200 hover:text-orange-600"
                 >
                   Découvrir la solution
                 </a>
@@ -375,13 +375,13 @@ export function BornesCommande() {
               className="relative"
             >
               <div className="relative overflow-hidden rounded-3xl border border-slate-200 bg-white p-4 shadow-premium">
-                <div className="rounded-2xl bg-gradient-to-br from-slate-900 via-slate-800 to-brand-900 p-8 sm:p-12">
+                <div className="rounded-2xl bg-gradient-to-br from-slate-900 via-slate-800 to-orange-950 p-8 sm:p-12">
                   <div className="mx-auto max-w-sm">
                     <div className="rounded-2xl border-4 border-slate-600 bg-slate-950 p-3 shadow-2xl">
                       <div className="overflow-hidden rounded-xl bg-white">
                         <div className="flex items-center justify-between border-b border-slate-200 px-4 py-3">
                           <div className="flex items-center gap-2">
-                            <div className="h-7 w-7 rounded-lg bg-brand-600" />
+                            <div className="h-7 w-7 rounded-lg bg-orange-600" />
                             <span className="text-sm font-semibold text-slate-900">
                               Votre enseigne
                             </span>
@@ -397,7 +397,7 @@ export function BornesCommande() {
                                 key={item}
                                 className="rounded-xl bg-slate-50 p-4 text-center"
                               >
-                                <div className="mx-auto h-9 w-9 rounded-lg bg-brand-100" />
+                                <div className="mx-auto h-9 w-9 rounded-lg bg-orange-100" />
                                 <p className="mt-2 text-xs font-medium text-slate-700">
                                   {item}
                                 </p>
@@ -406,7 +406,7 @@ export function BornesCommande() {
                           )}
                         </div>
 
-                        <div className="m-4 rounded-xl bg-brand-600 px-4 py-3 text-center text-sm font-semibold text-white">
+                        <div className="m-4 rounded-xl bg-orange-600 px-4 py-3 text-center text-sm font-semibold text-white">
                           Commencer ma commande
                         </div>
                       </div>
@@ -420,8 +420,8 @@ export function BornesCommande() {
 
               <div className="absolute -bottom-5 -left-5 hidden rounded-2xl border border-slate-200 bg-white p-4 shadow-lg sm:block">
                 <div className="flex items-center gap-3">
-                  <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-brand-50">
-                    <Zap className="h-5 w-5 text-brand-600" />
+                  <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-orange-50">
+                    <Zap className="h-5 w-5 text-orange-600" />
                   </div>
                   <div>
                     <p className="text-xs text-slate-400">Expérience</p>
@@ -442,7 +442,7 @@ export function BornesCommande() {
       <section className="py-20 lg:py-28">
         <div className="mx-auto max-w-7xl px-6 lg:px-8">
           <div className="mx-auto max-w-3xl text-center">
-            <span className="text-sm font-semibold uppercase tracking-wider text-brand-600">
+            <span className="text-sm font-semibold uppercase tracking-wider text-orange-600">
               Une nouvelle expérience client
             </span>
 
@@ -474,7 +474,7 @@ export function BornesCommande() {
                   className="rounded-2xl border border-slate-200 bg-slate-50 p-7"
                 >
                   <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-white shadow-sm">
-                    <Icon className="h-6 w-6 text-brand-600" />
+                    <Icon className="h-6 w-6 text-orange-600" />
                   </div>
 
                   <h3 className="mt-5 font-display text-xl font-semibold text-slate-900">
@@ -500,7 +500,7 @@ export function BornesCommande() {
       >
         <div className="mx-auto max-w-7xl px-6 lg:px-8">
           <div className="max-w-2xl">
-            <span className="text-sm font-semibold uppercase tracking-wider text-brand-600">
+            <span className="text-sm font-semibold uppercase tracking-wider text-orange-600">
               Fonctionnalités
             </span>
 
@@ -538,7 +538,7 @@ export function BornesCommande() {
         <div className="mx-auto max-w-7xl px-6 lg:px-8">
           <div className="grid gap-14 lg:grid-cols-2 lg:items-center">
             <div>
-              <span className="text-sm font-semibold uppercase tracking-wider text-brand-300">
+              <span className="text-sm font-semibold uppercase tracking-wider text-orange-300">
                 Logiciel & personnalisation
               </span>
 
@@ -559,7 +559,7 @@ export function BornesCommande() {
                   return (
                     <div key={feature.title} className="flex gap-3">
                       <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-white/10">
-                        <Icon className="h-5 w-5 text-brand-300" />
+                        <Icon className="h-5 w-5 text-orange-300" />
                       </div>
 
                       <div>
@@ -590,8 +590,8 @@ export function BornesCommande() {
                       </p>
                     </div>
 
-                    <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-brand-500/10">
-                      <BarChart3 className="h-5 w-5 text-brand-300" />
+                    <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-orange-500/10">
+                      <BarChart3 className="h-5 w-5 text-orange-300" />
                     </div>
                   </div>
 
@@ -635,14 +635,14 @@ export function BornesCommande() {
       ========================================================== */}
       <section className="py-20 lg:py-28">
         <div className="mx-auto max-w-7xl px-6 lg:px-8">
-          <div className="overflow-hidden rounded-3xl border border-brand-100 bg-brand-50/50">
+          <div className="overflow-hidden rounded-3xl border border-orange-100 bg-orange-50/50">
             <div className="grid lg:grid-cols-2">
               <div className="p-8 sm:p-12 lg:p-14">
                 <div className="flex h-14 w-14 items-center justify-center rounded-2xl bg-white shadow-sm">
-                  <Radio className="h-7 w-7 text-brand-600" />
+                  <Radio className="h-7 w-7 text-orange-600" />
                 </div>
 
-                <span className="mt-7 block text-sm font-semibold uppercase tracking-wider text-brand-600">
+                <span className="mt-7 block text-sm font-semibold uppercase tracking-wider text-orange-600">
                   Technologie RFID
                 </span>
 
@@ -662,7 +662,7 @@ export function BornesCommande() {
                       key={benefit}
                       className="flex items-start gap-3 text-sm text-slate-700"
                     >
-                      <div className="mt-0.5 flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-brand-600">
+                      <div className="mt-0.5 flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-orange-600">
                         <Check className="h-3 w-3 text-white" />
                       </div>
 
@@ -673,12 +673,12 @@ export function BornesCommande() {
               </div>
 
               <div className="relative flex min-h-[350px] items-center justify-center overflow-hidden bg-slate-900 p-10">
-                <div className="absolute inset-0 bg-gradient-to-br from-brand-900/80 to-slate-950" />
+                <div className="absolute inset-0 bg-gradient-to-br from-orange-950/80 to-slate-950" />
 
                 <div className="relative text-center">
-                  <div className="mx-auto flex h-28 w-28 items-center justify-center rounded-full border border-brand-400/30 bg-brand-500/10">
-                    <div className="flex h-20 w-20 items-center justify-center rounded-full border border-brand-400/40 bg-brand-500/10">
-                      <Radio className="h-10 w-10 text-brand-300" />
+                  <div className="mx-auto flex h-28 w-28 items-center justify-center rounded-full border border-orange-400/30 bg-orange-500/10">
+                    <div className="flex h-20 w-20 items-center justify-center rounded-full border border-orange-400/40 bg-orange-500/10">
+                      <Radio className="h-10 w-10 text-orange-300" />
                     </div>
                   </div>
 
@@ -703,7 +703,7 @@ export function BornesCommande() {
       <section className="bg-slate-50 py-20 lg:py-28">
         <div className="mx-auto max-w-7xl px-6 lg:px-8">
           <div className="mx-auto max-w-2xl text-center">
-            <span className="text-sm font-semibold uppercase tracking-wider text-brand-600">
+            <span className="text-sm font-semibold uppercase tracking-wider text-orange-600">
               Secteurs d’activité
             </span>
 
@@ -740,7 +740,7 @@ export function BornesCommande() {
         <div className="mx-auto max-w-7xl px-6 lg:px-8">
           <div className="grid gap-12 lg:grid-cols-[0.8fr_1.2fr] lg:items-center">
             <div>
-              <span className="text-sm font-semibold uppercase tracking-wider text-brand-600">
+              <span className="text-sm font-semibold uppercase tracking-wider text-orange-600">
                 Notre accompagnement
               </span>
 
@@ -755,7 +755,7 @@ export function BornesCommande() {
 
               <Link
                 to="/#contact"
-                className="mt-8 inline-flex items-center gap-2 font-semibold text-brand-600 hover:text-brand-700"
+                className="mt-8 inline-flex items-center gap-2 font-semibold text-orange-600 hover:text-orange-700"
               >
                 Parler de votre projet
                 <ArrowUpRight className="h-4 w-4" />
@@ -789,7 +789,7 @@ export function BornesCommande() {
                   key={step.number}
                   className="rounded-2xl border border-slate-200 bg-white p-6"
                 >
-                  <span className="text-sm font-bold text-brand-600">
+                  <span className="text-sm font-bold text-orange-600">
                     {step.number}
                   </span>
 
@@ -813,14 +813,14 @@ export function BornesCommande() {
       <section className="px-6 pb-20 lg:px-8 lg:pb-28">
         <div className="mx-auto max-w-7xl overflow-hidden rounded-3xl bg-slate-900">
           <div className="relative px-8 py-14 sm:px-12 lg:px-16 lg:py-16">
-            <div className="absolute -right-20 -top-20 h-64 w-64 rounded-full bg-brand-600/20 blur-3xl" />
-            <div className="absolute -bottom-20 -left-20 h-64 w-64 rounded-full bg-accent-500/10 blur-3xl" />
+            <div className="absolute -right-20 -top-20 h-64 w-64 rounded-full bg-orange-600/20 blur-3xl" />
+            <div className="absolute -bottom-20 -left-20 h-64 w-64 rounded-full bg-amber-500/10 blur-3xl" />
 
             <div className="relative flex flex-col gap-8 lg:flex-row lg:items-center lg:justify-between">
               <div className="max-w-2xl">
                 <div className="flex items-center gap-3">
-                  <Clock3 className="h-5 w-5 text-brand-300" />
-                  <span className="text-sm font-semibold text-brand-300">
+                  <Clock3 className="h-5 w-5 text-orange-300" />
+                  <span className="text-sm font-semibold text-orange-300">
                     Modernisez votre parcours client
                   </span>
                 </div>

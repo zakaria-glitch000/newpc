@@ -1,4 +1,4 @@
-
+import React from 'react';
 import { Link } from 'react-router-dom';
 
 import caisseImg from '../assets/caisse.jpg';
@@ -11,7 +11,7 @@ const expertises = [
     description:
       'Des solutions complètes pour piloter votre établissement : caisses CSI, bornes de commande, écrans cuisine KDS, ERP et reporting.',
     image: caisseImg,
-    iconBg: 'bg-orange-500',
+    iconBg: 'bg-orange-600',
     linkUrl: '/solutions-restauration',
     iconSvg: (
       <svg
@@ -35,7 +35,7 @@ const expertises = [
     description:
       "Avec INNOSHOP, accompagnez les commerces et points de vente dans l'encaissement, la gestion des stocks et le suivi de leur activité.",
     image: logicielImg,
-    iconBg: 'bg-blue-600',
+    iconBg: 'bg-amber-600',
     linkUrl: '/Shop',
     iconSvg: (
       <svg
@@ -59,7 +59,7 @@ const expertises = [
     description:
       'Conception et réalisation d’applications métier personnalisées, adaptées aux besoins et aux processus de chaque entreprise.',
     image: devImg,
-    iconBg: 'bg-purple-600',
+    iconBg: 'bg-orange-700',
     linkUrl: '/Devmesure',
     iconSvg: (
       <svg
@@ -88,18 +88,18 @@ export default function NosExpertises() {
     >
       {/* EN-TÊTE */}
       <div className="mx-auto mb-8 max-w-7xl text-center">
-        <span className="inline-flex rounded-full border border-blue-100 bg-white px-4 py-2 text-xs font-bold uppercase tracking-[0.18em] text-blue-600 shadow-sm">
+        <span className="inline-flex rounded-full border border-orange-100 bg-white px-4 py-2 text-xs font-bold uppercase tracking-[0.18em] text-orange-600 shadow-sm">
           Nos Solutions
         </span>
 
         <h2 className="mt-3 text-3xl font-extrabold tracking-tight text-gray-900 sm:text-4xl">
           Une offre complète pour{' '}
-          <span className="bg-gradient-to-r from-sky-500 to-blue-700 bg-clip-text text-transparent">
+          <span className="bg-gradient-to-r from-amber-500 to-orange-600 bg-clip-text text-transparent">
             vos projets
           </span>
         </h2>
 
-        <div className="mx-auto mt-3 h-1 w-14 rounded-full bg-gradient-to-r from-sky-400 to-blue-600" />
+        <div className="mx-auto mt-3 h-1 w-14 rounded-full bg-gradient-to-r from-amber-400 to-orange-600" />
 
         <p className="mx-auto mt-4 max-w-2xl text-sm leading-7 text-gray-500 sm:text-base">
           Des solutions technologiques adaptées à votre métier
@@ -115,12 +115,12 @@ export default function NosExpertises() {
             key={item.title}
             to={item.linkUrl}
             aria-label={`Découvrir ${item.title}`}
-            className="group block h-full rounded-2xl focus-visible:outline focus-visible:outline-4 focus-visible:outline-offset-4 focus-visible:outline-blue-500"
+            className="group block h-full rounded-2xl focus-visible:outline focus-visible:outline-4 focus-visible:outline-offset-4 focus-visible:outline-orange-500"
           >
-            <article className="relative flex h-full flex-col overflow-hidden rounded-2xl border border-gray-100 bg-white text-left shadow-md transition-all duration-300 hover:-translate-y-1 hover:border-blue-200 hover:shadow-xl hover:shadow-slate-200/60">
-              {/* LIGNE BLEUE ANIMÉE */}
+            <article className="relative flex h-full flex-col overflow-hidden rounded-2xl border border-gray-100 bg-white text-left shadow-md transition-all duration-300 hover:-translate-y-1 hover:border-orange-200 hover:shadow-xl hover:shadow-slate-200/60">
+              {/* LIGNE ORANGE ANIMÉE */}
               <div
-                className="pointer-events-none absolute left-0 top-0 z-20 h-full w-1 origin-top scale-y-0 bg-gradient-to-b from-sky-400 to-blue-600 transition-transform duration-300 group-hover:scale-y-100"
+                className="pointer-events-none absolute left-0 top-0 z-20 h-full w-1 origin-top scale-y-0 bg-gradient-to-b from-amber-400 to-orange-600 transition-transform duration-300 group-hover:scale-y-100"
                 aria-hidden="true"
               />
 
@@ -149,7 +149,7 @@ export default function NosExpertises() {
                   {item.iconSvg}
                 </div>
 
-                <h3 className="mb-2 text-xl font-bold leading-snug text-gray-900 transition-colors duration-300 group-hover:text-blue-700">
+                <h3 className="mb-2 text-xl font-bold leading-snug text-gray-900 transition-colors duration-300 group-hover:text-orange-700">
                   {item.title}
                 </h3>
 
@@ -159,7 +159,7 @@ export default function NosExpertises() {
 
                 {/* BOUTON VISUEL */}
                 <div className="mt-auto border-t border-slate-100 pt-3">
-                  <span className="inline-flex items-center gap-2 text-sm font-semibold text-blue-600 transition-colors duration-300 group-hover:text-blue-800">
+                  <span className="inline-flex items-center gap-2 text-sm font-semibold text-orange-600 transition-colors duration-300 group-hover:text-orange-800">
                     En savoir plus
                     <span
                       className="inline-block transition-transform duration-300 group-hover:translate-x-1"

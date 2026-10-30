@@ -132,7 +132,7 @@ function SectionTitle({
 }) {
   return (
     <div className="mx-auto max-w-3xl text-center">
-      <span className="mb-4 inline-flex items-center gap-2 rounded-full border border-brand-100 bg-brand-50 px-4 py-2 text-xs font-semibold uppercase tracking-[0.18em] text-brand-600">
+      <span className="mb-4 inline-flex items-center gap-2 rounded-full border border-orange-100 bg-orange-50 px-4 py-2 text-xs font-semibold uppercase tracking-[0.18em] text-orange-600">
         <Sparkles className="h-3.5 w-3.5" />
         {eyebrow}
       </span>
@@ -178,19 +178,19 @@ function DashboardMockup({
         <div className="rounded-xl bg-slate-50 p-3">
           <div className="h-2 w-12 rounded-full bg-slate-200" />
           <div className="mt-3 h-5 w-16 rounded-full bg-slate-900/80" />
-          <div className="mt-2 h-2 w-10 rounded-full bg-brand-200" />
+          <div className="mt-2 h-2 w-10 rounded-full bg-orange-200" />
         </div>
 
         <div className="rounded-xl bg-slate-50 p-3">
           <div className="h-2 w-12 rounded-full bg-slate-200" />
           <div className="mt-3 h-5 w-16 rounded-full bg-slate-900/80" />
-          <div className="mt-2 h-2 w-10 rounded-full bg-brand-200" />
+          <div className="mt-2 h-2 w-10 rounded-full bg-orange-200" />
         </div>
 
         <div className="rounded-xl bg-slate-50 p-3">
           <div className="h-2 w-12 rounded-full bg-slate-200" />
           <div className="mt-3 h-5 w-16 rounded-full bg-slate-900/80" />
-          <div className="mt-2 h-2 w-10 rounded-full bg-brand-200" />
+          <div className="mt-2 h-2 w-10 rounded-full bg-orange-200" />
         </div>
       </div>
 
@@ -204,7 +204,7 @@ function DashboardMockup({
                 style={{ height: '100px' }}
               >
                 <div
-                  className="w-full rounded-t-md bg-brand-100 transition-all"
+                  className="w-full rounded-t-md bg-orange-200 transition-all"
                   style={{
                     height: `${height}%`,
                     opacity: isSales ? 1 : 0.65,
@@ -236,11 +236,11 @@ function DashboardMockup({
                   : 'Performance'}
             </span>
 
-            <TrendingUp className="h-3.5 w-3.5 text-brand-500" />
+            <TrendingUp className="h-3.5 w-3.5 text-orange-500" />
           </div>
 
           <div className="mt-3 h-3 w-24 rounded-full bg-slate-800/80" />
-          <div className="mt-2 h-2 w-16 rounded-full bg-brand-200" />
+          <div className="mt-2 h-2 w-16 rounded-full bg-orange-200" />
         </div>
 
         <div className="rounded-xl bg-slate-50 p-4">
@@ -253,11 +253,11 @@ function DashboardMockup({
                   : 'Évolution'}
             </span>
 
-            <BarChart3 className="h-3.5 w-3.5 text-brand-500" />
+            <BarChart3 className="h-3.5 w-3.5 text-orange-500" />
           </div>
 
           <div className="mt-3 h-3 w-20 rounded-full bg-slate-800/80" />
-          <div className="mt-2 h-2 w-12 rounded-full bg-brand-200" />
+          <div className="mt-2 h-2 w-12 rounded-full bg-orange-200" />
         </div>
       </div>
     </div>
@@ -268,10 +268,10 @@ export function AnalyseVentes() {
   return (
     <div className="bg-white">
       {/* =========================================================
-          HERO
+          HER
       ========================================================== */}
       <section className="relative overflow-hidden pt-32 pb-20 sm:pt-40 sm:pb-28">
-        <div className="absolute inset-0 -z-10 bg-[radial-gradient(circle_at_top_right,_rgba(14,165,233,0.10),_transparent_35%),radial-gradient(circle_at_bottom_left,_rgba(99,102,241,0.08),_transparent_35%)]" />
+        <div className="absolute inset-0 -z-10 bg-[radial-gradient(circle_at_top_right,_rgba(249,115,22,0.10),_transparent_35%),radial-gradient(circle_at_bottom_left,_rgba(245,158,11,0.08),_transparent_35%)]" />
 
         <div className="mx-auto max-w-7xl px-6 lg:px-8">
           <div className="grid items-center gap-14 lg:grid-cols-2">
@@ -280,14 +280,14 @@ export function AnalyseVentes() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6 }}
             >
-              <div className="mb-6 inline-flex items-center gap-2 rounded-full border border-brand-100 bg-brand-50 px-4 py-2 text-sm font-semibold text-brand-600">
+              <div className="mb-6 inline-flex items-center gap-2 rounded-full border border-orange-100 bg-orange-50 px-4 py-2 text-sm font-semibold text-orange-600">
                 <BarChart3 className="h-4 w-4" />
                 Analyse des ventes
               </div>
 
               <h1 className="max-w-2xl text-4xl font-bold leading-[1.08] tracking-tight text-slate-900 sm:text-5xl lg:text-6xl">
                 Transformez vos données en{' '}
-                <span className="text-brand-500">
+                <span className="text-orange-500">
                   décisions plus intelligentes
                 </span>
               </h1>
@@ -301,7 +301,7 @@ export function AnalyseVentes() {
               <div className="mt-8 flex flex-col gap-3 sm:flex-row">
                 <a
                   href="/#contact"
-                  className="group inline-flex items-center justify-center gap-2 rounded-xl bg-brand-500 px-6 py-3.5 text-sm font-semibold text-white shadow-lg shadow-brand-500/20 transition-all hover:bg-brand-600"
+                  className="group inline-flex items-center justify-center gap-2 rounded-xl bg-orange-500 px-6 py-3.5 text-sm font-semibold text-white shadow-lg shadow-orange-500/20 transition-all hover:bg-orange-600"
                 >
                   Demander une démo
                   <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
@@ -309,7 +309,7 @@ export function AnalyseVentes() {
 
                 <a
                   href="#tableaux-de-bord"
-                  className="inline-flex items-center justify-center gap-2 rounded-xl border border-slate-200 bg-white px-6 py-3.5 text-sm font-semibold text-slate-700 transition-all hover:border-brand-200 hover:text-brand-600"
+                  className="inline-flex items-center justify-center gap-2 rounded-xl border border-slate-200 bg-white px-6 py-3.5 text-sm font-semibold text-slate-700 transition-all hover:border-orange-200 hover:text-orange-600"
                 >
                   Découvrir les analyses
                 </a>
@@ -323,8 +323,8 @@ export function AnalyseVentes() {
               transition={{ duration: 0.7, delay: 0.15 }}
               className="relative"
             >
-              <div className="absolute -left-10 top-10 h-36 w-36 rounded-full bg-brand-400/20 blur-3xl" />
-              <div className="absolute -right-10 bottom-10 h-44 w-44 rounded-full bg-indigo-400/20 blur-3xl" />
+              <div className="absolute -left-10 top-10 h-36 w-36 rounded-full bg-orange-400/20 blur-3xl" />
+              <div className="absolute -right-10 bottom-10 h-44 w-44 rounded-full bg-amber-400/20 blur-3xl" />
 
               <div className="relative rounded-3xl border border-slate-200 bg-white p-4 shadow-2xl shadow-slate-200/70 sm:p-6">
                 <div className="mb-5 flex items-center justify-between">
@@ -337,15 +337,15 @@ export function AnalyseVentes() {
                     </p>
                   </div>
 
-                  <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-brand-50 text-brand-600">
+                  <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-orange-50 text-orange-600">
                     <BarChart3 className="h-5 w-5" />
                   </div>
                 </div>
 
                 <DashboardMockup variant="sales" />
 
-                <div className="mt-4 flex items-center gap-3 rounded-2xl bg-brand-50 p-4">
-                  <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-white text-brand-600">
+                <div className="mt-4 flex items-center gap-3 rounded-2xl bg-orange-50 p-4">
+                  <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-white text-orange-600">
                     <TrendingUp className="h-5 w-5" />
                   </div>
 
@@ -397,11 +397,11 @@ export function AnalyseVentes() {
                     }`}
                   >
                     <div className="p-7 sm:p-10 lg:p-12">
-                      <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-brand-50 text-brand-600">
+                      <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-orange-50 text-orange-600">
                         <dashboard.icon className="h-6 w-6" />
                       </div>
 
-                      <p className="mt-6 text-xs font-semibold uppercase tracking-[0.16em] text-brand-500">
+                      <p className="mt-6 text-xs font-semibold uppercase tracking-[0.16em] text-orange-500">
                         Analyse
                       </p>
 
@@ -419,7 +419,7 @@ export function AnalyseVentes() {
                             key={feature}
                             className="flex items-start gap-3"
                           >
-                            <span className="mt-0.5 flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-brand-500 text-white">
+                            <span className="mt-0.5 flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-orange-500 text-white">
                               <Check className="h-3 w-3" />
                             </span>
 
@@ -459,7 +459,7 @@ export function AnalyseVentes() {
         <div className="mx-auto max-w-7xl px-6 lg:px-8">
           <div className="grid gap-14 lg:grid-cols-2 lg:items-center">
             <div>
-              <span className="inline-flex items-center gap-2 rounded-full border border-brand-100 bg-brand-50 px-4 py-2 text-xs font-semibold uppercase tracking-[0.18em] text-brand-600">
+              <span className="inline-flex items-center gap-2 rounded-full border border-orange-100 bg-orange-50 px-4 py-2 text-xs font-semibold uppercase tracking-[0.18em] text-orange-600">
                 <Target className="h-3.5 w-3.5" />
                 Pilotage
               </span>
@@ -476,7 +476,7 @@ export function AnalyseVentes() {
 
               <a
                 href="/#contact"
-                className="group mt-8 inline-flex items-center gap-2 text-sm font-semibold text-brand-600"
+                className="group mt-8 inline-flex items-center gap-2 text-sm font-semibold text-orange-600"
               >
                 Parlons de vos besoins
                 <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
@@ -493,7 +493,7 @@ export function AnalyseVentes() {
                   transition={{ duration: 0.4, delay: index * 0.07 }}
                   className="rounded-2xl border border-slate-200 bg-white p-6 shadow-sm"
                 >
-                  <div className="flex h-11 w-11 items-center justify-center rounded-xl bg-brand-50 text-brand-600">
+                  <div className="flex h-11 w-11 items-center justify-center rounded-xl bg-orange-50 text-orange-600">
                     <item.icon className="h-5 w-5" />
                   </div>
 
@@ -518,7 +518,7 @@ export function AnalyseVentes() {
         <div className="mx-auto max-w-7xl px-6 lg:px-8">
           <div className="grid gap-14 lg:grid-cols-2 lg:items-center">
             <div>
-              <span className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-4 py-2 text-xs font-semibold uppercase tracking-[0.18em] text-brand-300">
+              <span className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-4 py-2 text-xs font-semibold uppercase tracking-[0.18em] text-orange-300">
                 <FileBarChart className="h-3.5 w-3.5" />
                 Indicateurs clés
               </span>
@@ -545,7 +545,7 @@ export function AnalyseVentes() {
                     key={item}
                     className="flex items-center gap-3 rounded-xl border border-white/10 bg-white/5 p-4"
                   >
-                    <Check className="h-4 w-4 text-brand-400" />
+                    <Check className="h-4 w-4 text-orange-400" />
 
                     <span className="text-sm text-slate-300">{item}</span>
                   </div>
@@ -554,7 +554,7 @@ export function AnalyseVentes() {
             </div>
 
             <div className="relative">
-              <div className="absolute -inset-10 rounded-full bg-brand-500/10 blur-3xl" />
+              <div className="absolute -inset-10 rounded-full bg-orange-500/10 blur-3xl" />
 
               <div className="relative rounded-3xl border border-white/10 bg-white/[0.04] p-5">
                 <div className="flex items-center justify-between">
@@ -565,7 +565,7 @@ export function AnalyseVentes() {
                     </p>
                   </div>
 
-                  <BarChart3 className="h-6 w-6 text-brand-300" />
+                  <BarChart3 className="h-6 w-6 text-orange-300" />
                 </div>
 
                 <div className="mt-6 grid grid-cols-2 gap-3">
@@ -583,7 +583,7 @@ export function AnalyseVentes() {
 
                       <p className="mt-2 text-2xl font-bold">{value}</p>
 
-                      <div className="mt-3 flex items-center gap-1 text-[11px] text-brand-300">
+                      <div className="mt-3 flex items-center gap-1 text-[11px] text-orange-300">
                         <TrendingUp className="h-3 w-3" />
                         Évolution
                       </div>
@@ -597,7 +597,7 @@ export function AnalyseVentes() {
                       Évolution des ventes
                     </p>
 
-                    <span className="text-xs text-brand-300">12 mois</span>
+                    <span className="text-xs text-orange-300">12 mois</span>
                   </div>
 
                   <div className="mt-6 flex h-32 items-end gap-2">
@@ -605,7 +605,7 @@ export function AnalyseVentes() {
                       (height, index) => (
                         <div
                           key={index}
-                          className="flex-1 rounded-t-md bg-brand-400/70"
+                          className="flex-1 rounded-t-md bg-orange-400/70"
                           style={{ height: `${height}%` }}
                         />
                       ),
@@ -639,7 +639,7 @@ export function AnalyseVentes() {
                 transition={{ duration: 0.4, delay: index * 0.07 }}
                 className="rounded-2xl border border-slate-200 bg-white p-6 text-center shadow-sm"
               >
-                <div className="mx-auto flex h-12 w-12 items-center justify-center rounded-xl bg-brand-50 text-brand-600">
+                <div className="mx-auto flex h-12 w-12 items-center justify-center rounded-xl bg-orange-50 text-orange-600">
                   <item.icon className="h-6 w-6" />
                 </div>
 
@@ -651,7 +651,7 @@ export function AnalyseVentes() {
                   {item.description}
                 </p>
 
-                <div className="mt-5 flex items-center justify-center gap-1 text-xs font-semibold text-brand-600">
+                <div className="mt-5 flex items-center justify-center gap-1 text-xs font-semibold text-orange-600">
                   Disponible selon votre configuration
                   <ChevronRight className="h-3.5 w-3.5" />
                 </div>
@@ -667,11 +667,11 @@ export function AnalyseVentes() {
       <section className="py-20 sm:py-28">
         <div className="mx-auto max-w-7xl px-6 lg:px-8">
           <div className="relative overflow-hidden rounded-3xl bg-slate-900 px-7 py-14 sm:px-12 sm:py-16">
-            <div className="absolute -right-20 -top-20 h-72 w-72 rounded-full bg-brand-500/20 blur-3xl" />
-            <div className="absolute -bottom-20 -left-20 h-72 w-72 rounded-full bg-indigo-500/10 blur-3xl" />
+            <div className="absolute -right-20 -top-20 h-72 w-72 rounded-full bg-orange-500/20 blur-3xl" />
+            <div className="absolute -bottom-20 -left-20 h-72 w-72 rounded-full bg-amber-500/10 blur-3xl" />
 
             <div className="relative mx-auto max-w-3xl text-center">
-              <div className="mx-auto flex h-14 w-14 items-center justify-center rounded-2xl bg-brand-500/15 text-brand-300">
+              <div className="mx-auto flex h-14 w-14 items-center justify-center rounded-2xl bg-orange-500/15 text-orange-300">
                 <BarChart3 className="h-7 w-7" />
               </div>
 
@@ -688,7 +688,7 @@ export function AnalyseVentes() {
               <div className="mt-8 flex flex-col justify-center gap-3 sm:flex-row">
                 <a
                   href="/#contact"
-                  className="group inline-flex items-center justify-center gap-2 rounded-xl bg-brand-500 px-6 py-3.5 text-sm font-semibold text-white transition-all hover:bg-brand-400"
+                  className="group inline-flex items-center justify-center gap-2 rounded-xl bg-orange-500 px-6 py-3.5 text-sm font-semibold text-white transition-all hover:bg-orange-400"
                 >
                   Demander une démo
                   <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />

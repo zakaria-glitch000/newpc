@@ -15,6 +15,7 @@ import {
   Sparkles,
 } from 'lucide-react';
 import franchiseImage from '@/assets/10.jpg';
+
 export default function Innoshop() {
   const navigate = useNavigate();
 
@@ -43,9 +44,7 @@ export default function Innoshop() {
   const handleDemoSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
-    // بدّل هاد الرقم برقم WhatsApp الحقيقي ديالك
-    // خاص الرقم يكون بصيغة دولية، بلا + وبلا مسافات
-    const whatsappNumber = '212600000000';
+    const whatsappNumber = '33630218757';
 
     const message = [
       'Bonjour ORALI SYSTEMS 👋',
@@ -109,10 +108,10 @@ export default function Innoshop() {
   ];
 
   return (
-    <div className="flex min-h-screen flex-col justify-between bg-slate-50 font-sans text-slate-800 selection:bg-blue-500 selection:text-white">
+    <div className="flex min-h-screen flex-col justify-between bg-slate-50 font-sans text-slate-800 selection:bg-orange-600 selection:text-white">
 
       {/* TOP ACCENT LINE */}
-      <div className="h-1.5 w-full bg-gradient-to-r from-blue-600 via-sky-400 to-orange-500" />
+      <div className="h-1.5 w-full bg-gradient-to-r from-amber-500 via-orange-500 to-amber-600" />
 
       {/* MAIN CONTAINER */}
       <div className="mx-auto flex w-full max-w-7xl flex-1 flex-col justify-between px-4 py-6 sm:px-6 lg:px-8">
@@ -129,7 +128,7 @@ export default function Innoshop() {
           <div className="space-y-6 text-center lg:col-span-5 lg:text-left">
 
             {/* CATEGORY TAG */}
-            <div className="inline-flex items-center gap-2.5 rounded-full border border-blue-100 bg-blue-50/90 px-4 py-2 text-xs font-bold text-blue-700 shadow-sm">
+            <div className="inline-flex items-center gap-2.5 rounded-full border border-orange-100 bg-orange-50/90 px-4 py-2 text-xs font-bold text-orange-700 shadow-sm">
               <span className="h-2.5 w-2.5 rounded-full bg-orange-500" />
               <span>SOLUTION POUR FRANCHISES &amp; CHAÎNES</span>
             </div>
@@ -140,9 +139,9 @@ export default function Innoshop() {
               <br className="hidden sm:inline" />
               <span> vos points de vente</span>
               <br />
-              <span className="text-blue-600">
+              <span className="text-orange-600">
                 en un seul endroit
-                <span className="text-orange-500">.</span>
+                <span className="text-amber-500">.</span>
               </span>
             </h1>
 
@@ -158,9 +157,9 @@ export default function Innoshop() {
               <button
                 type="button"
                 onClick={() => setIsDemoModalOpen(true)}
-                className="flex w-full items-center justify-center gap-3 rounded-full bg-blue-600 px-7 py-3.5 font-semibold text-white shadow-lg shadow-blue-600/30 transition-all hover:bg-blue-700 hover:shadow-blue-600/40 active:scale-95 sm:w-auto"
+                className="flex w-full items-center justify-center gap-3 rounded-full bg-orange-600 px-7 py-3.5 font-semibold text-white shadow-lg shadow-orange-600/30 transition-all hover:bg-orange-700 hover:shadow-orange-600/40 active:scale-95 sm:w-auto"
               >
-                <Calendar className="h-5 w-5 text-blue-200" />
+                <Calendar className="h-5 w-5 text-orange-200" />
                 <span>Demander une démo</span>
                 <ArrowRight className="ml-1 h-4 w-4" />
               </button>
@@ -168,7 +167,7 @@ export default function Innoshop() {
               <button
                 type="button"
                 onClick={handleContactClick}
-                className="flex w-full items-center justify-center gap-3 rounded-full border border-slate-300 bg-white px-7 py-3.5 font-semibold text-slate-800 shadow-sm transition-all hover:bg-slate-100 sm:w-auto"
+                className="flex w-full items-center justify-center gap-3 rounded-full border border-slate-300 bg-white px-7 py-3.5 font-semibold text-slate-800 shadow-sm transition-all hover:bg-orange-50 hover:border-orange-200 hover:text-orange-700 sm:w-auto"
               >
                 <Phone className="h-4 w-4 text-slate-700" />
                 <span>Nous contacter</span>
@@ -182,12 +181,12 @@ export default function Innoshop() {
 
               <div className="flex items-center gap-2">
                 <CheckCircle2 className="h-4 w-4 shrink-0 text-emerald-500" />
-                <span>+150 enseignes au Maroc</span>
+                <span>+150 enseignes partenaires</span>
               </div>
 
               <div className="flex items-center gap-2">
                 <CheckCircle2 className="h-4 w-4 shrink-0 text-emerald-500" />
-                <span>Support &amp; intégration locale</span>
+                <span>Support &amp; intégration sur mesure</span>
               </div>
 
             </div>
@@ -217,19 +216,19 @@ export default function Innoshop() {
               ))}
             </div>
 
-{/* IMAGE CONTAINER */}
-<div className="group relative z-10 overflow-hidden rounded-2xl border border-slate-200 bg-slate-50 shadow-xl transition-all duration-500 hover:-translate-y-1 hover:shadow-2xl">
-  <img
-    src={franchiseImage}
-    alt="Solution de gestion des points de vente ORALI SYSTEMS"
-    className="block h-[300px] w-full object-contain sm:h-[440px]"
-  />
+            {/* IMAGE CONTAINER */}
+            <div className="group relative z-10 overflow-hidden rounded-2xl border border-slate-200 bg-slate-50 shadow-xl transition-all duration-500 hover:-translate-y-1 hover:shadow-2xl">
+              <img
+                src={franchiseImage}
+                alt="Solution de gestion des points de vente ORALI SYSTEMS"
+                className="block h-[300px] w-full object-contain sm:h-[440px]"
+              />
 
               {/* IMAGE CAPTION */}
               <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-slate-950/80 via-slate-950/30 to-transparent p-5 pt-16 sm:p-7 sm:pt-20">
                 <div className="flex items-end justify-between gap-4">
                   <div>
-                    <p className="text-xs font-semibold uppercase tracking-widest text-sky-200">
+                    <p className="text-xs font-semibold uppercase tracking-widest text-orange-200">
                       Gestion centralisée
                     </p>
 
@@ -246,7 +245,6 @@ export default function Innoshop() {
 
             </div>
           </div>
-
         </div>
 
         {/* FEATURES */}
@@ -260,7 +258,7 @@ export default function Innoshop() {
                 key={feature.title}
                 className="flex items-start gap-4 rounded-2xl p-3 transition-all hover:bg-white hover:shadow-md"
               >
-                <div className="shrink-0 rounded-2xl border border-blue-100 bg-blue-50 p-3 text-blue-600 shadow-sm">
+                <div className="shrink-0 rounded-2xl border border-orange-100 bg-orange-50 p-3 text-orange-600 shadow-sm">
                   <Icon className="h-6 w-6" />
                 </div>
 
@@ -269,7 +267,7 @@ export default function Innoshop() {
                     {feature.title}
                   </h3>
 
-                  <div className="mt-2.5 h-1 w-8 rounded-full bg-blue-600" />
+                  <div className="mt-2.5 h-1 w-8 rounded-full bg-orange-600" />
                 </div>
               </div>
             );
@@ -282,7 +280,7 @@ export default function Innoshop() {
       <footer className="mt-8 border-t border-slate-200 bg-white py-4 text-center text-xs text-slate-500">
         <p>
           © {new Date().getFullYear()} ORALI SYSTEMS. Solutions Commerce &amp;
-          Restaurant au Maroc.
+          Restaurant.
         </p>
       </footer>
 
@@ -332,7 +330,7 @@ export default function Innoshop() {
                     setDemoForm({ ...demoForm, name: e.target.value })
                   }
                   placeholder="Votre nom complet"
-                  className="w-full rounded-lg border border-slate-300 px-3 py-2.5 text-sm outline-none focus:ring-2 focus:ring-blue-500"
+                  className="w-full rounded-lg border border-slate-300 px-3 py-2.5 text-sm outline-none focus:ring-2 focus:ring-orange-500"
                 />
               </div>
 
@@ -349,8 +347,8 @@ export default function Innoshop() {
                   onChange={(e) =>
                     setDemoForm({ ...demoForm, email: e.target.value })
                   }
-                  placeholder="vous@entreprise.ma"
-                  className="w-full rounded-lg border border-slate-300 px-3 py-2.5 text-sm outline-none focus:ring-2 focus:ring-blue-500"
+                  placeholder="vous@entreprise.fr"
+                  className="w-full rounded-lg border border-slate-300 px-3 py-2.5 text-sm outline-none focus:ring-2 focus:ring-orange-500"
                 />
               </div>
 
@@ -369,7 +367,7 @@ export default function Innoshop() {
                       setDemoForm({ ...demoForm, phone: e.target.value })
                     }
                     placeholder="06 00 00 00 00"
-                    className="w-full rounded-lg border border-slate-300 px-3 py-2.5 text-sm outline-none focus:ring-2 focus:ring-blue-500"
+                    className="w-full rounded-lg border border-slate-300 px-3 py-2.5 text-sm outline-none focus:ring-2 focus:ring-orange-500"
                   />
                 </div>
 
@@ -383,7 +381,7 @@ export default function Innoshop() {
                     onChange={(e) =>
                       setDemoForm({ ...demoForm, stores: e.target.value })
                     }
-                    className="w-full rounded-lg border border-slate-300 px-3 py-2.5 text-sm outline-none focus:ring-2 focus:ring-blue-500"
+                    className="w-full rounded-lg border border-slate-300 px-3 py-2.5 text-sm outline-none focus:ring-2 focus:ring-orange-500"
                   >
                     <option value="1-5">1–5</option>
                     <option value="6-15">6–15</option>
@@ -407,7 +405,7 @@ export default function Innoshop() {
                     setDemoForm({ ...demoForm, company: e.target.value })
                   }
                   placeholder="Nom de votre entreprise"
-                  className="w-full rounded-lg border border-slate-300 px-3 py-2.5 text-sm outline-none focus:ring-2 focus:ring-blue-500"
+                  className="w-full rounded-lg border border-slate-300 px-3 py-2.5 text-sm outline-none focus:ring-2 focus:ring-orange-500"
                 />
               </div>
 

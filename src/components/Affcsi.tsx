@@ -1,4 +1,3 @@
-
 import React from 'react';
 import type { MouseEvent } from 'react';
 import {
@@ -67,17 +66,17 @@ export default function Affcsi() {
   ];
 
   return (
-    <div className="relative min-h-screen overflow-x-hidden bg-slate-50 font-sans text-slate-800 selection:bg-blue-500 selection:text-white">
+    <div className="relative min-h-screen overflow-x-hidden bg-slate-50 font-sans text-slate-800 selection:bg-orange-500 selection:text-white">
       {/* Décoration du fond */}
       <div
         aria-hidden="true"
         className="pointer-events-none absolute inset-0 z-0 overflow-hidden"
       >
-        <div className="absolute -left-32 -top-32 h-[650px] w-[650px] rounded-full bg-gradient-to-br from-sky-200/70 via-blue-100/50 to-transparent blur-3xl" />
+        <div className="absolute -left-32 -top-32 h-[650px] w-[650px] rounded-full bg-gradient-to-br from-orange-200/70 via-amber-100/50 to-transparent blur-3xl" />
 
         <div className="absolute -right-24 -top-24 h-[550px] w-[550px] rounded-full bg-gradient-to-bl from-orange-300/40 via-amber-200/20 to-transparent blur-2xl" />
 
-        <div className="absolute -right-40 top-1/2 h-[800px] w-[800px] rounded-full bg-blue-50/80 blur-3xl" />
+        <div className="absolute -right-40 top-1/2 h-[800px] w-[800px] rounded-full bg-orange-50/80 blur-3xl" />
       </div>
 
       <div className="relative z-10 mx-auto max-w-7xl px-4 py-8 sm:px-6 lg:px-8 lg:py-12">
@@ -91,10 +90,10 @@ export default function Affcsi() {
           <section className="mb-16 grid grid-cols-1 items-center gap-10 lg:mb-20 lg:grid-cols-12 lg:gap-12">
             {/* Colonne gauche */}
             <div className="space-y-6 text-left lg:col-span-5">
-              <div className="inline-flex items-center gap-2.5 rounded-full border border-blue-100/80 bg-blue-50 px-4 py-2 shadow-sm">
+              <div className="inline-flex items-center gap-2.5 rounded-full border border-orange-100/80 bg-orange-50 px-4 py-2 shadow-sm">
                 <span className="h-2.5 w-2.5 animate-pulse rounded-full bg-orange-500" />
 
-                <span className="text-xs font-bold uppercase tracking-wider text-blue-600">
+                <span className="text-xs font-bold uppercase tracking-wider text-orange-600">
                   Solution CHR
                 </span>
               </div>
@@ -105,9 +104,9 @@ export default function Affcsi() {
                 notre solution
                 <br />
 
-                <span className="relative inline-block text-blue-600">
+                <span className="relative inline-block text-orange-600">
                   en action
-                  <span className="font-black text-orange-500">.</span>
+                  <span className="font-black text-amber-500">.</span>
                 </span>
               </h1>
 
@@ -122,7 +121,7 @@ export default function Affcsi() {
                 <button
                   type="button"
                   onClick={handleWhatsAppDemo}
-                  className="group inline-flex items-center justify-between gap-4 rounded-full bg-gradient-to-r from-blue-600 to-blue-500 px-6 py-4 font-semibold text-white shadow-lg shadow-blue-500/25 transition-all duration-300 hover:-translate-y-0.5 hover:from-blue-700 hover:to-blue-600 hover:shadow-xl hover:shadow-blue-500/35 active:translate-y-0"
+                  className="group inline-flex items-center justify-between gap-4 rounded-full bg-gradient-to-r from-orange-600 to-amber-500 px-6 py-4 font-semibold text-white shadow-lg shadow-orange-500/25 transition-all duration-300 hover:-translate-y-0.5 hover:from-orange-700 hover:to-orange-600 hover:shadow-xl hover:shadow-orange-500/35 active:translate-y-0"
                 >
                   <span className="flex items-center gap-3">
                     <span className="rounded-full bg-white/20 p-1.5">
@@ -157,17 +156,17 @@ export default function Affcsi() {
               {/* Avantages */}
               <div className="flex flex-wrap gap-x-5 gap-y-3 border-t border-slate-200/80 pt-5 text-xs text-slate-500 sm:gap-x-6">
                 <div className="flex items-center gap-1.5">
-                  <CheckCircle2 className="h-4 w-4 text-blue-600" />
+                  <CheckCircle2 className="h-4 w-4 text-orange-600" />
                   <span>Installation rapide</span>
                 </div>
 
                 <div className="flex items-center gap-1.5">
-                  <CheckCircle2 className="h-4 w-4 text-blue-600" />
+                  <CheckCircle2 className="h-4 w-4 text-orange-600" />
                   <span>Support 7j/7</span>
                 </div>
 
                 <div className="flex items-center gap-1.5">
-                  <CheckCircle2 className="h-4 w-4 text-blue-600" />
+                  <CheckCircle2 className="h-4 w-4 text-orange-600" />
                   <span>Sans engagement</span>
                 </div>
               </div>
@@ -177,10 +176,10 @@ export default function Affcsi() {
             <div className="relative lg:col-span-7">
               <div
                 aria-hidden="true"
-                className="absolute inset-0 scale-95 rotate-1 rounded-3xl bg-gradient-to-tr from-blue-600/20 to-orange-400/20 blur-2xl"
+                className="absolute inset-0 scale-95 rotate-1 rounded-3xl bg-gradient-to-tr from-orange-600/20 to-amber-400/20 blur-2xl"
               />
 
-              <div className="relative rounded-2xl border border-slate-200/80 bg-white p-2 shadow-2xl shadow-blue-900/10 transition-all duration-300 hover:shadow-blue-900/15 sm:p-3">
+              <div className="relative rounded-2xl border border-slate-200/80 bg-white p-2 shadow-2xl shadow-orange-900/10 transition-all duration-300 hover:shadow-orange-900/15 sm:p-3">
                 <div className="absolute left-5 top-5 z-10 flex items-center gap-2 rounded-full border border-white/20 bg-slate-900/85 px-3.5 py-2 text-xs font-medium text-white shadow-lg backdrop-blur-md sm:left-6 sm:top-6">
                   <Sparkles className="h-3.5 w-3.5 text-amber-400" />
 
@@ -197,9 +196,9 @@ export default function Affcsi() {
               </div>
 
               {/* Élément décoratif */}
-              <div className="absolute -bottom-5 -left-4 -z-10 h-24 w-24 rounded-2xl border border-blue-200/70 bg-blue-100/50 sm:-left-6 sm:h-32 sm:w-32" />
+              <div className="absolute -bottom-5 -left-4 -z-10 h-24 w-24 rounded-2xl border border-orange-200/70 bg-orange-100/50 sm:-left-6 sm:h-32 sm:w-32" />
 
-              <div className="absolute -right-3 -top-4 -z-10 h-20 w-20 rounded-full border border-orange-200/70 bg-orange-100/50 sm:-right-5 sm:h-24 sm:w-24" />
+              <div className="absolute -right-3 -top-4 -z-10 h-20 w-20 rounded-full border border-amber-200/70 bg-amber-100/50 sm:-right-5 sm:h-24 sm:w-24" />
             </div>
           </section>
 
@@ -214,9 +213,9 @@ export default function Affcsi() {
               return (
                 <div
                   key={benefit.title}
-                  className="group flex items-center gap-4 rounded-2xl border border-slate-200/80 bg-white/90 p-5 shadow-sm backdrop-blur-md transition-all duration-300 hover:-translate-y-1 hover:border-blue-200 hover:shadow-lg"
+                  className="group flex items-center gap-4 rounded-2xl border border-slate-200/80 bg-white/90 p-5 shadow-sm backdrop-blur-md transition-all duration-300 hover:-translate-y-1 hover:border-orange-200 hover:shadow-lg"
                 >
-                  <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-blue-50 text-blue-600 transition-colors duration-300 group-hover:bg-blue-600 group-hover:text-white">
+                  <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-orange-50 text-orange-600 transition-colors duration-300 group-hover:bg-orange-600 group-hover:text-white">
                     <Icon className="h-6 w-6" />
                   </div>
 
@@ -229,10 +228,10 @@ export default function Affcsi() {
           </section>
 
           {/* Dernier appel à l'action */}
-          <section className="relative mt-12 overflow-hidden rounded-3xl border border-blue-100 bg-gradient-to-r from-blue-50 via-white to-orange-50 p-7 sm:p-10">
+          <section className="relative mt-12 overflow-hidden rounded-3xl border border-orange-100 bg-gradient-to-r from-orange-50 via-white to-amber-50 p-7 sm:p-10">
             <div className="relative z-10 flex flex-col items-start justify-between gap-6 md:flex-row md:items-center">
               <div className="max-w-2xl">
-                <p className="text-xs font-bold uppercase tracking-[0.2em] text-blue-600">
+                <p className="text-xs font-bold uppercase tracking-[0.2em] text-orange-600">
                   Votre projet, notre expertise
                 </p>
 
@@ -249,7 +248,7 @@ export default function Affcsi() {
               <button
                 type="button"
                 onClick={handleWhatsAppDemo}
-                className="group inline-flex shrink-0 items-center gap-3 rounded-full bg-blue-600 px-6 py-4 text-sm font-semibold text-white shadow-lg shadow-blue-600/20 transition-all hover:-translate-y-0.5 hover:bg-blue-700"
+                className="group inline-flex shrink-0 items-center gap-3 rounded-full bg-orange-600 px-6 py-4 text-sm font-semibold text-white shadow-lg shadow-orange-600/20 transition-all hover:-translate-y-0.5 hover:bg-orange-700"
               >
                 Parler à un conseiller
 

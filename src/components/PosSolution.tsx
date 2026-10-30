@@ -43,15 +43,15 @@ const stagger = {
 
 export function PosSolution() {
   return (
-    <main className="bg-white text-slate-900">
+    <main className="bg-slate-950 text-slate-100 font-sans selection:bg-orange-600 selection:text-white">
 
       {/* =========================================================
           HERO
       ========================================================== */}
-      <section className="relative overflow-hidden bg-slate-50 py-20 lg:py-28">
+      <section className="relative overflow-hidden bg-slate-900 py-20 lg:py-28 border-b border-orange-900/30">
         <div className="pointer-events-none absolute inset-0">
-          <div className="absolute -left-32 top-20 h-72 w-72 rounded-full bg-brand-100/40 blur-3xl" />
-          <div className="absolute -right-32 bottom-0 h-96 w-96 rounded-full bg-accent-100/30 blur-3xl" />
+          <div className="absolute -left-32 top-20 h-72 w-72 rounded-full bg-orange-600/10 blur-3xl" />
+          <div className="absolute -right-32 bottom-0 h-96 w-96 rounded-full bg-amber-500/10 blur-3xl" />
         </div>
 
         <div className="relative mx-auto max-w-7xl px-6 lg:px-8">
@@ -64,7 +64,7 @@ export function PosSolution() {
           >
             <Link
               to="/#solutions"
-              className="inline-flex items-center gap-2 text-sm font-medium text-slate-500 transition-colors hover:text-brand-600"
+              className="inline-flex items-center gap-2 text-sm font-medium text-slate-400 transition-colors hover:text-orange-400"
             >
               <ArrowLeft className="h-4 w-4" />
               Retour aux solutions
@@ -80,24 +80,24 @@ export function PosSolution() {
               variants={stagger}
             >
               <motion.div variants={fadeUp}>
-                <span className="inline-flex items-center rounded-full border border-brand-200 bg-brand-50 px-4 py-2 text-xs font-semibold uppercase tracking-wider text-brand-700">
+                <span className="inline-flex items-center rounded-full border border-orange-500/20 bg-orange-500/10 px-4 py-2 text-xs font-semibold uppercase tracking-wider text-orange-400">
                   Caisse & Point de vente
                 </span>
               </motion.div>
 
               <motion.h1
                 variants={fadeUp}
-                className="mt-6 font-display text-4xl font-bold leading-tight tracking-tight text-slate-900 sm:text-5xl lg:text-6xl"
+                className="mt-6 font-display text-4xl font-bold leading-tight tracking-tight text-white sm:text-5xl lg:text-6xl"
               >
                 Solution de caisse
-                <span className="block text-brand-600">
+                <span className="block bg-gradient-to-r from-amber-400 to-orange-500 bg-clip-text text-transparent">
                   professionnelle
                 </span>
               </motion.h1>
 
               <motion.p
                 variants={fadeUp}
-                className="mt-6 max-w-xl text-lg leading-8 text-slate-500"
+                className="mt-6 max-w-xl text-lg leading-8 text-slate-300"
               >
                 Une solution de point de vente moderne, intuitive et
                 performante, conçue pour simplifier la gestion de votre
@@ -116,9 +116,9 @@ export function PosSolution() {
                 ].map((item) => (
                   <div
                     key={item}
-                    className="flex items-center gap-2 rounded-full border border-slate-200 bg-white px-4 py-2 text-sm text-slate-700 shadow-sm"
+                    className="flex items-center gap-2 rounded-full border border-slate-800 bg-slate-900 px-4 py-2 text-sm text-slate-300 shadow-sm"
                   >
-                    <Check className="h-4 w-4 text-accent-500" />
+                    <Check className="h-4 w-4 text-orange-500" />
                     {item}
                   </div>
                 ))}
@@ -127,7 +127,7 @@ export function PosSolution() {
               <motion.div variants={fadeUp} className="mt-9">
                 <a
                   href="#contact"
-                  className="inline-flex items-center gap-2 rounded-xl bg-brand-600 px-6 py-3.5 text-sm font-semibold text-white shadow-lg shadow-brand-600/20 transition-all hover:-translate-y-0.5 hover:bg-brand-700"
+                  className="inline-flex items-center gap-2 rounded-xl bg-orange-600 px-6 py-3.5 text-sm font-semibold text-white shadow-lg shadow-orange-600/30 transition-all hover:-translate-y-0.5 hover:bg-orange-700"
                 >
                   Demander une démonstration
                   <ArrowRight className="h-4 w-4" />
@@ -142,26 +142,26 @@ export function PosSolution() {
               transition={{ duration: 0.7, delay: 0.15 }}
               className="relative"
             >
-              <div className="absolute -inset-4 rounded-3xl bg-gradient-to-br from-brand-100/50 to-accent-100/30 blur-2xl" />
+              <div className="absolute -inset-4 rounded-3xl bg-gradient-to-br from-orange-600/20 to-amber-500/10 blur-2xl" />
 
-              <div className="relative overflow-hidden rounded-3xl border border-slate-200 bg-white p-3 shadow-premium">
+              <div className="relative overflow-hidden rounded-3xl border border-slate-800 bg-slate-900 p-3 shadow-2xl">
                 <img
                   src="https://caisse.adixon.fr/assets/caisse-restaurant-moderne-PjP3nlO_.jpg"
                   alt="Solution de caisse professionnelle"
                   className="h-auto w-full rounded-2xl object-cover"
                 />
 
-                <div className="absolute bottom-8 left-8 right-8 rounded-2xl border border-white/50 bg-white/90 p-4 shadow-xl backdrop-blur">
+                <div className="absolute bottom-8 left-8 right-8 rounded-2xl border border-slate-700/80 bg-slate-900/90 p-4 shadow-xl backdrop-blur">
                   <div className="flex items-center gap-3">
-                    <div className="flex h-11 w-11 items-center justify-center rounded-xl bg-brand-50">
-                      <ShoppingCart className="h-5 w-5 text-brand-600" />
+                    <div className="flex h-11 w-11 items-center justify-center rounded-xl bg-orange-500/10 border border-orange-500/20">
+                      <ShoppingCart className="h-5 w-5 text-orange-500" />
                     </div>
 
                     <div>
-                      <p className="text-sm font-semibold text-slate-900">
+                      <p className="text-sm font-semibold text-white">
                         Point de vente
                       </p>
-                      <p className="text-xs text-slate-500">
+                      <p className="text-xs text-slate-400">
                         Simple • Rapide • Connecté
                       </p>
                     </div>
@@ -177,18 +177,18 @@ export function PosSolution() {
       {/* =========================================================
           INTRODUCTION
       ========================================================== */}
-      <section className="py-20 lg:py-28">
+      <section className="py-20 lg:py-28 bg-slate-950">
         <div className="mx-auto max-w-4xl px-6 text-center lg:px-8">
 
-          <span className="text-sm font-semibold uppercase tracking-wider text-brand-600">
+          <span className="text-sm font-semibold uppercase tracking-wider text-orange-500">
             Une solution pensée pour votre activité
           </span>
 
-          <h2 className="mt-4 font-display text-3xl font-bold tracking-tight text-slate-900 sm:text-4xl">
+          <h2 className="mt-4 font-display text-3xl font-bold tracking-tight text-white sm:text-4xl">
             Simplifiez votre point de vente
           </h2>
 
-          <p className="mt-6 text-lg leading-8 text-slate-500">
+          <p className="mt-6 text-lg leading-8 text-slate-300">
             Avec notre solution de caisse, centralisez vos opérations et
             simplifiez la gestion de votre point de vente. Encaissement,
             produits, stocks, clients, paiements et reporting : toutes les
@@ -201,15 +201,15 @@ export function PosSolution() {
       {/* =========================================================
           3 AVANTAGES
       ========================================================== */}
-      <section className="bg-slate-50 py-20 lg:py-28">
+      <section className="bg-slate-900 py-20 lg:py-28 border-t border-b border-slate-800">
         <div className="mx-auto max-w-7xl px-6 lg:px-8">
 
           <div className="mx-auto max-w-2xl text-center">
-            <span className="text-sm font-semibold uppercase tracking-wider text-brand-600">
+            <span className="text-sm font-semibold uppercase tracking-wider text-orange-500">
               Pourquoi choisir notre solution ?
             </span>
 
-            <h2 className="mt-4 font-display text-3xl font-bold text-slate-900 sm:text-4xl">
+            <h2 className="mt-4 font-display text-3xl font-bold text-white sm:text-4xl">
               Tout ce dont vous avez besoin pour gérer efficacement
             </h2>
           </div>
@@ -247,19 +247,19 @@ export function PosSolution() {
       {/* =========================================================
           FONCTIONNALITES
       ========================================================== */}
-      <section className="py-20 lg:py-28">
+      <section className="py-20 lg:py-28 bg-slate-950">
         <div className="mx-auto max-w-7xl px-6 lg:px-8">
 
           <div className="max-w-2xl">
-            <span className="text-sm font-semibold uppercase tracking-wider text-brand-600">
+            <span className="text-sm font-semibold uppercase tracking-wider text-orange-500">
               Fonctionnalités
             </span>
 
-            <h2 className="mt-4 font-display text-3xl font-bold text-slate-900 sm:text-4xl">
+            <h2 className="mt-4 font-display text-3xl font-bold text-white sm:text-4xl">
               Une caisse complète pour votre quotidien
             </h2>
 
-            <p className="mt-5 text-lg leading-8 text-slate-500">
+            <p className="mt-5 text-lg leading-8 text-slate-300">
               Retrouvez toutes les fonctionnalités essentielles pour gérer
               votre activité depuis un environnement unique.
             </p>
@@ -323,13 +323,13 @@ export function PosSolution() {
       {/* =========================================================
           TECHNIQUE
       ========================================================== */}
-      <section className="bg-slate-900 py-20 text-white lg:py-28">
+      <section className="bg-slate-900 py-20 text-white lg:py-28 border-t border-b border-orange-900/30">
         <div className="mx-auto max-w-7xl px-6 lg:px-8">
 
           <div className="grid items-center gap-14 lg:grid-cols-2">
 
             <div>
-              <span className="text-sm font-semibold uppercase tracking-wider text-brand-300">
+              <span className="text-sm font-semibold uppercase tracking-wider text-orange-400">
                 Performance & flexibilité
               </span>
 
@@ -402,22 +402,22 @@ export function PosSolution() {
       {/* =========================================================
           SECURITE
       ========================================================== */}
-      <section className="py-20 lg:py-28">
+      <section className="py-20 lg:py-28 bg-slate-950">
         <div className="mx-auto max-w-7xl px-6 lg:px-8">
 
           <div className="grid items-center gap-12 lg:grid-cols-2">
 
-            <div className="rounded-3xl bg-slate-50 p-8 lg:p-12">
+            <div className="rounded-3xl border border-slate-800 bg-slate-900 p-8 lg:p-12">
 
-              <div className="flex h-14 w-14 items-center justify-center rounded-2xl bg-brand-50">
-                <ShieldCheck className="h-7 w-7 text-brand-600" />
+              <div className="flex h-14 w-14 items-center justify-center rounded-2xl bg-orange-500/10 border border-orange-500/20">
+                <ShieldCheck className="h-7 w-7 text-orange-500" />
               </div>
 
-              <h2 className="mt-6 font-display text-3xl font-bold text-slate-900">
+              <h2 className="mt-6 font-display text-3xl font-bold text-white">
                 Conformité & sécurité
               </h2>
 
-              <p className="mt-5 leading-7 text-slate-500">
+              <p className="mt-5 leading-7 text-slate-300">
                 La solution est conçue pour assurer la sécurisation et la
                 traçabilité des opérations d'encaissement, avec une gestion
                 rigoureuse des données et des historiques de transactions.
@@ -456,16 +456,16 @@ export function PosSolution() {
       {/* =========================================================
           SECTEURS
       ========================================================== */}
-      <section className="bg-slate-50 py-20 lg:py-28">
+      <section className="bg-slate-900 py-20 lg:py-28 border-t border-slate-800">
         <div className="mx-auto max-w-7xl px-6 lg:px-8">
 
           <div className="mx-auto max-w-2xl text-center">
 
-            <span className="text-sm font-semibold uppercase tracking-wider text-brand-600">
+            <span className="text-sm font-semibold uppercase tracking-wider text-orange-500">
               Secteurs d'activité
             </span>
 
-            <h2 className="mt-4 font-display text-3xl font-bold text-slate-900 sm:text-4xl">
+            <h2 className="mt-4 font-display text-3xl font-bold text-white sm:text-4xl">
               Une solution adaptée à différents métiers
             </h2>
 
@@ -483,7 +483,7 @@ export function PosSolution() {
             ].map((sector) => (
               <div
                 key={sector}
-                className="flex min-h-28 items-center justify-center rounded-2xl border border-slate-200 bg-white p-5 text-center text-sm font-semibold text-slate-700 transition-all hover:-translate-y-1 hover:border-brand-200 hover:shadow-md"
+                className="flex min-h-28 items-center justify-center rounded-2xl border border-slate-800 bg-slate-950 p-5 text-center text-sm font-semibold text-slate-200 transition-all hover:-translate-y-1 hover:border-orange-500/50 hover:shadow-lg"
               >
                 {sector}
               </div>
@@ -497,16 +497,16 @@ export function PosSolution() {
       {/* =========================================================
           ACCOMPAGNEMENT
       ========================================================== */}
-      <section className="py-20 lg:py-28">
+      <section className="py-20 lg:py-28 bg-slate-950">
         <div className="mx-auto max-w-7xl px-6 lg:px-8">
 
           <div className="mx-auto max-w-2xl text-center">
 
-            <span className="text-sm font-semibold uppercase tracking-wider text-brand-600">
+            <span className="text-sm font-semibold uppercase tracking-wider text-orange-500">
               Notre accompagnement
             </span>
 
-            <h2 className="mt-4 font-display text-3xl font-bold text-slate-900 sm:text-4xl">
+            <h2 className="mt-4 font-display text-3xl font-bold text-white sm:text-4xl">
               De l'installation au support
             </h2>
 
@@ -543,17 +543,17 @@ export function PosSolution() {
             ].map((step) => (
               <div
                 key={step.number}
-                className="rounded-2xl border border-slate-200 bg-white p-6 transition-all hover:-translate-y-1 hover:shadow-premium"
+                className="rounded-2xl border border-slate-800 bg-slate-900 p-6 transition-all hover:-translate-y-1 hover:shadow-xl hover:border-orange-500/30"
               >
-                <span className="text-sm font-bold text-brand-600">
+                <span className="text-sm font-bold text-orange-500">
                   {step.number}
                 </span>
 
-                <h3 className="mt-4 font-display text-lg font-semibold text-slate-900">
+                <h3 className="mt-4 font-display text-lg font-semibold text-white">
                   {step.title}
                 </h3>
 
-                <p className="mt-2 text-sm leading-6 text-slate-500">
+                <p className="mt-2 text-sm leading-6 text-slate-400">
                   {step.text}
                 </p>
               </div>
@@ -567,23 +567,23 @@ export function PosSolution() {
       {/* =========================================================
           CTA
       ========================================================== */}
-      <section id="contact" className="px-6 pb-20 lg:px-8 lg:pb-28">
+      <section id="contact" className="px-6 pb-20 lg:px-8 lg:pb-28 bg-slate-950">
         <div className="mx-auto max-w-7xl">
 
-          <div className="relative overflow-hidden rounded-3xl bg-brand-600 px-8 py-14 text-center sm:px-12 lg:px-20 lg:py-20">
+          <div className="relative overflow-hidden rounded-3xl bg-orange-600 px-8 py-14 text-center sm:px-12 lg:px-20 lg:py-20 shadow-2xl">
 
             <div className="pointer-events-none absolute -left-20 -top-20 h-64 w-64 rounded-full bg-white/10 blur-3xl" />
             <div className="pointer-events-none absolute -bottom-20 -right-20 h-72 w-72 rounded-full bg-white/10 blur-3xl" />
 
             <div className="relative">
 
-              <FileText className="mx-auto h-10 w-10 text-white/80" />
+              <FileText className="mx-auto h-10 w-10 text-white/90" />
 
               <h2 className="mt-6 font-display text-3xl font-bold text-white sm:text-4xl">
                 Prêt à moderniser votre point de vente ?
               </h2>
 
-              <p className="mx-auto mt-5 max-w-2xl text-lg leading-8 text-brand-100">
+              <p className="mx-auto mt-5 max-w-2xl text-lg leading-8 text-orange-100">
                 Découvrez une solution de caisse conçue pour simplifier vos
                 opérations, améliorer votre efficacité et vous donner une
                 meilleure visibilité sur votre activité.
@@ -593,7 +593,7 @@ export function PosSolution() {
 
                 <a
                   href="mailto:contact@ORALISYSTEMS.ma"
-                  className="inline-flex items-center gap-2 rounded-xl bg-white px-6 py-3.5 text-sm font-semibold text-brand-700 transition-all hover:-translate-y-0.5 hover:bg-slate-50"
+                  className="inline-flex items-center gap-2 rounded-xl bg-white px-6 py-3.5 text-sm font-semibold text-slate-950 transition-all hover:-translate-y-0.5 hover:bg-slate-100 shadow-md"
                 >
                   Demander une démonstration
                   <ArrowRight className="h-4 w-4" />
@@ -637,17 +637,17 @@ function FeatureCard({
   return (
     <motion.div
       variants={fadeUp}
-      className="rounded-2xl border border-slate-200 bg-white p-7 transition-all duration-300 hover:-translate-y-1 hover:border-brand-200 hover:shadow-premium"
+      className="rounded-2xl border border-slate-800 bg-slate-900 p-7 transition-all duration-300 hover:-translate-y-1 hover:border-orange-500/50 hover:shadow-xl"
     >
-      <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-brand-50">
-        <Icon className="h-6 w-6 text-brand-600" />
+      <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-orange-500/10 border border-orange-500/20">
+        <Icon className="h-6 w-6 text-orange-500" />
       </div>
 
-      <h3 className="mt-6 font-display text-xl font-semibold text-slate-900">
+      <h3 className="mt-6 font-display text-xl font-semibold text-white">
         {title}
       </h3>
 
-      <p className="mt-3 text-sm leading-7 text-slate-500">
+      <p className="mt-3 text-sm leading-7 text-slate-400">
         {description}
       </p>
     </motion.div>
@@ -667,14 +667,14 @@ function FeatureBlock({
   items,
 }: FeatureBlockProps) {
   return (
-    <div className="rounded-2xl border border-slate-200 bg-white p-7 transition-all hover:border-brand-200 hover:shadow-premium">
+    <div className="rounded-2xl border border-slate-800 bg-slate-900 p-7 transition-all hover:border-orange-500/50 hover:shadow-xl">
       <div className="flex items-center gap-4">
 
-        <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-brand-50">
-          <Icon className="h-5 w-5 text-brand-600" />
+        <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-orange-500/10 border border-orange-500/20">
+          <Icon className="h-5 w-5 text-orange-500" />
         </div>
 
-        <h3 className="font-display text-xl font-semibold text-slate-900">
+        <h3 className="font-display text-xl font-semibold text-white">
           {title}
         </h3>
 
@@ -685,9 +685,9 @@ function FeatureBlock({
         {items.map((item) => (
           <li
             key={item}
-            className="flex items-start gap-3 text-sm leading-6 text-slate-600"
+            className="flex items-start gap-3 text-sm leading-6 text-slate-300"
           >
-            <Check className="mt-1 h-4 w-4 shrink-0 text-accent-500" />
+            <Check className="mt-1 h-4 w-4 shrink-0 text-orange-500" />
             <span>{item}</span>
           </li>
         ))}
@@ -712,8 +712,8 @@ function DarkFeature({
   return (
     <div className="flex gap-4">
 
-      <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-white/10">
-        <Icon className="h-5 w-5 text-brand-300" />
+      <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-slate-800 border border-slate-700">
+        <Icon className="h-5 w-5 text-orange-400" />
       </div>
 
       <div>
@@ -743,8 +743,8 @@ function StatCard({
   label,
 }: StatCardProps) {
   return (
-    <div className="rounded-2xl border border-white/10 bg-white/5 p-6 backdrop-blur">
-      <Icon className="h-6 w-6 text-brand-300" />
+    <div className="rounded-2xl border border-slate-800 bg-slate-900/60 p-6 backdrop-blur">
+      <Icon className="h-6 w-6 text-orange-400" />
 
       <p className="mt-8 font-display text-3xl font-bold text-white">
         {value}
@@ -770,16 +770,16 @@ function SecurityItem({
   return (
     <div className="flex gap-4">
 
-      <div className="mt-1 flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-accent-50">
-        <Check className="h-4 w-4 text-accent-600" />
+      <div className="mt-1 flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-orange-500/10 border border-orange-500/20">
+        <Check className="h-4 w-4 text-orange-500" />
       </div>
 
       <div>
-        <h3 className="font-semibold text-slate-900">
+        <h3 className="font-semibold text-white">
           {title}
         </h3>
 
-        <p className="mt-1 text-sm leading-6 text-slate-500">
+        <p className="mt-1 text-sm leading-6 text-slate-400">
           {description}
         </p>
       </div>
