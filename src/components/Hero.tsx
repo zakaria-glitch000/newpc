@@ -1,7 +1,6 @@
 import { motion, type Variants } from 'framer-motion';
 import {
   ArrowRight,
-  Phone,
   Lightbulb,
   Settings,
   Users,
@@ -56,85 +55,93 @@ const item: Variants = {
 
 export function Hero() {
   return (
-    <section id="home" className="bg-white pt-16">
-      {/* HERO */}
+    <section id="home" className="relative overflow-hidden bg-white pt-[calc(4rem+0.5cm)]">
+      {/* HERO SECTION */}
       <div className="relative">
         <div className="relative z-10 lg:absolute lg:inset-0 lg:flex lg:items-center">
           <motion.div
             variants={container}
             initial="hidden"
             animate="visible"
-            className="mx-auto w-full max-w-7xl px-6 py-10 lg:px-8 lg:py-0"
+            className="mx-auto w-full max-w-7xl px-6 py-12 lg:px-8 lg:py-0"
           >
-            <div className="max-w-[30rem]">
-              <motion.p
+            <div className="max-w-[34rem]">
+              {/* Titre b la barre orange 3la l-isser */}
+              <motion.div
                 variants={item}
-                className="text-xs font-semibold tracking-[0.18em] text-brand-600"
+                className="border-l-4 border-amber-600 pl-4"
               >
-                TECHNOLOGIE · LOGICIELS · INNOVATION
-              </motion.p>
-
-              <motion.h1
-                variants={item}
-                className="mt-4 font-display text-4xl font-extrabold leading-[1.05] tracking-tight text-slate-900 sm:text-5xl"
-              >
-                Des solutions technologiques qui font{' '}
-                <span className="text-brand-500">
-                  avancer votre entreprise.
-                </span>
-              </motion.h1>
+                <h1 className="font-display text-3xl font-extrabold leading-[1.1] tracking-tight text-slate-900 sm:text-5xl">
+                  La technologie au service <br />
+                  de votre activité.
+                </h1>
+              </motion.div>
 
               <motion.p
                 variants={item}
-                className="mt-5 max-w-md text-base leading-relaxed text-slate-600 sm:text-lg"
+                className="mt-5 max-w-md text-base font-medium leading-relaxed text-slate-600 sm:text-lg"
               >
-                Nous accompagnons les professionnels avec des solutions
-                d'encaissement, des logiciels de gestion et des applications
-                développées sur mesure.
+                Des solutions d'encaissement et de gestion adaptées à votre métier.
               </motion.p>
 
+              {/* Boutonat */}
               <motion.div
                 variants={item}
                 className="mt-7 flex flex-col gap-3 sm:flex-row"
               >
                 <a
                   href="#solutions"
-                  className="group inline-flex items-center justify-center gap-2 rounded-lg bg-brand-500 px-6 py-3.5 text-sm font-semibold text-white shadow-lg shadow-brand-500/25 transition-all hover:bg-brand-400 hover:shadow-xl hover:shadow-brand-500/35 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-500"
+                  className="group inline-flex items-center justify-center gap-2 rounded-full bg-amber-600 px-7 py-3.5 text-sm font-semibold text-white shadow-lg shadow-amber-600/25 transition-all hover:bg-amber-700 hover:shadow-xl focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-amber-600"
                 >
                   Découvrir nos solutions
                   <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
                 </a>
 
                 <a
-                  href="#contact"
-                  className="inline-flex items-center justify-center gap-2 rounded-lg border border-slate-200 bg-white px-6 py-3.5 text-sm font-semibold text-slate-700 transition-all hover:border-slate-300 hover:bg-slate-50 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-500"
+                  href="#demo"
+                  className="inline-flex items-center justify-center gap-2 rounded-full border border-slate-300 bg-white px-7 py-3.5 text-sm font-semibold text-slate-900 shadow-sm transition-all hover:border-slate-400 hover:bg-slate-50 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-amber-600"
                 >
-                  <Phone className="h-4 w-4 text-brand-500" />
-                  Parler à un expert
+                  Demander une démo
                 </a>
               </motion.div>
             </div>
           </motion.div>
         </div>
 
+        {/* Taswira dyal la caisse */}
         <img
           src={heroImage}
-          alt="Solutions technologiques"
-          className="block h-auto w-full"
+          alt="La technologie au service de votre activité"
+          className="block h-auto w-full object-cover lg:min-h-[520px]"
         />
 
+        {/* Gradient fade f desktop */}
         <div
           className="pointer-events-none absolute inset-0 hidden lg:block"
           style={{
             background:
-              'linear-gradient(to right, rgba(255,255,255,0.95) 0%, rgba(255,255,255,0.75) 28%, rgba(255,255,255,0) 55%)',
+              'linear-gradient(to right, rgba(255,255,255,0.98) 0%, rgba(255,255,255,0.85) 32%, rgba(255,255,255,0) 60%)',
           }}
         />
+
+        {/* Wave / Wave shape orange l-taht dyal l-hero */}
+        <div className="absolute bottom-0 left-0 w-full overflow-hidden leading-none z-20">
+          <svg
+            className="relative block w-full h-8 sm:h-12 lg:h-16"
+            viewBox="0 0 1200 120"
+            preserveAspectRatio="none"
+          >
+            <path
+              d="M0,30 C150,90 400,0 600,40 C800,80 1050,10 1200,50 L1200,120 L0,120 Z"
+              fill="#ea580c"
+              fillOpacity="0.9"
+            ></path>
+          </svg>
+        </div>
       </div>
 
-      {/* NOTRE EXPERTISE */}
-      <div className="relative overflow-hidden border-y border-slate-100 bg-slate-50/70 px-6 py-10 lg:px-8 lg:py-12">
-        {/* Décoration de fond */}
+      {/* SECTION NOTRE EXPERTISE */}
+      <div className="relative overflow-hidden border-y border-slate-100 bg-slate-50/70 px-6 py-12 lg:px-8 lg:py-16">
         <div className="pointer-events-none absolute -top-24 left-1/2 h-72 w-72 -translate-x-1/2 rounded-full bg-orange-100/40 blur-3xl" />
 
         <div className="relative mx-auto max-w-7xl text-center">
@@ -146,14 +153,14 @@ export function Hero() {
           >
             <motion.span
               variants={item}
-              className="mb-4 inline-flex rounded-full border border-orange-100 bg-white px-4 py-2 text-xs font-bold uppercase tracking-[0.18em] text-brand-600 shadow-sm"
+              className="mb-3 inline-flex rounded-full border border-orange-100 bg-white px-4 py-2 text-xs font-bold uppercase tracking-[0.18em] text-amber-600 shadow-sm"
             >
               Notre Expertise
             </motion.span>
 
             <motion.h2
               variants={item}
-              className="mx-auto mt-3 max-w-3xl text-3xl font-extrabold leading-tight tracking-tight text-slate-900 sm:text-4xl"
+              className="mx-auto mt-2 max-w-3xl text-3xl font-extrabold leading-tight tracking-tight text-slate-900 sm:text-4xl"
             >
               Un partenaire pour la réussite de{' '}
               <span className="bg-gradient-to-r from-amber-500 to-orange-600 bg-clip-text text-transparent">
@@ -163,15 +170,12 @@ export function Hero() {
 
             <motion.p
               variants={item}
-              className="mx-auto mb-8 mt-4 max-w-3xl text-sm leading-7 text-slate-600 sm:text-base"
+              className="mx-auto mb-10 mt-4 max-w-3xl text-sm leading-7 text-slate-600 sm:text-base"
             >
-              Nous concevons, intégrons et déployons des solutions
-              technologiques adaptées aux besoins des professionnels. De
-              l'encaissement au développement d'applications sur mesure, nous
-              vous accompagnons à chaque étape de votre transformation digitale.
+              Nous concevons, intégrons et déployons des solutions technologiques adaptées aux besoins des professionnels. De l'encaissement au développement d'applications sur mesure, nous vous accompagnons à chaque étape de votre transformation digitale.
             </motion.p>
 
-            {/* Cartes expertise */}
+            {/* Cartes d'expertise */}
             <motion.div
               variants={container}
               className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4"
@@ -189,10 +193,9 @@ export function Hero() {
 
                     <div className="pointer-events-none absolute -bottom-10 -right-10 h-28 w-28 rounded-full bg-orange-50 opacity-0 blur-2xl transition-opacity duration-500 group-hover:opacity-100" />
 
-                    {/* Icône */}
                     <div className="relative z-10 mb-6 flex h-20 w-20 items-center justify-center rounded-2xl border border-orange-100 bg-orange-50 transition-all duration-300 group-hover:scale-105 group-hover:border-orange-200 group-hover:bg-orange-600 group-hover:shadow-lg group-hover:shadow-orange-600/20">
                       <Icon
-                        className="h-8 w-8 text-brand-600 transition-colors duration-300 group-hover:text-white"
+                        className="h-8 w-8 text-amber-600 transition-colors duration-300 group-hover:text-white"
                         strokeWidth={1.75}
                       />
                     </div>
