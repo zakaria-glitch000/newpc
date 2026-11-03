@@ -1,88 +1,100 @@
-import { COMPANY } from '@/data/content';
-
 interface LogoProps {
   className?: string;
   showText?: boolean;
 }
 
+/**
+ * Logo PC MAROC – Hospitality & Retail
+ *  - voile (bleu dégradé + navy) à gauche
+ *  - "PC MAROC" juste à droite du voile
+ *  - double vague dorée sous "PC", qui déborde jusqu'au sous-titre
+ *  - "Hospitality & Retail" doré, aligné sous "MAROC"
+ */
 export function Logo({ className = '', showText = true }: LogoProps) {
-  const rawName = COMPANY?.name || 'ORALI';
-  const brandName = rawName.replace(/SYSTEMS/i, '').trim() || 'ORALI';
+  const NAVY = '#0B1D4A';
+  const GOLD = '#DBAA19';
 
   return (
     <div
       className={`inline-flex items-center select-none text-[26px] md:text-[34px] ${className}`}
-      style={{ fontFamily: "'Montserrat', 'Poppins', sans-serif", gap: '0.12em' }}
+      style={{ fontFamily: "'Montserrat', 'Poppins', sans-serif" }}
     >
-      {/* ICÔNE : 2 parallélogrammes */}
       <svg
-        viewBox="-6 -6 575 459"
-        style={{ height: '1.78em', width: 'auto', marginRight: '-0.1em' }}
+        viewBox={showText ? '0 0 975 290' : '0 0 365 290'}
+        style={{ height: '2em', width: 'auto' }}
         className="shrink-0"
         fill="none"
         xmlns="http://www.w3.org/2000/svg"
-        aria-hidden="true"
+        role="img"
+        aria-label="PC MAROC Hospitality & Retail"
       >
         <defs>
-          <linearGradient id="oraliLeft" gradientUnits="userSpaceOnUse" x1="90" y1="91" x2="70" y2="362">
-            <stop offset="0%" stopColor="#0033B3" />
-            <stop offset="50%" stopColor="#0A64E0" />
-            <stop offset="100%" stopColor="#00C0F5" />
-          </linearGradient>
-          <linearGradient id="oraliRight" gradientUnits="userSpaceOnUse" x1="485" y1="0" x2="210" y2="447">
-            <stop offset="0%" stopColor="#00EEFF" />
-            <stop offset="45%" stopColor="#0072EA" />
-            <stop offset="100%" stopColor="#0030AC" />
+          <linearGradient id="pcSailLight" gradientUnits="userSpaceOnUse" x1="100" y1="4" x2="64" y2="125">
+            <stop offset="0%" stopColor="#1B3A82" />
+            <stop offset="50%" stopColor="#3B74C0" />
+            <stop offset="100%" stopColor="#6BB3E6" />
           </linearGradient>
         </defs>
 
-        <path
-          d="M178,91 L315,91 L148,362 L0,362 Z"
-          fill="url(#oraliLeft)"
-          stroke="url(#oraliLeft)"
-          strokeWidth="12"
-          strokeLinejoin="round"
-        />
-        <path
-          d="M408,0 L563,0 L288,447 L131,447 Z"
-          fill="url(#oraliRight)"
-          stroke="url(#oraliRight)"
-          strokeWidth="12"
-          strokeLinejoin="round"
-        />
-      </svg>
-
-      {/* TEXTE */}
-      {showText && (
-        <div className="flex flex-col w-fit justify-center">
-          <div className="flex items-baseline" style={{ gap: '0.25em' }}>
-            <span
-              className="font-black text-[#051536] whitespace-nowrap"
-              style={{ fontSize: '1em', lineHeight: 0.95, letterSpacing: '-0.01em' }}
-            >
-              {brandName}
-            </span>
-            <span
-              className="font-extrabold text-[#0095FF] uppercase whitespace-nowrap"
-              style={{ fontSize: '1em', lineHeight: 0.95, letterSpacing: '-0.01em' }}
-            >
-              SYSTEMS
-            </span>
-          </div>
-
-          <div
-            className="bg-[#0095FF] rounded-full"
-            style={{ width: '30%', height: '0.035em', minHeight: '2px', marginTop: '0.08em', marginBottom: '0.1em' }}
+        {/* ICÔNE */}
+        <g transform="translate(-79 4.2) scale(1.4)">
+          {/* Voile gauche (dégradé bleu) */}
+          <path
+            d="M100 2 C90 30 74 85 60 120 L84 130 C100 108 112 70 110 38 C109 22 105 10 100 2 Z"
+            fill="url(#pcSailLight)"
           />
 
-          <span
-            className="font-medium text-gray-500 whitespace-nowrap tracking-tight"
-            style={{ fontSize: '0.32em', lineHeight: 1 }}
-          >
-            Solution Métier CHR &amp; Rétail
-          </span>
-        </div>
-      )}
+          {/* Voile droite (navy) */}
+          <path
+            d="M117 6 C136 14 150 40 146 70 C142 98 114 122 88 134 L86 128 C108 108 124 84 127 58 C129 36 124 18 117 6 Z"
+            fill={NAVY}
+          />
+
+          {/* Vague dorée haute */}
+          <path
+            d="M62 126 C110 138 170 112 225 112 C265 112 295 140 306 168 C280 150 250 140 215 140 C160 142 100 162 66 148 Z"
+            fill={GOLD}
+          />
+
+          {/* Vague dorée basse */}
+          <path
+            d="M72 156 C100 170 160 150 215 147 C250 147 282 160 312 198 C285 176 250 170 212 176 C150 186 95 198 80 172 C74 164 72 160 72 156 Z"
+            fill={GOLD}
+          />
+        </g>
+
+        {showText && (
+          <>
+            {/* PC MAROC */}
+            <text
+              x="180"
+              y="160"
+              fill={NAVY}
+              fontSize="165"
+              fontWeight="800"
+              textLength="770"
+              lengthAdjust="spacingAndGlyphs"
+              style={{ fontFamily: "'Montserrat', 'Poppins', sans-serif" }}
+            >
+              PC MAROC
+            </text>
+
+            {/* Hospitality & Retail */}
+            <text
+              x="375"
+              y="247"
+              fill={GOLD}
+              fontSize="62"
+              fontWeight="500"
+              textLength="590"
+              lengthAdjust="spacingAndGlyphs"
+              style={{ fontFamily: "'Quicksand', 'Poppins', 'Montserrat', sans-serif" }}
+            >
+              Hospitality &amp; Retail
+            </text>
+          </>
+        )}
+      </svg>
     </div>
   );
 }
