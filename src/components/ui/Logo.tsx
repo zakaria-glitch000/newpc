@@ -37,31 +37,7 @@ export function Logo({ className = '', showText = true }: LogoProps) {
         </defs>
 
         {/* ICÔNE */}
-        <g transform="translate(-79 4.2) scale(1.4)">
-          {/* Voile gauche (dégradé bleu) */}
-          <path
-            d="M100 2 C90 30 74 85 60 120 L84 130 C100 108 112 70 110 38 C109 22 105 10 100 2 Z"
-            fill="url(#pcSailLight)"
-          />
-
-          {/* Voile droite (navy) */}
-          <path
-            d="M117 6 C136 14 150 40 146 70 C142 98 114 122 88 134 L86 128 C108 108 124 84 127 58 C129 36 124 18 117 6 Z"
-            fill={NAVY}
-          />
-
-          {/* Vague dorée haute */}
-          <path
-            d="M62 126 C110 138 170 112 225 112 C265 112 295 140 306 168 C280 150 250 140 215 140 C160 142 100 162 66 148 Z"
-            fill={GOLD}
-          />
-
-          {/* Vague dorée basse */}
-          <path
-            d="M72 156 C100 170 160 150 215 147 C250 147 282 160 312 198 C285 176 250 170 212 176 C150 186 95 198 80 172 C74 164 72 160 72 156 Z"
-            fill={GOLD}
-          />
-        </g>
+    
 
         {showText && (
           <>
