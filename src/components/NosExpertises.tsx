@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 
 import chrImg from '../assets/caisse.jpg';
 import retailImg from '../assets/retail.jpg';
-import pressingImg from '../assets/0.jpg';
+import pressingImg from '../assets/gest.jpeg';
 import spaImg from '../assets/0.jpg';
 import devImg from '../assets/dev.jpg';
 
@@ -150,19 +150,20 @@ export default function NosExpertises() {
         </div>
       </div>
 
-      {/* BANNIÈRE AVEC BACKGROUND ET GRADIENT LÉGER */}
+      {/* BANNIÈRE SANS BLUR - IMAGE NETTE */}
       <div className="mx-auto max-w-6xl relative rounded-3xl overflow-hidden shadow-2xl bg-white border border-slate-100 min-h-[480px] flex items-center">
         
-        {/* BACKGROUND IMAGE */}
+        {/* BACKGROUND IMAGE NETTE (ZERO BLUR) */}
         <div className="absolute inset-0 z-0">
           <img
             src={activeData.bgImage}
             alt={activeData.title}
-            className="w-full h-full object-cover object-center transition-all duration-500"
+            className="w-full h-full object-cover object-right transition-all duration-500"
           />
-          {/* GRADIENT TRÈSLÉGER SANS BLUR IMPORTANT */}
-          <div className="absolute inset-0 bg-gradient-to-r from-white via-white/85 via-50% to-transparent backdrop-blur-[0.5px]" />
         </div>
+
+        {/* GRADIENT BLANC F L-ISER 7ADDO 7AD L-TEXTE (SANS BLUR) */}
+        <div className="absolute inset-y-0 left-0 w-full lg:w-[55%] z-0 bg-gradient-to-r from-white via-white/95 to-transparent" />
 
         {/* CONTENU AU DESSUS */}
         <div className="relative z-10 p-8 sm:p-12 lg:p-16 max-w-xl">
