@@ -5,8 +5,7 @@ import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { NAV_LINKS } from '@/data/content';
 import { Logo } from './ui/Logo';
 
-// Remplacer par le numéro WhatsApp de l'entreprise
-// Format international sans + ni espaces
+// Numéro WhatsApp de l'entreprise (Format international sans + ni espaces)
 const WHATSAPP_NUMBER = '33630218757';
 
 export function Header() {
@@ -94,7 +93,7 @@ export function Header() {
         return;
       }
 
-      // Depuis une page solution : revenir à l'accueil
+      // Depuis une autre page : revenir à l'accueil
       setPendingHash(hash);
       navigate('/');
     },
@@ -141,7 +140,7 @@ export function Header() {
             <Link
               to="/"
               onClick={handleLogoClick}
-              aria-label="Accueil ORALI SYSTEMS"
+              aria-label="Accueil PC MAROC"
               className="flex items-center gap-2"
             >
               <Logo />
@@ -157,7 +156,7 @@ export function Header() {
                     event.preventDefault();
                     handleNavigation(link.href);
                   }}
-                  className="flex items-center gap-1.5 text-sm font-medium text-gray-900 transition-colors hover:text-red-600"
+                  className="flex items-center gap-1.5 text-sm font-medium text-gray-900 transition-colors hover:text-orange-600"
                 >
                   {link.label}
                   <ChevronDown className="h-4 w-4 text-gray-500" />
@@ -168,17 +167,13 @@ export function Header() {
 
           {/* RIGHT ACTIONS DESKTOP */}
           <div className="hidden items-center gap-6 lg:flex">
-
-
-     
-
             <a
               href="#contact"
               onClick={(event) => {
                 event.preventDefault();
                 handleNavigation('#contact');
               }}
-              className="inline-flex items-center justify-center rounded-full bg-red-600 px-5 py-2.5 text-sm font-medium text-white transition-all hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-offset-2"
+              className="inline-flex items-center justify-center rounded-full bg-orange-600 px-5 py-2.5 text-sm font-medium text-white transition-all hover:bg-orange-700 focus:outline-none focus:ring-2 focus:ring-orange-500 focus:ring-offset-2"
             >
               Essai gratuit
             </a>
@@ -226,7 +221,7 @@ export function Header() {
                 <Link
                   to="/"
                   onClick={handleLogoClick}
-                  aria-label="Accueil ORALI SYSTEMS"
+                  aria-label="Accueil PC MAROC"
                 >
                   <Logo />
                 </Link>
@@ -250,14 +245,12 @@ export function Header() {
                       event.preventDefault();
                       handleNavigation(link.href);
                     }}
-                    className="flex items-center justify-between rounded-lg px-2 py-3 text-base font-medium text-gray-900 transition-colors hover:bg-gray-50 hover:text-red-600"
+                    className="flex items-center justify-between rounded-lg px-2 py-3 text-base font-medium text-gray-900 transition-colors hover:bg-gray-50 hover:text-orange-600"
                   >
                     {link.label}
                     <ChevronDown className="h-4 w-4 text-gray-400 -rotate-90" />
                   </a>
                 ))}
-                
-             
               </nav>
 
               {/* CTA MOBILE */}
@@ -268,7 +261,7 @@ export function Header() {
                     event.preventDefault();
                     handleNavigation('#contact');
                   }}
-                  className="flex w-full items-center justify-center rounded-full bg-red-600 px-5 py-3 text-base font-medium text-white transition-all hover:bg-red-700"
+                  className="flex w-full items-center justify-center rounded-full bg-orange-600 px-5 py-3 text-base font-medium text-white transition-all hover:bg-orange-700"
                 >
                   Essai gratuit
                 </a>
@@ -283,7 +276,7 @@ export function Header() {
         href={`https://wa.me/${WHATSAPP_NUMBER}`}
         target="_blank"
         rel="noopener noreferrer"
-        aria-label="Contacter ORALI SYSTEMS sur WhatsApp"
+        aria-label="Contacter PC MAROC sur WhatsApp"
         title="Contactez-nous sur WhatsApp"
         className="group fixed bottom-5 right-5 z-[80] flex h-12 w-12 items-center justify-center rounded-full bg-[#25D366] text-white shadow-lg shadow-green-900/20 transition-all duration-300 hover:scale-110 hover:shadow-xl focus:outline-none focus:ring-2 focus:ring-[#25D366] focus:ring-offset-2 sm:bottom-6 sm:right-6"
       >

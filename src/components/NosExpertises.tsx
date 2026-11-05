@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 
 import chrImg from '../assets/caisse.jpg';
@@ -7,189 +7,211 @@ import pressingImg from '../assets/0.jpg';
 import spaImg from '../assets/0.jpg';
 import devImg from '../assets/dev.jpg';
 
-const expertises = [
+const expertisesData = [
   {
-    title: 'CHR',
-    description: 'Restaurants, cafés, boulangeries, hôtels...',
-    image: chrImg,
+    id: 'restauration',
+    title: 'Restauration',
+    subtitle: 'Une solution complète pour gérer vos commandes, votre salle et votre cuisine en toute sérénité.',
+    features: [
+      'Encaissement rapide et intuitif',
+      'Gestion des tables et de la salle',
+      'Suivi des stocks et recettes',
+      'Reporting et suivi des ventes'
+    ],
     linkUrl: '/solutions-restauration',
-    iconSvg: (
-      <svg
-        className="h-6 w-6 text-white"
-        fill="none"
-        stroke="currentColor"
-        strokeWidth="2"
-        viewBox="0 0 24 24"
-        aria-hidden="true"
-      >
-        <path
-          strokeLinecap="round"
-          strokeLinejoin="round"
-          d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
-        />
+    bgImage: chrImg,
+    icon: (
+      <svg className="w-5 h-5" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
+        <path strokeLinecap="round" strokeLinejoin="round" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" />
       </svg>
-    ),
+    )
   },
   {
-    title: 'Commerce & Retail',
-    description: 'Magasins, supermarchés, boutiques, épiceries fines...',
-    image: retailImg,
+    id: 'commerce',
+    title: 'Commerce',
+    subtitle: 'Une solution complète pour gérer vos ventes, vos stocks et votre activité en toute simplicité.',
+    features: [
+      'Encaissement rapide et intuitif',
+      'Gestion des stocks en temps réel',
+      'Suivi des ventes et performances',
+      'Multi-rayons et multi-magasins'
+    ],
     linkUrl: '/Shop',
-    iconSvg: (
-      <svg
-        className="h-6 w-6 text-white"
-        fill="none"
-        stroke="currentColor"
-        strokeWidth="2"
-        viewBox="0 0 24 24"
-        aria-hidden="true"
-      >
-        <path
-          strokeLinecap="round"
-          strokeLinejoin="round"
-          d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z"
-        />
+    bgImage: retailImg,
+    icon: (
+      <svg className="w-5 h-5" fill="none" stroke="currentColor" strokeWidth="2.5" viewBox="0 0 24 24">
+        <path strokeLinecap="round" strokeLinejoin="round" d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z" />
       </svg>
-    ),
+    )
   },
   {
+    id: 'pressing',
     title: 'Pressing',
-    description: 'Gestion des dépôts, suivi des commandes et encaissement.',
-    image: pressingImg,
+    subtitle: 'Gérez vos dépôts, le suivi du traitement et les encaissements sans perte de temps.',
+    features: [
+      'Impression d’étiquettes et tickets',
+      'Suivi de l’état d’avancement',
+      'Rendu client et encaissement rapide',
+      'Gestion de la fidélité client'
+    ],
     linkUrl: '/pressing',
-    iconSvg: (
-      <svg
-        className="h-6 w-6 text-white"
-        fill="none"
-        stroke="currentColor"
-        strokeWidth="2"
-        viewBox="0 0 24 24"
-        aria-hidden="true"
-      >
-        <path
-          strokeLinecap="round"
-          strokeLinejoin="round"
-          d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4"
-        />
+    bgImage: pressingImg,
+    icon: (
+      <svg className="w-5 h-5" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
+        <path strokeLinecap="round" strokeLinejoin="round" d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4" />
       </svg>
-    ),
+    )
   },
   {
-    title: 'Salon de Beauté & Spa',
-    description: 'Encaissement, rendez-vous, forfaits et fidélité.',
-    image: spaImg,
+    id: 'spa',
+    title: 'Salon de beauté',
+    subtitle: 'Une plateforme fluide pour les rendez-vous, le planning de votre équipe et les forfaits.',
+    features: [
+      'Prise de rdv & planning intelligent',
+      'Gestion des forfaits et abonnements',
+      'Encaissement & fichier client',
+      'Notifications SMS / Rappels'
+    ],
     linkUrl: '/salon-spa',
-    iconSvg: (
-      <svg
-        className="h-6 w-6 text-white"
-        fill="none"
-        stroke="currentColor"
-        strokeWidth="2"
-        viewBox="0 0 24 24"
-        aria-hidden="true"
-      >
-        <path
-          strokeLinecap="round"
-          strokeLinejoin="round"
-          d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"
-        />
+    bgImage: spaImg,
+    icon: (
+      <svg className="w-5 h-5" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
+        <path strokeLinecap="round" strokeLinejoin="round" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z" />
       </svg>
-    ),
+    )
   },
   {
+    id: 'dev',
     title: 'Développement sur mesure',
-    description: 'Des applications métier adaptées à vos besoins.',
-    image: devImg,
+    subtitle: 'Des logiciels métiers façonnés exactement selon vos processus et vos besoins.',
+    features: [
+      'Conception d’applications sur mesure',
+      'Intégration API & Systèmes existants',
+      'Interface intuitive et scalable',
+      'Accompagnement et support dédié'
+    ],
     linkUrl: '/Devmesure',
-    iconSvg: (
-      <svg
-        className="h-6 w-6 text-white"
-        fill="none"
-        stroke="currentColor"
-        strokeWidth="2"
-        viewBox="0 0 24 24"
-        aria-hidden="true"
-      >
-        <path
-          strokeLinecap="round"
-          strokeLinejoin="round"
-          d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"
-        />
+    bgImage: devImg,
+    icon: (
+      <svg className="w-5 h-5" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
+        <path strokeLinecap="round" strokeLinejoin="round" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4" />
       </svg>
-    ),
-  },
+    )
+  }
 ];
 
 export default function NosExpertises() {
+  const [activeTab, setActiveTab] = useState('commerce');
+  const activeData = expertisesData.find((item) => item.id === activeTab) || expertisesData[1];
+
   return (
-    <section
-      id="NosExpertises"
-      className="scroll-mt-24 bg-white px-4 py-12 sm:px-6 lg:py-16"
-    >
+    <section id="NosExpertises" className="scroll-mt-24 bg-slate-50 py-16 px-4 sm:px-6 lg:px-8">
       {/* EN-TÊTE */}
-      <div className="mx-auto mb-12 max-w-7xl text-center">
-        <div className="flex items-center justify-center gap-4">
-          <span className="h-[2px] w-12 bg-orange-500" />
-          <h2 className="text-2xl font-extrabold tracking-tight text-gray-900 sm:text-3xl">
-            Nos solutions par secteur
-          </h2>
-          <span className="h-[2px] w-12 bg-orange-500" />
+      <div className="mx-auto max-w-4xl text-center mb-10">
+        <div className="flex items-center justify-center gap-3 mb-2">
+          <span className="h-[2px] w-10 bg-orange-500" />
+          <span className="text-sm font-bold tracking-wider text-slate-900">
+            PC MAROC <span className="text-orange-500 font-semibold text-xs">Hospitality & Retail</span>
+          </span>
+          <span className="h-[2px] w-10 bg-orange-500" />
+        </div>
+        
+        <h2 className="text-3xl sm:text-4xl font-extrabold text-slate-900 tracking-tight">
+          Des solutions adaptées à chaque métier
+        </h2>
+        
+        <p className="mt-3 text-base text-slate-600">
+          Un seul partenaire pour encaisser, gérer et piloter votre activité, quel que soit votre secteur.
+        </p>
+      </div>
+
+      {/* TABS DE SÉLECTION */}
+      <div className="mx-auto max-w-5xl mb-10 overflow-x-auto pb-2">
+        <div className="flex items-center justify-start sm:justify-center gap-3 min-w-max">
+          {expertisesData.map((item) => {
+            const isActive = activeTab === item.id;
+            return (
+              <button
+                key={item.id}
+                onClick={() => setActiveTab(item.id)}
+                className={`flex items-center gap-2.5 px-6 py-3 rounded-full font-semibold text-sm transition-all duration-200 ${
+                  isActive
+                    ? 'bg-orange-500 text-white shadow-md shadow-orange-500/30 scale-105'
+                    : 'bg-white text-slate-700 hover:bg-slate-100 shadow-sm'
+                }`}
+              >
+                <span className={isActive ? 'text-white' : 'text-orange-500'}>
+                  {item.icon}
+                </span>
+                <span>{item.title}</span>
+              </button>
+            );
+          })}
         </div>
       </div>
 
-      {/* GRID DES CARTES */}
-      <div className="mx-auto grid max-w-7xl grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-5">
-        {expertises.map((item) => (
+      {/* BANNIÈRE AVEC BACKGROUND ET GRADIENT LÉGER */}
+      <div className="mx-auto max-w-6xl relative rounded-3xl overflow-hidden shadow-2xl bg-white border border-slate-100 min-h-[480px] flex items-center">
+        
+        {/* BACKGROUND IMAGE */}
+        <div className="absolute inset-0 z-0">
+          <img
+            src={activeData.bgImage}
+            alt={activeData.title}
+            className="w-full h-full object-cover object-center transition-all duration-500"
+          />
+          {/* GRADIENT TRÈSLÉGER SANS BLUR IMPORTANT */}
+          <div className="absolute inset-0 bg-gradient-to-r from-white via-white/85 via-50% to-transparent backdrop-blur-[0.5px]" />
+        </div>
+
+        {/* CONTENU AU DESSUS */}
+        <div className="relative z-10 p-8 sm:p-12 lg:p-16 max-w-xl">
+          
+          {/* LOGO MINI + TITRE */}
+          <div className="mb-6">
+            <div className="flex items-center gap-2 mb-4 text-xs font-bold uppercase tracking-wider text-slate-900">
+              <span className="flex h-2 w-2 rounded-full bg-orange-500" />
+              <span>PC MAROC</span>
+              <span className="text-orange-500 font-semibold lowercase text-[11px]">Hospitality & Retail</span>
+            </div>
+
+            <div className="flex items-center gap-3">
+              <span className="text-orange-500">
+                {activeData.icon}
+              </span>
+              <h3 className="text-3xl sm:text-4xl font-extrabold text-slate-900 tracking-tight">
+                {activeData.title}
+              </h3>
+            </div>
+          </div>
+
+          {/* DESCRIPTION */}
+          <p className="text-base text-slate-600 font-normal leading-relaxed mb-8">
+            {activeData.subtitle}
+          </p>
+
+          {/* PUCE COCHEMENT ORANGE */}
+          <ul className="space-y-3.5 mb-10">
+            {activeData.features.map((feature, idx) => (
+              <li key={idx} className="flex items-center gap-3 text-sm font-semibold text-slate-800">
+                <span className="flex items-center justify-center w-5 h-5 rounded-full bg-orange-500 text-white text-xs font-bold shrink-0 shadow-sm shadow-orange-500/40">
+                  ✓
+                </span>
+                <span>{feature}</span>
+              </li>
+            ))}
+          </ul>
+
+          {/* BOUTON CTA */}
           <Link
-            key={item.title}
-            to={item.linkUrl}
-            aria-label={`Découvrir ${item.title}`}
-            className="group block h-full rounded-2xl focus-visible:outline focus-visible:outline-4 focus-visible:outline-offset-4 focus-visible:outline-orange-500"
+            to={activeData.linkUrl}
+            className="inline-flex items-center gap-3 px-7 py-3.5 rounded-full bg-orange-500 text-white font-semibold text-sm shadow-lg shadow-orange-500/30 hover:bg-orange-600 hover:shadow-orange-500/50 transition-all group"
           >
-            <article className="relative flex h-full flex-col overflow-hidden rounded-2xl border border-gray-100 bg-white text-left shadow-md transition-all duration-300 hover:-translate-y-1 hover:border-orange-200 hover:shadow-xl">
-              
-              {/* IMAGE */}
-              <div className="relative h-48 w-full overflow-hidden bg-slate-100">
-                <img
-                  src={item.image}
-                  alt={item.title}
-                  loading="lazy"
-                  className="h-full w-full object-cover transition-transform duration-700 ease-out group-hover:scale-105"
-                />
-              </div>
-
-              {/* CONTENU */}
-              <div className="relative flex flex-1 flex-col px-5 pb-6 pt-8">
-                
-                {/* ICÔNE CIRCULAIRE FLOOTTANTE */}
-                <div className="absolute -top-7 left-5 flex h-14 w-14 items-center justify-center rounded-full border-4 border-white bg-orange-600 shadow-md transition-transform duration-300 group-hover:scale-105">
-                  {item.iconSvg}
-                </div>
-
-                <h3 className="mt-2 text-lg font-bold leading-snug text-gray-900 transition-colors duration-300 group-hover:text-orange-600">
-                  {item.title}
-                </h3>
-
-                <p className="mt-2 mb-6 flex-1 text-xs leading-relaxed text-gray-500">
-                  {item.description}
-                </p>
-
-                {/* BOUTON FLÈCHE ROND EN BAS */}
-                <div className="mt-auto flex justify-end">
-                  <span className="flex h-8 w-8 items-center justify-center rounded-full border border-orange-200 text-orange-600 transition-all duration-300 group-hover:bg-orange-600 group-hover:text-white group-hover:border-orange-600">
-                    <span
-                      className="inline-block transition-transform duration-300 group-hover:translate-x-0.5"
-                      aria-hidden="true"
-                    >
-                      ›
-                    </span>
-                  </span>
-                </div>
-
-              </div>
-            </article>
+            <span>Découvrir la solution</span>
+            <span className="transition-transform duration-200 group-hover:translate-x-1.5">→</span>
           </Link>
-        ))}
+        </div>
+
       </div>
     </section>
   );
