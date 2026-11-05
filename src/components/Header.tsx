@@ -1,6 +1,6 @@
 import { useEffect, useState, useCallback } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Menu, X, Send } from 'lucide-react';
+import { Menu, X, ChevronDown } from 'lucide-react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { NAV_LINKS } from '@/data/content';
 import { Logo } from './ui/Logo';
@@ -131,69 +131,67 @@ export function Header() {
         }}
         className={`fixed inset-x-0 top-0 z-50 transition-all duration-300 ${
           scrolled
-            ? 'border-b border-slate-200/80 bg-white/80 backdrop-blur-xl'
-            : 'border-b border-transparent bg-transparent'
+            ? 'border-b border-gray-200 bg-white shadow-sm'
+            : 'border-b border-transparent bg-white'
         }`}
       >
-        <div
-          className={`mx-auto flex max-w-7xl items-center justify-between px-6 transition-all duration-300 lg:px-8 ${
-            scrolled ? 'h-16' : 'h-20'
-          }`}
-        >
+        <div className="mx-auto flex h-20 max-w-7xl items-center justify-between px-6 lg:px-8">
           {/* LOGO */}
-          <Link
-            to="/"
-            onClick={handleLogoClick}
-            aria-label="Accueil ORALI SYSTEMS"
-          >
-            <Logo />
-          </Link>
+          <div className="flex items-center gap-10">
+            <Link
+              to="/"
+              onClick={handleLogoClick}
+              aria-label="Accueil ORALI SYSTEMS"
+              className="flex items-center gap-2"
+            >
+              <Logo />
+            </Link>
 
-          {/* NAVIGATION DESKTOP */}
-          <nav className="hidden items-center gap-1 lg:flex">
-            {NAV_LINKS.map((link) => (
-              <a
-                key={link.href}
-                href={link.href}
-                onClick={(event) => {
-                  event.preventDefault();
-                  handleNavigation(link.href);
-                }}
-                className="rounded-lg px-4 py-2 text-sm font-medium text-slate-500 transition-colors hover:text-brand-600"
-              >
-                {link.label}
-              </a>
-            ))}
-          </nav>
+            {/* NAVIGATION DESKTOP */}
+            <nav className="hidden items-center gap-8 lg:flex">
+              {NAV_LINKS.map((link) => (
+                <a
+                  key={link.href}
+                  href={link.href}
+                  onClick={(event) => {
+                    event.preventDefault();
+                    handleNavigation(link.href);
+                  }}
+                  className="flex items-center gap-1.5 text-sm font-medium text-gray-900 transition-colors hover:text-red-600"
+                >
+                  {link.label}
+                  <ChevronDown className="h-4 w-4 text-gray-500" />
+                </a>
+              ))}
+            </nav>
+          </div>
 
-          {/* CTA DESKTOP */}
-          <div className="hidden lg:block">
+          {/* RIGHT ACTIONS DESKTOP */}
+          <div className="hidden items-center gap-6 lg:flex">
+
+
+     
+
             <a
               href="#contact"
               onClick={(event) => {
                 event.preventDefault();
                 handleNavigation('#contact');
               }}
-              className="group/button relative inline-flex items-center justify-center gap-3 overflow-hidden rounded-xl bg-gradient-to-r from-amber-500 to-orange-600 px-5 py-3 text-sm font-semibold text-white shadow-lg shadow-orange-600/20 transition-all duration-300 hover:-translate-y-0.5 hover:shadow-xl hover:shadow-orange-600/30 focus:outline-none focus:ring-2 focus:ring-orange-400 focus:ring-offset-2"
+              className="inline-flex items-center justify-center rounded-full bg-red-600 px-5 py-2.5 text-sm font-medium text-white transition-all hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-offset-2"
             >
-              <span className="absolute inset-0 -translate-x-full bg-gradient-to-r from-transparent via-white/20 to-transparent transition-transform duration-700 group-hover/button:translate-x-full" />
-
-              <span className="relative z-10">
-                Demander une démo
-              </span>
-
-              <Send className="relative z-10 h-4 w-4 transition-transform duration-300 group-hover/button:translate-x-1" />
+              Essai gratuit
             </a>
           </div>
 
           {/* BOUTON MOBILE */}
           <button
             onClick={() => setMobileOpen(true)}
-            className="flex h-10 w-10 items-center justify-center rounded-lg border border-slate-200 text-slate-700 lg:hidden"
+            className="flex h-10 w-10 items-center justify-center rounded-lg text-gray-700 lg:hidden"
             aria-label="Ouvrir le menu"
             aria-expanded={mobileOpen}
           >
-            <Menu className="h-5 w-5" />
+            <Menu className="h-6 w-6" />
           </button>
         </div>
       </motion.header>
@@ -207,7 +205,7 @@ export function Header() {
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
-              className="fixed inset-0 z-[60] bg-slate-900/20 backdrop-blur-sm lg:hidden"
+              className="fixed inset-0 z-[60] bg-black/20 backdrop-blur-sm lg:hidden"
               onClick={() => setMobileOpen(false)}
             />
 
@@ -221,10 +219,10 @@ export function Header() {
                 damping: 30,
                 stiffness: 300,
               }}
-              className="fixed right-0 top-0 z-[70] flex h-full w-[85%] max-w-sm flex-col border-l border-slate-200 bg-white lg:hidden"
+              className="fixed right-0 top-0 z-[70] flex h-full w-[85%] max-w-sm flex-col border-l border-gray-200 bg-white lg:hidden"
             >
               {/* EN-TÊTE MOBILE */}
-              <div className="flex items-center justify-between border-b border-slate-200 px-6 py-5">
+              <div className="flex items-center justify-between border-b border-gray-200 px-6 py-5">
                 <Link
                   to="/"
                   onClick={handleLogoClick}
@@ -235,15 +233,15 @@ export function Header() {
 
                 <button
                   onClick={() => setMobileOpen(false)}
-                  className="flex h-10 w-10 items-center justify-center rounded-lg border border-slate-200 text-slate-700"
+                  className="flex h-10 w-10 items-center justify-center rounded-lg text-gray-700"
                   aria-label="Fermer le menu"
                 >
-                  <X className="h-5 w-5" />
+                  <X className="h-6 w-6" />
                 </button>
               </div>
 
               {/* NAVIGATION MOBILE */}
-              <nav className="flex flex-1 flex-col gap-1 overflow-y-auto px-4 py-6">
+              <nav className="flex flex-1 flex-col gap-2 overflow-y-auto px-6 py-6">
                 {NAV_LINKS.map((link) => (
                   <a
                     key={link.href}
@@ -252,30 +250,27 @@ export function Header() {
                       event.preventDefault();
                       handleNavigation(link.href);
                     }}
-                    className="rounded-xl px-4 py-3 text-base font-medium text-slate-600 transition-colors hover:bg-slate-50 hover:text-brand-600"
+                    className="flex items-center justify-between rounded-lg px-2 py-3 text-base font-medium text-gray-900 transition-colors hover:bg-gray-50 hover:text-red-600"
                   >
                     {link.label}
+                    <ChevronDown className="h-4 w-4 text-gray-400 -rotate-90" />
                   </a>
                 ))}
+                
+             
               </nav>
 
               {/* CTA MOBILE */}
-              <div className="border-t border-slate-200 p-4">
+              <div className="border-t border-gray-200 p-6">
                 <a
                   href="#contact"
                   onClick={(event) => {
                     event.preventDefault();
                     handleNavigation('#contact');
                   }}
-                  className="group/button relative flex w-full items-center justify-center gap-3 overflow-hidden rounded-xl bg-gradient-to-r from-amber-500 to-orange-600 px-5 py-3.5 text-base font-semibold text-white shadow-lg shadow-orange-600/20 transition-all duration-300 hover:shadow-xl hover:shadow-orange-600/30 focus:outline-none focus:ring-2 focus:ring-orange-400 focus:ring-offset-2"
+                  className="flex w-full items-center justify-center rounded-full bg-red-600 px-5 py-3 text-base font-medium text-white transition-all hover:bg-red-700"
                 >
-                  <span className="absolute inset-0 -translate-x-full bg-gradient-to-r from-transparent via-white/20 to-transparent transition-transform duration-700 group-hover/button:translate-x-full" />
-
-                  <span className="relative z-10">
-                    Demander une démo
-                  </span>
-
-                  <Send className="relative z-10 h-4 w-4 transition-transform duration-300 group-hover/button:translate-x-1" />
+                  Essai gratuit
                 </a>
               </div>
             </motion.div>

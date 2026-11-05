@@ -55,95 +55,94 @@ const item: Variants = {
 
 export function Hero() {
   return (
-    <section id="home" className="relative overflow-hidden bg-white pt-[calc(4rem+0.5cm)]">
+    <section id="home" className="relative overflow-hidden bg-[#121212] pt-24 text-white">
       {/* HERO SECTION */}
-      <div className="relative">
-        <div className="relative z-10 lg:absolute lg:inset-0 lg:flex lg:items-center">
+      <div className="relative mx-auto max-w-7xl px-6 py-16 lg:px-8 lg:py-28">
+        <div className="grid grid-cols-1 items-center gap-12 lg:grid-cols-12">
+          
+          {/* TEXT CONTENT (LEFT) */}
           <motion.div
             variants={container}
             initial="hidden"
             animate="visible"
-            className="mx-auto w-full max-w-7xl px-6 py-12 lg:px-8 lg:py-0"
+            className="lg:col-span-6"
           >
-            <div className="max-w-[34rem]">
-              {/* Titre b la barre orange 3la l-isser */}
-              <motion.div
-                variants={item}
-                className="border-l-4 border-amber-600 pl-4"
-              >
-                <h1 className="font-display text-3xl font-extrabold leading-[1.1] tracking-tight text-slate-900 sm:text-5xl">
-                  La technologie au service <br />
-                  de votre activité.
-                </h1>
-              </motion.div>
+            {/* SUBTITLE UPPERCASE */}
+            <motion.p
+              variants={item}
+              className="text-xs font-bold uppercase tracking-[0.25em] text-gray-400"
+            >
+              PLATEFORME PDV ET PAIEMENT
+            </motion.p>
 
-              <motion.p
-                variants={item}
-                className="mt-5 max-w-md text-base font-medium leading-relaxed text-slate-600 sm:text-lg"
-              >
-                Des solutions d'encaissement et de gestion adaptées à votre métier.
-              </motion.p>
+            {/* MAIN TITLE */}
+            <motion.h1
+              variants={item}
+              className="mt-4 font-sans text-4xl font-extrabold leading-[1.1] tracking-tight text-white sm:text-6xl"
+            >
+              La technologie au service de votre activité
+            </motion.h1>
 
-              {/* Boutonat */}
-              <motion.div
-                variants={item}
-                className="mt-7 flex flex-col gap-3 sm:flex-row"
-              >
-                <a
-                  href="#solutions"
-                  className="group inline-flex items-center justify-center gap-2 rounded-full bg-amber-600 px-7 py-3.5 text-sm font-semibold text-white shadow-lg shadow-amber-600/25 transition-all hover:bg-amber-700 hover:shadow-xl focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-amber-600"
-                >
-                  Découvrir nos solutions
-                  <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
-                </a>
+            {/* DESCRIPTION */}
+            <motion.p
+              variants={item}
+              className="mt-6 max-w-lg text-base font-normal leading-relaxed text-gray-300 sm:text-lg"
+            >
+              Des solutions d'encaissement et de gestion adaptées à votre métier. Une plateforme intégrée qui propulse les entreprises performantes.
+            </motion.p>
 
-                <a
-                  href="#demo"
-                  className="inline-flex items-center justify-center gap-2 rounded-full border border-slate-300 bg-white px-7 py-3.5 text-sm font-semibold text-slate-900 shadow-sm transition-all hover:border-slate-400 hover:bg-slate-50 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-amber-600"
-                >
-                  Demander une démo
-                </a>
-              </motion.div>
-            </div>
+            {/* BUTTONS */}
+            <motion.div
+              variants={item}
+              className="mt-8 flex flex-wrap items-center gap-4"
+            >
+              <a
+                href="#demo"
+                className="inline-flex items-center justify-center rounded-full bg-red-600 px-8 py-3.5 text-base font-semibold text-white shadow-md transition-all hover:bg-red-700 hover:shadow-lg focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-red-600"
+              >
+                Voir une démo
+              </a>
+
+              <a
+                href="#solutions"
+                className="group inline-flex items-center justify-center gap-2 rounded-full border border-gray-700 bg-transparent px-8 py-3.5 text-base font-semibold text-white transition-all hover:border-gray-500 hover:bg-white/5"
+              >
+                Découvrir nos solutions
+                <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
+              </a>
+            </motion.div>
           </motion.div>
-        </div>
 
-        {/* Taswira dyal la caisse */}
-        <img
-          src={heroImage}
-          alt="La technologie au service de votre activité"
-          className="block h-auto w-full object-cover lg:min-h-[520px]"
-        />
+          {/* IMAGES DISPLAY (RIGHT - DIAMOND CARDS) */}
+          <div className="relative flex items-center justify-center lg:col-span-6 lg:justify-end">
+            <div className="relative flex h-[360px] w-full max-w-[500px] items-center justify-center sm:h-[450px]">
+              
+              {/* LARGE DIAMOND CARD (MAIN IMAGE) */}
+              <div className="relative h-64 w-64 overflow-hidden rounded-[40px] rotate-45 shadow-2xl sm:h-80 sm:w-80">
+                <img
+                  src={heroImage}
+                  alt="La technologie au service de votre activité"
+                  className="h-full w-full -rotate-45 scale-150 object-cover"
+                />
+              </div>
 
-        {/* Gradient fade f desktop */}
-        <div
-          className="pointer-events-none absolute inset-0 hidden lg:block"
-          style={{
-            background:
-              'linear-gradient(to right, rgba(255,255,255,0.98) 0%, rgba(255,255,255,0.85) 32%, rgba(255,255,255,0) 60%)',
-          }}
-        />
+              {/* SMALL DIAMOND CARD (SECONDARY IMAGE OVERLAY) */}
+              <div className="absolute right-0 top-4 h-36 w-36 overflow-hidden rounded-[28px] rotate-45 border-4 border-[#121212] shadow-2xl sm:right-4 sm:h-48 sm:w-48">
+                <img
+                  src={heroImage}
+                  alt="Terminal de paiement"
+                  className="h-full w-full -rotate-45 scale-150 object-cover"
+                />
+              </div>
 
-        {/* Wave / Wave shape orange l-taht dyal l-hero */}
-        <div className="absolute bottom-0 left-0 w-full overflow-hidden leading-none z-20">
-          <svg
-            className="relative block w-full h-8 sm:h-12 lg:h-16"
-            viewBox="0 0 1200 120"
-            preserveAspectRatio="none"
-          >
-            <path
-              d="M0,30 C150,90 400,0 600,40 C800,80 1050,10 1200,50 L1200,120 L0,120 Z"
-              fill="#ea580c"
-              fillOpacity="0.9"
-            ></path>
-          </svg>
+            </div>
+          </div>
+
         </div>
       </div>
 
       {/* SECTION NOTRE EXPERTISE */}
-      <div className="relative overflow-hidden border-y border-slate-100 bg-slate-50/70 px-6 py-12 lg:px-8 lg:py-16">
-        <div className="pointer-events-none absolute -top-24 left-1/2 h-72 w-72 -translate-x-1/2 rounded-full bg-orange-100/40 blur-3xl" />
-
+      <div className="relative border-t border-zinc-800 bg-zinc-900/50 px-6 py-16 lg:px-8 lg:py-24">
         <div className="relative mx-auto max-w-7xl text-center">
           <motion.div
             variants={container}
@@ -153,29 +152,27 @@ export function Hero() {
           >
             <motion.span
               variants={item}
-              className="mb-3 inline-flex rounded-full border border-orange-100 bg-white px-4 py-2 text-xs font-bold uppercase tracking-[0.18em] text-amber-600 shadow-sm"
+              className="mb-3 inline-flex rounded-full border border-zinc-700 bg-zinc-800 px-4 py-1.5 text-xs font-bold uppercase tracking-[0.2em] text-red-500"
             >
               Notre Expertise
             </motion.span>
 
             <motion.h2
               variants={item}
-              className="mx-auto mt-2 max-w-3xl text-3xl font-extrabold leading-tight tracking-tight text-slate-900 sm:text-4xl"
+              className="mx-auto mt-2 max-w-3xl text-3xl font-extrabold leading-tight tracking-tight text-white sm:text-4xl"
             >
               Un partenaire pour la réussite de{' '}
-              <span className="bg-gradient-to-r from-amber-500 to-orange-600 bg-clip-text text-transparent">
-                vos projets
-              </span>
+              <span className="text-red-600">vos projets</span>
             </motion.h2>
 
             <motion.p
               variants={item}
-              className="mx-auto mb-10 mt-4 max-w-3xl text-sm leading-7 text-slate-600 sm:text-base"
+              className="mx-auto mb-12 mt-4 max-w-3xl text-sm leading-relaxed text-gray-400 sm:text-base"
             >
-              Nous concevons, intégrons et déployons des solutions technologiques adaptées aux besoins des professionnels. De l'encaissement au développement d'applications sur mesure, nous vous accompagnons à chaque étape de votre transformation digitale.
+              Nous concevons, intégrons et déployons des solutions technologiques adaptées aux besoins des professionnels. De l'encaissement au développement d'applications sur mesure.
             </motion.p>
 
-            {/* Cartes d'expertise */}
+            {/* EXPERTISE CARDS */}
             <motion.div
               variants={container}
               className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4"
@@ -187,24 +184,20 @@ export function Hero() {
                   <motion.article
                     key={step.title}
                     variants={item}
-                    className="group relative flex h-full flex-col items-center overflow-hidden rounded-2xl border border-slate-200/80 bg-white px-6 py-8 text-center transition-all duration-300 hover:-translate-y-1 hover:border-orange-200 hover:shadow-xl hover:shadow-slate-200/60"
+                    className="group relative flex h-full flex-col items-center rounded-2xl border border-zinc-800 bg-zinc-900/80 px-6 py-8 text-center transition-all duration-300 hover:-translate-y-1 hover:border-red-600/50 hover:bg-zinc-900"
                   >
-                    <div className="absolute left-0 top-0 z-20 h-full w-1 origin-top scale-y-0 bg-gradient-to-b from-amber-400 to-orange-600 transition-transform duration-300 group-hover:scale-y-100" />
-
-                    <div className="pointer-events-none absolute -bottom-10 -right-10 h-28 w-28 rounded-full bg-orange-50 opacity-0 blur-2xl transition-opacity duration-500 group-hover:opacity-100" />
-
-                    <div className="relative z-10 mb-6 flex h-20 w-20 items-center justify-center rounded-2xl border border-orange-100 bg-orange-50 transition-all duration-300 group-hover:scale-105 group-hover:border-orange-200 group-hover:bg-orange-600 group-hover:shadow-lg group-hover:shadow-orange-600/20">
+                    <div className="mb-6 flex h-16 w-16 items-center justify-center rounded-2xl border border-zinc-700 bg-zinc-800 transition-colors duration-300 group-hover:border-red-600 group-hover:bg-red-600">
                       <Icon
-                        className="h-8 w-8 text-amber-600 transition-colors duration-300 group-hover:text-white"
+                        className="h-7 w-7 text-red-500 transition-colors duration-300 group-hover:text-white"
                         strokeWidth={1.75}
                       />
                     </div>
 
-                    <h3 className="relative z-10 mb-3 text-lg font-bold text-slate-900 transition-colors duration-300 group-hover:text-orange-700">
+                    <h3 className="mb-3 text-lg font-bold text-white transition-colors duration-300 group-hover:text-red-500">
                       {step.title}
                     </h3>
 
-                    <p className="relative z-10 max-w-xs text-sm leading-7 text-slate-600">
+                    <p className="text-sm leading-relaxed text-gray-400">
                       {step.description}
                     </p>
                   </motion.article>
