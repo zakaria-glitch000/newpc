@@ -929,7 +929,7 @@ export const TESTIMONIALS: Testimonial[] = [
     role: 'Directeur',
     company: 'Atlas Retail Group',
     quote:
-      "ORALI SYSTEMS  a déployé nos 40 caisses en moins de deux semaines, sans interruption de l'activité. Un partenaire fiable et réactif.",
+      "PC MAROC a déployé nos 40 caisses en moins de deux semaines, sans interruption de l'activité. Un partenaire fiable et réactif.",
   },
 
   {
@@ -945,7 +945,7 @@ export const TESTIMONIALS: Testimonial[] = [
     role: 'Responsable logistique',
     company: 'DistriFlow',
     quote:
-      "Le logiciel sur-mesure développé par ORALI SYSTEMS  a transformé notre gestion d'entrepôt. Gains de temps considérables.",
+      "Le logiciel sur-mesure développé par PC MAROC  a transformé notre gestion d'entrepôt. Gains de temps considérables.",
   },
 ];
 
@@ -970,7 +970,7 @@ export const FEATURE_LIST = [
 ========================================================= */
 
 export const COMPANY = {
-  name: 'ORALI SYSTEMS ',
+  name: 'PC MAROC ',
 
   tagline: 'ARTIS Consulting',
 

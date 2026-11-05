@@ -966,7 +966,7 @@ export default function SolutionsRestauration() {
               </h2>
 
               <p className="mt-4 max-w-xl text-sm leading-6 text-blue-50 sm:text-[15px]">
-                Découvrez comment ORALI SYSTEMS peut répondre aux besoins de
+                Découvrez comment PC MAROC peut répondre aux besoins de
                 votre établissement et faciliter la gestion de votre activité.
               </p>
             </div>

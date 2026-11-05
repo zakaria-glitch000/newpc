@@ -749,7 +749,7 @@ export function BornesCommande() {
               </h2>
 
               <p className="mt-5 text-lg leading-relaxed text-slate-500">
-                ORALI SYSTEMS vous accompagne dans l’étude, la configuration
+                PC MAROC vous accompagne dans l’étude, la configuration
                 et l’intégration de votre solution de borne interactive.
               </p>
 

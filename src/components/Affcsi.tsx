@@ -21,7 +21,7 @@ export default function Affcsi() {
 
   const handleWhatsAppDemo = () => {
     const message = encodeURIComponent(
-      'Bonjour Orali Systems, je souhaite demander une démonstration gratuite de votre solution de caisse et de gestion pour mon établissement.'
+      'Bonjour PC MAROC, je souhaite demander une démonstration gratuite de votre solution de caisse et de gestion pour mon établissement.'
     );
 
     window.open(
@@ -188,7 +188,7 @@ export default function Affcsi() {
 
                 <img
                   src={caisseImage}
-                  alt="Présentation du système de caisse Orali Systems"
+                  alt="Présentation du système de caisse PC MAROC"
                   loading="eager"
                   fetchPriority="high"
                   className="h-[320px] w-full rounded-xl object-cover sm:h-[420px] lg:h-[480px]"

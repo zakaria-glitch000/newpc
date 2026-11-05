@@ -47,7 +47,7 @@ export default function Innoshop() {
     const whatsappNumber = '33630218757';
 
     const message = [
-      'Bonjour ORALI SYSTEMS 👋',
+      'Bonjour PC MAROC 👋',
       '',
       'Je souhaite demander une démonstration.',
       '',
@@ -220,7 +220,7 @@ export default function Innoshop() {
             <div className="group relative z-10 overflow-hidden rounded-2xl border border-slate-200 bg-slate-50 shadow-xl transition-all duration-500 hover:-translate-y-1 hover:shadow-2xl">
               <img
                 src={franchiseImage}
-                alt="Solution de gestion des points de vente ORALI SYSTEMS"
+                alt="Solution de gestion des points de vente PC MAROC"
                 className="block h-[300px] w-full object-contain sm:h-[440px]"
               />
 
@@ -279,7 +279,7 @@ export default function Innoshop() {
       {/* FOOTER */}
       <footer className="mt-8 border-t border-slate-200 bg-white py-4 text-center text-xs text-slate-500">
         <p>
-          © {new Date().getFullYear()} ORALI SYSTEMS. Solutions Commerce &amp;
+          © {new Date().getFullYear()} PC MAROC. Solutions Commerce &amp;
           Restaurant.
         </p>
       </footer>

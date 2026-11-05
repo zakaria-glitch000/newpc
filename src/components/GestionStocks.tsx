@@ -982,7 +982,7 @@ export function GestionStocks() {
               </h2>
 
               <p className="mt-5 text-lg leading-relaxed text-slate-500">
-                ORALI SYSTEMS  vous accompagne dans la mise en place d’une
+                PC MAROC  vous accompagne dans la mise en place d’une
                 organisation de stock adaptée à votre activité et à vos
                 objectifs.
               </p>

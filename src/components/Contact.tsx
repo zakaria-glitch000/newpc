@@ -51,7 +51,7 @@ export function Contact() {
       from_email: userEmail,
       phone: String(data.get('phone') ?? '').trim(),
       message: String(data.get('message') ?? '').trim(),
-      subject: `Nouveau message de ${userName} — site ORALI SYSTEMS`,
+      subject: `Nouveau message de ${userName} — site PC MAROC`,
     };
 
     setLoading(true);

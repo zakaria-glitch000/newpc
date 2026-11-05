@@ -34,7 +34,7 @@ export function About() {
               <div className="relative overflow-hidden rounded-3xl border border-slate-200/80 bg-white shadow-xl shadow-slate-300/20">
                 <img
                   src="https://images.pexels.com/photos/3184339/pexels-photo-3184339.jpeg?auto=compress&cs=tinysrgb&w=1200"
-                  alt="Équipe ORALI SYSTEMS en collaboration"
+                  alt="Équipe PC MAROC en collaboration"
                   loading="lazy"
                   className="aspect-[4/3] w-full object-cover transition-transform duration-700 ease-out group-hover:scale-105"
                 />
@@ -83,7 +83,7 @@ export function About() {
               </h2>
 
               <p className="mt-4 text-base leading-7 text-slate-500 sm:text-lg">
-                ORALI SYSTEMS est une marque d'artis consulting spécialisée dans les
+                PC MAROC est une marque d'artis consulting spécialisée dans les
                 solutions informatiques et logicielles pour les
                 professionnels. Depuis plus de dix ans, nous accompagnons des
                 entreprises de toutes tailles dans leur transformation

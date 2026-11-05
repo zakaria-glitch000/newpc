@@ -183,8 +183,7 @@ function HomePage() {
       <NosExpertises />
       <Fonctionnalite />
       <Produit />
-      <Industries />
-      <FeaturedProduct />
+            <FeaturedProduct />
       <Solutions />
       <Services />
       <WhyUs />

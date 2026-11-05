@@ -87,7 +87,7 @@ const support = [
 
 function Logo() {
   return (
-    <div className="stk-logo" aria-label="ORALI SYSTEMS">
+    <div className="stk-logo" aria-label="PC MAROC">
       <div></div>
     </div>
   );

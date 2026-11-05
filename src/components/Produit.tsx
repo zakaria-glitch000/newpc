@@ -157,72 +157,7 @@ export default function ProductsSection() {
           ))}
         </div>
 
-        {/* CERTIFICATION NF525 */}
-        <motion.div
-          initial={{ opacity: 0, y: 24 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, amount: 0.15 }}
-          transition={{ duration: 0.6 }}
-          className="group/nf relative mt-10 overflow-hidden rounded-3xl border border-slate-800 bg-slate-900 shadow-xl transition-all duration-300 hover:border-orange-500/50 hover:shadow-2xl md:mt-12"
-        >
-          {/* LIGNE DÉCORATIVE */}
-          <div
-            className="absolute left-0 top-0 z-20 h-full w-1 origin-top scale-y-0 bg-gradient-to-b from-amber-400 to-orange-600 transition-transform duration-500 group-hover/nf:scale-y-100"
-            aria-hidden="true"
-          />
 
-          {/* DÉCORATIONS DE FOND */}
-          <div className="pointer-events-none absolute -right-20 -top-20 h-64 w-64 rounded-full bg-orange-600/10 blur-3xl transition-opacity duration-500 group-hover/nf:bg-orange-600/20" />
-
-          <div className="pointer-events-none absolute -bottom-24 -left-20 h-64 w-64 rounded-full bg-amber-500/10 blur-3xl" />
-
-          <div className="relative grid grid-cols-1 items-center gap-6 p-6 sm:p-8 lg:grid-cols-[220px_1fr] lg:gap-10 lg:p-8">
-            {/* LOGO NF525 */}
-            <div className="flex justify-center">
-              <div className="flex h-36 w-48 items-center justify-center rounded-2xl border border-slate-800 bg-slate-950 p-4 shadow-sm transition-all duration-300 group-hover/nf:scale-[1.03] group-hover/nf:border-orange-500/30 group-hover/nf:shadow-md">
-                <img
-                  src={nfLogo}
-                  alt="Logo NF525"
-                  loading="lazy"
-                  className="max-h-full max-w-full object-contain"
-                />
-              </div>
-            </div>
-
-            {/* TEXTE CERTIFICATION */}
-            <div className="space-y-4 text-center lg:text-left">
-              <div className="inline-flex items-center gap-2 rounded-full border border-orange-500/20 bg-orange-500/10 px-3 py-1.5 text-xs font-semibold text-orange-300 transition-colors duration-300 group-hover/nf:border-orange-500/40 group-hover/nf:bg-orange-500/20">
-                <ShieldCheck className="h-4 w-4 text-orange-400" />
-                Certification Officielle
-              </div>
-
-              <h3 className="font-display text-2xl font-bold leading-tight tracking-tight text-white sm:text-3xl lg:text-4xl">
-                Solution de caisse{' '}
-                <span className="bg-gradient-to-r from-amber-400 to-orange-500 bg-clip-text text-transparent">
-                  Certifiée NF525
-                </span>
-              </h3>
-
-              <p className="mx-auto max-w-3xl text-sm leading-7 text-slate-300 sm:text-base lg:mx-0">
-                Une caisse simple et intuitive conçue pour répondre aux besoins
-                des professionnels. La certification NF525 concerne les
-                exigences applicables aux systèmes de caisse en France.
-                Vérifiez les justificatifs de certification correspondant
-                précisément au logiciel et à la version utilisés.
-              </p>
-
-              <div className="flex justify-center pt-1 lg:justify-start">
-                <Link
-                  to="/nf"
-                  className="group/link inline-flex items-center gap-2 rounded-xl bg-orange-600 px-6 py-3 text-sm font-semibold text-white transition-all duration-300 hover:-translate-y-0.5 hover:bg-orange-700 hover:shadow-lg hover:shadow-orange-600/25 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-orange-500"
-                >
-                  En savoir plus sur la NF525
-                  <ArrowRight className="h-4 w-4 transition-transform duration-300 group-hover/link:translate-x-1" />
-                </Link>
-              </div>
-            </div>
-          </div>
-        </motion.div>
       </div>
     </section>
   );

@@ -120,8 +120,7 @@ function ProductMockup() {
             </div>
 
             <span className="font-display text-xs font-semibold text-slate-900 sm:text-sm">
-              ORALI SYSTEMS
-            </span>
+PC MAROC            </span>
           </div>
 
           <div className="flex items-center gap-2 rounded-full bg-emerald-50 px-2.5 py-1">

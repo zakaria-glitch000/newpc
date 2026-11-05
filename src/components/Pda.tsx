@@ -107,7 +107,7 @@ const services = [
 
 function Logo() {
   return (
-    <div className="pda-logo" aria-label="ORALI SYSTEMS">
+    <div className="pda-logo" aria-label="PC MAROC">
       <div></div>
     </div>
   );

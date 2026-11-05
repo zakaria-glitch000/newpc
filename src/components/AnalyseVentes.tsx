@@ -680,7 +680,7 @@ export function AnalyseVentes() {
               </h2>
 
               <p className="mx-auto mt-5 max-w-2xl text-base leading-7 text-slate-400">
-                Découvrez comment ORALI SYSTEMS  peut vous aider à centraliser
+                Découvrez comment PC MAROC  peut vous aider à centraliser
                 vos données commerciales et à transformer vos résultats en
                 décisions concrètes.
               </p>

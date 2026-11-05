@@ -22,7 +22,7 @@ import "./Zebra.css";
 /* ------------------------------------------------------------------
    IMAGES : placez vos fichiers dans /public/images/ avec ces noms
    (ou changez simplement les chemins ci-dessous).
-   - logo-orali.png         : logo ORALI SYSTEMS
+   - logo-orali.png         : logo 
    - hero-pos-zebra.png     : photo en haut à droite (écran INNOSHOP + imprimante Zebra + bananes)
    - step1-innoshop.png     : écran INNOSHOP
    - step2-zebra.png        : imprimante Zebra avec étiquette

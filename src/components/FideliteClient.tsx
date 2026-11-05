@@ -196,7 +196,7 @@ const faqs = [
   {
     question: 'Pouvez-vous nous accompagner dans la mise en place ?',
     answer:
-      'Oui. ORALI SYSTEMS vous accompagne dans la définition des règles, la configuration, le déploiement et la prise en main de la solution.',
+      'Oui. PC MAROC vous accompagne dans la définition des règles, la configuration, le déploiement et la prise en main de la solution.',
   },
 ];
 

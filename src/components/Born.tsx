@@ -146,7 +146,7 @@ function Eyebrow({ children }) {
 
 function Logo() {
   return (
-    <div className="bc-logo" aria-label="ORALI SYSTEMS">
+    <div className="bc-logo" aria-label="PC MAROC">
    
       <div>
  
@@ -297,7 +297,7 @@ export default function BornesCommande() {
           <div className="bc-support__image">
             <img
               src={accompagnementImage}
-              alt="Accompagnement et installation ORALI SYSTEMS"
+              alt="Accompagnement et installation PC MAROC"
               loading="lazy"
             />
           </div>
