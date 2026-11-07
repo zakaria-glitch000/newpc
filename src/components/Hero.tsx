@@ -71,19 +71,21 @@ export function Hero() {
               
               </motion.div>
 
-              {/* MAIN TITLE */}
+              {/* MAIN TITLE WITH ORANGE GRADIENT EFFECT */}
               <motion.h2
                 variants={item}
                 className="font-sans text-4xl font-extrabold leading-[1.15] tracking-tight text-white sm:text-5xl lg:text-6xl"
               >
                 La solution d'encaissement pour tous les{' '}
-                <span className="text-[#f96302]">points de vente</span>
+                <span className="bg-gradient-to-r from-[#ff8c00] via-[#f96302] to-[#e05500] bg-clip-text text-transparent drop-shadow-[0_5px_15px_rgba(249,99,2,0.3)]">
+                  points de vente
+                </span>
               </motion.h2>
 
               {/* ORANGE SEPARATOR BAR */}
               <motion.div
                 variants={item}
-                className="my-6 h-1 w-24 rounded-full bg-[#f96302]"
+                className="my-6 h-1 w-24 rounded-full bg-gradient-to-r from-[#ff8c00] to-[#f96302]"
               />
 
               {/* DESCRIPTION */}
@@ -101,7 +103,7 @@ export function Hero() {
               >
                 <a
                   href="#demo"
-                  className="inline-flex items-center justify-center gap-2 rounded-full bg-[#f96302] px-7 py-3.5 text-base font-semibold text-white shadow-lg transition-all hover:bg-[#e05500] hover:shadow-orange-500/20"
+                  className="inline-flex items-center justify-center gap-2 rounded-2xl bg-gradient-to-r from-[#ff8c00] via-[#f96302] to-[#e05500] px-8 py-4 text-base font-bold text-white shadow-[0_10px_25px_-5px_rgba(249,99,2,0.4)] transition-all hover:scale-[1.02] hover:shadow-[0_15px_30px_-5px_rgba(249,99,2,0.6)] active:scale-[0.98]"
                 >
                   Demander une démo gratuite
                   <ArrowRight className="h-5 w-5" />
@@ -109,7 +111,7 @@ export function Hero() {
 
                 <a
                   href="#solutions"
-                  className="inline-flex items-center justify-center rounded-full border border-gray-500 bg-transparent px-7 py-3.5 text-base font-semibold text-white transition-all hover:border-white hover:bg-white/10"
+                  className="inline-flex items-center justify-center rounded-2xl border border-gray-500 bg-transparent px-7 py-4 text-base font-semibold text-white transition-all hover:border-white hover:bg-white/10"
                 >
                   Nos solutions
                 </a>
@@ -161,7 +163,7 @@ export function Hero() {
             {/* LITTLE ORANGE BAR */}
             <motion.div
               variants={item}
-              className="mx-auto mb-4 h-1.5 w-16 rounded-full bg-[#f96302]"
+              className="mx-auto mb-4 h-1.5 w-16 rounded-full bg-gradient-to-r from-[#ff8c00] to-[#f96302]"
             />
 
             {/* TITLE */}
@@ -169,7 +171,10 @@ export function Hero() {
               variants={item}
               className="text-3xl font-extrabold tracking-tight sm:text-4xl md:text-5xl text-[#0c0d10]"
             >
-              Bien plus qu’une <span className="text-[#f96302]">caisse enregistreuse.</span>
+              Bien plus qu’une{' '}
+              <span className="bg-gradient-to-r from-[#ff8c00] via-[#f96302] to-[#e05500] bg-clip-text text-transparent">
+                caisse enregistreuse.
+              </span>
             </motion.h2>
 
             {/* SUBTITLE */}
@@ -218,7 +223,7 @@ export function Hero() {
 
                   {/* ORANGE BOTTOM-RIGHT CORNER DECORATION */}
                   <div 
-                    className="absolute bottom-0 right-0 h-7 w-7 bg-[#f96302]"
+                    className="absolute bottom-0 right-0 h-7 w-7 bg-gradient-to-br from-[#ff8c00] to-[#f96302]"
                     style={{ clipPath: 'polygon(100% 0, 100% 100%, 0 100%)' }}
                   />
                 </motion.div>

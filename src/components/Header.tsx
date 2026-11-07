@@ -168,7 +168,7 @@ export function Header() {
                         event.preventDefault();
                         handleNavigation(link.href);
                       }}
-                      className="flex items-center gap-1.5 text-sm font-semibold text-gray-900 transition-colors hover:text-orange-600"
+                      className="flex items-center gap-1.5 text-sm font-semibold text-gray-900 transition-colors hover:text-[#f96302]"
                     >
                       {link.label}
                       {hasDropdown && <ChevronDown className="h-4 w-4 text-gray-500" />}
@@ -184,7 +184,7 @@ export function Header() {
             </nav>
           </div>
 
-          {/* RIGHT ACTIONS DESKTOP (Bouton Demander une démo) */}
+          {/* RIGHT ACTIONS DESKTOP (Bouton Demander une démo avec le nouveau style orange) */}
           <div className="hidden items-center gap-6 lg:flex">
             <a
               href="/#contact"
@@ -192,7 +192,7 @@ export function Header() {
                 event.preventDefault();
                 handleNavigation('/#contact');
               }}
-              className="inline-flex items-center justify-center gap-2 rounded-full bg-orange-600 px-6 py-3 text-sm font-semibold text-white shadow-sm transition-all hover:bg-orange-700 focus:outline-none focus:ring-2 focus:ring-orange-500 focus:ring-offset-2"
+              className="inline-flex items-center justify-center gap-2 rounded-2xl bg-gradient-to-r from-[#ff8c00] via-[#f96302] to-[#e05500] px-7 py-3.5 text-sm font-bold text-white shadow-[0_10px_25px_-5px_rgba(249,99,2,0.4)] transition-all hover:scale-[1.02] hover:shadow-[0_15px_30px_-5px_rgba(249,99,2,0.6)] active:scale-[0.98]"
             >
               <Calendar className="h-4 w-4" />
               Demander une démo
@@ -267,7 +267,7 @@ export function Header() {
                         event.preventDefault();
                         handleNavigation(link.href);
                       }}
-                      className="flex items-center justify-between rounded-lg px-2 py-3 text-base font-medium text-gray-900 transition-colors hover:bg-gray-50 hover:text-orange-600"
+                      className="flex items-center justify-between rounded-lg px-2 py-3 text-base font-medium text-gray-900 transition-colors hover:bg-gray-50 hover:text-[#f96302]"
                     >
                       {link.label}
                       {hasDropdown && <ChevronDown className="h-4 w-4 text-gray-400 -rotate-90" />}
@@ -284,7 +284,7 @@ export function Header() {
                     event.preventDefault();
                     handleNavigation('/#contact');
                   }}
-                  className="flex w-full items-center justify-center gap-2 rounded-full bg-orange-600 px-5 py-3 text-base font-semibold text-white transition-all hover:bg-orange-700"
+                  className="flex w-full items-center justify-center gap-2 rounded-2xl bg-gradient-to-r from-[#ff8c00] via-[#f96302] to-[#e05500] px-5 py-4 text-base font-bold text-white shadow-[0_10px_25px_-5px_rgba(249,99,2,0.4)] transition-all hover:shadow-[0_15px_30px_-5px_rgba(249,99,2,0.6)]"
                 >
                   <Calendar className="h-5 w-5" />
                   Demander une démo
@@ -311,8 +311,8 @@ export function Header() {
           className="h-7 w-7 transition-transform duration-300 group-hover:rotate-[-8deg]"
           aria-hidden="true"
         >
-<path d="M20.52 3.48A11.78 11.78 0 0 0 12.12 0C5.57 0 .24 5.33.24 11.88c0 2.1.55 4.15 1.6 5.96L.14 24l6.31-1.65a11.86 11.86 0 0 0 5.67 1.44h.01c6.55 0 11.88-5.33 11.88-11.88 0-3.17-1.24-6.15-3.49-8.43ZM12.13 21.8a9.88 9.88 0 0 1-5.03-1.37l-.36-.21-3.75.98 1-3.65-.23-.38a9.87 9.87 0 1 1 8.37 4.63Zm5.42-7.4c-.3-.15-1.76-.87-2.03-.97-.27-.1-.47-.15-.67.15-.2.3-.77.97-.95 1.17-.17.2-.35.22-.65.07-.3-.15-1.25-.46-2.38-1.46-.88-.78-1.47-1.75-1.64-2.05-.17-.3-.02-.46.13-.61.14-.13.3-.35.45-.52.15-.17.2-.3.3-.5.1-.2.05-.37-.02-.52-.07-.15-.67-1.62-.92-2.22-.24-.58-.49-.5-.67-.51h-.57c-.2 0-.52.07-.8.37-.27.3-1.04 1.02-1.04 2.49s1.07 2.89 1.22 3.09c.15.2 2.1 3.2 5.08 4.48.71.3 1.26.49 1.69.63.71.23 1.36.2 1.87.12.57-.08 1.76-.72 2.01-1.42.25-.7.25-1.3.17-1.42-.07-.13-.27-.2-.57-.35Z" />
-</svg>
+          <path d="M20.52 3.48A11.78 11.78 0 0 0 12.12 0C5.57 0 .24 5.33.24 11.88c0 2.1.55 4.15 1.6 5.96L.14 24l6.31-1.65a11.86 11.86 0 0 0 5.67 1.44h.01c6.55 0 11.88-5.33 11.88-11.88 0-3.17-1.24-6.15-3.49-8.43ZM12.13 21.8a9.88 9.88 0 0 1-5.03-1.37l-.36-.21-3.75.98 1-3.65-.23-.38a9.87 9.87 0 1 1 8.37 4.63Zm5.42-7.4c-.3-.15-1.76-.87-2.03-.97-.27-.1-.47-.15-.67.15-.2.3-.77.97-.95 1.17-.17.2-.35.22-.65.07-.3-.15-1.25-.46-2.38-1.46-.88-.78-1.47-1.75-1.64-2.05-.17-.3-.02-.46.13-.61.14-.13.3-.35.45-.52.15-.17.2-.3.3-.5.1-.2.05-.37-.02-.52-.07-.15-.67-1.62-.92-2.22-.24-.58-.49-.5-.67-.51h-.57c-.2 0-.52.07-.8.37-.27.3-1.04 1.02-1.04 2.49s1.07 2.89 1.22 3.09c.15.2 2.1 3.2 5.08 4.48.71.3 1.26.49 1.69.63.71.23 1.36.2 1.87.12.57-.08 1.76-.72 2.01-1.42.25-.7.25-1.3.17-1.42-.07-.13-.27-.2-.57-.35Z" />
+        </svg>
       </a>
     </>
   );
