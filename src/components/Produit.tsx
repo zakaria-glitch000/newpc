@@ -16,11 +16,11 @@ import { Link } from 'react-router-dom';
 import caisseImage from '@/assets/ncaisse.jpeg';
 import borneImage from '@/assets/nboorn.png';
 import kdsImage from '@/assets/nblaka.jpeg';
-import terminalImage from '@/assets/npd.jpeg';
+import terminalImage from '@/assets/npda.jpeg';
 
 import balanceImage from '@/assets/balance.jpg';
 import zebraImage from '@/assets/nzebra.jpeg';
-import pdaImage from '@/assets/npda.jpeg';
+import pdaImage from '@/assets/npd.jpeg';
 import etiquetteImage from '@/assets/nmonnay.jpeg';
 
 const products = [
@@ -52,19 +52,26 @@ const products = [
     icon: Hand,
     link: '/Pda',
   },
-  {
-    title: 'Balances connectées',
-    description: 'Pesez, vendez et gérez vos articles en toute simplicité.',
-    image: balanceImage,
-    icon: Scale,
-    link: '/Balance',
+    {
+    title: 'MONAYEUR',
+    description: 'Affichez et mettez à jour vos prix en temps réel.',
+    image: etiquetteImage,
+    icon: Tag,
+    link: '/Etiquette',
   },
+
   {
     title: 'Imprimantes de balisage',
     description: 'Éditez vos étiquettes et codes-barres rapidement et en toute fiabilité.',
     image: zebraImage,
     icon: Printer,
     link: '/Zebra',
+  },  {
+    title: 'Balances connectées',
+    description: 'Pesez, vendez et gérez vos articles en toute simplicité.',
+    image: balanceImage,
+    icon: Scale,
+    link: '/Balance',
   },
   {
     title: 'Terminaux de saisie',
@@ -73,13 +80,7 @@ const products = [
     icon: Barcode,
     link: '/Stock',
   },
-  {
-    title: 'MONAYEUR',
-    description: 'Affichez et mettez à jour vos prix en temps réel.',
-    image: etiquetteImage,
-    icon: Tag,
-    link: '/Etiquette',
-  },
+
 ];
 
 export default function ProductsSection() {
