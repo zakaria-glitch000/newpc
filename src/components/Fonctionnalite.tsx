@@ -12,14 +12,14 @@ import {
 } from 'lucide-react';
 
 const NAVY = '#0B1F4B';
-const GOLD = '#F5A800';
+const GOLD = '#F97316';
 const TEAL = '#1AA7B8';
 
 const ACCENTS = {
   gold: {
-    border: 'linear-gradient(135deg, #F5A800 0%, #FDD97A 50%, #F5A800 100%)',
-    fillLeft: 'linear-gradient(110deg, #FFFFFF 35%, #FFF3D6 100%)',
-    fillRight: 'linear-gradient(250deg, #FFFFFF 35%, #FFF3D6 100%)',
+    border: 'linear-gradient(135deg, #F97316 0%, #FDBA74 50%, #F97316 100%)',
+    fillLeft: 'linear-gradient(110deg, #FFFFFF 35%, #FFEDD5 100%)',
+    fillRight: 'linear-gradient(250deg, #FFFFFF 35%, #FFEDD5 100%)',
   },
   teal: {
     border: 'linear-gradient(135deg, #1AA7B8 0%, #8ADCE5 50%, #1AA7B8 100%)',
@@ -148,11 +148,11 @@ function Hub() {
         preserveAspectRatio="none"
         fill="none"
       >
-        <path d="M 0,70 C 120,90 150,170 200,200" stroke="#F5A800" strokeOpacity="0.45" strokeWidth="2" />
+        <path d="M 0,70 C 120,90 150,170 200,200" stroke="#F97316" strokeOpacity="0.45" strokeWidth="2" />
         <path d="M 0,200 L 200,200" stroke="#1AA7B8" strokeOpacity="0.45" strokeWidth="2" />
-        <path d="M 0,330 C 120,310 150,230 200,200" stroke="#F5A800" strokeOpacity="0.45" strokeWidth="2" />
+        <path d="M 0,330 C 120,310 150,230 200,200" stroke="#F97316" strokeOpacity="0.45" strokeWidth="2" />
         <path d="M 400,70 C 280,90 250,170 200,200" stroke="#1AA7B8" strokeOpacity="0.45" strokeWidth="2" />
-        <path d="M 400,200 L 200,200" stroke="#F5A800" strokeOpacity="0.45" strokeWidth="2" />
+        <path d="M 400,200 L 200,200" stroke="#F97316" strokeOpacity="0.45" strokeWidth="2" />
         <path d="M 400,330 C 280,310 250,230 200,200" stroke="#1AA7B8" strokeOpacity="0.45" strokeWidth="2" />
       </svg>
 
@@ -245,8 +245,8 @@ export default function FeaturesSection() {
             <stop offset="100%" stopColor="#1AA7B8" />
           </linearGradient>
           <linearGradient id="waveGold" x1="0" x2="1" y1="0" y2="0">
-            <stop offset="0%" stopColor="#F5A800" />
-            <stop offset="100%" stopColor="#FDD97A" />
+            <stop offset="0%" stopColor="#F97316" />
+            <stop offset="100%" stopColor="#FDBA74" />
           </linearGradient>
         </defs>
         {/* Or */}

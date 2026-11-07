@@ -2,7 +2,7 @@ import React from 'react';
 import { Quote, Star } from 'lucide-react';
 
 const NAVY = '#0B1F4B';
-const GOLD = '#F5A800';
+const GOLD = '#F97316';
 const TEAL = '#1AA7B8';
 
 /**
@@ -78,8 +78,8 @@ const reviews = [
 
 const ACCENTS = {
   gold: {
-    border: 'linear-gradient(135deg, #F5A800 0%, #FDD97A 50%, #F5A800 100%)',
-    fill: 'linear-gradient(160deg, #FFFFFF 45%, #FFF3D6 100%)',
+    border: 'linear-gradient(135deg, #F97316 0%, #FDBA74 50%, #F97316 100%)',
+    fill: 'linear-gradient(160deg, #FFFFFF 45%, #FFEDD5 100%)',
     color: GOLD,
   },
   teal: {
@@ -223,8 +223,8 @@ export default function ReferencesSection() {
             <stop offset="100%" stopColor="#1AA7B8" />
           </linearGradient>
           <linearGradient id="refWaveGold" x1="0" x2="1" y1="0" y2="0">
-            <stop offset="0%" stopColor="#F5A800" />
-            <stop offset="100%" stopColor="#FDD97A" />
+            <stop offset="0%" stopColor="#F97316" />
+            <stop offset="100%" stopColor="#FDBA74" />
           </linearGradient>
         </defs>
         <path d="M0,60 C300,110 700,60 1100,100 C1250,112 1360,105 1440,95 L1440,140 L0,140 Z" fill="url(#refWaveGold)" />

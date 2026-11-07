@@ -183,7 +183,6 @@ function HomePage() {
       <Hero />
       <NosExpertises />
       <Fonctionnalite />
-      <Reference />
       <Produit />
       <FeaturedProduct />
       <Solutions />
@@ -191,6 +190,8 @@ function HomePage() {
       <WhyUs />
       <Process />
       <About />
+            <Reference />
+
       <CTA />
       <Contact />
     </>
