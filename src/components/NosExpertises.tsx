@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 
-import chrImg from '../assets/caisse.jpg';
-import retailImg from '../assets/retail.jpg';
-import pressingImg from '../assets/gest.jpeg';
-import spaImg from '../assets/0.jpg';
+import chrImg from '../assets/acsi.jpeg';
+import retailImg from '../assets/ashop.jpeg';
+import pressingImg from '../assets/aclean.jpeg';
+import spaImg from '../assets/abelle.jpeg';
 import devImg from '../assets/dev.jpg';
 
 const expertisesData = [
@@ -150,10 +150,10 @@ export default function NosExpertises() {
         </div>
       </div>
 
-      {/* BANNIÈRE SANS BLUR - IMAGE NETTE */}
+      {/* BANNIÈRE AVEC BACKGROUND SANS FLOU */}
       <div className="mx-auto max-w-6xl relative rounded-3xl overflow-hidden shadow-2xl bg-white border border-slate-100 min-h-[480px] flex items-center">
         
-        {/* BACKGROUND IMAGE NETTE (ZERO BLUR) */}
+        {/* BACKGROUND IMAGE CLAIRE & NETTE */}
         <div className="absolute inset-0 z-0">
           <img
             src={activeData.bgImage}
@@ -162,11 +162,11 @@ export default function NosExpertises() {
           />
         </div>
 
-        {/* GRADIENT BLANC F L-ISER 7ADDO 7AD L-TEXTE (SANS BLUR) */}
-        <div className="absolute inset-y-0 left-0 w-full lg:w-[55%] z-0 bg-gradient-to-r from-white via-white/95 to-transparent" />
+        {/* OVERLAY SANS BLUR - SEULEMENT UN DÉGRADÉ BLANC PLUS LÉGER SUR LE CÔTÉ GAUCHE */}
+        <div className="absolute inset-y-0 left-0 w-full sm:w-10/12 lg:w-7/12 z-0 bg-gradient-to-r from-white via-white/80 to-transparent" />
 
-        {/* CONTENU AU DESSUS */}
-        <div className="relative z-10 p-8 sm:p-12 lg:p-16 max-w-xl">
+        {/* CONTENU AU DESSUS AVEC OMBRE DOUCE POUR ASSURER LA LISIBILITÉ */}
+        <div className="relative z-10 p-8 sm:p-12 lg:p-16 max-w-xl drop-shadow-sm">
           
           {/* LOGO MINI + TITRE */}
           <div className="mb-6">
@@ -187,7 +187,7 @@ export default function NosExpertises() {
           </div>
 
           {/* DESCRIPTION */}
-          <p className="text-base text-slate-600 font-normal leading-relaxed mb-8">
+          <p className="text-base text-slate-700 font-medium leading-relaxed mb-8">
             {activeData.subtitle}
           </p>
 

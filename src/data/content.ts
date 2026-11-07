@@ -37,15 +37,13 @@ import {
 
 export const NAV_LINKS = [
   { label: 'Accueil', href: '/#home' },
-  { label: 'Solutions', href: '/#NosExpertises' },
+  { label: 'Type de Commerce', href: '/#NosExpertises' },
   { label: 'Produit', href: '/#Produit' },
-  { label: 'Métier', href: '/#Industries' },
-  { label: 'Services', href: '/#services' },
-  { label: 'A propos', href: '/#About' },
+  { label: 'Développement', href: '/#developpement' },
+  { label: 'Service', href: '/#services' },
+  { label: 'À propos', href: '/#About' },
   { label: 'Contact', href: '/#contact' },
 ] as const;
-
-
 /* =========================================================
    TRUST LOGOS
 ========================================================= */
