@@ -1,66 +1,83 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { ArrowRight, ShieldCheck } from 'lucide-react';
+import {
+  ArrowRight,
+  Calculator,
+  Smartphone,
+  ConciergeBell,
+  Hand,
+  Scale,
+  Printer,
+  Barcode,
+  Tag,
+} from 'lucide-react';
 import { Link } from 'react-router-dom';
 
-import caisseImage from '@/assets/0.jpg';
-import borneImage from '@/assets/1.jpg';
-import kdsImage from '@/assets/4.jpg';
-import terminalImage from '@/assets/3.jpg';
-import nfLogo from '@/assets/nf.png';
+import caisseImage from '@/assets/ncaisse.jpeg';
+import borneImage from '@/assets/nboorn.png';
+import kdsImage from '@/assets/nblaka.jpeg';
+import terminalImage from '@/assets/npd.jpeg';
 
 import balanceImage from '@/assets/balance.jpg';
-import zebraImage from '@/assets/zebra.jpg';
-import pdaImage from '@/assets/pda.jpg';
-import etiquetteImage from '@/assets/etiquette.jpg';
+import zebraImage from '@/assets/nzebra.jpeg';
+import pdaImage from '@/assets/npda.jpeg';
+import etiquetteImage from '@/assets/nmonnay.jpeg';
 
 const products = [
   {
-    title: 'Caisse Enregistreuse CSI',
-    description: 'Des équipements fiables et performants.',
+    title: 'Caisses tactiles',
+    description: "Des solutions d'encaissement fiables et adaptées à tous les métiers.",
     image: caisseImage,
+    icon: Calculator,
     link: '/Caisse',
   },
   {
     title: 'Bornes de commande',
     description: 'Des bornes interactives pour simplifier le parcours client.',
     image: borneImage,
+    icon: Smartphone,
     link: '/Born',
   },
   {
     title: 'Écrans cuisine KDS',
-    description: 'Organisez et suivez la préparation des commandes.',
+    description: 'Organisez et suivez la préparation des commandes en temps réel.',
     image: kdsImage,
+    icon: ConciergeBell,
     link: '/kds',
   },
   {
-    title: 'PAD CSI',
-    description: 'Prenez les commandes directement à table.',
+    title: 'PAD de prise de commande',
+    description: 'Prenez les commandes directement en salle et gagnez en efficacité.',
     image: terminalImage,
+    icon: Hand,
     link: '/Pda',
   },
   {
-    title: 'Balances professionnelles',
-    description: 'Pesage précis et interface tactile intuitive pour commerces.',
+    title: 'Balances connectées',
+    description: 'Pesez, vendez et gérez vos articles en toute simplicité.',
     image: balanceImage,
+    icon: Scale,
     link: '/Balance',
   },
   {
-    title: 'IMPRIMANTE BALISAGE ZEBRA',
-    description: 'Imprimantes thermiques robustes pour étiquettes et bracelets.',
+    title: 'Imprimantes de balisage',
+    description: 'Éditez vos étiquettes et codes-barres rapidement et en toute fiabilité.',
     image: zebraImage,
+    icon: Printer,
     link: '/Zebra',
   },
   {
-    title: 'PDA / Terminaux portables',
-    description: 'Idéal pour la gestion des stocks, inventaires et scan rapide.',
+    title: 'Terminaux de saisie',
+    description: 'Réalisez vos inventaires et la gestion des stocks en mobilité.',
     image: pdaImage,
+    icon: Barcode,
     link: '/Stock',
   },
   {
-    title: 'Étiquettes électroniques',
-    description: 'Mise à jour dynamique des prix et des informations en rayon.',
+    title: 'MONAYEUR',
+    description: 'Affichez et mettez à jour vos prix en temps réel.',
     image: etiquetteImage,
+    icon: Tag,
     link: '/Etiquette',
   },
 ];
@@ -69,95 +86,115 @@ export default function ProductsSection() {
   return (
     <section
       id="Produit"
-      className="scroll-mt-24 relative overflow-hidden bg-slate-950 px-4 py-8 sm:px-6 lg:py-12 text-slate-100 selection:bg-orange-600 selection:text-white"
+      className="scroll-mt-24 relative overflow-hidden bg-slate-950 px-4 pb-10 pt-10 sm:px-6 lg:pb-12 lg:pt-12 text-slate-100 selection:bg-orange-600 selection:text-white"
     >
       {/* DÉCORATION DE FOND */}
       <div className="pointer-events-none absolute -top-24 left-1/2 h-72 w-72 -translate-x-1/2 rounded-full bg-orange-600/10 blur-3xl" />
 
+      {/* COIN ORANGE EN HAUT À DROITE */}
+      <svg
+        className="pointer-events-none absolute right-0 top-0 h-28 w-56 sm:h-36 sm:w-72"
+        viewBox="0 0 300 150"
+        preserveAspectRatio="none"
+        aria-hidden="true"
+      >
+        <defs>
+          <linearGradient id="prodCorner" x1="0" x2="1" y1="0" y2="1">
+            <stop offset="0%" stopColor="#FBBF24" />
+            <stop offset="100%" stopColor="#EA580C" />
+          </linearGradient>
+        </defs>
+        <path d="M60,0 L300,0 L300,150 C250,60 160,20 60,0 Z" fill="url(#prodCorner)" opacity="0.95" />
+      </svg>
+
       <div className="relative mx-auto max-w-7xl">
         {/* EN-TÊTE */}
-        <div className="mb-8 text-center">
-          <span className="mb-3 inline-flex rounded-full border border-orange-500/20 bg-orange-500/10 px-4 py-1.5 text-xs font-bold uppercase tracking-[0.2em] text-orange-400 shadow-sm">
-            Nos produits
-          </span>
-
-          <h2 className="mx-auto mb-3 max-w-3xl text-3xl font-extrabold leading-tight tracking-tight text-white sm:text-4xl md:text-5xl">
-            Des équipements{' '}
-            <span className="bg-gradient-to-r from-amber-400 to-orange-500 bg-clip-text text-transparent">
-              performants
-            </span>
-          </h2>
+        <div className="mb-10 text-center">
+          <div className="mb-3 flex items-center justify-center gap-4 sm:gap-5">
+            <span className="h-[3px] w-10 rounded-full bg-gradient-to-r from-amber-400 to-orange-500 sm:w-14" />
+            <h2 className="text-3xl font-extrabold leading-tight tracking-tight text-white sm:text-4xl md:text-5xl">
+              Nos{' '}
+              <span className="bg-gradient-to-r from-amber-400 to-orange-500 bg-clip-text text-transparent">
+                Produits
+              </span>
+            </h2>
+            <span className="h-[3px] w-10 rounded-full bg-gradient-to-l from-amber-400 to-orange-500 sm:w-14" />
+          </div>
 
           <p className="mx-auto max-w-2xl text-sm leading-7 text-slate-300 sm:text-base">
-            Découvrez notre sélection de produits pour équiper, connecter et
-            optimiser votre activité.
+            Une gamme complète d&apos;équipements pour digitaliser et optimiser votre activité.
           </p>
         </div>
 
         {/* CARTES PRODUITS — ENTIÈREMENT CLIQUABLES */}
         <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4">
-          {products.map((product, index) => (
-            <motion.div
-              key={product.title}
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, amount: 0.15 }}
-              transition={{ duration: 0.5, delay: index * 0.05 }}
-              className="h-full"
-            >
-              <Link
-                to={product.link}
-                aria-label={`Découvrir ${product.title}`}
-                className="group block h-full rounded-2xl focus-visible:outline focus-visible:outline-4 focus-visible:outline-offset-4 focus-visible:outline-orange-500"
+          {products.map((product, index) => {
+            const Icon = product.icon;
+            return (
+              <motion.div
+                key={product.title}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, amount: 0.15 }}
+                transition={{ duration: 0.5, delay: index * 0.05 }}
+                className="h-full"
               >
-                <article className="relative flex h-full flex-col overflow-hidden rounded-2xl border border-slate-800 bg-slate-900 p-4 transition-all duration-300 hover:-translate-y-1 hover:border-orange-500/50 hover:shadow-xl hover:shadow-orange-950/40">
-                  {/* LIGNE DÉCORATIVE */}
-                  <div
-                    className="pointer-events-none absolute left-0 top-0 z-20 h-full w-1 origin-top scale-y-0 bg-gradient-to-b from-amber-400 to-orange-600 transition-transform duration-300 group-hover:scale-y-100"
-                    aria-hidden="true"
-                  />
-
-                  {/* IMAGE */}
-                  <div className="relative mb-3 flex h-36 items-center justify-center overflow-hidden rounded-xl border border-slate-800 bg-slate-950 p-2">
-                    <img
-                      src={product.image}
-                      alt={product.title}
-                      loading="lazy"
-                      className="h-full w-full object-contain transition-transform duration-500 ease-out group-hover:scale-105"
-                    />
-
-                    {/* HALO */}
+                <Link
+                  to={product.link}
+                  aria-label={`Découvrir ${product.title}`}
+                  className="group block h-full rounded-3xl focus-visible:outline focus-visible:outline-4 focus-visible:outline-offset-4 focus-visible:outline-orange-500"
+                >
+                  <article className="relative flex h-full flex-col overflow-hidden rounded-3xl border border-slate-800 bg-slate-900 shadow-lg shadow-black/30 transition-all duration-300 hover:-translate-y-1 hover:border-orange-500/50 hover:shadow-xl hover:shadow-orange-950/40">
+                    {/* LIGNE DÉCORATIVE */}
                     <div
-                      className="pointer-events-none absolute -bottom-10 -right-10 h-24 w-24 rounded-full bg-orange-600/10 opacity-0 blur-2xl transition-opacity duration-500 group-hover:opacity-100"
+                      className="pointer-events-none absolute left-0 top-0 z-20 h-full w-1 origin-top scale-y-0 bg-gradient-to-b from-amber-400 to-orange-600 transition-transform duration-300 group-hover:scale-y-100"
                       aria-hidden="true"
                     />
-                  </div>
 
-                  {/* INFORMATIONS */}
-                  <div className="flex flex-1 flex-col">
-                    <h3 className="mb-1.5 text-sm font-bold leading-5 text-white transition-colors duration-300 group-hover:text-orange-400">
-                      {product.title}
-                    </h3>
-
-                    <p className="flex-1 text-xs leading-5 text-slate-400">
-                      {product.description}
-                    </p>
-
-                    {/* BOUTON VISUEL */}
-                    <div className="mt-4 inline-flex w-full items-center justify-center gap-2 rounded-xl bg-orange-600 px-4 py-2.5 text-sm font-semibold text-white transition-all duration-300 group-hover:-translate-y-0.5 group-hover:bg-orange-700 group-hover:shadow-lg group-hover:shadow-orange-600/20">
-                      Savoir plus
-                      <ArrowRight className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1" />
+                    {/* PHOTO PLEINE LARGEUR — image affichée en entier */}
+                    <div className="relative h-52 overflow-hidden bg-slate-950">
+                      {/* fond : même image floutée pour remplir tout l'espace */}
+                      <img
+                        src={product.image}
+                        alt=""
+                        aria-hidden="true"
+                        loading="lazy"
+                        className="absolute inset-0 h-full w-full scale-110 object-cover opacity-60 blur-xl"
+                      />
+                      {/* image complète au premier plan */}
+                      <img
+                        src={product.image}
+                        alt={product.title}
+                        loading="lazy"
+                        className="relative z-10 h-full w-full object-contain p-2 transition-transform duration-500 ease-out group-hover:scale-105"
+                      />
                     </div>
 
-                    <div className="mt-3 h-px w-full bg-slate-800 transition-colors duration-300 group-hover:bg-orange-500/30" />
-                  </div>
-                </article>
-              </Link>
-            </motion.div>
-          ))}
+                    {/* PANNEAU D'INFORMATIONS (chevauche la photo) */}
+                    <div className="relative z-20 -mt-5 flex flex-1 flex-col rounded-t-3xl bg-slate-900 px-5 pb-5 pt-5">
+                      <div className="mb-2 flex items-center gap-3">
+                        <Icon className="h-7 w-7 shrink-0 text-orange-400" strokeWidth={1.6} />
+                        <h3 className="text-base font-extrabold leading-tight text-white transition-colors duration-300 group-hover:text-orange-400">
+                          {product.title}
+                        </h3>
+                      </div>
+
+                      <p className="flex-1 text-sm leading-snug text-slate-400">
+                        {product.description}
+                      </p>
+
+                      {/* BOUTON VISUEL */}
+                      <div className="mx-auto mt-4 inline-flex w-44 items-center justify-center gap-2 rounded-full bg-orange-600 px-4 py-2.5 text-sm font-bold text-white transition-all duration-300 group-hover:-translate-y-0.5 group-hover:bg-orange-700 group-hover:shadow-lg group-hover:shadow-orange-600/20">
+                        En savoir plus
+                        <ArrowRight className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1" />
+                      </div>
+                    </div>
+                  </article>
+                </Link>
+              </motion.div>
+            );
+          })}
         </div>
-
-
       </div>
     </section>
   );

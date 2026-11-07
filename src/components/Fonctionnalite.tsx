@@ -12,14 +12,15 @@ import {
 } from 'lucide-react';
 
 const NAVY = '#0B1F4B';
-const GOLD = '#F97316';
+const GOLD = '#EA580C';
+const ORANGE_GRADIENT = 'linear-gradient(90deg, #F59E0B 0%, #EA580C 50%, #C2410C 100%)';
 const TEAL = '#1AA7B8';
 
 const ACCENTS = {
   gold: {
-    border: 'linear-gradient(135deg, #F97316 0%, #FDBA74 50%, #F97316 100%)',
-    fillLeft: 'linear-gradient(110deg, #FFFFFF 35%, #FFEDD5 100%)',
-    fillRight: 'linear-gradient(250deg, #FFFFFF 35%, #FFEDD5 100%)',
+    border: 'linear-gradient(135deg, #FBBF24 0%, #F97316 50%, #FBBF24 100%)',
+    fillLeft: 'linear-gradient(110deg, #FFFFFF 35%, #FFF7ED 100%)',
+    fillRight: 'linear-gradient(250deg, #FFFFFF 35%, #FFF7ED 100%)',
   },
   teal: {
     border: 'linear-gradient(135deg, #1AA7B8 0%, #8ADCE5 50%, #1AA7B8 100%)',
@@ -183,7 +184,7 @@ function Hub() {
 
 export default function FeaturesSection() {
   return (
-    <section className="relative overflow-hidden bg-white px-4 pb-40 pt-12 sm:px-6 lg:pt-14">
+    <section className="relative overflow-hidden bg-white px-4 pb-10 pt-12 sm:px-6 lg:pb-12 lg:pt-14">
       {/* Halo de fond léger */}
       <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_at_center,#F4F8FC_0%,#FFFFFF_70%)]" />
 
@@ -191,11 +192,11 @@ export default function FeaturesSection() {
         {/* EN-TÊTE */}
         <div className="mx-auto mb-12 max-w-3xl text-center">
           <div className="mb-5 flex items-center justify-center gap-5">
-            <span className="h-[3px] w-14 rounded-full" style={{ background: GOLD }} />
+            <span className="h-[3px] w-14 rounded-full" style={{ background: ORANGE_GRADIENT }} />
             <span className="text-sm font-extrabold uppercase tracking-[0.12em]" style={{ color: NAVY }}>
               Fonctionnalités clés
             </span>
-            <span className="h-[3px] w-14 rounded-full" style={{ background: GOLD }} />
+            <span className="h-[3px] w-14 rounded-full" style={{ background: ORANGE_GRADIENT }} />
           </div>
 
           <h2
@@ -203,7 +204,15 @@ export default function FeaturesSection() {
             style={{ color: NAVY }}
           >
             Les fonctionnalités essentielles
-            <span className="mt-1 block" style={{ color: GOLD }}>
+            <span
+              className="mt-1 block"
+              style={{
+                backgroundImage: ORANGE_GRADIENT,
+                WebkitBackgroundClip: 'text',
+                backgroundClip: 'text',
+                color: 'transparent',
+              }}
+            >
               pour piloter votre activité
             </span>
           </h2>
@@ -232,30 +241,6 @@ export default function FeaturesSection() {
         </div>
       </div>
 
-      {/* VAGUES EN BAS */}
-      <svg
-        className="pointer-events-none absolute bottom-0 left-0 h-32 w-full"
-        viewBox="0 0 1440 140"
-        preserveAspectRatio="none"
-      >
-        <defs>
-          <linearGradient id="waveNavy" x1="0" x2="1" y1="0" y2="0">
-            <stop offset="0%" stopColor="#0B1F4B" />
-            <stop offset="60%" stopColor="#0B3A6B" />
-            <stop offset="100%" stopColor="#1AA7B8" />
-          </linearGradient>
-          <linearGradient id="waveGold" x1="0" x2="1" y1="0" y2="0">
-            <stop offset="0%" stopColor="#F97316" />
-            <stop offset="100%" stopColor="#FDBA74" />
-          </linearGradient>
-        </defs>
-        {/* Or */}
-        <path d="M0,60 C300,110 700,60 1100,100 C1250,112 1360,105 1440,95 L1440,140 L0,140 Z" fill="url(#waveGold)" />
-        {/* Blanc (séparation) */}
-        <path d="M0,85 C320,125 720,80 1100,112 C1260,124 1370,118 1440,110 L1440,140 L0,140 Z" fill="#FFFFFF" />
-        {/* Marine */}
-        <path d="M0,102 C340,134 740,100 1100,124 C1260,132 1370,128 1440,124 L1440,140 L0,140 Z" fill="url(#waveNavy)" />
-      </svg>
     </section>
   );
 }

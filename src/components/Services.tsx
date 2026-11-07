@@ -1,181 +1,628 @@
+
+import { useId } from 'react';
 import { motion, type Variants } from 'framer-motion';
-import { ArrowRight, CheckCircle2 } from 'lucide-react';
-import { SERVICES } from '@/data/content';
+
 import {
-  SectionTag,
-  staggerContainer,
-  fadeUp,
-} from './ui/Reveal';
+  Handshake,
+  Settings,
+  GraduationCap,
+  Headset,
+  Code,
+  type LucideIcon,
+} from 'lucide-react';
 
 import teamTrainingImage from '@/assets/accompagnement.jpeg';
 
+// ==========================================
+// COLORS
+// ==========================================
+
+const NAVY = '#0B1F4B';
+
+const ORANGE_GRADIENT =
+  'linear-gradient(90deg, #F59E0B 0%, #EA580C 50%, #C2410C 100%)';
+
+// ==========================================
+// TYPES
+// ==========================================
+
+type Service = {
+  title: string;
+  description: string;
+  icon: LucideIcon;
+  wrapper: string;
+  height: string;
+};
+
+// ==========================================
+// SERVICES
+// ==========================================
+
+const services: Service[] = [
+  {
+    title: 'Conseil & Accompagnement',
+    description:
+      'Analyse de vos besoins et solution adaptée à votre activité.',
+    icon: Handshake,
+    wrapper: 'xl:col-span-2',
+    height: 'min-h-[280px]',
+  },
+  {
+    title: 'Installation & Déploiement',
+    description:
+      'Mise en service, configuration et paramétrage de vos solutions.',
+    icon: Settings,
+    wrapper: 'xl:col-span-2',
+    height: 'min-h-[280px]',
+  },
+  {
+    title: 'Formation des Équipes',
+    description:
+      'Une prise en main simple et efficace pour vos collaborateurs.',
+    icon: GraduationCap,
+    wrapper: 'xl:col-span-2',
+    height: 'min-h-[280px]',
+  },
+  {
+    title: 'Support & Maintenance',
+    description:
+      'Une assistance réactive et un suivi continu pour la disponibilité de vos solutions.',
+    icon: Headset,
+    wrapper:
+      'sm:col-span-2 xl:col-span-3 xl:col-start-1 xl:row-start-2',
+    height: 'min-h-[255px]',
+  },
+  {
+    title: 'Développement sur Mesure',
+    description:
+      'Des applications métier personnalisées selon vos besoins spécifiques.',
+    icon: Code,
+    wrapper:
+      'sm:col-span-2 xl:col-span-3 xl:col-start-4 xl:row-start-2',
+    height: 'min-h-[255px]',
+  },
+];
+
+// ==========================================
+// ANIMATIONS
+// ==========================================
+
 const container: Variants = {
   hidden: {},
+
   visible: {
     transition: {
-      staggerChildren: 0.1,
-      delayChildren: 0.15,
+      staggerChildren: 0.12,
+      delayChildren: 0.1,
     },
   },
 };
 
 const item: Variants = {
-  hidden: { opacity: 0, y: 20 },
+  hidden: {
+    opacity: 0,
+    y: 25,
+  },
+
   visible: {
     opacity: 1,
     y: 0,
     transition: {
-      duration: 0.6,
+      duration: 0.65,
       ease: [0.22, 1, 0.36, 1],
     },
   },
 };
 
-const highlights = [
-  'Installation et configuration',
-  'Formation personnalisée',
-  'Support technique réactif',
-];
+// ==========================================
+// COMPONENT
+// ==========================================
 
 export function Services() {
+  const id = useId().replace(/:/g, '');
+
+  const photoClipId = `photo-clip-${id}`;
+  const curveGradientId = `curve-gradient-${id}`;
+  const waveGradientId = `wave-gradient-${id}`;
+
   return (
-    <section id="services" className="relative overflow-hidden bg-slate-950 pt-6 text-slate-100 selection:bg-orange-600 selection:text-white">
-      {/* HERO SERVICES AVEC IMAGE EN FOND ET EFFET DABAB (GRADIENT) */}
-      <div className="relative">
-        {/* Contenu texte par-dessus l'image sur les grands écrans */}
-        <div className="relative z-10 lg:absolute lg:inset-0 lg:flex lg:items-center">
-          <motion.div
-            variants={container}
-            initial="hidden"
-            animate="visible"
-            className="mx-auto w-full max-w-7xl px-6 py-8 lg:px-8 lg:py-0"
-          >
-            <div className="max-w-[34rem]">
-              <motion.div variants={item}>
-                <SectionTag>Nos services</SectionTag>
-              </motion.div>
+    <section
+      id="services"
+      className="
+        relative isolate
+        min-h-[800px]
+        overflow-hidden
+        bg-[#FCFCFD]
+        pt-5
+        pb-28
+      "
+    >
 
-              <motion.h1
-                variants={item}
-                className="mt-3 font-display text-4xl font-extrabold leading-[1.05] tracking-tight text-white sm:text-5xl"
-              >
-                Un accompagnement{' '}
-                <span className="bg-gradient-to-r from-amber-400 to-orange-500 bg-clip-text text-transparent">
-                  de A à Z.
-                </span>
-              </motion.h1>
+      {/* BACKGROUND */}
 
-              <motion.p
-                variants={item}
-                className="mt-4 text-base leading-relaxed text-slate-300 sm:text-lg"
-              >
-                De l’installation initiale au support permanent, nous sommes
-                présents à chaque étape de la vie de vos systèmes pour garantir
-                le succès de votre entreprise.
-              </motion.p>
+      <div
+        className="
+          pointer-events-none
+          absolute inset-0
+          bg-[radial-gradient(ellipse_at_center,#F5F8FC_0%,#FFFFFF_75%)]
+        "
+      />
 
-              {/* Points forts */}
-              <motion.div variants={item} className="mt-5 space-y-2.5">
-                {highlights.map((highlight) => (
-                  <div
-                    key={highlight}
-                    className="flex items-center gap-3 text-sm font-medium text-slate-200 sm:text-base"
-                  >
-                    <span className="flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-gradient-to-br from-amber-400 to-orange-600 text-white shadow-sm shadow-orange-600/20">
-                      <CheckCircle2 className="h-4 w-4" />
-                    </span>
-                    {highlight}
-                  </div>
-                ))}
-              </motion.div>
+      <div className="relative mx-auto max-w-[1600px] px-4 lg:px-6">
 
-              <motion.div variants={item} className="mt-6 flex flex-col gap-3 sm:flex-row">
-                <a
-                  href="#contact"
-                  className="group inline-flex items-center justify-center gap-2 rounded-lg bg-orange-600 px-6 py-3.5 text-sm font-semibold text-white shadow-lg shadow-orange-600/25 transition-all hover:bg-orange-700 hover:shadow-xl hover:shadow-orange-600/35 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-orange-500"
+        <div className="grid items-start gap-8 xl:grid-cols-[34%_1fr] xl:gap-7">
+
+          {/* =====================================
+              LEFT SIDE : LOGO + CURVED IMAGE
+          ===================================== */}
+
+          <div className="relative flex flex-col">
+
+            {/* LOGO */}
+
+            <div className="relative z-10 mb-2 pl-3 pt-1 sm:pl-8">
+
+              <div className="inline-block">
+
+             
+
+                {/* ORANGE LOGO UNDERLINE */}
+
+                <svg
+                  viewBox="0 0 340 38"
+                  className="-mt-1 h-9 w-full"
+                  fill="none"
+                  aria-hidden="true"
                 >
-                  Parlons de votre projet
-                  <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
-                </a>
-              </motion.div>
-            </div>
-          </motion.div>
-        </div>
+                 
+    
+                </svg>
 
-        {/* L'image de fond */}
-        <img
-          src={teamTrainingImage}
-          alt="Accompagnement et services"
-          className="block h-auto w-full object-cover min-h-[380px] lg:min-h-[480px] opacity-60 lg:opacity-100"
-        />
-
-        {/* Effet de dégradé/dabab sombre (Gradient overlay) */}
-        <div
-          className="pointer-events-none absolute inset-0 hidden lg:block"
-          style={{
-            background:
-              'linear-gradient(to right, rgba(2, 6, 23, 0.98) 0%, rgba(2, 6, 23, 0.85) 30%, rgba(2, 6, 23, 0) 60%)',
-          }}
-        />
-        {/* Dégradé pour mobile */}
-        <div className="absolute inset-0 bg-slate-950/85 backdrop-blur-[2px] lg:hidden" />
-      </div>
-
-      {/* CARTES SERVICES EN BAS */}
-      <div className="relative z-20 mx-auto max-w-7xl px-6 py-8 lg:px-8 lg:py-12">
-        <div className="text-center mb-8">
-          <h2 className="text-3xl font-bold tracking-tight text-white sm:text-4xl">
-            Nos étapes d'intervention
-          </h2>
-          <p className="mt-2 text-slate-400 max-w-2xl mx-auto text-sm sm:text-base">
-            Une méthodologie structurée pour vous offrir une tranquillité d'esprit totale.
-          </p>
-        </div>
-
-        <motion.div
-          variants={staggerContainer}
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, margin: '-60px' }}
-          className="grid grid-cols-1 gap-5 overflow-hidden rounded-2xl border border-slate-800 bg-slate-900/70 shadow-sm sm:grid-cols-2 lg:grid-cols-3"
-        >
-          {SERVICES.map((service) => (
-            <motion.article
-              key={service.title}
-              variants={fadeUp}
-              className="group relative overflow-hidden bg-slate-900 p-6 transition-all duration-300 hover:z-10 hover:bg-slate-900 hover:shadow-xl hover:shadow-orange-950/20 sm:p-7"
-            >
-              {/* Ligne verticale animée */}
-              <div className="absolute left-0 top-0 z-20 h-full w-1 origin-top scale-y-0 bg-gradient-to-b from-amber-400 to-orange-600 transition-transform duration-300 ease-out group-hover:scale-y-100" />
-
-              {/* Halo au survol */}
-              <div className="pointer-events-none absolute -right-16 -top-16 h-36 w-36 rounded-full bg-orange-600/0 blur-3xl transition-all duration-500 group-hover:bg-orange-600/20" />
-
-              <div className="relative z-10">
-                <div className="flex items-start justify-between">
-                  <div className="flex h-11 w-11 items-center justify-center rounded-xl border border-slate-800 bg-slate-950 transition-all duration-300 group-hover:scale-105 group-hover:border-orange-500/30 group-hover:bg-gradient-to-br group-hover:from-amber-500 group-hover:to-orange-600 group-hover:shadow-lg group-hover:shadow-orange-500/20">
-                    <service.icon className="h-5 w-5 text-orange-400 transition-colors duration-300 group-hover:text-white" />
-                  </div>
-
-                  <span className="font-display text-3xl font-bold text-slate-800 transition-all duration-300 group-hover:-translate-x-0.5 group-hover:text-orange-500/60">
-                    {service.step}
-                  </span>
-                </div>
-
-                <h3 className="mt-4 font-display text-lg font-semibold text-white transition-colors duration-300 group-hover:text-orange-400">
-                  {service.title}
-                </h3>
-
-                <p className="mt-2 text-sm leading-6 text-slate-400 transition-colors duration-300 group-hover:text-slate-300">
-                  {service.description}
-                </p>
-
-                <div className="mt-4 h-0.5 w-8 origin-left rounded-full bg-gradient-to-r from-amber-400 to-orange-600 transition-all duration-300 group-hover:w-16" />
               </div>
-            </motion.article>
-          ))}
-        </motion.div>
+            </div>
+
+            {/* CURVED PHOTO */}
+
+            <div className="relative -mt-1 xl:-ml-6">
+
+              <svg
+                viewBox="0 0 560 720"
+                className="
+                  mx-auto block
+                  h-auto w-full
+                  max-w-[560px]
+                  xl:max-w-none
+                "
+                role="img"
+                aria-label="L'équipe PC MAROC en accompagnement client"
+              >
+
+                <defs>
+
+                  {/* PHOTO CLIPPING */}
+
+                  <clipPath id={photoClipId}>
+                    <path
+                      d="
+                        M0,5
+                        C120,40 260,70 360,130
+                        C450,185 505,260 508,380
+                        C510,480 520,560 560,640
+                        L560,720
+                        L0,720
+                        Z
+                      "
+                    />
+                  </clipPath>
+
+                  {/* ORANGE BORDER GRADIENT */}
+
+                  <linearGradient
+                    id={curveGradientId}
+                    x1="0"
+                    y1="0"
+                    x2="1"
+                    y2="1"
+                  >
+                    <stop offset="0%" stopColor="#F59E0B" />
+                    <stop offset="55%" stopColor="#EA580C" />
+                    <stop offset="100%" stopColor="#F59E0B" />
+                  </linearGradient>
+
+                </defs>
+
+                {/* TEAM IMAGE */}
+
+                <image
+                  href={teamTrainingImage}
+                  x="0"
+                  y="0"
+                  width="560"
+                  height="720"
+                  preserveAspectRatio="xMidYMid slice"
+                  clipPath={`url(#${photoClipId})`}
+                />
+
+                {/* ORANGE CURVE */}
+
+                <path
+                  d="
+                    M0,5
+                    C120,40 260,70 360,130
+                    C450,185 505,260 508,380
+                    C510,480 520,560 560,640
+                  "
+                  fill="none"
+                  stroke={`url(#${curveGradientId})`}
+                  strokeWidth="10"
+                  strokeLinecap="round"
+                />
+
+              </svg>
+
+            </div>
+
+          </div>
+
+          {/* =====================================
+              RIGHT SIDE : TITLE + SERVICES
+          ===================================== */}
+
+          <div className="relative pt-2 xl:pt-0">
+
+            {/* VERTICAL ORANGE SEPARATOR */}
+
+            <span
+              className="
+                absolute
+                -left-4
+                top-4
+                hidden xl:block
+                h-[90px]
+                w-[3px]
+                rounded-full
+                bg-orange-500
+              "
+            />
+
+            {/* =====================================
+                HEADER
+            ===================================== */}
+
+            <div className="mb-9 text-center">
+
+              <div
+                className="
+                  flex items-center
+                  justify-center
+                  gap-3 sm:gap-5
+                "
+              >
+
+                {/* LEFT LINE */}
+
+                <span
+                  className="
+                    hidden sm:block
+                    h-[3px]
+                    w-16 lg:w-24
+                    rounded-full
+                    shrink-0
+                  "
+                  style={{ background: ORANGE_GRADIENT }}
+                />
+
+                {/* TITLE */}
+
+                <h2
+                  className="
+                    whitespace-nowrap
+                    text-4xl sm:text-5xl
+                    lg:text-6xl
+                    xl:text-[76px]
+                    font-extrabold
+                    leading-none
+                    tracking-tight
+                  "
+                  style={{ color: NAVY }}
+                >
+                  Nos{' '}
+
+                  <span
+                    style={{
+                      backgroundImage: ORANGE_GRADIENT,
+                      WebkitBackgroundClip: 'text',
+                      backgroundClip: 'text',
+                      color: 'transparent',
+                    }}
+                  >
+                    Services
+                  </span>
+
+                </h2>
+
+                {/* RIGHT LINE */}
+
+                <span
+                  className="
+                    hidden sm:block
+                    h-[3px]
+                    w-16 lg:w-24
+                    rounded-full
+                    shrink-0
+                  "
+                  style={{ background: ORANGE_GRADIENT }}
+                />
+
+              </div>
+
+              {/* SUBTITLE */}
+
+              <p
+                className="
+                  mt-3
+                  text-base sm:text-lg
+                  lg:text-xl
+                  xl:text-[27px]
+                  font-bold
+                  leading-snug
+                  whitespace-normal
+                "
+                style={{ color: NAVY }}
+              >
+                Un accompagnement complet à chaque étape de votre projet
+              </p>
+
+            </div>
+
+            {/* =====================================
+                SERVICES CARDS
+                3 TOP + 2 BOTTOM
+            ===================================== */}
+
+            <motion.div
+              variants={container}
+              initial="hidden"
+              whileInView="visible"
+              viewport={{
+                once: true,
+                margin: '-60px',
+              }}
+              className="
+                grid
+                grid-cols-1
+                sm:grid-cols-2
+                xl:grid-cols-6
+                gap-5
+                xl:gap-4
+                items-stretch
+              "
+            >
+
+              {services.map((service) => {
+
+                const Icon = service.icon;
+
+                return (
+
+                  <motion.div
+                    key={service.title}
+                    variants={item}
+                    className={service.wrapper}
+                  >
+
+                    <article
+                      className={`
+                        group
+                        relative
+                        flex
+                        ${service.height}
+                        h-full
+                        flex-col
+                        items-center
+                        justify-start
+                        rounded-[32px]
+                        border border-slate-200/80
+                        bg-white/90
+                        px-5 sm:px-6
+                        py-5
+                        text-center
+                        shadow-[0_8px_25px_-12px_rgba(11,31,75,0.16)]
+                        transition-all duration-300
+                        hover:-translate-y-1
+                        hover:border-orange-200
+                        hover:shadow-[0_18px_35px_-12px_rgba(234,88,12,0.22)]
+                      `}
+                    >
+
+                      {/* ICON CIRCLE */}
+
+                      <div
+                        className="
+                          relative
+                          flex
+                          h-[84px]
+                          w-[84px]
+                          shrink-0
+                          items-center
+                          justify-center
+                          rounded-full
+                          bg-[#F4F7FB]
+                          shadow-inner
+                          transition-all duration-300
+                          group-hover:bg-orange-50
+                        "
+                      >
+
+                        <Icon
+                          className="
+                            h-[54px]
+                            w-[54px]
+                            transition-transform duration-300
+                            group-hover:scale-110
+                          "
+                          style={{ color: NAVY }}
+                          strokeWidth={1.8}
+                        />
+
+                        {/* ORANGE ICON ACCENT */}
+
+                        <span
+                          className="
+                            absolute
+                            right-[13px]
+                            bottom-[13px]
+                            h-[10px]
+                            w-[10px]
+                            rounded-full
+                            bg-orange-500
+                            ring-2
+                            ring-white
+                          "
+                        />
+
+                      </div>
+
+                      {/* SERVICE TITLE */}
+
+                      <h3
+                        className="
+                          mt-4
+                          max-w-full
+                          text-xl
+                          sm:text-[22px]
+                          xl:text-[25px]
+                          font-extrabold
+                          leading-[1.13]
+                          tracking-tight
+                        "
+                        style={{ color: NAVY }}
+                      >
+                        {service.title}
+                      </h3>
+
+                      {/* DESCRIPTION */}
+
+                      <p
+                        className="
+                          mx-auto
+                          mt-3
+                          max-w-[340px]
+                          flex-1
+                          text-[15px]
+                          sm:text-base
+                          xl:text-[19px]
+                          leading-[1.3]
+                          font-medium
+                          text-slate-800
+                        "
+                      >
+                        {service.description}
+                      </p>
+
+                      {/* ORANGE BOTTOM LINE */}
+
+                      <div
+                        className="
+                          mt-4
+                          h-[5px]
+                          w-16
+                          shrink-0
+                          rounded-full
+                          transition-all duration-300
+                          group-hover:w-24
+                        "
+                        style={{ background: ORANGE_GRADIENT }}
+                      />
+
+                    </article>
+
+                  </motion.div>
+
+                );
+              })}
+
+            </motion.div>
+
+          </div>
+
+        </div>
       </div>
+
+      {/* =====================================
+          BOTTOM DECORATIVE WAVES
+      ===================================== */}
+
+      <svg
+        className="
+          pointer-events-none
+          absolute bottom-0 left-0
+          z-20
+          h-20 sm:h-24 lg:h-28
+          w-full
+        "
+        viewBox="0 0 1440 140"
+        preserveAspectRatio="none"
+        aria-hidden="true"
+      >
+
+        <defs>
+
+          <linearGradient
+            id={waveGradientId}
+            x1="0"
+            y1="0"
+            x2="1"
+            y2="0"
+          >
+            <stop offset="0%" stopColor="#F59E0B" />
+            <stop offset="55%" stopColor="#EA580C" />
+            <stop offset="100%" stopColor="#F59E0B" />
+          </linearGradient>
+
+        </defs>
+
+        {/* ORANGE WAVE */}
+
+        <path
+          d="
+            M0,78
+            C260,128 640,72 1000,104
+            C1200,120 1360,92 1440,52
+            L1440,140
+            L0,140 Z
+          "
+          fill={`url(#${waveGradientId})`}
+        />
+
+        {/* WHITE WAVE */}
+
+        <path
+          d="
+            M0,100
+            C300,136 700,96 1060,122
+            C1240,132 1370,118 1440,96
+            L1440,140
+            L0,140 Z
+          "
+          fill="#FFFFFF"
+        />
+
+        {/* NAVY BOTTOM */}
+
+        <path
+          d="
+            M0,114
+            C320,138 720,114 1080,132
+            C1250,138 1370,132 1440,120
+            L1440,140
+            L0,140 Z
+          "
+          fill={NAVY}
+        />
+
+      </svg>
+
     </section>
   );
 }
