@@ -17,7 +17,7 @@ import caisseImage from '@/assets/2.jpg';
 export default function Affcsi() {
   // Remplace ce numéro par ton numéro WhatsApp professionnel.
   // Format international sans +, sans espaces.
-  const whatsappNumber = '212600000000';
+  const whatsappNumber = '212661973253';
 
   const handleWhatsAppDemo = () => {
     const message = encodeURIComponent(

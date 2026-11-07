@@ -12,7 +12,7 @@ import {
 import innoshopImage from '@/assets/inn.jpg';
 
 export default function Innoshop() {
-  const whatsappNumber = '33630218757';
+  const whatsappNumber = '212661973253';
 
   const handleWhatsAppDemo = () => {
     const message = encodeURIComponent(

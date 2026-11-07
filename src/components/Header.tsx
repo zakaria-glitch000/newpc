@@ -6,7 +6,7 @@ import { NAV_LINKS } from '@/data/content';
 import { Logo } from './ui/Logo';
 
 // Numéro WhatsApp de l'entreprise (Format international sans + ni espaces)
-const WHATSAPP_NUMBER = '33630218757';
+const WHATSAPP_NUMBER = '212661973253';
 
 export function Header() {
   const [scrolled, setScrolled] = useState(false);

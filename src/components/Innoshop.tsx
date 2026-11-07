@@ -14,7 +14,7 @@ import innoshopImage from '@/assets/inno.jpeg';
 export default function Innoshop() {
   // بدّل هاد الرقم برقم WhatsApp ديال الشركة
   // كتب الرقم مع كود الدولة، بلا + ولا espaces
-  const whatsappNumber = '212600000000';
+  const whatsappNumber = '212661973253';
 
   const handleWhatsAppDemo = () => {
     const message = encodeURIComponent(

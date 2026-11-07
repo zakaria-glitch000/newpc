@@ -1,5 +1,5 @@
 import React from 'react';
-import { motion } from 'framer-motion';
+import { motion, useReducedMotion } from 'framer-motion';
 import {
   ArrowRight,
   Calculator,
@@ -83,6 +83,8 @@ const products = [
 ];
 
 export default function ProductsSection() {
+  const reduceMotion = useReducedMotion();
+
   return (
     <section
       id="Produit"
@@ -123,6 +125,9 @@ export default function ProductsSection() {
 
           <p className="mx-auto max-w-2xl text-sm leading-7 text-slate-300 sm:text-base">
             Une gamme complète d&apos;équipements pour digitaliser et optimiser votre activité.
+            <span className="mt-1 block text-orange-400">
+              Cliquez sur un produit pour découvrir ses détails.
+            </span>
           </p>
         </div>
 
@@ -142,9 +147,33 @@ export default function ProductsSection() {
                 <Link
                   to={product.link}
                   aria-label={`Découvrir ${product.title}`}
-                  className="group block h-full rounded-3xl focus-visible:outline focus-visible:outline-4 focus-visible:outline-offset-4 focus-visible:outline-orange-500"
+                  className="group block h-full cursor-pointer rounded-3xl focus-visible:outline focus-visible:outline-4 focus-visible:outline-offset-4 focus-visible:outline-orange-500"
                 >
-                  <article className="relative flex h-full flex-col overflow-hidden rounded-3xl border border-slate-800 bg-slate-900 shadow-lg shadow-black/30 transition-all duration-300 hover:-translate-y-1 hover:border-orange-500/50 hover:shadow-xl hover:shadow-orange-950/40">
+                  <motion.article
+                    animate={
+                      reduceMotion
+                        ? undefined
+                        : {
+                            boxShadow: [
+                              '0 0 0px rgba(249,115,22,0)',
+                              '0 0 24px rgba(249,115,22,0.35)',
+                              '0 0 0px rgba(249,115,22,0)',
+                            ],
+                            borderColor: [
+                              'rgb(30,41,59)',
+                              'rgba(249,115,22,0.6)',
+                              'rgb(30,41,59)',
+                            ],
+                          }
+                    }
+                    transition={{
+                      duration: 3,
+                      repeat: Infinity,
+                      ease: 'easeInOut',
+                      delay: index * 0.4,
+                    }}
+                    className="relative flex h-full flex-col overflow-hidden rounded-3xl border border-slate-800 bg-slate-900 transition-transform duration-300 group-hover:-translate-y-1"
+                  >
                     {/* LIGNE DÉCORATIVE */}
                     <div
                       className="pointer-events-none absolute left-0 top-0 z-20 h-full w-1 origin-top scale-y-0 bg-gradient-to-b from-amber-400 to-orange-600 transition-transform duration-300 group-hover:scale-y-100"
@@ -183,13 +212,13 @@ export default function ProductsSection() {
                         {product.description}
                       </p>
 
-                      {/* BOUTON VISUEL */}
-                      <div className="mx-auto mt-4 inline-flex w-44 items-center justify-center gap-2 rounded-full bg-orange-600 px-4 py-2.5 text-sm font-bold text-white transition-all duration-300 group-hover:-translate-y-0.5 group-hover:bg-orange-700 group-hover:shadow-lg group-hover:shadow-orange-600/20">
+                      {/* BOUTON VISUEL (span, car dans un <a>) */}
+                      <span className="mx-auto mt-4 inline-flex w-44 items-center justify-center gap-2 rounded-full bg-orange-600 px-4 py-2.5 text-sm font-bold text-white transition-all duration-300 group-hover:-translate-y-0.5 group-hover:bg-orange-700 group-hover:shadow-lg group-hover:shadow-orange-600/20">
                         En savoir plus
                         <ArrowRight className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1" />
-                      </div>
+                      </span>
                     </div>
-                  </article>
+                  </motion.article>
                 </Link>
               </motion.div>
             );

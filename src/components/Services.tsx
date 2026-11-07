@@ -1,4 +1,3 @@
-
 import { useId } from 'react';
 import { motion, type Variants } from 'framer-motion';
 
@@ -11,7 +10,7 @@ import {
   type LucideIcon,
 } from 'lucide-react';
 
-import teamTrainingImage from '@/assets/accompagnement.jpeg';
+import teamTrainingImage from '@/assets/acco.jpeg';
 
 // ==========================================
 // COLORS
@@ -45,7 +44,7 @@ const services: Service[] = [
       'Analyse de vos besoins et solution adaptée à votre activité.',
     icon: Handshake,
     wrapper: 'xl:col-span-2',
-    height: 'min-h-[280px]',
+    height: 'min-h-[200px]',
   },
   {
     title: 'Installation & Déploiement',
@@ -53,7 +52,7 @@ const services: Service[] = [
       'Mise en service, configuration et paramétrage de vos solutions.',
     icon: Settings,
     wrapper: 'xl:col-span-2',
-    height: 'min-h-[280px]',
+    height: 'min-h-[200px]',
   },
   {
     title: 'Formation des Équipes',
@@ -61,7 +60,7 @@ const services: Service[] = [
       'Une prise en main simple et efficace pour vos collaborateurs.',
     icon: GraduationCap,
     wrapper: 'xl:col-span-2',
-    height: 'min-h-[280px]',
+    height: 'min-h-[200px]',
   },
   {
     title: 'Support & Maintenance',
@@ -70,7 +69,7 @@ const services: Service[] = [
     icon: Headset,
     wrapper:
       'sm:col-span-2 xl:col-span-3 xl:col-start-1 xl:row-start-2',
-    height: 'min-h-[255px]',
+    height: 'min-h-[200px]',
   },
   {
     title: 'Développement sur Mesure',
@@ -79,7 +78,7 @@ const services: Service[] = [
     icon: Code,
     wrapper:
       'sm:col-span-2 xl:col-span-3 xl:col-start-4 xl:row-start-2',
-    height: 'min-h-[255px]',
+    height: 'min-h-[200px]',
   },
 ];
 
@@ -150,43 +149,21 @@ export function Services() {
 
       <div className="relative mx-auto max-w-[1600px] px-4 lg:px-6">
 
-        <div className="grid items-start gap-8 xl:grid-cols-[34%_1fr] xl:gap-7">
+        {/* Kabbarna l'emplacement dial l'image b 40% f l-grid au lieu dyal 34% */}
+        <div className="grid items-center gap-8 xl:grid-cols-[40%_1fr] xl:gap-7">
 
           {/* =====================================
               LEFT SIDE : LOGO + CURVED IMAGE
           ===================================== */}
 
-          <div className="relative flex flex-col">
-
-            {/* LOGO */}
-
-            <div className="relative z-10 mb-2 pl-3 pt-1 sm:pl-8">
-
-              <div className="inline-block">
-
-             
-
-                {/* ORANGE LOGO UNDERLINE */}
-
-                <svg
-                  viewBox="0 0 340 38"
-                  className="-mt-1 h-9 w-full"
-                  fill="none"
-                  aria-hidden="true"
-                >
-                 
-    
-                </svg>
-
-              </div>
-            </div>
+          <div className="relative flex flex-col items-center justify-center">
 
             {/* CURVED PHOTO */}
 
-            <div className="relative -mt-1 xl:-ml-6">
+            <div className="relative -mt-1 xl:-ml-4 w-full flex justify-center">
 
               <svg
-                viewBox="0 0 560 720"
+                viewBox="0 0 520 680"
                 className="
                   mx-auto block
                   h-auto w-full
@@ -194,7 +171,7 @@ export function Services() {
                   xl:max-w-none
                 "
                 role="img"
-                aria-label="L'équipe PC MAROC en accompagnement client"
+                aria-label="L'équipe en accompagnement client"
               >
 
                 <defs>
@@ -204,12 +181,12 @@ export function Services() {
                   <clipPath id={photoClipId}>
                     <path
                       d="
-                        M0,5
-                        C120,40 260,70 360,130
-                        C450,185 505,260 508,380
-                        C510,480 520,560 560,640
-                        L560,720
-                        L0,720
+                        M0,10
+                        C110,10 240,20 340,70
+                        C440,120 495,190 505,310
+                        C515,430 495,550 475,630
+                        C465,660 430,670 410,670
+                        L0,670
                         Z
                       "
                     />
@@ -235,10 +212,10 @@ export function Services() {
 
                 <image
                   href={teamTrainingImage}
-                  x="0"
+                  x="-10"
                   y="0"
-                  width="560"
-                  height="720"
+                  width="540"
+                  height="680"
                   preserveAspectRatio="xMidYMid slice"
                   clipPath={`url(#${photoClipId})`}
                 />
@@ -247,14 +224,15 @@ export function Services() {
 
                 <path
                   d="
-                    M0,5
-                    C120,40 260,70 360,130
-                    C450,185 505,260 508,380
-                    C510,480 520,560 560,640
+                    M0,10
+                    C110,10 240,20 340,70
+                    C440,120 495,190 505,310
+                    C515,430 495,550 475,630
+                    C465,660 430,670 410,670
                   "
                   fill="none"
                   stroke={`url(#${curveGradientId})`}
-                  strokeWidth="10"
+                  strokeWidth="8"
                   strokeLinecap="round"
                 />
 
@@ -305,23 +283,23 @@ export function Services() {
                   className="
                     hidden sm:block
                     h-[3px]
-                    w-16 lg:w-24
+                    w-12 lg:w-20
                     rounded-full
                     shrink-0
                   "
                   style={{ background: ORANGE_GRADIENT }}
                 />
 
-                {/* TITLE */}
+                {/* TITLE - Saghrnah chwiya */}
 
                 <h2
                   className="
                     whitespace-nowrap
-                    text-4xl sm:text-5xl
-                    lg:text-6xl
-                    xl:text-[76px]
+                    text-2xl sm:text-3xl
+                    lg:text-4xl
+                    xl:text-5xl
                     font-extrabold
-                    leading-none
+                    leading-tight
                     tracking-tight
                   "
                   style={{ color: NAVY }}
@@ -347,7 +325,7 @@ export function Services() {
                   className="
                     hidden sm:block
                     h-[3px]
-                    w-16 lg:w-24
+                    w-12 lg:w-20
                     rounded-full
                     shrink-0
                   "
@@ -356,14 +334,13 @@ export function Services() {
 
               </div>
 
-              {/* SUBTITLE */}
+              {/* SUBTITLE - Saghrnah chwiya */}
 
               <p
                 className="
-                  mt-3
-                  text-base sm:text-lg
-                  lg:text-xl
-                  xl:text-[27px]
+                  mt-2
+                  text-sm sm:text-base
+                  lg:text-lg
                   font-bold
                   leading-snug
                   whitespace-normal
@@ -393,8 +370,8 @@ export function Services() {
                 grid-cols-1
                 sm:grid-cols-2
                 xl:grid-cols-6
-                gap-5
-                xl:gap-4
+                gap-4
+                xl:gap-3
                 items-stretch
               "
             >
@@ -421,10 +398,10 @@ export function Services() {
                         flex-col
                         items-center
                         justify-start
-                        rounded-[32px]
+                        rounded-[24px]
                         border border-slate-200/80
                         bg-white/90
-                        px-5 sm:px-6
+                        px-4 sm:px-5
                         py-5
                         text-center
                         shadow-[0_8px_25px_-12px_rgba(11,31,75,0.16)]
@@ -435,14 +412,14 @@ export function Services() {
                       `}
                     >
 
-                      {/* ICON CIRCLE */}
+                      {/* ICON CIRCLE - Saghrnahom chwiya bach yjiw aniiqin */}
 
                       <div
                         className="
                           relative
                           flex
-                          h-[84px]
-                          w-[84px]
+                          h-[52px]
+                          w-[52px]
                           shrink-0
                           items-center
                           justify-center
@@ -456,8 +433,8 @@ export function Services() {
 
                         <Icon
                           className="
-                            h-[54px]
-                            w-[54px]
+                            h-[28px]
+                            w-[28px]
                             transition-transform duration-300
                             group-hover:scale-110
                           "
@@ -470,10 +447,10 @@ export function Services() {
                         <span
                           className="
                             absolute
-                            right-[13px]
-                            bottom-[13px]
-                            h-[10px]
-                            w-[10px]
+                            right-[6px]
+                            bottom-[6px]
+                            h-[6px]
+                            w-[6px]
                             rounded-full
                             bg-orange-500
                             ring-2
@@ -483,17 +460,16 @@ export function Services() {
 
                       </div>
 
-                      {/* SERVICE TITLE */}
+                      {/* SERVICE TITLE - Saghrnah chwiya */}
 
                       <h3
                         className="
-                          mt-4
+                          mt-3
                           max-w-full
-                          text-xl
-                          sm:text-[22px]
-                          xl:text-[25px]
+                          text-base
+                          sm:text-lg
                           font-extrabold
-                          leading-[1.13]
+                          leading-snug
                           tracking-tight
                         "
                         style={{ color: NAVY }}
@@ -501,20 +477,19 @@ export function Services() {
                         {service.title}
                       </h3>
 
-                      {/* DESCRIPTION */}
+                      {/* DESCRIPTION - Saghrnah chwiya */}
 
                       <p
                         className="
                           mx-auto
-                          mt-3
-                          max-w-[340px]
+                          mt-1.5
+                          max-w-[300px]
                           flex-1
-                          text-[15px]
-                          sm:text-base
-                          xl:text-[19px]
-                          leading-[1.3]
+                          text-xs
+                          sm:text-sm
+                          leading-relaxed
                           font-medium
-                          text-slate-800
+                          text-slate-600
                         "
                       >
                         {service.description}
@@ -524,13 +499,13 @@ export function Services() {
 
                       <div
                         className="
-                          mt-4
-                          h-[5px]
-                          w-16
+                          mt-3
+                          h-[3px]
+                          w-10
                           shrink-0
                           rounded-full
                           transition-all duration-300
-                          group-hover:w-24
+                          group-hover:w-16
                         "
                         style={{ background: ORANGE_GRADIENT }}
                       />
@@ -582,44 +557,7 @@ export function Services() {
 
         </defs>
 
-        {/* ORANGE WAVE */}
 
-        <path
-          d="
-            M0,78
-            C260,128 640,72 1000,104
-            C1200,120 1360,92 1440,52
-            L1440,140
-            L0,140 Z
-          "
-          fill={`url(#${waveGradientId})`}
-        />
-
-        {/* WHITE WAVE */}
-
-        <path
-          d="
-            M0,100
-            C300,136 700,96 1060,122
-            C1240,132 1370,118 1440,96
-            L1440,140
-            L0,140 Z
-          "
-          fill="#FFFFFF"
-        />
-
-        {/* NAVY BOTTOM */}
-
-        <path
-          d="
-            M0,114
-            C320,138 720,114 1080,132
-            C1250,138 1370,132 1440,120
-            L1440,140
-            L0,140 Z
-          "
-          fill={NAVY}
-        />
 
       </svg>
 

@@ -2,10 +2,12 @@ import { ArrowRight, CheckCircle2 } from 'lucide-react';
 import { motion } from 'framer-motion';
 import { Reveal, SectionTag } from './ui/Reveal';
 
+import teamTrainingImage from '@/assets/part.jpeg';
+
 const ABOUT_POINTS = [
-  "Équipe d'ingénieurs et techniciens certifiés",
-  'Solutions éprouvées et support permanent',
-  'Approche sur-mesure et conseil personnalisé',
+  'Expertise technique et savoir-faire reconnu',
+  'Solutions fiables et accompagnement durable',
+  'Approche sur mesure et conseil personnalisé',
 ];
 
 export function About() {
@@ -33,7 +35,7 @@ export function About() {
               {/* Main image */}
               <div className="relative overflow-hidden rounded-3xl border border-slate-200/80 bg-white shadow-xl shadow-slate-300/20">
                 <img
-                  src="https://images.pexels.com/photos/3184339/pexels-photo-3184339.jpeg?auto=compress&cs=tinysrgb&w=1200"
+                  src={teamTrainingImage}
                   alt="Équipe PC MAROC en collaboration"
                   loading="lazy"
                   className="aspect-[4/3] w-full object-cover transition-transform duration-700 ease-out group-hover:scale-105"
@@ -55,7 +57,7 @@ export function About() {
                 className="absolute -bottom-5 -right-2 rounded-2xl border border-slate-200/80 bg-white/95 p-4 shadow-xl shadow-slate-900/10 backdrop-blur-sm transition-all duration-300 hover:-translate-y-1 hover:border-orange-200 sm:-right-4 sm:p-5"
               >
                 <div className="font-display text-3xl font-bold tracking-tight text-transparent bg-gradient-to-r from-amber-500 to-orange-600 bg-clip-text sm:text-4xl">
-                  10+
+                  25+
                 </div>
 
                 <div className="mt-0.5 text-xs font-medium text-slate-500 sm:text-sm">
@@ -83,18 +85,11 @@ export function About() {
               </h2>
 
               <p className="mt-4 text-base leading-7 text-slate-500 sm:text-lg">
-                PC MAROC est une marque d'artis consulting spécialisée dans les
-                solutions informatiques et logicielles pour les
-                professionnels. Depuis plus de dix ans, nous accompagnons des
-                entreprises de toutes tailles dans leur transformation
-                technologique.
+                PC MAROC, intégrateur de solutions d’encaissement et de gestion, accompagne les professionnels de la restauration, du commerce, des services et les réseaux de points de vente dans leur transformation digitale.
               </p>
 
               <p className="mt-3 text-sm leading-6 text-slate-500 sm:text-base">
-                Notre mission : rendre la technologie accessible, fiable et
-                performante pour votre activité. Nous combinons expertise
-                technique et approche métier pour livrer des solutions qui
-                ont un impact réel.
+                Fort de 25 ans d’expérience, PC MAROC met son expertise technique et sa connaissance des métiers au service des entreprises, en proposant des solutions fiables, performantes et adaptées à leurs besoins.
               </p>
             </Reveal>
 

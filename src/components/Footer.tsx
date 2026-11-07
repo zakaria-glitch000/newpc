@@ -33,19 +33,13 @@ const serviceLinks = SERVICES.map((s) => ({
 }));
 
 const OFFICES = [
+
   {
-    title: 'Siège Social Paris',
-    name: 'ARTIS Consulting',
-    address: ['48 RUE JULES FERRY 92250', 'LA GARENNE-COLOMBES'],
-    phone: null as string | null,
-    email: 'contact@artisconsulting.fr',
-  },
-  {
-    title: 'Service Client Région de Lyon',
+    title: 'Service Client',
     name: null as string | null,
     address: null as string[] | null,
-    phone: '+33 6 30 21 87 57',
-    email: 'sjalal@artisconsulting.fr',
+    phone: '0522584717',
+    email: 'contact@pcmaroc.ma',
   },
 ];
 
@@ -285,7 +279,7 @@ export function Footer() {
 
               {/* WhatsApp juste sous Newsletter */}
               <a
-                href="https://wa.me/33630218757"
+                href="https://wa.me/212 661-973253"
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label="Contacter notre service client sur WhatsApp"

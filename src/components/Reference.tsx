@@ -1,31 +1,28 @@
 import React from 'react';
 import { Quote, Star } from 'lucide-react';
 
-const NAVY = '#0B1F4B';
-const GOLD = '#EA580C';
+const DARK = '#0F0F0F';
+const ORANGE_MAIN = '#EA580C';
 const ORANGE_GRADIENT = 'linear-gradient(90deg, #F59E0B 0%, #EA580C 50%, #C2410C 100%)';
-const TEAL = '#1AA7B8';
+const CHARCOAL = '#27272A';
 
 /**
  * ⚠️ A REMPLIR avec vos VRAIS avis clients.
- * Les entrées ci-dessous sont des modèles (placeholders), pas de vrais témoignages.
  *
  * Champs :
- *  - name      : nom du client
- *  - role      : fonction / activité (ex: "Gérante, Boutique X")
- *  - comment   : le commentaire réel du client
- *  - rating    : note de 1 à 5
- *  - photo     : URL de la photo (ex: "/clients/client1.jpg"). Laissez vide pour afficher les initiales.
- *  - accent    : 'gold' ou 'teal' (couleur de la bordure)
- *
- * Pensez à avoir l'accord du client avant de publier son nom et sa photo.
+ *  - name    : nom du client
+ *  - role    : fonction / activité (ex: "Gérante, Boutique X")
+ *  - comment : le commentaire réel du client
+ *  - rating  : note de 1 à 5
+ *  - photo   : URL de la photo. Laissez vide pour afficher les initiales.
+ *  - accent  : 'gold' (orange) ou 'dark' (noir/gris)
  */
 const reviews = [
   {
     id: 1,
     name: 'Nom du client',
     role: 'Fonction, Entreprise',
-    comment: 'commantaire',
+    comment: 'commentaire',
     rating: 5,
     photo: '',
     accent: 'gold',
@@ -34,16 +31,16 @@ const reviews = [
     id: 2,
     name: 'Nom du client',
     role: 'Fonction, Entreprise',
-    comment: 'commantaire',
+    comment: 'commentaire',
     rating: 5,
     photo: '',
-    accent: 'teal',
+    accent: 'dark',
   },
   {
     id: 3,
     name: 'Nom du client',
     role: 'Fonction, Entreprise',
-    comment: 'commantaire',
+    comment: 'commentaire',
     rating: 5,
     photo: '',
     accent: 'gold',
@@ -52,16 +49,16 @@ const reviews = [
     id: 4,
     name: 'Nom du client',
     role: 'Fonction, Entreprise',
-    comment: 'commantaire',
+    comment: 'commentaire',
     rating: 5,
     photo: '',
-    accent: 'teal',
+    accent: 'dark',
   },
   {
     id: 5,
     name: 'Nom du client',
     role: 'Fonction, Entreprise',
-    comment: 'commantaire',
+    comment: 'commentaire',
     rating: 5,
     photo: '',
     accent: 'gold',
@@ -70,23 +67,23 @@ const reviews = [
     id: 6,
     name: 'Nom du client',
     role: 'Fonction, Entreprise',
-    comment: 'commantaire',
+    comment: 'commentaire',
     rating: 5,
     photo: '',
-    accent: 'teal',
+    accent: 'dark',
   },
 ];
 
 const ACCENTS = {
   gold: {
-    border: 'linear-gradient(135deg, #FBBF24 0%, #F97316 50%, #FBBF24 100%)',
+    border: 'linear-gradient(135deg, #FBBF24 0%, #EA580C 50%, #C2410C 100%)',
     fill: 'linear-gradient(160deg, #FFFFFF 45%, #FFF7ED 100%)',
-    color: GOLD,
+    color: ORANGE_MAIN,
   },
-  teal: {
-    border: 'linear-gradient(135deg, #1AA7B8 0%, #8ADCE5 50%, #1AA7B8 100%)',
-    fill: 'linear-gradient(160deg, #FFFFFF 45%, #E3F5F8 100%)',
-    color: TEAL,
+  dark: {
+    border: 'linear-gradient(135deg, #3F3F46 0%, #18181B 50%, #09090B 100%)',
+    fill: 'linear-gradient(160deg, #FFFFFF 45%, #F4F4F5 100%)',
+    color: DARK,
   },
 };
 
@@ -106,8 +103,8 @@ function Stars({ value = 5 }) {
         <Star
           key={n}
           className="h-4 w-4"
-          style={{ color: GOLD }}
-          fill={n <= value ? GOLD : 'none'}
+          style={{ color: ORANGE_MAIN }}
+          fill={n <= value ? ORANGE_MAIN : 'none'}
           strokeWidth={1.8}
         />
       ))}
@@ -119,7 +116,7 @@ function Avatar({ photo, name, color }) {
   return (
     <div
       className="flex h-14 w-14 shrink-0 items-center justify-center overflow-hidden rounded-full border-2 bg-white text-lg font-extrabold shadow-sm"
-      style={{ borderColor: color, color: NAVY }}
+      style={{ borderColor: color, color: DARK }}
     >
       {photo ? (
         <img src={photo} alt={name} className="h-full w-full object-cover" loading="lazy" />
@@ -139,7 +136,7 @@ function ReviewCard({ review }) {
         background: acc.border,
         padding: '2px',
         borderRadius: '36px 36px 90px 36px',
-        boxShadow: '0 10px 28px -12px rgba(11,31,75,0.3)',
+        boxShadow: '0 10px 28px -12px rgba(15,15,15,0.25)',
       }}
     >
       <div
@@ -154,17 +151,17 @@ function ReviewCard({ review }) {
 
         <Stars value={review.rating} />
 
-        <p className="mt-4 flex-1 text-sm leading-relaxed sm:text-[15px]" style={{ color: '#1F2D52' }}>
+        <p className="mt-4 flex-1 text-sm leading-relaxed sm:text-[15px]" style={{ color: CHARCOAL }}>
           « {review.comment} »
         </p>
 
-        <div className="mt-6 flex items-center gap-4 border-t border-slate-200 pt-5">
+        <div className="mt-6 flex items-center gap-4 border-t border-zinc-200 pt-5">
           <Avatar photo={review.photo} name={review.name} color={acc.color} />
           <div>
-            <h3 className="text-base font-extrabold" style={{ color: NAVY }}>
+            <h3 className="text-base font-extrabold" style={{ color: DARK }}>
               {review.name}
             </h3>
-            <p className="text-xs text-slate-500">{review.role}</p>
+            <p className="text-xs text-zinc-500">{review.role}</p>
           </div>
         </div>
       </div>
@@ -175,14 +172,14 @@ function ReviewCard({ review }) {
 export default function ReferencesSection() {
   return (
     <section className="relative overflow-hidden bg-white px-4 pb-10 pt-12 sm:px-6 lg:pb-12 lg:pt-14">
-      <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_at_center,#F4F8FC_0%,#FFFFFF_70%)]" />
+      <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_at_center,#FAFAFA_0%,#FFFFFF_70%)]" />
 
       <div className="relative mx-auto max-w-6xl">
         {/* EN-TÊTE */}
         <div className="mx-auto mb-14 max-w-3xl text-center">
           <div className="mb-5 flex items-center justify-center gap-5">
             <span className="h-[3px] w-14 rounded-full" style={{ background: ORANGE_GRADIENT }} />
-            <span className="text-sm font-extrabold uppercase tracking-[0.12em]" style={{ color: NAVY }}>
+            <span className="text-sm font-extrabold uppercase tracking-[0.12em]" style={{ color: DARK }}>
               Nos références
             </span>
             <span className="h-[3px] w-14 rounded-full" style={{ background: ORANGE_GRADIENT }} />
@@ -190,7 +187,7 @@ export default function ReferencesSection() {
 
           <h2
             className="text-4xl font-extrabold leading-[1.1] tracking-tight sm:text-5xl lg:text-6xl"
-            style={{ color: NAVY }}
+            style={{ color: DARK }}
           >
             Ils nous font confiance
             <span
@@ -206,7 +203,7 @@ export default function ReferencesSection() {
             </span>
           </h2>
 
-          <p className="mx-auto mt-6 max-w-2xl text-base leading-relaxed sm:text-lg" style={{ color: '#1F2D52' }}>
+          <p className="mx-auto mt-6 max-w-2xl text-base leading-relaxed sm:text-lg" style={{ color: CHARCOAL }}>
             Découvrez les avis de nos clients et leur expérience au quotidien avec notre solution.
           </p>
         </div>
@@ -218,7 +215,6 @@ export default function ReferencesSection() {
           ))}
         </div>
       </div>
-
     </section>
   );
 }

@@ -44,7 +44,7 @@ export default function Innoshop() {
   const handleDemoSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
-    const whatsappNumber = '33630218757';
+    const whatsappNumber = '212661973253';
 
     const message = [
       'Bonjour PC MAROC 👋',

@@ -972,11 +972,11 @@ export const COMPANY = {
 
   tagline: 'ARTIS Consulting',
 
-  address: '48 RUE JULES FERRY 92250 LA GARENNE-COLOMBES',
+  address: '14, résid. Mawlid XI , Sidi Maârouf CASABLANCA',
 
-  phone: '+33 6 30 21 87 57',
+  phone: '0522584717',
 
-  email: 'sjalal@artisconsulting.fr',
+  email: 'contact@pcmaroc.ma',
 
   hours: 'Lun – Sam : 9h00 – 18h00',
 

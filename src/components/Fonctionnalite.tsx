@@ -11,10 +11,11 @@ import {
   BadgeCheck,
 } from 'lucide-react';
 
-const NAVY = '#0B1F4B';
-const GOLD = '#EA580C';
+const DARK = '#0F0F0F';
+const ORANGE_MAIN = '#EA580C';
 const ORANGE_GRADIENT = 'linear-gradient(90deg, #F59E0B 0%, #EA580C 50%, #C2410C 100%)';
-const TEAL = '#1AA7B8';
+const CHARCOAL = '#27272A';
+const ZINC_ACCENT = '#3F3F46'; // Remplace le teal par un gris anthracite contrasté
 
 const ACCENTS = {
   gold: {
@@ -22,10 +23,10 @@ const ACCENTS = {
     fillLeft: 'linear-gradient(110deg, #FFFFFF 35%, #FFF7ED 100%)',
     fillRight: 'linear-gradient(250deg, #FFFFFF 35%, #FFF7ED 100%)',
   },
-  teal: {
-    border: 'linear-gradient(135deg, #1AA7B8 0%, #8ADCE5 50%, #1AA7B8 100%)',
-    fillLeft: 'linear-gradient(110deg, #FFFFFF 35%, #E3F5F8 100%)',
-    fillRight: 'linear-gradient(250deg, #FFFFFF 35%, #E3F5F8 100%)',
+  darkAccent: {
+    border: 'linear-gradient(135deg, #71717A 0%, #27272A 50%, #09090B 100%)',
+    fillLeft: 'linear-gradient(110deg, #FFFFFF 35%, #F4F4F5 100%)',
+    fillRight: 'linear-gradient(250deg, #FFFFFF 35%, #F4F4F5 100%)',
   },
 };
 
@@ -44,7 +45,7 @@ const leftFeatures = [
     icon: Users,
     title: 'Clients & fidélité',
     description: "Suivez votre clientèle, historique d'achats et programmes de fidélité.",
-    accent: 'teal',
+    accent: 'darkAccent',
     offset: 'lg:ml-0',
   },
   {
@@ -63,7 +64,7 @@ const rightFeatures = [
     icon: Box,
     title: 'Articles, services & tarifs',
     description: 'Gérez vos produits ou prestations, vos catégories et vos prix.',
-    accent: 'teal',
+    accent: 'darkAccent',
     offset: 'lg:mr-10',
   },
   {
@@ -80,7 +81,7 @@ const rightFeatures = [
     title: 'Contrôle de caisse',
     description:
       'Clôturez vos ventes, suivez les règlements et les mouvements de caisse en toute simplicité.',
-    accent: 'teal',
+    accent: 'darkAccent',
     offset: 'lg:mr-10',
   },
 ];
@@ -100,7 +101,7 @@ function FeatureCard({ item, side }) {
         background: acc.border,
         padding: '2px',
         borderRadius: radius,
-        boxShadow: '0 8px 24px -10px rgba(11,31,75,0.25)',
+        boxShadow: '0 8px 24px -10px rgba(15,15,15,0.2)',
       }}
     >
       <div
@@ -112,25 +113,25 @@ function FeatureCard({ item, side }) {
       >
         {/* Icône */}
         <div className="relative flex h-14 w-14 shrink-0 items-center justify-center">
-          <Icon className="h-10 w-10" style={{ color: NAVY }} strokeWidth={1.6} />
+          <Icon className="h-10 w-10" style={{ color: DARK }} strokeWidth={1.6} />
           {item.badge && (
             <BadgeCheck
               className="absolute -bottom-1 -right-1 h-5 w-5 rounded-full bg-white"
-              style={{ color: GOLD }}
+              style={{ color: ORANGE_MAIN }}
               strokeWidth={2.4}
             />
           )}
         </div>
 
         {/* Séparateur */}
-        <div className="mx-4 h-14 w-px shrink-0 bg-slate-300" />
+        <div className="mx-4 h-14 w-px shrink-0 bg-zinc-300" />
 
         {/* Texte */}
         <div>
-          <h3 className="mb-1 text-base font-extrabold sm:text-lg" style={{ color: NAVY }}>
+          <h3 className="mb-1 text-base font-extrabold sm:text-lg" style={{ color: DARK }}>
             {item.title}
           </h3>
-          <p className="text-xs leading-snug sm:text-[13px]" style={{ color: '#1F2D52' }}>
+          <p className="text-xs leading-snug sm:text-[13px]" style={{ color: CHARCOAL }}>
             {item.description}
           </p>
         </div>
@@ -149,33 +150,33 @@ function Hub() {
         preserveAspectRatio="none"
         fill="none"
       >
-        <path d="M 0,70 C 120,90 150,170 200,200" stroke="#F97316" strokeOpacity="0.45" strokeWidth="2" />
-        <path d="M 0,200 L 200,200" stroke="#1AA7B8" strokeOpacity="0.45" strokeWidth="2" />
-        <path d="M 0,330 C 120,310 150,230 200,200" stroke="#F97316" strokeOpacity="0.45" strokeWidth="2" />
-        <path d="M 400,70 C 280,90 250,170 200,200" stroke="#1AA7B8" strokeOpacity="0.45" strokeWidth="2" />
-        <path d="M 400,200 L 200,200" stroke="#F97316" strokeOpacity="0.45" strokeWidth="2" />
-        <path d="M 400,330 C 280,310 250,230 200,200" stroke="#1AA7B8" strokeOpacity="0.45" strokeWidth="2" />
+        <path d="M 0,70 C 120,90 150,170 200,200" stroke="#EA580C" strokeOpacity="0.45" strokeWidth="2" />
+        <path d="M 0,200 L 200,200" stroke="#3F3F46" strokeOpacity="0.45" strokeWidth="2" />
+        <path d="M 0,330 C 120,310 150,230 200,200" stroke="#EA580C" strokeOpacity="0.45" strokeWidth="2" />
+        <path d="M 400,70 C 280,90 250,170 200,200" stroke="#3F3F46" strokeOpacity="0.45" strokeWidth="2" />
+        <path d="M 400,200 L 200,200" stroke="#EA580C" strokeOpacity="0.45" strokeWidth="2" />
+        <path d="M 400,330 C 280,310 250,230 200,200" stroke="#3F3F46" strokeOpacity="0.45" strokeWidth="2" />
       </svg>
 
       {/* Cercle central */}
-      <div className="relative z-10 flex h-40 w-40 items-center justify-center rounded-full bg-white shadow-[0_10px_40px_-8px_rgba(11,31,75,0.35)]">
+      <div className="relative z-10 flex h-40 w-40 items-center justify-center rounded-full bg-white shadow-[0_10px_40px_-8px_rgba(15,15,15,0.25)]">
         {/* Anneau coloré */}
         <svg className="absolute inset-0 h-full w-full -rotate-90" viewBox="0 0 100 100" fill="none">
-          <circle cx="50" cy="50" r="44" stroke="#EEF2F7" strokeWidth="1.5" />
+          <circle cx="50" cy="50" r="44" stroke="#F4F4F5" strokeWidth="1.5" />
           {/* quatre arcs */}
-          <circle cx="50" cy="50" r="46" stroke={TEAL} strokeWidth="5" strokeLinecap="butt"
+          <circle cx="50" cy="50" r="46" stroke={ZINC_ACCENT} strokeWidth="5" strokeLinecap="butt"
             strokeDasharray="55 234" strokeDashoffset="-4" />
-          <circle cx="50" cy="50" r="46" stroke={GOLD} strokeWidth="5" strokeLinecap="butt"
+          <circle cx="50" cy="50" r="46" stroke={ORANGE_MAIN} strokeWidth="5" strokeLinecap="butt"
             strokeDasharray="55 234" strokeDashoffset="-76" />
-          <circle cx="50" cy="50" r="46" stroke={GOLD} strokeWidth="5" strokeLinecap="butt"
+          <circle cx="50" cy="50" r="46" stroke={ORANGE_MAIN} strokeWidth="5" strokeLinecap="butt"
             strokeDasharray="55 234" strokeDashoffset="-148" />
-          <circle cx="50" cy="50" r="46" stroke={TEAL} strokeWidth="5" strokeLinecap="butt"
+          <circle cx="50" cy="50" r="46" stroke={ZINC_ACCENT} strokeWidth="5" strokeLinecap="butt"
             strokeDasharray="55 234" strokeDashoffset="-220" />
         </svg>
 
         <div className="relative flex h-24 w-24 items-center justify-center rounded-full bg-white shadow-inner">
-          <Settings className="h-20 w-20" style={{ color: NAVY }} strokeWidth={1.4} />
-          <Check className="absolute h-8 w-8" style={{ color: GOLD }} strokeWidth={3.5} />
+          <Settings className="h-20 w-20" style={{ color: DARK }} strokeWidth={1.4} />
+          <Check className="absolute h-8 w-8" style={{ color: ORANGE_MAIN }} strokeWidth={3.5} />
         </div>
       </div>
     </div>
@@ -186,14 +187,14 @@ export default function FeaturesSection() {
   return (
     <section className="relative overflow-hidden bg-white px-4 pb-10 pt-12 sm:px-6 lg:pb-12 lg:pt-14">
       {/* Halo de fond léger */}
-      <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_at_center,#F4F8FC_0%,#FFFFFF_70%)]" />
+      <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_at_center,#FAFAFA_0%,#FFFFFF_70%)]" />
 
       <div className="relative mx-auto max-w-6xl">
         {/* EN-TÊTE */}
         <div className="mx-auto mb-12 max-w-3xl text-center">
           <div className="mb-5 flex items-center justify-center gap-5">
             <span className="h-[3px] w-14 rounded-full" style={{ background: ORANGE_GRADIENT }} />
-            <span className="text-sm font-extrabold uppercase tracking-[0.12em]" style={{ color: NAVY }}>
+            <span className="text-sm font-extrabold uppercase tracking-[0.12em]" style={{ color: DARK }}>
               Fonctionnalités clés
             </span>
             <span className="h-[3px] w-14 rounded-full" style={{ background: ORANGE_GRADIENT }} />
@@ -201,7 +202,7 @@ export default function FeaturesSection() {
 
           <h2
             className="text-4xl font-extrabold leading-[1.1] tracking-tight sm:text-5xl lg:text-6xl"
-            style={{ color: NAVY }}
+            style={{ color: DARK }}
           >
             Les fonctionnalités essentielles
             <span
@@ -217,7 +218,7 @@ export default function FeaturesSection() {
             </span>
           </h2>
 
-          <p className="mx-auto mt-6 max-w-2xl text-base leading-relaxed sm:text-lg" style={{ color: '#1F2D52' }}>
+          <p className="mx-auto mt-6 max-w-2xl text-base leading-relaxed sm:text-lg" style={{ color: CHARCOAL }}>
             Une solution complète et évolutive qui centralise la gestion de vos ventes,
             de vos clients et de votre activité, quel que soit votre secteur.
           </p>
