@@ -16,6 +16,7 @@ import { Testimonials } from '@/components/Testimonials';
 import { CTA } from '@/components/CTA';
 import { Contact } from '@/components/Contact';
 import { Footer } from '@/components/Footer';
+import Reference from '@/components/Reference';
 
 import Franchise from '@/components/Franchise';
 import NosExpertises from './components/NosExpertises';
@@ -182,8 +183,9 @@ function HomePage() {
       <Hero />
       <NosExpertises />
       <Fonctionnalite />
+      <Reference />
       <Produit />
-            <FeaturedProduct />
+      <FeaturedProduct />
       <Solutions />
       <Services />
       <WhyUs />

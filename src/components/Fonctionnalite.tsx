@@ -1,112 +1,261 @@
 import React from 'react';
 import {
-  Calculator,
-  FileText,
+  ShoppingCart,
   Box,
-  BarChart3,
-  Percent,
+  Users,
+  TrendingUp,
+  Tag,
   ClipboardCheck,
+  Settings,
+  Check,
+  BadgeCheck,
 } from 'lucide-react';
 
-export default function FeaturesSection() {
-  const features = [
-    {
-      icon: Calculator,
-      title: 'Encaissement simplifié',
-      description:
-        'Enregistrez vos ventes rapidement avec une interface intuitive.',
-    },
-    {
-      icon: FileText,
-      title: 'Gestion des ventes',
-      description:
-        "Consultez vos tickets, historiques d'encaissement et détails des transactions.",
-    },
-    {
-      icon: Box,
-      title: 'Gestion des articles',
-      description:
-        'Organisez vos produits, familles, prix, menus et tarifs.',
-    },
-    {
-      icon: BarChart3,
-      title: 'Statistiques de ventes',
-      description:
-        'Analysez votre chiffre d’affaires et vos meilleures ventes.',
-    },
-    {
-      icon: Percent,
-      title: 'Remises et offres',
-      description:
-        'Gérez facilement les remises, promotions et programmes de fidélité.',
-    },
-    {
-      icon: ClipboardCheck,
-      title: 'Clôture et rapports',
-      description:
-        'Suivez les résultats de caisse et exportez vos rapports en toute simplicité.',
-    },
-  ];
+const NAVY = '#0B1F4B';
+const GOLD = '#F5A800';
+const TEAL = '#1AA7B8';
+
+const ACCENTS = {
+  gold: {
+    border: 'linear-gradient(135deg, #F5A800 0%, #FDD97A 50%, #F5A800 100%)',
+    fillLeft: 'linear-gradient(110deg, #FFFFFF 35%, #FFF3D6 100%)',
+    fillRight: 'linear-gradient(250deg, #FFFFFF 35%, #FFF3D6 100%)',
+  },
+  teal: {
+    border: 'linear-gradient(135deg, #1AA7B8 0%, #8ADCE5 50%, #1AA7B8 100%)',
+    fillLeft: 'linear-gradient(110deg, #FFFFFF 35%, #E3F5F8 100%)',
+    fillRight: 'linear-gradient(250deg, #FFFFFF 35%, #E3F5F8 100%)',
+  },
+};
+
+const leftFeatures = [
+  {
+    id: 'encaissement',
+    icon: ShoppingCart,
+    badge: true,
+    title: 'Encaissement & ventes',
+    description: 'Enregistrez vos transactions rapidement et en toute sécurité.',
+    accent: 'gold',
+    offset: 'lg:ml-10',
+  },
+  {
+    id: 'clients',
+    icon: Users,
+    title: 'Clients & fidélité',
+    description: "Suivez votre clientèle, historique d'achats et programmes de fidélité.",
+    accent: 'teal',
+    offset: 'lg:ml-0',
+  },
+  {
+    id: 'remises',
+    icon: Tag,
+    title: 'Remises & promotions',
+    description: 'Appliquez des remises, offres spéciales et programmes de fidélisation.',
+    accent: 'gold',
+    offset: 'lg:ml-10',
+  },
+];
+
+const rightFeatures = [
+  {
+    id: 'articles',
+    icon: Box,
+    title: 'Articles, services & tarifs',
+    description: 'Gérez vos produits ou prestations, vos catégories et vos prix.',
+    accent: 'teal',
+    offset: 'lg:mr-10',
+  },
+  {
+    id: 'suivi',
+    icon: TrendingUp,
+    title: 'Suivi & reporting',
+    description: 'Analysez vos ventes, suivez vos performances et prenez les bonnes décisions.',
+    accent: 'gold',
+    offset: 'lg:mr-0',
+  },
+  {
+    id: 'controle',
+    icon: ClipboardCheck,
+    title: 'Contrôle de caisse',
+    description:
+      'Clôturez vos ventes, suivez les règlements et les mouvements de caisse en toute simplicité.',
+    accent: 'teal',
+    offset: 'lg:mr-10',
+  },
+];
+
+function FeatureCard({ item, side }) {
+  const Icon = item.icon;
+  const acc = ACCENTS[item.accent];
+  const radius =
+    side === 'left'
+      ? '48px 130px 130px 48px / 48px 55px 55px 48px'
+      : '130px 48px 48px 130px / 55px 48px 48px 55px';
 
   return (
-    <section className="relative overflow-hidden bg-slate-50 px-4 py-8 sm:px-6 lg:py-12">
-      {/* Décoration de fond */}
-      <div className="pointer-events-none absolute -top-24 left-1/2 h-72 w-72 -translate-x-1/2 rounded-full bg-orange-100/40 blur-3xl" />
+    <div
+      className={`${item.offset} transition-transform duration-300 hover:-translate-y-0.5`}
+      style={{
+        background: acc.border,
+        padding: '2px',
+        borderRadius: radius,
+        boxShadow: '0 8px 24px -10px rgba(11,31,75,0.25)',
+      }}
+    >
+      <div
+        className="flex items-center px-6 py-5 sm:px-7 sm:py-6"
+        style={{
+          background: side === 'left' ? acc.fillLeft : acc.fillRight,
+          borderRadius: radius,
+        }}
+      >
+        {/* Icône */}
+        <div className="relative flex h-14 w-14 shrink-0 items-center justify-center">
+          <Icon className="h-10 w-10" style={{ color: NAVY }} strokeWidth={1.6} />
+          {item.badge && (
+            <BadgeCheck
+              className="absolute -bottom-1 -right-1 h-5 w-5 rounded-full bg-white"
+              style={{ color: GOLD }}
+              strokeWidth={2.4}
+            />
+          )}
+        </div>
+
+        {/* Séparateur */}
+        <div className="mx-4 h-14 w-px shrink-0 bg-slate-300" />
+
+        {/* Texte */}
+        <div>
+          <h3 className="mb-1 text-base font-extrabold sm:text-lg" style={{ color: NAVY }}>
+            {item.title}
+          </h3>
+          <p className="text-xs leading-snug sm:text-[13px]" style={{ color: '#1F2D52' }}>
+            {item.description}
+          </p>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+function Hub() {
+  return (
+    <div className="relative hidden min-h-[420px] items-center justify-center lg:flex">
+      {/* Connexions */}
+      <svg
+        className="pointer-events-none absolute inset-y-0 -inset-x-16 h-full w-[calc(100%+8rem)]"
+        viewBox="0 0 400 400"
+        preserveAspectRatio="none"
+        fill="none"
+      >
+        <path d="M 0,70 C 120,90 150,170 200,200" stroke="#F5A800" strokeOpacity="0.45" strokeWidth="2" />
+        <path d="M 0,200 L 200,200" stroke="#1AA7B8" strokeOpacity="0.45" strokeWidth="2" />
+        <path d="M 0,330 C 120,310 150,230 200,200" stroke="#F5A800" strokeOpacity="0.45" strokeWidth="2" />
+        <path d="M 400,70 C 280,90 250,170 200,200" stroke="#1AA7B8" strokeOpacity="0.45" strokeWidth="2" />
+        <path d="M 400,200 L 200,200" stroke="#F5A800" strokeOpacity="0.45" strokeWidth="2" />
+        <path d="M 400,330 C 280,310 250,230 200,200" stroke="#1AA7B8" strokeOpacity="0.45" strokeWidth="2" />
+      </svg>
+
+      {/* Cercle central */}
+      <div className="relative z-10 flex h-40 w-40 items-center justify-center rounded-full bg-white shadow-[0_10px_40px_-8px_rgba(11,31,75,0.35)]">
+        {/* Anneau coloré */}
+        <svg className="absolute inset-0 h-full w-full -rotate-90" viewBox="0 0 100 100" fill="none">
+          <circle cx="50" cy="50" r="44" stroke="#EEF2F7" strokeWidth="1.5" />
+          {/* quatre arcs */}
+          <circle cx="50" cy="50" r="46" stroke={TEAL} strokeWidth="5" strokeLinecap="butt"
+            strokeDasharray="55 234" strokeDashoffset="-4" />
+          <circle cx="50" cy="50" r="46" stroke={GOLD} strokeWidth="5" strokeLinecap="butt"
+            strokeDasharray="55 234" strokeDashoffset="-76" />
+          <circle cx="50" cy="50" r="46" stroke={GOLD} strokeWidth="5" strokeLinecap="butt"
+            strokeDasharray="55 234" strokeDashoffset="-148" />
+          <circle cx="50" cy="50" r="46" stroke={TEAL} strokeWidth="5" strokeLinecap="butt"
+            strokeDasharray="55 234" strokeDashoffset="-220" />
+        </svg>
+
+        <div className="relative flex h-24 w-24 items-center justify-center rounded-full bg-white shadow-inner">
+          <Settings className="h-20 w-20" style={{ color: NAVY }} strokeWidth={1.4} />
+          <Check className="absolute h-8 w-8" style={{ color: GOLD }} strokeWidth={3.5} />
+        </div>
+      </div>
+    </div>
+  );
+}
+
+export default function FeaturesSection() {
+  return (
+    <section className="relative overflow-hidden bg-white px-4 pb-40 pt-12 sm:px-6 lg:pt-14">
+      {/* Halo de fond léger */}
+      <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_at_center,#F4F8FC_0%,#FFFFFF_70%)]" />
 
       <div className="relative mx-auto max-w-6xl">
-        {/* Header */}
-        <div className="mx-auto mb-8 max-w-3xl text-center">
-          <span className="mb-3 inline-flex items-center rounded-full border border-orange-100 bg-white px-4 py-1.5 text-xs font-bold tracking-[0.18em] text-orange-600 shadow-sm">
-            FONCTIONNALITÉS CLÉS
-          </span>
+        {/* EN-TÊTE */}
+        <div className="mx-auto mb-12 max-w-3xl text-center">
+          <div className="mb-5 flex items-center justify-center gap-5">
+            <span className="h-[3px] w-14 rounded-full" style={{ background: GOLD }} />
+            <span className="text-sm font-extrabold uppercase tracking-[0.12em]" style={{ color: NAVY }}>
+              Fonctionnalités clés
+            </span>
+            <span className="h-[3px] w-14 rounded-full" style={{ background: GOLD }} />
+          </div>
 
-          <h2 className="mb-3 text-3xl font-extrabold leading-tight tracking-tight text-slate-900 sm:text-4xl lg:text-5xl">
-            Des fonctionnalités pensées pour{' '}
-            <span className="bg-gradient-to-r from-amber-500 to-orange-600 bg-clip-text text-transparent">
-              votre activité
+          <h2
+            className="text-4xl font-extrabold leading-[1.1] tracking-tight sm:text-5xl lg:text-6xl"
+            style={{ color: NAVY }}
+          >
+            Les fonctionnalités essentielles
+            <span className="mt-1 block" style={{ color: GOLD }}>
+              pour piloter votre activité
             </span>
           </h2>
 
-          <p className="mx-auto max-w-2xl text-sm leading-7 text-slate-600 sm:text-base">
-            Encaissez, contrôlez et analysez votre activité avec des outils
-            de gestion adaptés aux professionnels du CHR et du Retail.
+          <p className="mx-auto mt-6 max-w-2xl text-base leading-relaxed sm:text-lg" style={{ color: '#1F2D52' }}>
+            Une solution complète et évolutive qui centralise la gestion de vos ventes,
+            de vos clients et de votre activité, quel que soit votre secteur.
           </p>
         </div>
 
-        {/* Features */}
-        <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
-          {features.map((feature) => {
-            const Icon = feature.icon;
+        {/* GRILLE */}
+        <div className="grid grid-cols-1 items-center gap-5 lg:grid-cols-[1fr_190px_1fr] lg:gap-0">
+          <div className="flex flex-col gap-5 lg:gap-6">
+            {leftFeatures.map((item) => (
+              <FeatureCard key={item.id} item={item} side="left" />
+            ))}
+          </div>
 
-            return (
-              <article
-                key={feature.title}
-                className="group relative overflow-hidden rounded-2xl border border-slate-200/80 bg-white p-6 text-left transition-all duration-300 hover:-translate-y-1 hover:border-orange-200 hover:shadow-xl hover:shadow-slate-200/50"
-              >
-                {/* Effet vertical orange/ambre au survol */}
-                <div className="absolute left-0 top-0 z-20 h-full w-1 origin-top scale-y-0 bg-gradient-to-b from-amber-400 to-orange-600 transition-transform duration-300 group-hover:scale-y-100" />
+          <Hub />
 
-                {/* Icône */}
-                <div className="mb-4 flex h-12 w-12 items-center justify-center rounded-2xl border border-orange-100 bg-orange-50 transition-all duration-300 group-hover:border-orange-200 group-hover:bg-orange-600 group-hover:shadow-lg group-hover:shadow-orange-600/20">
-                  <Icon className="h-6 w-6 text-orange-600 transition-colors duration-300 group-hover:text-white" />
-                </div>
-
-                {/* Contenu */}
-                <h3 className="mb-2 text-lg font-bold text-slate-900 transition-colors duration-300 group-hover:text-orange-700">
-                  {feature.title}
-                </h3>
-
-                <p className="text-sm leading-6 text-slate-500">
-                  {feature.description}
-                </p>
-
-                {/* Décoration subtile au survol */}
-                <div className="pointer-events-none absolute -bottom-10 -right-10 h-28 w-28 rounded-full bg-orange-50 opacity-0 blur-2xl transition-opacity duration-500 group-hover:opacity-100" />
-              </article>
-            );
-          })}
+          <div className="flex flex-col gap-5 lg:gap-6">
+            {rightFeatures.map((item) => (
+              <FeatureCard key={item.id} item={item} side="right" />
+            ))}
+          </div>
         </div>
       </div>
+
+      {/* VAGUES EN BAS */}
+      <svg
+        className="pointer-events-none absolute bottom-0 left-0 h-32 w-full"
+        viewBox="0 0 1440 140"
+        preserveAspectRatio="none"
+      >
+        <defs>
+          <linearGradient id="waveNavy" x1="0" x2="1" y1="0" y2="0">
+            <stop offset="0%" stopColor="#0B1F4B" />
+            <stop offset="60%" stopColor="#0B3A6B" />
+            <stop offset="100%" stopColor="#1AA7B8" />
+          </linearGradient>
+          <linearGradient id="waveGold" x1="0" x2="1" y1="0" y2="0">
+            <stop offset="0%" stopColor="#F5A800" />
+            <stop offset="100%" stopColor="#FDD97A" />
+          </linearGradient>
+        </defs>
+        {/* Or */}
+        <path d="M0,60 C300,110 700,60 1100,100 C1250,112 1360,105 1440,95 L1440,140 L0,140 Z" fill="url(#waveGold)" />
+        {/* Blanc (séparation) */}
+        <path d="M0,85 C320,125 720,80 1100,112 C1260,124 1370,118 1440,110 L1440,140 L0,140 Z" fill="#FFFFFF" />
+        {/* Marine */}
+        <path d="M0,102 C340,134 740,100 1100,124 C1260,132 1370,128 1440,124 L1440,140 L0,140 Z" fill="url(#waveNavy)" />
+      </svg>
     </section>
   );
 }
