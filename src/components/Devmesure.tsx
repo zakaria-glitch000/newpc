@@ -492,7 +492,7 @@ export default function DeveloppementSurMesure() {
               <h2 className="text-3xl font-black leading-tight tracking-tight text-slate-900 sm:text-4xl lg:text-5xl">
                 Pourquoi choisir{' '}
                 <span className="bg-gradient-to-r from-amber-500 to-orange-600 bg-clip-text text-transparent">
-                  ORALI
+                  PC MAROC
                 </span>
                 {' '}?
               </h2>

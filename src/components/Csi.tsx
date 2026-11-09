@@ -960,8 +960,8 @@ export default function SolutionsRestauration() {
               <h2 className="mt-4 text-3xl font-black leading-[1.1] tracking-tight text-white sm:text-4xl lg:text-[2.7rem]">
                 Passez à une gestion plus performante avec{' '}
                 <span className="whitespace-nowrap">
-                  <span className="text-[#051536]">ORALI</span>{' '}
-                  <span className="text-sky-200">SYSTEMS</span>
+                  <span className="text-[#051536]">PC</span>{' '}
+                  <span className="text-sky-200">MAROC</span>
                 </span>
               </h2>
 

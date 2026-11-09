@@ -78,9 +78,9 @@ export function About() {
               <SectionTag>À propos</SectionTag>
 
               <h2 className="mt-4 text-balance font-display text-3xl font-bold leading-tight tracking-tight text-slate-900 sm:text-4xl lg:text-[2.75rem]">
-                Votre partenaire{' '}
+                La technologie au service de {' '}
                 <span className="bg-gradient-to-r from-amber-500 to-orange-600 bg-clip-text text-transparent">
-                  technologique.
+                  votre métier.
                 </span>
               </h2>
 

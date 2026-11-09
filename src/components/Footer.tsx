@@ -298,7 +298,7 @@ export function Footer() {
         {/* Bottom bar */}
         <div className="flex flex-col items-center justify-between gap-4 border-t border-orange-900/20 py-6 sm:flex-row">
           <p className="text-center text-xs text-slate-900 sm:text-left">
-            © 2026 {COMPANY.name} By ARTIS Consulting. Tous droits réservés.
+            © 2026 {COMPANY.name}. Tous droits réservés.
           </p>
 
           <div className="flex flex-wrap justify-center gap-x-6 gap-y-2 text-xs font-medium text-slate-950">

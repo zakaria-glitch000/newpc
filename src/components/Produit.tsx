@@ -18,10 +18,10 @@ import borneImage from '@/assets/nboorn.png';
 import kdsImage from '@/assets/nblaka.jpeg';
 import terminalImage from '@/assets/npda.jpeg';
 
-import balanceImage from '@/assets/balance.jpg';
-import zebraImage from '@/assets/nzebra.jpeg';
+import balanceImage from '@/assets/balancee.jpeg';
+import zebraImage from '@/assets/zeebra.jpeg';
 import pdaImage from '@/assets/npd.jpeg';
-import etiquetteImage from '@/assets/nmonnay.jpeg';
+import etiquetteImage from '@/assets/monnay.jpeg';
 
 const products = [
   {

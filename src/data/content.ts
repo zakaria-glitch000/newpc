@@ -970,7 +970,7 @@ export const FEATURE_LIST = [
 export const COMPANY = {
   name: 'PC MAROC ',
 
-  tagline: 'ARTIS Consulting',
+  tagline: '',
 
   address: '14, résid. Mawlid XI , Sidi Maârouf CASABLANCA',
 

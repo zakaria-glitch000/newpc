@@ -16,10 +16,10 @@ export function Process() {
       <div className="relative z-10 mx-auto max-w-7xl px-6 lg:px-8">
         {/* Section heading */}
         <Reveal className="max-w-2xl">
-          <SectionTag>Méthode</SectionTag>
+          <SectionTag>Aproche</SectionTag>
 
           <h2 className="mt-4 text-balance font-display text-3xl font-bold leading-tight tracking-tight text-slate-900 sm:text-4xl lg:text-5xl">
-            Notre méthode
+            Votre projet, notre expertise
             <span className="bg-gradient-to-r from-amber-500 to-orange-600 bg-clip-text text-transparent">
               .
             </span>
