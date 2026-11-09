@@ -689,12 +689,12 @@ export const SERVICES: Service[] = [
 
 export const STATS = [
   {
-    value: '10+',
+    value: '25+',
     label: "Années d'expérience",
   },
 
   {
-    value: '500+',
+    value: '1500+',
     label: 'Entreprises accompagnées',
   },
 
