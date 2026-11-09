@@ -1,75 +1,72 @@
 import React from 'react';
 import { Quote, Star } from 'lucide-react';
 
+// 1. Imports de tes photos/logos (Assure-toi que les chemins correspondent à ton arborescence de dossiers)
+import logoGrandBazar from '../assets/gb.jpeg';
+import logo555 from '../assets/555.jpeg';
+import logoVerde from '../assets/verde.jpeg';
+import logoEricMeignat from '../assets/eric.jpeg';
+import logoChampion from '../assets/champion.jpeg';
+import logoCleanzy from '../assets/cleanzy.jpeg';
+
 const DARK = '#0F0F0F';
 const ORANGE_MAIN = '#EA580C';
 const ORANGE_GRADIENT = 'linear-gradient(90deg, #F59E0B 0%, #EA580C 50%, #C2410C 100%)';
 const CHARCOAL = '#27272A';
 
-/**
- * ⚠️ A REMPLIR avec vos VRAIS avis clients.
- *
- * Champs :
- *  - name    : nom du client
- *  - role    : fonction / activité (ex: "Gérante, Boutique X")
- *  - comment : le commentaire réel du client
- *  - rating  : note de 1 à 5
- *  - photo   : URL de la photo. Laissez vide pour afficher les initiales.
- *  - accent  : 'gold' (orange) ou 'dark' (noir/gris)
- */
 const reviews = [
   {
     id: 1,
-    name: 'Nom du client',
-    role: 'Fonction, Entreprise',
-    comment: 'commentaire',
+    name: 'Eric Meignat',
+    role: 'Gérante, Restaurant',
+    comment:'Avec plusieurs magasins à travers le Maroc, nous avions besoin d’une solution fiable pour gérer efficacement notre activité. PC MAROC a parfaitement répondu à nos attentes en nous offrant une gestion simplifiée et un meilleur suivi de nos points de vente. Nous sommes pleinement satisfaits de cette collaboration et de la qualité de l’accompagnement.',
     rating: 5,
-    photo: '',
+    photo: logoEricMeignat,
     accent: 'gold',
   },
   {
     id: 2,
-    name: 'Nom du client',
-    role: 'Fonction, Entreprise',
-    comment: 'commentaire',
+    name: 'M. Rachid',
+    role: 'CLUB 555 Marrakech',
+    comment: 'Depuis plus de 15 ans, PC MAROC accompagne le CLUB 555 dans la gestion de son activité. Une collaboration durable, fondée sur la confiance, la fiabilité de nos solutions et un accompagnement constant au fil des années.',
     rating: 5,
-    photo: '',
+    photo: logo555,
     accent: 'dark',
   },
   {
     id: 3,
-    name: 'Nom du client',
-    role: 'Fonction, Entreprise',
-    comment: 'commentaire',
+    name: 'Verde Marrakech',
+    role: 'Direction, Restaurant Verde',
+    comment: 'Connaissant déjà cette solution d’encaissement en France, nous avons naturellement choisi PC MAROC pour équiper notre nouveau restaurant. Nous retrouvons un système fiable, performant et parfaitement adapté à nos besoins, avec l’avantage d’un accompagnement local et d’une équipe disponible et réactive.',
     rating: 5,
-    photo: '',
+    photo: logoVerde,
     accent: 'gold',
   },
   {
     id: 4,
-    name: 'Nom du client',
-    role: 'Fonction, Entreprise',
-    comment: 'commentaire',
+    name: 'Champion Express',
+    role: 'Direction Réseau, Supérettes',
+    comment:'En pleine expansion, nous avions besoin d’une solution capable d’accompagner notre croissance. Avec INNOSHOP, proposé par PC MAROC, nous bénéficions d’une gestion efficace et d’un suivi centralisé de nos différents magasins. Une solution fiable et évolutive qui nous donne confiance pour poursuivre notre développement.'  ,
     rating: 5,
-    photo: '',
+    photo: logoChampion,
     accent: 'dark',
   },
   {
     id: 5,
-    name: 'Nom du client',
-    role: 'Fonction, Entreprise',
-    comment: 'commentaire',
+    name: 'Le Grand Bazar',
+    role: 'Direction Expansion Retail',
+    comment: 'Depuis l’installation de la solution PC MAROC (caisse, KDS et reporting), notre service est plus rapide, la coordination avec la cuisine plus efficace et nous avons une meilleure visibilité sur notre activité.',
     rating: 5,
-    photo: '',
+    photo: logoGrandBazar,
     accent: 'gold',
   },
   {
     id: 6,
-    name: 'Nom du client',
-    role: 'Fonction, Entreprise',
-    comment: 'commentaire',
+    name: 'Cleanzy & Réseau Pressings',
+    role: 'Gestion de Pressings au Maroc',
+    comment: 'Depuis plusieurs années, nous faisons confiance à PC MAROC pour équiper nos pressings à travers le Maroc. Une collaboration solide qui nous permet de développer notre réseau en toute sérénité, avec des solutions fiabilité, adaptées à notre métier et un accompagnement de qualité. PC MAROC est devenu un véritable partenaire de notre croissance.',
     rating: 5,
-    photo: '',
+    photo: logoCleanzy,
     accent: 'dark',
   },
 ];
@@ -115,11 +112,11 @@ function Stars({ value = 5 }) {
 function Avatar({ photo, name, color }) {
   return (
     <div
-      className="flex h-14 w-14 shrink-0 items-center justify-center overflow-hidden rounded-full border-2 bg-white text-lg font-extrabold shadow-sm"
+      className="flex h-14 w-14 shrink-0 items-center justify-center overflow-hidden rounded-full border-2 bg-white p-1 text-lg font-extrabold shadow-sm"
       style={{ borderColor: color, color: DARK }}
     >
       {photo ? (
-        <img src={photo} alt={name} className="h-full w-full object-cover" loading="lazy" />
+        <img src={photo} alt={name} className="h-full w-full object-contain rounded-full" loading="lazy" />
       ) : (
         <span>{getInitials(name)}</span>
       )}
