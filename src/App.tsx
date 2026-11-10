@@ -46,7 +46,7 @@ import Stock from '@/components/Stock';
 import Etiquette from '@/components/Etiquette';
 import Gms from '@/components/Gms';
 import Report from '@/components/Report';
-
+import Gesticlean from '@/components/Gesticlean'
 // ============================================================
 // SCROLL TO TOP
 // ============================================================
@@ -240,7 +240,10 @@ function App() {
               path="/innoshop"
               element={<Innoshop />}
             />
-
+  <Route
+              path="/Gesticlean"
+              element={<Gesticlean />}
+            />
             {/* FRANCHISE */}
             <Route
               path="/franchise"

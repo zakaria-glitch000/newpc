@@ -10,18 +10,19 @@ const WHATSAPP_NUMBER = '212661973253';
 // Catégories et sous-types pour le dropdown "Commerce"
 const COMMERCE_CATEGORIES = [
   {
-    title: 'Restauration & CHRB',
+    title: 'Restauration',
     categoryKey: 'restauration',
     icon: Utensils,
     items: [
       { label: 'Restauration', slug: 'restauration' },
-      { label: 'Restaurant traditionnel', slug: 'restaurant-traditionnel' },
+            { label: 'Cafe - Glacier', slug: 'cafe-glacier' },
+      { label: 'Boulangerie', slug: 'boulangerie' },
+      { label: 'Loisir', slug: 'Loisir' },
+
       { label: 'Fast food', slug: 'fast-food' },
       { label: 'Pizzeria', slug: 'pizzeria' },
       { label: 'Burger', slug: 'burger' },
       { label: 'Bar à salad', slug: 'bar-a-salad' },
-      { label: 'Boulangerie', slug: 'boulangerie' },
-      { label: 'Cafe - Glacier', slug: 'cafe-glacier' },
       { label: 'Bar-lounge', slug: 'bar-lounge' },
       { label: 'Night club', slug: 'night-club' },
     ],
@@ -32,12 +33,13 @@ const COMMERCE_CATEGORIES = [
     icon: ShoppingBag,
     items: [
       { label: 'Textile et chaussure', slug: 'textile-chaussure' },
+            { label: 'Métiers de bouche', slug: 'metiers-de-bouche' },
+      { label: 'Supérette et alimentation', slug: 'superette-alimentation' },
+      { label: 'Cigarette Électronique', slug: 'cigarette-electronique' },
+
       { label: 'Caviste', slug: 'caviste' },
       { label: 'Équipement du foyer', slug: 'equipement-foyer' },
       { label: 'Jardinerie, Bricolage et animalerie', slug: 'jardinerie-bricolage-animalerie' },
-      { label: 'Supérette et alimentation', slug: 'superette-alimentation' },
-      { label: 'Métiers de bouche', slug: 'metiers-de-bouche' },
-      { label: 'Cigarette Électronique', slug: 'cigarette-electronique' },
       { label: 'Sport et loisirs', slug: 'sport-loisirs' },
       { label: 'Gestion de production', slug: 'gestion-production' },
       { label: 'Franchises & multisites', slug: 'franchises-multisites' },
@@ -49,7 +51,7 @@ const COMMERCE_CATEGORIES = [
     icon: Sparkles,
     items: [
       { label: 'Salon de coiffure', slug: 'salon-de-coiffure' },
-      { label: 'SPA', slug: 'spa' },
+      { label: 'SPA & Pilatesse', slug: 'spa' },
       { label: 'Centre de remise en forme', slug: 'centre-remise-en-forme' },
       { label: 'Centre de laser', slug: 'centre-de-laser' },
       { label: "Institut d'esthétique", slug: 'institut-esthetique' },
