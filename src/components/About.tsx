@@ -2,7 +2,7 @@ import { ArrowRight, CheckCircle2 } from 'lucide-react';
 import { motion } from 'framer-motion';
 import { Reveal, SectionTag } from './ui/Reveal';
 
-import teamTrainingImage from '@/assets/part.jpeg';
+import teamTrainingImage from '@/assets/propos.jpeg';
 
 const ABOUT_POINTS = [
   'Expertise technique et savoir-faire reconnu',
