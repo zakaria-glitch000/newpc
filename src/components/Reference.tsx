@@ -27,7 +27,7 @@ const reviews = [
   {
     id: 2,
     name: 'M. Rachid',
-    role: 'FONDATEUR CLUB 555',
+    role: 'Fondateur CLUB 555',
     comment: 'Depuis plus de 15 ans, PC MAROC accompagne le CLUB 555 dans la gestion de son activité. Une collaboration durable, fondée sur la confiance, la fiabilité de nos solutions et un accompagnement constant au fil des années.',
     rating: 5,
     photo: logo555,
@@ -36,7 +36,7 @@ const reviews = [
   {
     id: 3,
     name: 'YOUNESS BIUAL',
-    role: 'DIRECTEUR RESTAURANT VERDE',
+    role: 'Directeur RESTAURANT VERDE',
     comment: 'Connaissant déjà cette solution d’encaissement en France, nous avons naturellement choisi PC MAROC pour équiper notre nouveau restaurant. Nous retrouvons un système fiable, performant et parfaitement adapté à nos besoins, avec l’avantage d’un accompagnement local et d’une équipe disponible et réactive.',
     rating: 5,
     photo: logoVerde,
@@ -45,7 +45,7 @@ const reviews = [
   {
     id: 4,
     name: 'M . MOUAD',
-    role: 'DIRECTEUR CHAMPION EXPRESS',
+    role: 'Directeur CHAMPION EXPRESS',
     comment:'En pleine expansion, nous avions besoin d’une solution capable d’accompagner notre croissance. Avec INNOSHOP, proposé par PC MAROC, nous bénéficions d’une gestion efficace et d’un suivi centralisé de nos différents magasins. Une solution fiable et évolutive qui nous donne confiance pour poursuivre notre développement.'  ,
     rating: 5,
     photo: logoChampion,
