@@ -1,0 +1,158 @@
+/* Styles spécifiques à la page Beauté & Bien-être
+   (les styles communs viennent de Gesticlean.css) */
+
+.upper { text-transform: uppercase; }
+.upper em { color: var(--orange); }
+
+/* HERO */
+.hero-beaute {
+  position: relative;
+  background-color: #000;
+  background-size: cover;
+  background-position: right center;
+  padding: 80px 24px 70px;
+  overflow: hidden;
+}
+.hero-beaute::before {
+  content: "BEAUTE & BIEN ETRE";
+  position: absolute;
+  top: 6px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 110px;
+  font-weight: 800;
+  white-space: nowrap;
+  color: rgba(255, 255, 255, 0.07);
+  pointer-events: none;
+}
+.hero-beaute .hero-inner { position: relative; }
+.hero-line {
+  display: block;
+  width: 36px;
+  height: 2px;
+  background: #fff;
+  margin-bottom: 14px;
+}
+.hero-beaute h1 { font-size: 40px; margin-bottom: 14px; }
+.hero-beaute p { max-width: 480px; font-size: 16px; }
+
+/* INTRO (titre en gras sombre) */
+.intro h2 { font-weight: 700; }
+
+/* PRODUIT */
+.product-text h3.upper { font-size: 28px; }
+
+/* BLOCS ALTERNÉS */
+.bb-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 60px;
+  align-items: center;
+  padding: 80px 70px;
+  background: #f5f5fb;
+}
+.bb-row.reverse .bb-text { order: 2; }
+.bb-row.reverse .bb-img { order: 1; }
+.bb-text h3 {
+  font-size: 28px;
+  line-height: 1.25;
+  color: var(--dark);
+  margin-bottom: 16px;
+}
+.bb-text p { font-size: 15.5px; max-width: 520px; }
+.bb-img img {
+  width: 100%;
+  height: 300px;
+  object-fit: cover;
+  background: #ddd;
+  /* forme "blob" */
+  border-radius: 62% 38% 55% 45% / 55% 45% 55% 45%;
+}
+.bb-row.reverse .bb-img img {
+  border-radius: 40% 60% 45% 55% / 50% 55% 45% 50%;
+}
+
+/* FONCTIONNALITÉS */
+.bb-features {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 50px;
+  align-items: center;
+  padding: 70px 70px 60px;
+  background: #f5f5fb;
+}
+.bb-features-img img { width: 100%; height: auto; }
+.bb-features-text h3 {
+  font-size: 28px;
+  line-height: 1.25;
+  color: var(--dark);
+  margin-bottom: 18px;
+}
+.bb-features-text ul { padding-left: 18px; font-size: 14.5px; }
+.bb-features-text li { margin-bottom: 8px; }
+
+/* OUTILS / ROUE */
+.bb-tools { text-align: center; padding: 70px 40px 60px; }
+.bb-tools h2 { font-size: 30px; color: var(--dark); margin-bottom: 8px; }
+.bb-tools-sub {
+  font-size: 17px;
+  font-weight: 600;
+  color: var(--dark);
+  margin-bottom: 30px;
+}
+.wheel {
+  position: relative;
+  width: 520px;
+  height: 520px;
+  max-width: 100%;
+  margin: 0 auto;
+}
+.wheel-center {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 190px;
+  height: 190px;
+  transform: translate(-50%, -50%);
+  border-radius: 50%;
+  overflow: hidden;
+  background: #eee;
+}
+.wheel-center img { width: 100%; height: 100%; object-fit: cover; }
+.wheel-node {
+  position: absolute;
+  width: 112px;
+  height: 112px;
+  border-radius: 50%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 10px;
+  color: var(--dark);
+  box-shadow: 0 6px 14px rgba(0, 0, 0, 0.08);
+}
+.wheel-node strong { font-size: 18px; font-weight: 600; }
+.wheel-node span {
+  font-size: 10.5px;
+  font-weight: 700;
+  text-transform: uppercase;
+  line-height: 1.2;
+}
+
+/* CONFIANCE (bandeau) */
+.trust-strip { background: #f4f4f4; padding-bottom: 30px; }
+.trust-strip .logos img { filter: grayscale(1); opacity: 0.7; }
+.trust-line {
+  border: none;
+  border-top: 2px solid #111;
+  margin: 50px 0 0;
+}
+
+@media (max-width: 900px) {
+  .bb-row, .bb-features { grid-template-columns: 1fr; padding: 40px 24px; }
+  .bb-row.reverse .bb-text, .bb-row.reverse .bb-img { order: initial; }
+  .hero-beaute::before { font-size: 48px; }
+  .wheel { transform: scale(0.7); transform-origin: top center; height: 380px; }
+}

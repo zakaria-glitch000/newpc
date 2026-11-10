@@ -46,7 +46,8 @@ import Stock from '@/components/Stock';
 import Etiquette from '@/components/Etiquette';
 import Gms from '@/components/Gms';
 import Report from '@/components/Report';
-import Gesticlean from '@/components/Gesticlean'
+import Gesticlean from '@/components/Gesticlean';
+import Ebel from '@/components/Ebel';
 // ============================================================
 // SCROLL TO TOP
 // ============================================================
@@ -248,6 +249,10 @@ function App() {
             <Route
               path="/franchise"
               element={<Franchise />}
+            />
+    <Route
+              path="/Ebel"
+              element={<Ebel />}
             />
 
             {/* DÉVELOPPEMENT SUR MESURE */}
