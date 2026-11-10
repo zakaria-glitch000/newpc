@@ -17,7 +17,8 @@ import {
   type LucideIcon,
 } from 'lucide-react';
 
-import teamTrainingImage from '@/assets/acco.jpeg';
+import teamTrainingImage from '@/assets/accom.jpeg';
+import teamImage from '@/assets/choisir.jpeg';
 
 // ==========================================
 // TYPES
@@ -495,7 +496,7 @@ export function Services() {
               <div className="relative overflow-hidden rounded-[1.75rem] border border-white bg-white p-2 shadow-2xl shadow-orange-900/10">
 
                 <img
-                  src={teamTrainingImage}
+                  src={teamImage}
                   alt="Équipe professionnelle"
                   className="h-[420px] w-full rounded-[1.35rem] object-cover sm:h-[520px]"
                   loading="lazy"
