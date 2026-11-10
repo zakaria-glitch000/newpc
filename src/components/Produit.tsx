@@ -53,7 +53,7 @@ const products = [
     link: '/Pda',
   },
     {
-    title: 'MONAYEUR',
+    title: 'MONNAYEUR',
     description: 'Affichez et mettez à jour vos prix en temps réel.',
     image: etiquetteImage,
     icon: Tag,
