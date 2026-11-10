@@ -18,7 +18,7 @@ const reviews = [
   {
     id: 1,
     name: 'Eric Meignat',
-    role: 'Gérante, Restaurant',
+    role: 'Eric Meignat',
     comment:'Avec plusieurs magasins à travers le Maroc, nous avions besoin d’une solution fiable pour gérer efficacement notre activité. PC MAROC a parfaitement répondu à nos attentes en nous offrant une gestion simplifiée et un meilleur suivi de nos points de vente. Nous sommes pleinement satisfaits de cette collaboration et de la qualité de l’accompagnement.',
     rating: 5,
     photo: logoEricMeignat,
@@ -27,7 +27,7 @@ const reviews = [
   {
     id: 2,
     name: 'M. Rachid',
-    role: 'CLUB 555 Marrakech',
+    role: 'FONDATEUR CLUB 555',
     comment: 'Depuis plus de 15 ans, PC MAROC accompagne le CLUB 555 dans la gestion de son activité. Une collaboration durable, fondée sur la confiance, la fiabilité de nos solutions et un accompagnement constant au fil des années.',
     rating: 5,
     photo: logo555,
@@ -35,8 +35,8 @@ const reviews = [
   },
   {
     id: 3,
-    name: 'Verde Marrakech',
-    role: 'Direction, Restaurant Verde',
+    name: 'YOUNESS BIUAL',
+    role: 'DIRECTEUR RESTAURANT VERDE',
     comment: 'Connaissant déjà cette solution d’encaissement en France, nous avons naturellement choisi PC MAROC pour équiper notre nouveau restaurant. Nous retrouvons un système fiable, performant et parfaitement adapté à nos besoins, avec l’avantage d’un accompagnement local et d’une équipe disponible et réactive.',
     rating: 5,
     photo: logoVerde,
@@ -44,8 +44,8 @@ const reviews = [
   },
   {
     id: 4,
-    name: 'Champion Express',
-    role: 'Direction Réseau, Supérettes',
+    name: 'M . MOUAD',
+    role: 'DIRECTEUR CHAMPION EXPRESS',
     comment:'En pleine expansion, nous avions besoin d’une solution capable d’accompagner notre croissance. Avec INNOSHOP, proposé par PC MAROC, nous bénéficions d’une gestion efficace et d’un suivi centralisé de nos différents magasins. Une solution fiable et évolutive qui nous donne confiance pour poursuivre notre développement.'  ,
     rating: 5,
     photo: logoChampion,
@@ -53,8 +53,8 @@ const reviews = [
   },
   {
     id: 5,
-    name: 'Le Grand Bazar',
-    role: 'Direction Expansion Retail',
+    name: 'M . MICHEAL',
+    role: 'Fondateur RESTAURNT GRAND BAZRD',
     comment: 'Depuis l’installation de la solution PC MAROC (caisse, KDS et reporting), notre service est plus rapide, la coordination avec la cuisine plus efficace et nous avons une meilleure visibilité sur notre activité.',
     rating: 5,
     photo: logoGrandBazar,
@@ -62,8 +62,8 @@ const reviews = [
   },
   {
     id: 6,
-    name: 'Cleanzy & Réseau Pressings',
-    role: 'Gestion de Pressings au Maroc',
+    name: 'Mohamed Khachani',
+    role: 'Fondateur CLEANZY PRESSING',
     comment: 'Depuis plusieurs années, nous faisons confiance à PC MAROC pour équiper nos pressings à travers le Maroc. Une collaboration solide qui nous permet de développer notre réseau en toute sérénité, avec des solutions fiabilité, adaptées à notre métier et un accompagnement de qualité. PC MAROC est devenu un véritable partenaire de notre croissance.',
     rating: 5,
     photo: logoCleanzy,

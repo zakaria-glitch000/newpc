@@ -13,7 +13,7 @@ import {
 } from 'lucide-react';
 import { Link } from 'react-router-dom';
 
-import caisseImage from '@/assets/ncaisse.jpeg';
+import caisseImage from '@/assets/cass.jpeg';
 import borneImage from '@/assets/nboorn.png';
 import kdsImage from '@/assets/nblaka.jpeg';
 import terminalImage from '@/assets/npda.jpeg';
