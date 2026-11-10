@@ -73,7 +73,7 @@ export interface Solution {
 export const SOLUTIONS: Solution[] = [
   {
     icon: ShoppingCart,
-    title: 'Systèmes de caisse & POS',
+    title: 'Encaissement intelligent',
     slug: 'pos',
     description:
       'Des terminaux de point de vente modernes, rapides et fiables pour la restauration, le retail et les services.',
@@ -86,7 +86,7 @@ export const SOLUTIONS: Solution[] = [
 
   {
     icon: Monitor,
-    title: 'Bornes de commande intelligentes',
+    title: 'Commande autonome',
     slug: 'bornes-commande',
     description:
       'Offrez à vos clients une expérience rapide et autonome grâce à des bornes connectées adaptées à votre activité.',
@@ -99,7 +99,7 @@ export const SOLUTIONS: Solution[] = [
 
   {
     icon: Network,
-    title: 'Gestion des stocks',
+    title: 'Stocks maitrisés',
     slug: 'gestion-stocks',
     description:
       'Suivez vos inventaires en temps réel et anticipez vos besoins grâce à une gestion simple et efficace de vos stocks.',
@@ -112,7 +112,7 @@ export const SOLUTIONS: Solution[] = [
 
   {
     icon: HeartHandshake,
-    title: 'Fidélité client',
+    title: 'Relation & fidélisation',
     slug: 'fidelite-client',
     description:
       'Développez la fidélité de vos clients grâce à des programmes personnalisés et des actions marketing adaptées à votre activité.',
@@ -125,7 +125,7 @@ export const SOLUTIONS: Solution[] = [
 
   {
     icon: ChartNoAxesCombined,
-    title: 'Analyse des ventes',
+    title: 'Pilotage des performances',
     slug: 'analyse-ventes',
     description:
       'Analysez vos ventes grâce à des rapports clairs et des tableaux de bord pour mieux comprendre votre activité et prendre les bonnes décisions.',
@@ -138,7 +138,7 @@ export const SOLUTIONS: Solution[] = [
 
   {
     icon: Settings2,
-    title: 'Logiciels de gestion sur mesure',
+    title: 'Gestion centralisée',
     slug: 'kds',
     description:
       'Des solutions logicielles conçues pour répondre aux besoins spécifiques de votre entreprise et accompagner son évolution.',
