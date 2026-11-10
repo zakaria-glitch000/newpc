@@ -18,7 +18,7 @@ const reviews = [
   {
     id: 1,
     name: 'Eric Meignat',
-    role: 'Eric Meignat',
+    role: 'Fondateur Eric Meignat',
     comment:'Avec plusieurs magasins à travers le Maroc, nous avions besoin d’une solution fiable pour gérer efficacement notre activité. PC MAROC a parfaitement répondu à nos attentes en nous offrant une gestion simplifiée et un meilleur suivi de nos points de vente. Nous sommes pleinement satisfaits de cette collaboration et de la qualité de l’accompagnement.',
     rating: 5,
     photo: logoEricMeignat,
@@ -63,7 +63,7 @@ const reviews = [
   {
     id: 6,
     name: 'Mohamed Khachani',
-    role: 'Fondateur CLEANZY PRESSING',
+    role: 'Franchise Fondateur CLEANZY PRESSING',
     comment: 'Depuis plusieurs années, nous faisons confiance à PC MAROC pour équiper nos pressings à travers le Maroc. Une collaboration solide qui nous permet de développer notre réseau en toute sérénité, avec des solutions fiabilité, adaptées à notre métier et un accompagnement de qualité. PC MAROC est devenu un véritable partenaire de notre croissance.',
     rating: 5,
     photo: logoCleanzy,
