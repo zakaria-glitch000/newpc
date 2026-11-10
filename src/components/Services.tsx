@@ -232,8 +232,7 @@ export function Services() {
                   <img
                     src={teamTrainingImage}
                     alt="Notre équipe accompagnant ses clients"
-                    className="h-[400px] w-full object-cover sm:h-[500px]"
-                    loading="lazy"
+className="h-[400px] w-full object-cover sm:h-[500px]"                 loading="lazy"
                   />
 
                   <div className="absolute inset-0 bg-gradient-to-t from-slate-950/85 via-slate-950/5 to-transparent" />
@@ -498,8 +497,7 @@ export function Services() {
                 <img
                   src={teamImage}
                   alt="Équipe professionnelle"
-                  className="h-[420px] w-full rounded-[1.35rem] object-cover sm:h-[520px]"
-                  loading="lazy"
+className="h-auto w-full rounded-[1.35rem] object-contain"                  loading="lazy"
                 />
 
               </div>
