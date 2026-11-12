@@ -54,7 +54,7 @@ const reviews = [
   {
     id: 5,
     name: 'M . MICHEAL',
-    role: 'Fondateur RESTAURNT GRAND BAZRD',
+    role: 'Fondateur RESTAURNT GRAND BAZARD',
     comment: 'Depuis l’installation de la solution PC MAROC (caisse, KDS et reporting), notre service est plus rapide, la coordination avec la cuisine plus efficace et nous avons une meilleure visibilité sur notre activité.',
     rating: 5,
     photo: logoGrandBazar,

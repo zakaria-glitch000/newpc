@@ -1,6 +1,7 @@
 
 import { useId } from 'react';
 import { motion, type Variants } from 'framer-motion';
+import { ClipboardCheck } from 'lucide-react';
 
 import {
   Handshake,
@@ -64,6 +65,12 @@ const services: Service[] = [
     description:
       'Des applications métier personnalisées selon vos besoins spécifiques.',
     icon: Code,
+  },
+    {
+    title: 'Audit & Optimisation',
+    description:
+      'Nous analysons vos installations et vos méthodes de travail pour améliorer les performances de vos solutions et accompagner la évolution de votre activité.',
+    icon: ClipboardCheck,
   },
 ];
 
