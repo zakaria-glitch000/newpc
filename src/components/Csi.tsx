@@ -2,6 +2,7 @@ import type { CSSProperties, ElementType, ReactNode } from 'react';
 import { motion } from 'framer-motion';
 import {
   ArrowRight,
+  Building2,
   CalendarDays,
   Check,
   ChartNoAxesCombined,
@@ -202,6 +203,47 @@ const CSI_BENEFITS: { icon: ElementType; title: string; text: string }[] = [
     text: 'Nous vous accompagnons à chaque étape : installation, formation, assistance technique et maintenance.',
   },
 ];
+
+/* =====================================================
+    LOGOS CLIENTS
+    -> Mettez les logos dans : src/assets/clients/
+       (png, jpg, webp, svg) : ils sont chargés automatiquement.
+    -> Si le dossier est vide, 60 placeholders s'affichent.
+===================================================== */
+
+type ClientLogo = { name: string; src?: string };
+
+const logoModules = import.meta.glob(
+  '@/assets/clients/*.{png,jpg,jpeg,webp,svg}',
+  { eager: true, import: 'default' },
+) as Record<string, string>;
+
+const REAL_LOGOS: ClientLogo[] = Object.entries(logoModules)
+  .sort(([a], [b]) => a.localeCompare(b))
+  .map(([path, src]) => {
+    const file = path.split('/').pop() ?? 'client';
+    return { name: file.replace(/\.[^.]+$/, '').replace(/[-_]/g, ' '), src };
+  });
+
+const PLACEHOLDER_LOGOS: ClientLogo[] = Array.from({ length: 60 }, (_, i) => ({
+  name: `Client ${String(i + 1).padStart(2, '0')}`,
+}));
+
+const CLIENT_LOGOS: ClientLogo[] = REAL_LOGOS.length
+  ? REAL_LOGOS
+  : PLACEHOLDER_LOGOS;
+
+const MARQUEE_CSS = `
+@keyframes csi-marquee-left  { from { transform: translateX(0); }    to { transform: translateX(-50%); } }
+@keyframes csi-marquee-right { from { transform: translateX(-50%); } to { transform: translateX(0); } }
+.csi-marquee-track { display: flex; width: max-content; }
+.csi-marquee-left  { animation: csi-marquee-left  var(--csi-speed, 60s) linear infinite; }
+.csi-marquee-right { animation: csi-marquee-right var(--csi-speed, 60s) linear infinite; }
+.csi-marquee:hover .csi-marquee-track { animation-play-state: paused; }
+@media (prefers-reduced-motion: reduce) {
+  .csi-marquee-track { animation: none !important; }
+}
+`;
 
 /* =====================================================
     ANIMATIONS
@@ -602,13 +644,81 @@ function NumberedCard({
     </Link>
   );
 }
+
+/* =====================================================
+    LOGOS CLIENTS — CARTE + LIGNE MARQUEE
+===================================================== */
+
+function LogoCard({ logo }: { logo: ClientLogo }) {
+  return (
+    <div className="group mx-2.5 flex h-20 w-40 shrink-0 items-center justify-center rounded-2xl bg-white px-5 shadow-md shadow-blue-900/[0.05] ring-1 ring-slate-200/70 transition-all duration-300 hover:-translate-y-1 hover:shadow-xl hover:ring-blue-300 sm:h-24 sm:w-48">
+      {logo.src ? (
+        <img
+          src={logo.src}
+          alt={logo.name}
+          loading="lazy"
+          decoding="async"
+          className="max-h-full max-w-full object-contain opacity-70 grayscale transition-all duration-300 group-hover:opacity-100 group-hover:grayscale-0"
+        />
+      ) : (
+        <div className="flex items-center gap-2 text-slate-400 transition-colors duration-300 group-hover:text-blue-600">
+          <Building2 className="h-5 w-5" strokeWidth={1.8} />
+          <span className="text-sm font-bold">{logo.name}</span>
+        </div>
+      )}
+    </div>
+  );
+}
+
+function MarqueeRow({
+  logos,
+  direction,
+  speed,
+}: {
+  logos: ClientLogo[];
+  direction: 'left' | 'right';
+  speed: number;
+}) {
+  // On duplique la liste pour une boucle sans coupure
+  const loop = [...logos, ...logos];
+
+  return (
+    <div
+      className="csi-marquee overflow-hidden py-2"
+      style={{
+        maskImage:
+          'linear-gradient(to right, transparent, black 8%, black 92%, transparent)',
+        WebkitMaskImage:
+          'linear-gradient(to right, transparent, black 8%, black 92%, transparent)',
+      }}
+    >
+      <div
+        className={`csi-marquee-track ${
+          direction === 'left' ? 'csi-marquee-left' : 'csi-marquee-right'
+        }`}
+        style={{ ['--csi-speed' as string]: `${speed}s` }}
+      >
+        {loop.map((logo, i) => (
+          <LogoCard key={`${logo.name}-${i}`} logo={logo} />
+        ))}
+      </div>
+    </div>
+  );
+}
+
 /* =====================================================
     PAGE
 ===================================================== */
 
 export default function SolutionsRestauration() {
+  const half = Math.ceil(CLIENT_LOGOS.length / 2);
+  const rowOne = CLIENT_LOGOS.slice(0, half);
+  const rowTwo = CLIENT_LOGOS.slice(half);
+
   return (
     <main className="overflow-hidden bg-white text-slate-800">
+      <style>{MARQUEE_CSS}</style>
+
       {/* =====================================================
           HERO
       ===================================================== */}
@@ -802,6 +912,62 @@ export default function SolutionsRestauration() {
         </div>
       </section>
 
+      {/* =====================================================
+          ILS NOUS FONT CONFIANCE (LOGOS CLIENTS)
+      ===================================================== */}
+
+      <section className="relative isolate overflow-hidden bg-gradient-to-b from-white via-sky-50/40 to-white py-14 sm:py-20">
+        <div
+          aria-hidden="true"
+          className="pointer-events-none absolute -right-24 top-10 -z-10 h-72 w-72 rounded-full bg-blue-100/50 blur-3xl"
+        />
+
+        <div className="mx-auto max-w-6xl px-5 sm:px-8">
+          <motion.div
+            variants={fadeUp}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, margin: '-50px' }}
+            transition={{ duration: 0.5 }}
+            className="mx-auto max-w-2xl text-center"
+          >
+            <span className="inline-flex w-fit items-center gap-2 rounded-full border border-blue-200 bg-white px-4 py-1.5 text-[11px] font-bold uppercase tracking-wider text-blue-700 shadow-sm">
+              <span className="h-2 w-2 rounded-full bg-emerald-500" />
+              Nos références
+            </span>
+
+            <h2 className="mt-4 text-3xl font-black leading-tight tracking-tight text-[#0b2a5b] sm:text-4xl lg:text-[2.6rem]">
+              Ils nous font <span className="text-blue-600">confiance</span>
+            </h2>
+
+            <p className="mt-4 text-sm leading-relaxed text-slate-600 sm:text-base">
+              Plus de {CLIENT_LOGOS.length} établissements utilisent déjà les
+              solutions CSI au quotidien pour gérer et développer leur
+              activité.
+            </p>
+          </motion.div>
+        </div>
+
+        <motion.div
+          variants={fadeUp}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, margin: '-50px' }}
+          transition={{ duration: 0.6, delay: 0.1 }}
+          className="mt-10 space-y-3 sm:mt-12"
+        >
+          <MarqueeRow
+            logos={rowOne}
+            direction="left"
+            speed={Math.max(30, rowOne.length * 2.2)}
+          />
+          <MarqueeRow
+            logos={rowTwo}
+            direction="right"
+            speed={Math.max(30, rowTwo.length * 2.4)}
+          />
+        </motion.div>
+      </section>
 
       {/* =====================================================
           POURQUOI CHOISIR CSI ?
