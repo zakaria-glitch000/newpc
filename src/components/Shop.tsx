@@ -56,6 +56,154 @@ const IMAGES = {
   specialise: commercanteImage,
 };
 
+/* =====================================================
+   LOGOS CLIENTS
+   -> Mets les logos dans : src/assets/innoshop/
+      (png, jpg, webp, svg) : ils sont chargés automatiquement.
+   -> Si le dossier est vide, 24 placeholders s'affichent.
+===================================================== */
+type ClientLogo = { name: string; src?: string };
+
+const logoModules = import.meta.glob<string>(
+  '@/assets/innoshop/*.{png,jpg,jpeg,webp,svg}',
+  { eager: true, import: 'default' }
+);
+
+const REAL_LOGOS: ClientLogo[] = Object.entries(logoModules)
+  .sort(([a], [b]) => a.localeCompare(b))
+  .map(([path, src]) => {
+    const file = path.split('/').pop() || 'client';
+    return { name: file.replace(/\.[^.]+$/, '').replace(/[-_]/g, ' '), src };
+  });
+
+const PLACEHOLDER_LOGOS: ClientLogo[] = Array.from({ length: 24 }, (_, i) => ({
+  name: `Client ${String(i + 1).padStart(2, '0')}`,
+}));
+
+const CLIENT_LOGOS: ClientLogo[] = REAL_LOGOS.length
+  ? REAL_LOGOS
+  : PLACEHOLDER_LOGOS;
+
+const MARQUEE_CSS = `
+.innoshop-trust {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 72px 20px;
+  text-align: center;
+}
+.innoshop-trust-eyebrow {
+  display: inline-block;
+  font-size: 12px;
+  font-weight: 800;
+  letter-spacing: .2em;
+  text-transform: uppercase;
+  color: #e31b23;
+}
+.innoshop-trust h2 {
+  margin: 10px 0 0;
+  font-size: clamp(26px, 4vw, 40px);
+  font-weight: 800;
+  line-height: 1.15;
+  color: #111827;
+}
+
+.clients-marquee {
+  overflow: hidden;
+  padding: 8px 0;
+  -webkit-mask-image: linear-gradient(to right, transparent, #000 8%, #000 92%, transparent);
+  mask-image: linear-gradient(to right, transparent, #000 8%, #000 92%, transparent);
+}
+.clients-track {
+  display: flex;
+  width: max-content;
+  animation: clients-left var(--clients-speed, 60s) linear infinite;
+}
+.clients-track.reverse { animation-name: clients-right; }
+.clients-marquee:hover .clients-track { animation-play-state: paused; }
+
+@keyframes clients-left  { from { transform: translateX(0); }    to { transform: translateX(-50%); } }
+@keyframes clients-right { from { transform: translateX(-50%); } to { transform: translateX(0); } }
+
+.client-card {
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 170px;
+  height: 84px;
+  margin: 0 10px;
+  padding: 0 20px;
+  background: #fff;
+  border: 1px solid #e5e7eb;
+  border-radius: 16px;
+  box-shadow: 0 4px 14px rgba(15, 23, 42, 0.06);
+  transition: transform .3s ease, box-shadow .3s ease, border-color .3s ease;
+}
+.client-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 28px rgba(15, 23, 42, 0.12);
+  border-color: #e31b23;
+}
+.client-card img {
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
+  filter: grayscale(1);
+  opacity: .7;
+  transition: filter .3s ease, opacity .3s ease;
+}
+.client-card:hover img { filter: none; opacity: 1; }
+.client-card .client-ph {
+  font-size: 14px;
+  font-weight: 700;
+  color: #9ca3af;
+  transition: color .3s ease;
+}
+.client-card:hover .client-ph { color: #e31b23; }
+
+.clients-rows { display: grid; gap: 12px; margin-top: 36px; }
+.clients-count { margin-top: 12px; color: #64748b; font-size: 15px; text-align: center; }
+
+@media (max-width: 640px) {
+  .client-card { width: 140px; height: 72px; margin: 0 8px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .clients-track { animation: none !important; }
+}
+`;
+
+const MarqueeRow = ({
+  logos,
+  reverse = false,
+  speed = 60,
+}: {
+  logos: ClientLogo[];
+  reverse?: boolean;
+  speed?: number;
+}) => {
+  // On duplique la liste pour une boucle sans coupure
+  const loop = [...logos, ...logos];
+
+  return (
+    <div className="clients-marquee">
+      <div
+        className={`clients-track${reverse ? ' reverse' : ''}`}
+        style={{ '--clients-speed': `${speed}s` } as React.CSSProperties}
+      >
+        {loop.map((l, i) => (
+          <div className="client-card" key={`${l.name}-${i}`}>
+            {l.src ? (
+              <img src={l.src} alt={l.name} loading="lazy" decoding="async" />
+            ) : (
+              <span className="client-ph">{l.name}</span>
+            )}
+          </div>
+        ))}
+      </div>
+    </div>
+  );
+};
+
 const Logo = ({
   size = 'lg',
 }: {
@@ -515,8 +663,14 @@ export default function InnoShop() {
     });
   };
 
+  const half = Math.ceil(CLIENT_LOGOS.length / 2);
+  const rowOne = CLIENT_LOGOS.slice(0, half);
+  const rowTwo = CLIENT_LOGOS.slice(half);
+
   return (
     <main className="innoshop">
+      <style>{MARQUEE_CSS}</style>
+
       {/* HERO */}
       <section className="hero" id="innoshop-accueil">
         <div className="hero-card">
@@ -605,38 +759,38 @@ export default function InnoShop() {
         </div>
       </section>
 
-{/* FONCTIONNALITÉS */}
-<section className="section features" id="innoshop-fonctionnalites">
-  <div className="section-heading">
-    <span className="section-eyebrow">Une solution complète</span>
-    <h2 className="title">
-      Les fonctionnalités majeures d'<Logo size="inline" />
-    </h2>
-    <p className="subtitle">
-      Une solution ergonomique et performante pour piloter l'ensemble de votre commerce.
-    </p>
-  </div>
-
-  <div className="features-grid">
-    {features.map((feature) => (
-      <article className="card feature-card" key={feature.n}>
-        <div className="card-top-header">
-          <span className="feature-badge">#{feature.n}</span>
-          <RedIcon round={true}>{feature.icon}</RedIcon>
+      {/* FONCTIONNALITÉS */}
+      <section className="section features" id="innoshop-fonctionnalites">
+        <div className="section-heading">
+          <span className="section-eyebrow">Une solution complète</span>
+          <h2 className="title">
+            Les fonctionnalités majeures d'<Logo size="inline" />
+          </h2>
+          <p className="subtitle">
+            Une solution ergonomique et performante pour piloter l'ensemble de votre commerce.
+          </p>
         </div>
 
-        <div className="feature-card-content">
-          <h3>{feature.title}</h3>
-          <Bullets items={feature.items} />
-        </div>
+        <div className="features-grid">
+          {features.map((feature) => (
+            <article className="card feature-card" key={feature.n}>
+              <div className="card-top-header">
+                <span className="feature-badge">#{feature.n}</span>
+                <RedIcon round={true}>{feature.icon}</RedIcon>
+              </div>
 
-        <div className="feature-mockup-wrapper">
-          {mocks[feature.mock]}
+              <div className="feature-card-content">
+                <h3>{feature.title}</h3>
+                <Bullets items={feature.items} />
+              </div>
+
+              <div className="feature-mockup-wrapper">
+                {mocks[feature.mock]}
+              </div>
+            </article>
+          ))}
         </div>
-      </article>
-    ))}
-  </div>
-</section>
+      </section>
 
       {/* POURQUOI */}
       <section className="why">
@@ -738,6 +892,28 @@ export default function InnoShop() {
               </div>
             </article>
           ))}
+        </div>
+      </section>
+
+      {/* CONFIANCE : LOGOS CLIENTS */}
+      <section className="innoshop-trust" id="innoshop-clients">
+        <span className="innoshop-trust-eyebrow">Nos références</span>
+        <h2>Soyez parmi ceux qui nous font confiance</h2>
+        <p className="clients-count">
+          Plus de {CLIENT_LOGOS.length} établissements utilisent déjà nos
+          solutions au quotidien.
+        </p>
+
+        <div className="clients-rows">
+          <MarqueeRow
+            logos={rowOne}
+            speed={Math.max(30, rowOne.length * 2.2)}
+          />
+          <MarqueeRow
+            logos={rowTwo}
+            reverse
+            speed={Math.max(30, rowTwo.length * 2.4)}
+          />
         </div>
       </section>
 
