@@ -45,10 +45,44 @@ const SERVICES = [
 ];
 
 /* =====================================================
+   HERO : supprime tout voile / dabab blanc hérité
+   d'autres pages (Innoshop.css, Ebel.css, ...)
+===================================================== */
+const HERO_CSS = `
+.page.gesticlean .hero::before,
+.page.gesticlean .hero::after,
+.page.gesticlean .hero-inner::before,
+.page.gesticlean .hero-inner::after {
+  content: none !important;
+  display: none !important;
+  background: none !important;
+}
+.page.gesticlean .hero {
+  background-color: #555;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-blend-mode: normal !important;
+  backdrop-filter: none !important;
+  -webkit-backdrop-filter: none !important;
+  filter: none !important;
+  opacity: 1 !important;
+}
+.page.gesticlean .hero-inner {
+  background: none !important;
+  backdrop-filter: none !important;
+  -webkit-backdrop-filter: none !important;
+  filter: none !important;
+  box-shadow: none !important;
+  border: 0 !important;
+}
+`;
+
+/* =====================================================
    LOGOS CLIENTS
    -> Mets les logos dans : src/assets/gesticlean/
       (png, jpg, webp, svg) : ils sont chargés automatiquement.
-   -> Si le dossier est vide, 60 placeholders s'affichent.
+   -> Si le dossier est vide, 24 placeholders s'affichent.
 ===================================================== */
 const logoModules = import.meta.glob(
   "@/assets/gesticlean/*.{png,jpg,jpeg,webp,svg}",
@@ -110,10 +144,11 @@ const MARQUEE_CSS = `
   max-width: 100%;
   max-height: 100%;
   object-fit: contain;
-  filter: grayscale(1);
-  opacity: .7;
-  transition: filter .3s ease, opacity .3s ease;
+  filter: none;
+  opacity: 1;
+  transition: transform .3s ease;
 }
+.client-card:hover img { filter: none; opacity: 1; transform: scale(1.05); }
 .client-card:hover img { filter: none; opacity: 1; }
 .client-card .client-ph {
   font-size: 14px;
@@ -544,16 +579,15 @@ export default function Gesticlean() {
   const rowTwo = CLIENT_LOGOS.slice(half);
 
   return (
-    <div className="page">
+    <div className="page gesticlean">
       <style>{MARQUEE_CSS}</style>
       <style>{CONNECT_CSS}</style>
+      <style>{HERO_CSS}</style>
 
       {/* HERO */}
       <header
         className="hero"
-        style={{
-          backgroundImage: `linear-gradient(rgba(0,0,0,.55), rgba(0,0,0,.55)), url(${heroImg})`,
-        }}
+        style={{ backgroundImage: `url(${heroImg})` }}
       >
         <div className="hero-inner">
           <span className="hero-bar" />

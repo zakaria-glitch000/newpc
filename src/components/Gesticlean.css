@@ -36,7 +36,12 @@ em { color: var(--orange); font-style: normal; }
   padding: 120px 24px 110px;
   color: #fff;
 }
-.hero-inner { max-width: 1100px; margin: 0 auto; }
+.hero-inner {
+  max-width: none;
+  margin: 0;
+  padding-left: 50px; /* nafs l-padding dyal les autres sections */
+  text-align: left;
+}
 .hero-bar {
   display: block;
   width: 80px;
@@ -46,12 +51,20 @@ em { color: var(--orange); font-style: normal; }
 }
 .hero h1 {
   font-size: 58px;
-  font-weight: 700;
+  font-weight: 800;
   letter-spacing: 1px;
   line-height: 1.15;
   margin-bottom: 20px;
+  color: #fff;
+  text-align: left;
 }
-.hero p { max-width: 640px; font-size: 20px; color: #eee; }
+.hero p {
+  max-width: 640px;
+  font-size: 20px;
+  font-weight: 700;
+  color: #fff;
+  text-align: left;
+}
 
 /* INTRO */
 .intro {
@@ -295,6 +308,7 @@ em { color: var(--orange); font-style: normal; }
 @media (max-width: 900px) {
   .product, .conveyor { grid-template-columns: 1fr; padding: 36px 24px; }
   .features { grid-template-columns: 1fr; padding: 36px 24px; }
+  .hero-inner { padding-left: 24px; }
   .hero h1 { font-size: 38px; }
   .hero p { font-size: 17px; }
   .intro h2, .product-text h3, .conveyor-text h3, .trust h2 { font-size: 26px; }
