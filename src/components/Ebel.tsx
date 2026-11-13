@@ -75,10 +75,11 @@ const MARQUEE_CSS = `
   max-width: 100%;
   max-height: 100%;
   object-fit: contain;
-  filter: grayscale(1);
-  opacity: .7;
-  transition: filter .3s ease, opacity .3s ease;
+  filter: none;
+  opacity: 1;
+  transition: transform .3s ease;
 }
+.client-card:hover img { filter: none; opacity: 1; transform: scale(1.05); }
 .client-card:hover img { filter: none; opacity: 1; }
 .client-card .client-ph {
   font-size: 14px;
