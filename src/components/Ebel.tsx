@@ -1,202 +1,295 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import "./Ebel.css";
 
-/* Section Connexion + Nos services */
-import device1 from "@/assets/easy.jpeg";
-import device2 from "@/assets/easy.jpeg";
-import device3 from "@/assets/easy.jpeg";
-import device4 from "@/assets/easy.jpeg";
-import device5 from "@/assets/easy.jpeg";
-import device6 from "@/assets/easy.jpeg";
-import servicesImg from "@/assets/easy.jpeg";
-
-const DEVICES = [
-  { src: device1, alt: "Périphérique 1" },
-  { src: device2, alt: "Périphérique 2" },
-  { src: device3, alt: "Périphérique 3" },
-  { src: device4, alt: "Périphérique 4" },
-  { src: device5, alt: "Périphérique 5" },
-  { src: device6, alt: "Périphérique 6" },
-];
-
-const SERVICES = [
-  {
-    title: "Conseil et Formation",
-    text: "Notre équipe est à même de vous accompagner dans votre projet. Écouter, détecter vos besoins et analyser pour vous proposer la meilleure solution en terme de délai et de budget.",
-  },
-  { title: "Installation et paramétrage", text: "" },
-  { title: "Support Technique", text: "" },
-];
-
 /* Images : adapte les chemins/noms à tes vrais fichiers */
-import heroImg from "@/assets/easy.jpeg";
-import posImg from "@/assets/easy.jpeg";
-import rdvImg from "@/assets/easy.jpeg";
-import caImg from "@/assets/easy.jpeg";
-import gestionImg from "@/assets/easy.jpeg";
-import devicesImg from "@/assets/easy.jpeg";
+import heroImg from "@/assets/ebel.jpeg";
+import rdvImg from "@/assets/1ebel.jpeg";
+import caImg from "@/assets/2ebel.jpeg";
+import gestionImg from "@/assets/3ebel.jpeg";
+import devicesImg from "@/assets/4ebel.jpeg";
 import wheelCenterImg from "@/assets/easy.jpeg";
 
-import logo1 from "@/assets/easy.jpeg";
-import logo2 from "@/assets/easy.jpeg";
-import logo3 from "@/assets/easy.jpeg";
-import logo4 from "@/assets/easy.jpeg";
-import logo5 from "@/assets/easy.jpeg";
+/* =====================================================
+   LOGOS CLIENTS
+   -> Mets les logos dans : src/assets/ebel/
+      (png, jpg, webp, svg) : ils sont chargés automatiquement.
+   -> Si le dossier est vide, 24 placeholders s'affichent.
+===================================================== */
+const logoModules = import.meta.glob(
+  "@/assets/ebel/*.{png,jpg,jpeg,webp,svg}",
+  { eager: true, import: "default" }
+);
 
-const LOGOS = [
-  { name: "Partenaire 1", src: logo1 },
-  { name: "Partenaire 2", src: logo2 },
-  { name: "The Club", src: logo3 },
-  { name: "Partenaire 4", src: logo4 },
-  { name: "Partenaire 5", src: logo5 },
-];
+const REAL_LOGOS = Object.entries(logoModules)
+  .sort(([a], [b]) => a.localeCompare(b))
+  .map(([path, src]) => {
+    const file = path.split("/").pop() || "client";
+    return { name: file.replace(/\.[^.]+$/, "").replace(/[-_]/g, " "), src };
+  });
+
+const PLACEHOLDER_LOGOS = Array.from({ length: 24 }, (_, i) => ({
+  name: `Client ${String(i + 1).padStart(2, "0")}`,
+}));
+
+const CLIENT_LOGOS = REAL_LOGOS.length ? REAL_LOGOS : PLACEHOLDER_LOGOS;
+
+const MARQUEE_CSS = `
+.clients-marquee {
+  overflow: hidden;
+  padding: 8px 0;
+  -webkit-mask-image: linear-gradient(to right, transparent, #000 8%, #000 92%, transparent);
+  mask-image: linear-gradient(to right, transparent, #000 8%, #000 92%, transparent);
+}
+.clients-track {
+  display: flex;
+  width: max-content;
+  animation: clients-left var(--clients-speed, 60s) linear infinite;
+}
+.clients-track.reverse { animation-name: clients-right; }
+.clients-marquee:hover .clients-track { animation-play-state: paused; }
+
+@keyframes clients-left  { from { transform: translateX(0); }    to { transform: translateX(-50%); } }
+@keyframes clients-right { from { transform: translateX(-50%); } to { transform: translateX(0); } }
+
+.client-card {
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 170px;
+  height: 84px;
+  margin: 0 10px;
+  padding: 0 20px;
+  background: #fff;
+  border: 1px solid #e5e7eb;
+  border-radius: 16px;
+  box-shadow: 0 4px 14px rgba(15, 23, 42, 0.06);
+  transition: transform .3s ease, box-shadow .3s ease, border-color .3s ease;
+}
+.client-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 28px rgba(15, 23, 42, 0.12);
+  border-color: #f26522;
+}
+.client-card img {
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
+  filter: grayscale(1);
+  opacity: .7;
+  transition: filter .3s ease, opacity .3s ease;
+}
+.client-card:hover img { filter: none; opacity: 1; }
+.client-card .client-ph {
+  font-size: 14px;
+  font-weight: 700;
+  color: #9ca3af;
+  transition: color .3s ease;
+}
+.client-card:hover .client-ph { color: #f26522; }
+
+.clients-rows { display: grid; gap: 12px; margin-top: 36px; }
+.clients-count { margin-top: 12px; color: #64748b; font-size: 15px; text-align: center; }
+
+@media (max-width: 640px) {
+  .client-card { width: 140px; height: 72px; margin: 0 8px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .clients-track { animation: none !important; }
+}
+`;
+
+function MarqueeRow({ logos, reverse = false, speed = 60 }) {
+  // On duplique la liste pour une boucle sans coupure
+  const loop = [...logos, ...logos];
+  return (
+    <div className="clients-marquee">
+      <div
+        className={`clients-track${reverse ? " reverse" : ""}`}
+        style={{ "--clients-speed": `${speed}s` }}
+      >
+        {loop.map((l, i) => (
+          <div className="client-card" key={`${l.name}-${i}`}>
+            {l.src ? (
+              <img src={l.src} alt={l.name} loading="lazy" decoding="async" />
+            ) : (
+              <span className="client-ph">{l.name}</span>
+            )}
+          </div>
+        ))}
+      </div>
+    </div>
+  );
+}
 
 const BLOCKS = [
   {
     title: (
       <>
-        REMPLISSEZ VOTRE AGENDA <em>AVEC DES RDV CONFIRMÉS</em>
+        REMPLISSEZ VOTRE AGENDA
+        <br />
+        AVEC DES RDV CONFIRMÉS
       </>
     ),
-    text: "Boostez vos réservations, depuis votre site internet, votre page Instagram, Facebook ou Google et prises votre centre planning avec qui vous le voulez. Réservez vos réservations par des exemples et envoyez vos nouveautés en lecture aux clients à l'agenda par horaires les plus actives. Vous voulez ? Un module a unique propriétaire de votre Beauté et l'utilisateur ne sont pas.",
+    text: "Boostez vos réservations, fidélisez facilement votre clientèle et gérez facilement votre planning grâce à un agenda simple et intuitif, connecté à vos équipes, cabines et équipements.",
     img: rdvImg,
     reverse: false,
   },
   {
     title: (
       <>
-        BOOSTER VOTRE <em>CHIFFRE D'AFFAIRE</em>
+        BOOSTEZ VOTRE
+        <br />
+        CHIFFRE D'AFFAIRE
       </>
     ),
-    text: "Augmentez vos tarifs en ouvrant la vente des Cadeaux et Bons cadeaux personnalisés et envoyez-les à vos clients numériques via WhatsApp avec votre logiciel EasyBeauty. Faites rapidement un boost de 30% de chiffre d'affaires ! Pour faire encore grimper les résultats de votre institut de beauté, proposez, à ses clients la solution des cartes FIDÉLITÉ pour les Abonnements et CUBES.",
+    text: "Augmentez vos ventes avec les Chèques et Bons cadeaux personnalisés et envoyez-les en format numérique via WhatsApp avec votre logiciel EasyBeauty.",
     img: caImg,
     reverse: true,
   },
   {
     title: (
       <>
-        GAGNEZ DU TEMPS DANS <em>VOTRE GESTION</em>
+        GAGNEZ DU TEMPS
+        <br />
+        DANS VOTRE GESTION
       </>
     ),
-    text: "Pourquoi continuer à jongler avec les planning à des employés, salariés et équipements ? EASYBEAUTY prend en compte automatiquement les compléments de votre personnel contrôlées en la disponibilité de vos Cabines pour gérer dans votre agenda les tâches et les monter le plus optimisée qui soit !",
+    text: "Pourquoi jongler avec les plannings des employés, cabines et équipements ? EASYBEAUTY prend en compte automatiquement les compétences de votre personnel et les disponibilités de vos cabines pour placer vos rendez-vous de la manière la plus optimisée qui soit !",
     img: gestionImg,
     reverse: false,
   },
 ];
 
+/* Icônes simples (SVG) */
+const Icon = ({ name }) => {
+  const common = {
+    width: 30,
+    height: 30,
+    viewBox: "0 0 24 24",
+    fill: "none",
+    stroke: "currentColor",
+    strokeWidth: 1.6,
+    strokeLinecap: "round",
+    strokeLinejoin: "round",
+  };
+  switch (name) {
+    case "calendar":
+      return (
+        <svg {...common}>
+          <rect x="3" y="5" width="18" height="16" rx="2" />
+          <path d="M3 10h18M8 3v4M16 3v4M8 14h2M12 14h2M8 17h2" />
+        </svg>
+      );
+    case "users":
+      return (
+        <svg {...common}>
+          <circle cx="9" cy="8" r="3.2" />
+          <path d="M3 20c0-3.3 2.7-6 6-6s6 2.7 6 6" />
+          <circle cx="17" cy="9" r="2.5" />
+          <path d="M17 14c2.5 0 4 1.8 4 4.5" />
+        </svg>
+      );
+    case "box":
+      return (
+        <svg {...common}>
+          <path d="M12 3l8 4v10l-8 4-8-4V7l8-4z" />
+          <path d="M4 7l8 4 8-4M12 11v10" />
+        </svg>
+      );
+    case "heart":
+      return (
+        <svg {...common}>
+          <circle cx="9" cy="8" r="3.2" />
+          <path d="M3 20c0-3.3 2.7-6 6-6 1 0 2 .2 2.800.7" />
+          <path d="M17 20s-4-2.600-4-5.200a2.200 2.200 0 014-1.300 2.200 2.200 0 014 1.300C21 17.400 17 20 17 20z" />
+        </svg>
+      );
+    case "chart":
+      return (
+        <svg {...common}>
+          <path d="M4 20V4M4 20h16" />
+          <rect x="7" y="12" width="3" height="6" />
+          <rect x="12" y="8" width="3" height="10" />
+          <rect x="17" y="5" width="3" height="13" />
+        </svg>
+      );
+    case "doc":
+    default:
+      return (
+        <svg {...common}>
+          <path d="M6 3h8l4 4v14H6z" />
+          <path d="M14 3v4h4M9 12h6M9 16h6" />
+        </svg>
+      );
+  }
+};
+
 const FEATURES = [
-  "Gestion de caisse (édition tickets de caisse, modification de la facturation jusqu'à la fin de l'encaissement).",
-  "Gestion des Rdv & clients (historiques de visite, suivi des prestations, préférences du client, fiches techniques etc.).",
-  "Gestion des collaborateurs (planning, salaires, rémunération…).",
-  "Gestion de la fidélisation (cartes d'abonnements, cartes des montages).",
-  "Gestion du marketing (courriers, emails, sms, couponing).",
-  "Gestion du stock (faites les captures d'achats, optimisez votre inventaire sécurisé, gestion des commandes).",
-  "Gestion des rendez-vous (détection Rendez-vous statistiques, confirmation de RDV par SMS ou mail, etc…).",
+  { icon: "calendar", label: "Planning et RDV" },
+  { icon: "users", label: "Gestion des équipes" },
+  { icon: "box", label: "Stocks et produits" },
+  { icon: "heart", label: "Fidélité clients" },
+  { icon: "chart", label: "Statistiques et analyses" },
+  { icon: "doc", label: "Documents comptables" },
 ];
 
 const WHEEL = [
-  "Réservation en ligne",
-  "Vente de produits",
-  "Fidélisation clients",
-  "Bons cadeaux",
-  "Statistiques & Reporting",
-  "SMS rappel RDV",
-  "Gestion de stock",
-  "Mailing marketing",
+  "Caisse et encaissement",
+  "Gestion des prestations",
+  "Planning intelligent",
+  "Fidélité et promotions",
+  "Reporting et analyses",
+  "Multi-utilisateurs",
+  "Gestion des stocks",
 ];
-const WHEEL_COLORS = ["#f3e3c4", "#f1d5c5", "#f3e3c4", "#f1d5c5", "#f3e3c4", "#f1d5c5", "#f3e3c4", "#f1d5c5"];
 
 export default function Beaute() {
-  const R = 190; // rayon du cercle
-  const N = 56; // demi-taille d'un nœud
+  const R = 175; // rayon du cercle
+  const N = 50; // demi-taille d'un nœud
 
-  const [active, setActive] = useState(3);
-  const [openService, setOpenService] = useState(0);
-
-  useEffect(() => {
-    const id = setInterval(
-      () => setActive((a) => (a + 1) % DEVICES.length),
-      3500
-    );
-    return () => clearInterval(id);
-  }, []);
-
-  const visibleDevices = [0, 1, 2, 3].map(
-    (i) => DEVICES[(active + i) % DEVICES.length]
-  );
+  /* 2 lignes de logos, comme sur la page Gesticlean */
+  const half = Math.ceil(CLIENT_LOGOS.length / 2);
+  const rowOne = CLIENT_LOGOS.slice(0, half);
+  const rowTwo = CLIENT_LOGOS.slice(half);
 
   return (
     <div className="page">
+      <style>{MARQUEE_CSS}</style>
+
       {/* HERO */}
       <header
-        className="hero hero-beaute"
+        className="hero"
         style={{ backgroundImage: `url(${heroImg})` }}
       >
         <div className="hero-inner">
-          <span className="hero-line" />
-          <h1>BEAUTE &amp; BIEN ETRE</h1>
+          <span className="eyebrow">BEAUTÉ &amp; BIEN-ÊTRE</span>
+          <h1>
+            LOGICIEL DE CAISSE POUR SALONS DE COIFFURE &amp; INSTITUTS DE
+            BEAUTÉ
+          </h1>
           <p>
-            Excellent logiciel Métier qui vous accompagne pour simplifier et
-            rentabiliser la gestion de votre institut de beauté en toute
-            Sécurité.
+            Découvrez un outil moderne et innovant pour optimiser votre
+            chiffre d'affaires, gérer vos stocks et vos prestations, proposer
+            un programme de fidélité et simplifier la gestion quotidienne de
+            votre salon.
           </p>
+          <a href="#demo" className="btn btn-orange">
+            Demander une démo <span aria-hidden>→</span>
+          </a>
         </div>
       </header>
-
-      {/* INTRO */}
-      <section className="intro">
-        <span className="eyebrow">BEAUTE &amp; BIEN ETRE</span>
-        <h2>
-          Choisissez EasyBeauty, votre allié au !
-          <br />
-          <em>QUOTIDIEN</em>
-        </h2>
-        <p>
-          Le choix n'est jamais habituel. Pour encore un logiciel de caisse
-          purement Métier, centrées sur Beauté et intégrant un module de
-          gestion planning des RDV, il est des objectifs de développer votre
-          chiffre d'affaires, gérer les besoins clients et optimiser la
-          fidélisation de vos clients. C'est une aide à la gestion des
-          stocks. C'est une solution plus performante que de nombreux de
-          facilités et de maîtriser tout votre activité. EasyBeauty est la
-          solution idéale pour les professionnels de l'industrie Beauté.
-        </p>
-      </section>
-
-      {/* PRODUIT */}
-      <section className="product">
-        <div className="product-img">
-          <button className="arrow left" aria-label="Précédent">‹</button>
-          <img src={posImg} alt="Poste de caisse EasyBeauty" />
-          <button className="arrow right" aria-label="Suivant">›</button>
-        </div>
-        <div className="product-text">
-          <span className="eyebrow">BEAUTE &amp; BIEN ETRE</span>
-          <h3 className="upper">
-            LOGICIEL DE CAISSE POUR SALONS DE COIFFURE &amp;{" "}
-            <em>INSTITUTS DE BEAUTE</em>
-          </h3>
-          <p>
-            Découvrez un outil tactique, moderne et innovant pour optimiser
-            votre activité d'affaire, gérer vos plannings et vos prestations
-            en programme en fidélité à vos clients. EASYBEAUTY vous simplifie
-            la gestion de votre salon, vous aide à configurer vos
-            informations et à traiter les documents comptables pour vous
-            Enregistrer du temps !
-          </p>
-        </div>
-      </section>
 
       {/* 3 BLOCS ALTERNÉS */}
       {BLOCKS.map((b, i) => (
         <section className={`bb-row ${b.reverse ? "reverse" : ""}`} key={i}>
-          <div className="bb-text">
-            <span className="eyebrow">BEAUTE &amp; BIEN ETRE</span>
-            <h3 className="upper">{b.title}</h3>
-            <p>{b.text}</p>
-          </div>
           <div className="bb-img">
             <img src={b.img} alt="" />
+          </div>
+          <div className="bb-text">
+            <span className="eyebrow">BEAUTÉ &amp; BIEN-ÊTRE</span>
+            <h3>{b.title}</h3>
+            <p>{b.text}</p>
           </div>
         </section>
       ))}
@@ -208,29 +301,36 @@ export default function Beaute() {
         </div>
         <div className="bb-features-text">
           <span className="eyebrow">FONCTIONNALITÉS</span>
-          <h3 className="upper">
-            DÉCOUVREZ QUELQUES FONCTIONNALITÉS DISPONIBLES SUR LE LOGICIEL{" "}
-            <em>BEAUTE</em>
+          <h3>
+            DÉCOUVREZ QUELQUES FONCTIONNALITÉS DISPONIBLES SUR LE LOGICIEL
+            EASYBEAUTY
           </h3>
-          <ul>
-            {FEATURES.map((f, i) => (
-              <li key={i}>{f}</li>
+          <div className="feat-grid">
+            {FEATURES.map((f) => (
+              <div className="feat-card" key={f.label}>
+                <span className="feat-icon">
+                  <Icon name={f.icon} />
+                </span>
+                <span className="feat-label">{f.label}</span>
+              </div>
             ))}
-          </ul>
+          </div>
         </div>
       </section>
 
       {/* OUTILS (roue) */}
       <section className="bb-tools">
-        <span className="eyebrow">BEAUTE &amp; BIEN ETRE</span>
-        <h2>
-          Les outils dont vous avez <em>besoin</em>
+        <h2 className="tools-title">
+          <span className="line" />
+          Les outils dont vous avez besoin
+          <span className="line" />
         </h2>
         <p className="bb-tools-sub">
           Les fonctionnalités bien pensées pour développer votre activité.
         </p>
 
         <div className="wheel">
+          <span className="wheel-ring" />
           <div className="wheel-center">
             <img src={wheelCenterImg} alt="" />
           </div>
@@ -243,7 +343,6 @@ export default function Beaute() {
                 className="wheel-node"
                 key={label}
                 style={{
-                  background: WHEEL_COLORS[i],
                   left: `calc(50% + ${x}px - ${N}px)`,
                   top: `calc(50% + ${y}px - ${N}px)`,
                 }}
@@ -257,72 +356,41 @@ export default function Beaute() {
       </section>
 
       {/* CONFIANCE */}
-      <section className="trust trust-strip">
+      <section className="trust">
         <h2>Soyez parmi ceux qui nous font confiance</h2>
-        <div className="logos">
-          {LOGOS.map((l) => (
-            <img key={l.name} src={l.src} alt={l.name} />
-          ))}
-        </div>
-        <hr className="trust-line" />
-      </section>
+        <p className="clients-count">
+          Plus de {CLIENT_LOGOS.length} établissements utilisent déjà nos
+          solutions au quotidien.
+        </p>
 
-      {/* CONNEXION */}
-      <section className="connexion">
-        <span className="eyebrow">CONNEXION</span>
-        <h2>Interfacée avec multiples périphériques</h2>
-        <div className="devices">
-          {visibleDevices.map((d, i) => (
-            <img key={i} src={d.src} alt={d.alt} />
-          ))}
-        </div>
-        <div className="dots">
-          {DEVICES.map((_, i) => (
-            <button
-              key={i}
-              className={`dot ${i === active ? "active" : ""}`}
-              onClick={() => setActive(i)}
-              aria-label={`Slide ${i + 1}`}
-            />
-          ))}
+        <div className="clients-rows">
+          <MarqueeRow
+            logos={rowOne}
+            speed={Math.max(30, rowOne.length * 2.2)}
+          />
+          <MarqueeRow
+            logos={rowTwo}
+            reverse
+            speed={Math.max(30, rowTwo.length * 2.4)}
+          />
         </div>
       </section>
 
-      {/* NOS SERVICES */}
-      <section className="services">
-        <div className="services-img">
-          <span className="shape-orange" />
-          <span className="shape-blue" />
-          <img src={servicesImg} alt="Support PC MAROC" />
-        </div>
-        <div className="services-text">
-          <span className="eyebrow eyebrow-bar">NOS SERVICES</span>
-          <h2>
-            Les services PC MAROC, plus qu'une{" "}
-            <span className="hl">simple hotline</span>
-          </h2>
-          <p className="services-intro">
-            Nous croyons en la force du capital humain. Notre équipe talentueuse
-            est le pilier de notre succès, apportant expertise, passion et
-            dévouement à chaque projet."
-          </p>
-          <ul className="accordion">
-            {SERVICES.map((s, i) => (
-              <li key={s.title}>
-                <button
-                  className="acc-head"
-                  onClick={() => setOpenService(i === openService ? -1 : i)}
-                >
-                  <span className="acc-sign">{i === openService ? "–" : "+"}</span>
-                  {s.title}
-                </button>
-                {i === openService && s.text && (
-                  <p className="acc-body">{s.text}</p>
-                )}
-              </li>
-            ))}
-          </ul>
-        </div>
+      {/* BANNIÈRE CTA */}
+      <section className="cta" id="demo">
+        <h2>
+          Prêt à digitaliser
+          <br />
+          votre salon ?
+        </h2>
+        <span className="cta-sep" />
+        <p>
+          Parlons de votre projet et découvrez la solution adaptée à votre
+          activité.
+        </p>
+        <a href="#contact" className="btn btn-white">
+          Demander une démo <span aria-hidden>→</span>
+        </a>
       </section>
     </div>
   );
