@@ -17,7 +17,7 @@ const CHARCOAL = '#27272A';
 const reviews = [
   {
     id: 1,
-    name: 'Eric Meignat',
+    name: ' M. ERIC',
     role: 'Fondateur Eric Meignat',
     comment:'Avec plusieurs magasins à travers le Maroc, nous avions besoin d’une solution fiable pour gérer efficacement notre activité. PC MAROC a parfaitement répondu à nos attentes en nous offrant une gestion simplifiée et un meilleur suivi de nos points de vente. Nous sommes pleinement satisfaits de cette collaboration et de la qualité de l’accompagnement.',
     rating: 5,
@@ -26,8 +26,8 @@ const reviews = [
   },
   {
     id: 2,
-    name: 'M. Rachid',
-    role: 'Fondateur CLUB 555',
+    name: 'M. IMAD',
+    role: 'Directeur General club 555',
     comment: 'Depuis plus de 15 ans, PC MAROC accompagne le CLUB 555 dans la gestion de son activité. Une collaboration durable, fondée sur la confiance, la fiabilité de nos solutions et un accompagnement constant au fil des années.',
     rating: 5,
     photo: logo555,
@@ -35,7 +35,7 @@ const reviews = [
   },
   {
     id: 3,
-    name: 'YOUNESS BIUAL',
+    name: 'M . YOUNESS',
     role: 'Directeur RESTAURANT VERDE',
     comment: 'Connaissant déjà cette solution d’encaissement en France, nous avons naturellement choisi PC MAROC pour équiper notre nouveau restaurant. Nous retrouvons un système fiable, performant et parfaitement adapté à nos besoins, avec l’avantage d’un accompagnement local et d’une équipe disponible et réactive.',
     rating: 5,
@@ -62,7 +62,7 @@ const reviews = [
   },
   {
     id: 6,
-    name: 'Mohamed Khachani',
+    name: 'M. KACHANI',
     role: 'Franchise Fondateur CLEANZY PRESSING',
     comment: 'Depuis plusieurs années, nous faisons confiance à PC MAROC pour équiper nos pressings à travers le Maroc. Une collaboration solide qui nous permet de développer notre réseau en toute sérénité, avec des solutions fiabilité, adaptées à notre métier et un accompagnement de qualité. PC MAROC est devenu un véritable partenaire de notre croissance.',
     rating: 5,
