@@ -290,7 +290,11 @@ export function Contact() {
                     label="Téléphone"
                     value={COMPANY.phone}
                   />
-
+   <InfoRow
+                    icon={Phone}
+                    label="Téléphone"
+                    value={COMPANY.phone2}
+                  />
                   <InfoRow
                     icon={Mail}
                     label="Email"

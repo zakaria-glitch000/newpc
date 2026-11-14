@@ -974,8 +974,8 @@ export const COMPANY = {
 
   address: '14, résid. Mawlid XI , Sidi Maârouf CASABLANCA',
 
-  phone: '0522584717',
-
+  phone: '0522 58 47 17',
+phone2: '0661 97 32 53',
   email: 'contact@pcmaroc.ma',
 
   hours: 'Lun – Sam : 9h00 – 18h00',

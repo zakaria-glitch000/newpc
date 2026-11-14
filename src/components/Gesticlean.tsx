@@ -15,7 +15,7 @@ import device5 from "@/assets/hero-pressing.png";
 import device6 from "@/assets/hero-pressing.png";
 
 /* Section Nos services */
-import servicesImg from "@/assets/hero-pressing.png";
+import servicesImg from "@/assets/supportt.jpeg";
 
 /* Section "Une caisse connectée à vos accessoires"
    -> remplace par tes vraies photos (png fond transparent/blanc) */
