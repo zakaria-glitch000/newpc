@@ -62,8 +62,17 @@ em { color: var(--orange); font-style: normal; }
   max-width: 640px;
   font-size: 20px;
   font-weight: 700;
-  color: #fff;
+  color: #ffffff; /* Rddinaha bayda bach tban mزیan m3a l-fond l-dark */
   text-align: left;
+  
+  /* Fond transparent khfif w blur zwin */
+  background: rgba(0, 0, 0, 0.35);      /* Fond kahla transparent (wla dir rgba(255, 255, 255, 0.2) ila bghitih blanco) */
+  backdrop-filter: blur(6px);             /* Blur khfif mzyan */
+  -webkit-backdrop-filter: blur(6px);
+  padding: 14px 20px;                    /* Espasse mraḥḥap */
+  border-radius: 10px;                   /* Les coins mdowrin */
+  width: fit-content;                    /* Ki-jib l-cadre 3la 9d l-katiba */
+  border: 1px solid rgba(255, 255, 255, 0.15); /* Cadre khfif bzzaf kay3ti l-manzer */
 }
 
 /* INTRO */

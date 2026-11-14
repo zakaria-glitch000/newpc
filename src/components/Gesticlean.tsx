@@ -21,10 +21,10 @@ import servicesImg from "@/assets/hero-pressing.png";
    -> remplace par tes vraies photos (png fond transparent/blanc) */
 import centerPos from "@/assets/hero-pressing.png"; // poste de caisse (centre)
 import accConvoyeur from "@/assets/rang.jpeg"; // convoyeur
-import accTicket from "@/assets/hero-pressing.png"; // imprimante ticket
-import accMarquage from "@/assets/hero-pressing.png"; // imprimante de marquage
-import accScanner from "@/assets/hero-pressing.png"; // scanner
-import accTiroir from "@/assets/hero-pressing.png"; // tiroir-caisse
+import accTicket from "@/assets/imp.jpeg"; // imprimante ticket
+import accMarquage from "@/assets/marq.jpeg"; // imprimante de marquage
+import accScanner from "@/assets/scann.jpeg"; // scanner
+import accTiroir from "@/assets/tirr.jpeg"; // tiroir-caisse
 
 const DEVICES = [
   { src: device1, alt: "Terminal de caisse" },
@@ -225,13 +225,12 @@ const ACC_ICONS = {
   ),
 };
 
-/* x / y = centre du cercle (% du bloc) ; pillX / pillY = position du label */
 const ACCESSORIES = [
-  { key: "convoyeur", label: "Convoyeur", img: accConvoyeur, x: 22.5, y: 18, pillX: 4, pillY: 5.5 },
-  { key: "ticket", label: "Imprimante\nticket", img: accTicket, x: 22, y: 47.7, pillX: 2.4, pillY: 38 },
-  { key: "marquage", label: "Imprimante\nde marquage", img: accMarquage, x: 23, y: 78.5, pillX: 2.4, pillY: 69.5 },
-  { key: "scanner", label: "Scanner", img: accScanner, x: 77.5, y: 22.7, pillX: 83, pillY: 11.5 },
-  { key: "tiroir", label: "Tiroir-caisse", img: accTiroir, x: 78.4, y: 65, pillX: 82.5, pillY: 54.5 },
+  { key: "convoyeur", label: "Convoyeur", img: accConvoyeur, x: 25, y: 18, pillX: 0.5, pillY: 13 },
+  { key: "ticket", label: "Imprimante\nticket", img: accTicket, x: 25, y: 48, pillX: -0.5, pillY: 42 },
+  { key: "marquage", label: "Imprimante\nde marquage", img: accMarquage, x: 25, y: 78, pillX: -0.5, pillY: 72 },
+  { key: "scanner", label: "Scanner", img: accScanner, x: 75, y: 23, pillX: 84.5, pillY: 18 },
+  { key: "tiroir", label: "Tiroir-caisse", img: accTiroir, x: 75, y: 65, pillX: 84.5, pillY: 60 },
 ];
 
 const CONNECT_CSS = `
