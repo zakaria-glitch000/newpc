@@ -54,9 +54,11 @@
 }
 
 /* HERO */
+
+/* HERO - IMAGE PLUS VISIBLE + TEXTE NOIR */
 .hero {
   position: relative;
-  min-height: 360px;
+  min-height: 400px;
   background-color: #f7f2ec;
   background-size: cover;
   background-position: right center;
@@ -64,33 +66,48 @@
   display: flex;
   align-items: center;
 }
+
 .hero::before {
   content: "";
   position: absolute;
   inset: 0;
   background: linear-gradient(
     90deg,
-    rgba(255, 255, 255, 0.95) 0%,
-    rgba(255, 255, 255, 0.85) 40%,
-    rgba(255, 255, 255, 0) 70%
+    rgba(255, 255, 255, 0.35) 0%,
+    rgba(255, 255, 255, 0.20) 40%,
+    rgba(255, 255, 255, 0) 75%
   );
 }
+
 .hero-inner {
   position: relative;
-  max-width: 480px;
+  z-index: 2;
+  max-width: 520px;
   padding: 40px 48px;
 }
+
+.hero .eyebrow {
+  color: #f26a21;
+}
+
 .hero h1 {
-  color: var(--navy);
+  color: #111111;
   font-size: 28px;
   line-height: 1.2;
   font-weight: 800;
   margin: 0 0 16px;
 }
+
 .hero p {
+  color: #222222;
   font-size: 13px;
-  line-height: 1.6;
+  line-height: 1.7;
   margin: 0 0 24px;
+}
+
+.hero .btn-orange {
+  background: #f26a21;
+  color: #ffffff;
 }
 
 /* BLOCS ALTERNÉS */
