@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import "./Ebel.css";
 
 /* Images : adapte les chemins/noms à tes vrais fichiers */
@@ -8,12 +8,10 @@ import caImg from "@/assets/2ebel.jpeg";
 import gestionImg from "@/assets/3ebel.jpeg";
 import devicesImg from "@/assets/4ebel.jpeg";
 import wheelCenterImg from "@/assets/easy.jpeg";
+import supportImg from "@/assets/supportt.jpeg"; // Remplace par l'image de ton choix pour les services (ex: l'image de la femme au casque)
 
 /* =====================================================
    LOGOS CLIENTS
-   -> Mets les logos dans : src/assets/ebel/
-      (png, jpg, webp, svg) : ils sont chargés automatiquement.
-   -> Si le dossier est vide, 24 placeholders s'affichent.
 ===================================================== */
 const logoModules = import.meta.glob(
   "@/assets/ebel/*.{png,jpg,jpeg,webp,svg}",
@@ -80,7 +78,6 @@ const MARQUEE_CSS = `
   transition: transform .3s ease;
 }
 .client-card:hover img { filter: none; opacity: 1; transform: scale(1.05); }
-.client-card:hover img { filter: none; opacity: 1; }
 .client-card .client-ph {
   font-size: 14px;
   font-weight: 700;
@@ -92,8 +89,98 @@ const MARQUEE_CSS = `
 .clients-rows { display: grid; gap: 12px; margin-top: 36px; }
 .clients-count { margin-top: 12px; color: #64748b; font-size: 15px; text-align: center; }
 
+/* Styles pour la section Services PC Maroc */
+.pc-services-section {
+  padding: 80px 20px;
+  background-color: #f8fafc;
+}
+.pc-services-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 50px;
+  align-items: center;
+}
+.pc-services-img img {
+  width: 100%;
+  border-radius: 24px;
+  object-fit: cover;
+  box-shadow: 0 20px 40px rgba(0,0,0,0.08);
+}
+.pc-services-content .eyebrow {
+  color: #f26522;
+  font-weight: 700;
+  font-size: 14px;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  display: block;
+  margin-bottom: 8px;
+}
+.pc-services-content h2 {
+  font-size: 32px;
+  color: #0f172a;
+  margin-bottom: 16px;
+  line-height: 1.2;
+}
+.pc-services-desc {
+  color: #475569;
+  font-size: 16px;
+  line-height: 1.6;
+  margin-bottom: 30px;
+}
+.service-accordion {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+.service-item {
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
+  border-radius: 12px;
+  overflow: hidden;
+  transition: border-color 0.3s ease;
+}
+.service-item.active {
+  border-color: #f26522;
+  box-shadow: 0 4px 12px rgba(242, 101, 34, 0.08);
+}
+.service-header {
+  width: 100%;
+  padding: 18px 20px;
+  background: none;
+  border: none;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 16px;
+  font-weight: 700;
+  color: #0f172a;
+  cursor: pointer;
+  text-align: left;
+}
+.service-header span:last-child {
+  font-size: 20px;
+  color: #f26522;
+  font-weight: 400;
+}
+.service-body {
+  padding: 0 20px 20px 20px;
+  color: #64748b;
+  font-size: 15px;
+  line-height: 1.6;
+}
+
+@media (max-width: 968px) {
+  .pc-services-container {
+    grid-template-columns: 1fr;
+    gap: 30px;
+  }
+}
+
 @media (max-width: 640px) {
   .client-card { width: 140px; height: 72px; margin: 0 8px; }
+  .pc-services-content h2 { font-size: 26px; }
 }
 @media (prefers-reduced-motion: reduce) {
   .clients-track { animation: none !important; }
@@ -101,7 +188,6 @@ const MARQUEE_CSS = `
 `;
 
 function MarqueeRow({ logos, reverse = false, speed = 60 }) {
-  // On duplique la liste pour une boucle sans coupure
   const loop = [...logos, ...logos];
   return (
     <div className="clients-marquee">
@@ -246,13 +332,15 @@ const WHEEL = [
 ];
 
 export default function Beaute() {
-  const R = 175; // rayon du cercle
-  const N = 50; // demi-taille d'un nœud
+  const R = 175;
+  const N = 50;
 
-  /* 2 lignes de logos, comme sur la page Gesticlean */
   const half = Math.ceil(CLIENT_LOGOS.length / 2);
   const rowOne = CLIENT_LOGOS.slice(0, half);
   const rowTwo = CLIENT_LOGOS.slice(half);
+
+  // État pour gérer les accordéons de la partie services
+  const [activeService, setActiveService] = useState(0);
 
   return (
     <div className="page">
@@ -350,8 +438,8 @@ export default function Beaute() {
               >
                 <strong>{i + 1}</strong>
                 <span>{label}</span>
-              </div>
-            );
+            </div>
+          );
           })}
         </div>
       </section>
@@ -374,6 +462,63 @@ export default function Beaute() {
             reverse
             speed={Math.max(30, rowTwo.length * 2.4)}
           />
+        </div>
+      </section>
+
+      {/* NOUVELLE SECTION : LES SERVICES PC MAROC */}
+      <section className="pc-services-section">
+        <div className="pc-services-container">
+          <div className="pc-services-img">
+            <img src={supportImg} alt="Support PC Maroc" />
+          </div>
+          <div className="pc-services-content">
+            <span className="eyebrow">NOS SERVICES</span>
+            <h2>Les services PC MAROC, plus qu'une simple Hotline</h2>
+            <p className="pc-services-desc">
+              Nous croyons en la force du capital humain. Notre équipe talentueuse est le pilier de notre succès, apportant expertise, passion et dévouement à chaque projet.
+            </p>
+
+            <div className="service-accordion">
+              {/* Accordéon 1 : Conseil et Formation */}
+              <div className={`service-item ${activeService === 0 ? "active" : ""}`}>
+                <button className="service-header" onClick={() => setActiveService(activeService === 0 ? null : 0)}>
+                  <span>- Conseil et Formation</span>
+                  <span>{activeService === 0 ? "−" : "+"}</span>
+                </button>
+                {activeService === 0 && (
+                  <div className="service-body">
+                    Notre équipe est à même de vous accompagner dans votre projet. Écouter, détecter vos besoins et analyser pour vous proposer la meilleure solution en terme de délai et de budget.
+                  </div>
+                )}
+              </div>
+
+              {/* Accordéon 2 : Installation et paramétrage */}
+              <div className={`service-item ${activeService === 1 ? "active" : ""}`}>
+                <button className="service-header" onClick={() => setActiveService(activeService === 1 ? null : 1)}>
+                  <span>+ Installation et paramétrage</span>
+                  <span>{activeService === 1 ? "−" : "+"}</span>
+                </button>
+                {activeService === 1 && (
+                  <div className="service-body">
+                    PC MAROC dispose d’une équipe d’installation, chargée d’assurer un service de maintenance continu pour notre clientèle : service rapide, tranquillité d’esprit, disponibilité maximale.
+                  </div>
+                )}
+              </div>
+
+              {/* Accordéon 3 : Support Technique */}
+              <div className={`service-item ${activeService === 2 ? "active" : ""}`}>
+                <button className="service-header" onClick={() => setActiveService(activeService === 2 ? null : 2)}>
+                  <span>+ Support Technique</span>
+                  <span>{activeService === 2 ? "−" : "+"}</span>
+                </button>
+                {activeService === 2 && (
+                  <div className="service-body">
+                    Le Support Technique de PC MAROC est un service qui vous permet d’être accompagné et initié à la bonne utilisation de votre solution beauté et bien être de manière optimale et à chaque évolution de votre installation.
+                  </div>
+                )}
+              </div>
+            </div>
+          </div>
         </div>
       </section>
 
