@@ -31,16 +31,16 @@ import {
 
 import './Innoshop.css';
 
-import heroImage from '@/assets/shoop.jpeg';
+import heroImage from '@/assets/innoshopp.jpeg';
 import commercanteImage from '@/assets/commercante.jpg';
 import articleImage from '@/assets/article.jpg';
-import supermarcheImage from '@/assets/sup.jpg';
-import boutiqueImage from '@/assets/boutique.jpg';
-import boulangerieImage from '@/assets/boulangerie.jpg';
-import epicerieImage from '@/assets/epicerie.jpg';
-import bazarImage from '@/assets/bazar.jpg';
-import parfumerieImage from '@/assets/parfumerie.jpg';
-import librairieImage from '@/assets/librairie.jpg';
+import supermarcheImage from '@/assets/march.jpeg';
+import boutiqueImage from '@/assets/bout.jpeg';
+import boulangerieImage from '@/assets/boul.jpeg';
+import epicerieImage from '@/assets/picerie.jpeg';
+import bazarImage from '@/assets/bazzard.jpeg';
+import parfumerieImage from '@/assets/perfume.jpeg';
+import librairieImage from '@/assets/libr.jpeg';
 
 const IMAGES = {
   hero: heroImage,
@@ -661,7 +661,41 @@ export default function InnoShop() {
         
       </section>
 
-      {/* FONCTIONNALITÉS : ONGLETS */}
+     
+
+     
+
+      {/* MÉTIERS */}
+      <section className="ns-trades" id="innoshop-metiers">
+        <div className="ns-wrap">
+          <div className="ns-head">
+            <span className="ns-pill">Une solution polyvalente</span>
+            <h2 className="ns-title">
+              <Logo size="inline" /> s'adapte à tous{' '}
+              <em>les métiers du commerce</em>
+            </h2>
+            <p className="ns-sub">
+              Une solution adaptée aux spécificités de chaque point de vente.
+            </p>
+          </div>
+
+          <div className="ns-trades-grid">
+            {trades.map((trade) => (
+              <article className="ns-trade" key={trade.title} tabIndex={0}>
+                <img src={trade.img} alt={trade.title} loading="lazy" />
+                <div className="ns-trade-body">
+                  <h4>
+                    <Ico solid>{trade.icon}</Ico>
+                    <span>{trade.title}</span>
+                  </h4>
+                  <Bullets items={trade.items} />
+                </div>
+              </article>
+            ))}
+          </div>
+        </div>
+      </section>
+ {/* FONCTIONNALITÉS : ONGLETS */}
       <section className="ns-features" id="innoshop-fonctionnalites">
         <div className="ns-wrap">
           <div className="ns-head">
@@ -704,8 +738,7 @@ export default function InnoShop() {
           </div>
         </div>
       </section>
-
-      {/* POURQUOI : BENTO */}
+       {/* POURQUOI : BENTO */}
       <section className="ns-why">
         <div className="ns-wrap">
           <div className="ns-bento">
@@ -760,38 +793,6 @@ export default function InnoShop() {
           </div>
         </div>
       </section>
-
-      {/* MÉTIERS */}
-      <section className="ns-trades" id="innoshop-metiers">
-        <div className="ns-wrap">
-          <div className="ns-head">
-            <span className="ns-pill">Une solution polyvalente</span>
-            <h2 className="ns-title">
-              <Logo size="inline" /> s'adapte à tous{' '}
-              <em>les métiers du commerce</em>
-            </h2>
-            <p className="ns-sub">
-              Une solution adaptée aux spécificités de chaque point de vente.
-            </p>
-          </div>
-
-          <div className="ns-trades-grid">
-            {trades.map((trade) => (
-              <article className="ns-trade" key={trade.title} tabIndex={0}>
-                <img src={trade.img} alt={trade.title} loading="lazy" />
-                <div className="ns-trade-body">
-                  <h4>
-                    <Ico solid>{trade.icon}</Ico>
-                    <span>{trade.title}</span>
-                  </h4>
-                  <Bullets items={trade.items} />
-                </div>
-              </article>
-            ))}
-          </div>
-        </div>
-      </section>
-
       {/* CONFIANCE : LOGOS CLIENTS */}
       <section className="ns-trust" id="innoshop-clients">
         <div className="ns-wrap">
