@@ -1,1313 +1,311 @@
 /* =====================================================
-   INNOSHOP — DESIGN GLOBAL
+   INNOSHOP — NOUVEAU DESIGN "NEON NIGHT"
+   Noir profond + orange fluo. Préfixe : .ns
 ===================================================== */
 
-.innoshop {
-  --red: #e30613;
-  --red-dark: #b3000d;
-  --dark: #171b2b;
-  --text: #333a4a;
-  --muted: #6b7280;
-  --bg: #f6f7fa;
-  --border: #e5e7eb;
+.ns {
+  --o: #ff6a00;
+  --o2: #ff8a1f;
+  --o3: #ffb347;
+  --glow: 0 0 14px rgba(255, 106, 0, .6), 0 0 40px rgba(255, 106, 0, .3);
+  --glow-s: 0 0 26px rgba(255, 106, 0, .22);
+  --bg: #040404;
+  --panel: #0e0e0e;
+  --panel2: #151515;
+  --line: rgba(255, 255, 255, .08);
+  --line-o: rgba(255, 106, 0, .5);
+  --txt: #d6d6d6;
+  --mut: #8f8f8f;
   position: relative;
   width: 100%;
-  max-width: none;
-  margin: 0;
-  padding: 0;
   overflow: hidden;
-  background: #fff;
-  color: var(--text);
+  background: var(--bg);
+  color: var(--txt);
   font-family: "Inter", "Segoe UI", Roboto, Arial, sans-serif;
   line-height: 1.5;
 }
+.ns *, .ns *::before, .ns *::after { box-sizing: border-box; }
+/* :where() = spécificité 0 -> ces resets n'écrasent plus les classes (.ns-btn, .ns-hero-sub...) */
+.ns :where(h1, h2, h3, h4, p, ul, dl) { margin: 0; padding: 0; }
+.ns :where(button) { font: inherit; cursor: pointer; border: 0; background: none; color: inherit; }
+.ns :where(img) { max-width: 100%; display: block; }
 
-.innoshop *,
-.innoshop *::before,
-.innoshop *::after {
-  box-sizing: border-box;
-  
+.ns-wrap { width: min(1240px, 100% - 40px); margin-inline: auto; }
+
+/* ---------- LOGO ---------- */
+.ns .logo { display: inline-block; color: #fff; font-weight: 900; letter-spacing: -1px; white-space: nowrap; line-height: 1.1; }
+.ns .logo-o { color: var(--o); text-shadow: var(--glow); }
+.ns .logo-lg { font-size: clamp(46px, 5vw, 68px); }
+.ns .logo-xl, .ns .logo-inline { font-size: inherit; }
+
+/* ---------- BOUTONS ---------- */
+.ns-btn {
+  display: inline-flex; align-items: center; justify-content: center; gap: 10px;
+  min-height: 52px; padding: 0 30px; border-radius: 14px; border: 2px solid transparent;
+  font-size: 14px; font-weight: 800; letter-spacing: .02em; text-decoration: none;
+  transition: transform .25s ease, box-shadow .25s ease, background .25s ease, color .25s ease;
 }
+.ns-btn:hover { transform: translateY(-3px) scale(1.02); }
+.ns-btn-fill { background: linear-gradient(135deg, var(--o), var(--o2)); color: #000; box-shadow: var(--glow); }
+.ns-btn-fill:hover { box-shadow: 0 0 24px rgba(255,106,0,.9), 0 0 60px rgba(255,106,0,.5); }
+.ns-btn-line { border-color: var(--o); color: var(--o2); background: transparent; }
+.ns-btn-line:hover { background: rgba(255,106,0,.12); color: #fff; box-shadow: var(--glow-s); }
 
-.innoshop h1,
-.innoshop h2,
-.innoshop h3,
-.innoshop h4,
-.innoshop p,
-.innoshop ul,
-.innoshop dl {
-  margin: 0;
-  padding: 0;
+/* ---------- PILL / TITRES ---------- */
+.ns-pill {
+  display: inline-flex; align-items: center; gap: 9px; padding: 8px 16px; border-radius: 999px;
+  border: 1px solid var(--line-o); background: rgba(255,106,0,.08);
+  color: var(--o2); font-size: 11px; font-weight: 800; letter-spacing: .16em; text-transform: uppercase;
 }
+.ns-dot { width: 8px; height: 8px; border-radius: 50%; background: var(--o); box-shadow: 0 0 10px var(--o), 0 0 24px var(--o); animation: ns-pulse 1.8s ease-in-out infinite; }
+@keyframes ns-pulse { 50% { transform: scale(1.6); opacity: .55; } }
 
-.innoshop button,
-.innoshop a {
-  -webkit-tap-highlight-color: transparent;
+.ns-head { text-align: center; max-width: 780px; margin: 0 auto 56px; }
+.ns-head .ns-pill { margin-bottom: 18px; }
+.ns-title { color: #fff; font-size: clamp(28px, 4vw, 46px); font-weight: 900; line-height: 1.12; letter-spacing: -1.2px; }
+.ns-title em { font-style: normal; color: var(--o); text-shadow: var(--glow); }
+.ns-sub { margin-top: 16px; color: var(--mut); font-size: 16px; line-height: 1.8; }
+
+/* ---------- ICÔNE ---------- */
+.ns-ico {
+  display: inline-grid; place-items: center; width: 44px; height: 44px; flex: 0 0 auto;
+  border-radius: 12px; border: 1px solid var(--line-o); background: rgba(255,106,0,.1); color: var(--o);
 }
+.ns-ico.solid { background: linear-gradient(135deg, var(--o), var(--o2)); color: #000; border: 0; box-shadow: var(--glow-s); }
 
-.innoshop button {
-  font: inherit;
-}
-
-.innoshop img {
-  max-width: 100%;
-}
-
-/* =====================================================
-   LOGO
-===================================================== */
-
-.innoshop .logo {
-  display: inline-block;
-  color: var(--dark);
-  font-weight: 900;
-  letter-spacing: -1.5px;
-  white-space: nowrap;
-  line-height: 1.1;
-}
-
-.innoshop .logo-o {
-  color: var(--red);
-}
-
-.innoshop .logo-lg {
-  font-size: clamp(46px, 5vw, 68px);
-}
-
-.innoshop .logo-xl,
-.innoshop .logo-inline {
-  font-size: inherit;
-}
-
-/* =====================================================
-   ICONS
-===================================================== */
-
-.innoshop .red-icon {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  width: 38px;
-  height: 38px;
-  flex: 0 0 auto;
-  color: var(--red);
-  border: 1px solid rgba(227, 6, 19, 0.18);
-  border-radius: 11px;
-  background: #fff;
-}
-
-.innoshop .red-icon.round {
-  width: 46px;
-  height: 46px;
-  color: #fff;
-  border: none;
-  border-radius: 14px;
-  background: var(--red);
-  box-shadow: 0 7px 16px rgba(227, 6, 19, 0.14);
+/* ---------- LISTES ---------- */
+.ns .bullets { list-style: none; display: grid; gap: 10px; }
+.ns .bullets li { position: relative; padding-left: 24px; color: var(--txt); font-size: 15px; line-height: 1.5; }
+.ns .bullets li::before {
+  content: ""; position: absolute; left: 0; top: .45em; width: 10px; height: 10px; border-radius: 3px; transform: rotate(45deg);
+  background: var(--o); box-shadow: 0 0 10px var(--o);
 }
 
 /* =====================================================
-   HERO — CARD COMPACT
+   HERO (centré)
 ===================================================== */
-
-.innoshop .hero {
-  position: relative;
-  width: 100%;
-  padding: 32px max(4%, calc((100vw - 1180px) / 2)) 44px;
+.ns-hero {
+  position: relative; padding: 150px 0 0; text-align: center;
   background:
-    radial-gradient(circle at 92% 0%, rgba(227, 6, 19, 0.07), transparent 42%),
-    linear-gradient(180deg, #ffffff 0%, #fdf4f5 100%);
-  color: var(--dark);
-  margin-top: 80px;
-
+    radial-gradient(800px 420px at 50% 0%, rgba(255,106,0,.28), transparent 65%),
+    linear-gradient(rgba(255,106,0,.05) 1px, transparent 1px) 0 0 / 56px 56px,
+    linear-gradient(90deg, rgba(255,106,0,.05) 1px, transparent 1px) 0 0 / 56px 56px,
+    var(--bg);
 }
-
-.innoshop .hero-card {
-  overflow: hidden;
-  border: 1px solid #eef0f4;
-  border-radius: 22px;
-  background: #fff;
-  box-shadow: 0 20px 55px rgba(23, 27, 43, 0.08);
+.ns-hero::after { content: ""; position: absolute; inset: auto 0 0 0; height: 160px; background: linear-gradient(transparent, var(--bg)); pointer-events: none; }
+.ns-hero h1 {
+  margin: 24px auto 0; max-width: 940px; color: #fff;
+  font-size: clamp(34px, 6vw, 72px); font-weight: 900; line-height: 1.03; letter-spacing: -2.5px;
 }
-
-.innoshop .hero-grid {
-  display: grid;
-  grid-template-columns: 0.95fr 1.05fr;
+.ns-hero h1 span {
+  background: linear-gradient(90deg, var(--o), var(--o3)); -webkit-background-clip: text; background-clip: text;
+  -webkit-text-fill-color: transparent; filter: drop-shadow(0 0 22px rgba(255,106,0,.5));
 }
+.ns-hero-sub { margin: 24px auto 0; max-width: 640px; color: var(--mut); font-size: 18px; line-height: 1.75; }
+.ns-hero-actions { display: flex; flex-wrap: wrap; justify-content: center; gap: 14px; margin-top: 36px; }
+.ns-hero-checks { display: flex; flex-wrap: wrap; justify-content: center; gap: 10px 28px; margin-top: 26px; color: #e5e5e5; font-size: 14px; font-weight: 600; }
+.ns-hero-checks span { display: inline-flex; align-items: center; gap: 8px; }
+.ns-hero-checks svg { color: var(--o); filter: drop-shadow(0 0 6px var(--o)); }
 
-.innoshop .hero-visual {
-  position: relative;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  min-width: 0;
-  min-height: 380px;
-  padding: 20px;
-  overflow: hidden;
-  background: linear-gradient(135deg, #f1f2f5 0%, #fff 50%, #fdeaec 100%);
+.ns-stage { position: relative; z-index: 1; margin: 64px auto 0; width: min(980px, 100%); }
+.ns-stage-frame {
+  position: relative; padding: 10px; border-radius: 28px; border: 1px solid var(--line-o);
+  background: linear-gradient(160deg, #1a1a1a, #070707); box-shadow: var(--glow), 0 40px 100px rgba(0,0,0,.7);
 }
+.ns-stage-frame img { width: 100%; height: clamp(240px, 42vw, 480px); object-fit: cover; border-radius: 20px; }
+.ns-chip {
+  position: absolute; z-index: 2; display: inline-flex; align-items: center; gap: 10px; padding: 12px 18px; border-radius: 16px;
+  background: rgba(8,8,8,.85); backdrop-filter: blur(12px); border: 1px solid var(--line-o);
+  color: #fff; font-size: 13px; font-weight: 800; box-shadow: var(--glow-s); animation: ns-float 5s ease-in-out infinite;
+}
+.ns-chip svg { color: var(--o); }
+.ns-chip.c1 { top: 8%; left: -4%; }
+.ns-chip.c2 { top: 40%; right: -4%; animation-delay: -1.7s; }
+.ns-chip.c3 { bottom: 8%; left: 6%; animation-delay: -3.2s; }
+@keyframes ns-float { 50% { transform: translateY(-12px); } }
 
-.innoshop .hero-visual-bg {
-  position: absolute;
-  inset: 0;
-  overflow: hidden;
-  pointer-events: none;
-}
-
-.innoshop .hero-visual-bg img {
-  display: block;
-  width: 100%;
-  max-width: none;
-  height: 100%;
-  object-fit: cover;
-  opacity: 0.2;
-  filter: blur(40px);
-  transform: scale(1.25);
-}
-
-.innoshop .hero-visual-tint {
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(
-    135deg,
-    rgba(255, 255, 255, 0.75),
-    rgba(255, 255, 255, 0.6),
-    rgba(253, 234, 236, 0.7)
-  );
-}
-
-.innoshop .hero-visual-badge {
-  position: absolute;
-  top: 16px;
-  left: 16px;
-  z-index: 2;
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  padding: 7px 13px;
-  border: 1px solid #eef0f4;
-  border-radius: 999px;
-  background: rgba(255, 255, 255, 0.95);
-  box-shadow: 0 6px 16px rgba(23, 27, 43, 0.09);
-  color: var(--dark);
-  font-size: 11px;
-  font-weight: 800;
-}
-
-.innoshop .hero-visual-dot {
-  width: 7px;
-  height: 7px;
-  border-radius: 50%;
-  background: #34d399;
-}
-
-.innoshop .hero-visual .hero-visual-img {
-  position: relative;
-  z-index: 1;
-  display: block;
-  width: 100%;
-  height: 100%;
-  max-width: 100%;
-  max-height: 340px;
-  margin-top: 18px;
-  border: 0;
-  border-radius: 0;
-  background: transparent;
-  box-shadow: none;
-  filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.08));
-  object-fit: contain;
-}
-
-.innoshop .hero-text {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  justify-content: center;
-  min-width: 0;
-  max-width: none;
-  padding: 36px 44px;
-}
-
-.innoshop .hero-eyebrow {
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  padding: 7px 13px;
-  border: 1px solid #e5e7eb;
-  border-radius: 999px;
-  background: #fff;
-  color: var(--red);
-  font-size: 10px;
-  font-weight: 850;
-  letter-spacing: 1.2px;
-  text-transform: uppercase;
-}
-
-.innoshop .hero-eyebrow-dot {
-  width: 7px;
-  height: 7px;
-  border-radius: 50%;
-  background: var(--red);
-}
-
-.innoshop .hero-heading {
-  max-width: 520px;
-  margin-top: 18px;
-  color: var(--dark);
-  font-size: clamp(26px, 2.9vw, 38px);
-  font-weight: 800;
-  line-height: 1.14;
-  letter-spacing: -1.2px;
-}
-
-.innoshop .hero-heading span {
-  display: inline;
-  margin: 0;
-  background: linear-gradient(90deg, #ff4d5a 0%, #e30613 50%, #a9000b 100%);
-  -webkit-background-clip: text;
-  background-clip: text;
-  -webkit-text-fill-color: transparent;
-  color: transparent;
-}
-
-.innoshop .hero-sub {
-  max-width: 460px;
-  margin: 14px 0 22px;
-  color: #4b5563;
-  font-size: 14px;
-  line-height: 1.7;
-}
-
-.innoshop .hero-actions {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 10px;
-  margin: 0;
-}
-
-.innoshop .hero .innoshop-btn {
-  min-height: 44px;
-  padding: 0 22px;
-  border-radius: 999px;
-  font-size: 13px;
-}
-
-.innoshop .hero .innoshop-btn-red {
-  background: linear-gradient(90deg, #f22c38 0%, #b3000d 100%);
-  box-shadow: 0 9px 22px rgba(227, 6, 19, 0.22);
-}
-
-.innoshop .hero .innoshop-btn-red:hover {
-  background: linear-gradient(90deg, #e30613 0%, #8f000a 100%);
-}
-
-.innoshop .hero .innoshop-btn-outline {
-  border-color: #e5e7eb;
-  background: #fff;
-  color: var(--dark);
-}
-
-.innoshop .hero-checks {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 8px 20px;
-  margin-top: 18px;
-}
-
-.innoshop .hero-checks span {
-  display: inline-flex;
-  align-items: center;
-  gap: 7px;
-  color: #4b5563;
-  font-size: 12.5px;
-  font-weight: 500;
-}
-
-.innoshop .hero-checks svg {
-  width: 15px;
-  height: 15px;
-  color: var(--red);
-}
-
-.innoshop .hero-banner {
-  display: flex;
-  align-items: center;
-  gap: 20px;
-  padding: 18px 34px;
-  background: linear-gradient(110deg, #a9000b 0%, #e30613 60%, #ff4d5a 100%);
-  color: #fff;
-}
-
-.innoshop .hero-banner-icon {
-  display: grid;
-  flex: 0 0 auto;
-  place-items: center;
-  padding-right: 20px;
-  border-right: 1px solid rgba(255, 255, 255, 0.35);
-  color: #fff;
-}
-
-.innoshop .hero-banner-icon svg {
-  width: 32px;
-  height: 32px;
-}
-
-.innoshop .hero-banner-text strong {
-  display: block;
-  font-size: 16px;
-  font-weight: 800;
-  line-height: 1.3;
-}
-
-.innoshop .hero-banner-text span {
-  display: block;
-  margin-top: 3px;
-  color: rgba(255, 255, 255, 0.9);
-  font-size: 12.5px;
-  line-height: 1.5;
-}
-
-@media (max-width: 900px) {
-  .innoshop .hero {
-    padding: 20px 14px 36px;
-  }
-  .innoshop .hero-grid {
-    grid-template-columns: 1fr;
-  }
-  .innoshop .hero-visual {
-    min-height: 280px;
-    padding: 14px;
-  }
-  .innoshop .hero-visual .hero-visual-img {
-    max-height: 260px;
-  }
-  .innoshop .hero-text {
-    padding: 28px 22px;
-  }
-  .innoshop .hero-banner {
-    gap: 14px;
-    padding: 16px 20px;
-  }
-  .innoshop .hero-banner-icon {
-    padding-right: 14px;
-  }
-}
-
-@media (max-width: 540px) {
-  .innoshop .hero-banner {
-    flex-direction: column;
-    align-items: flex-start;
-  }
-  .innoshop .hero-banner-icon {
-    padding-right: 0;
-    border-right: none;
-  }
-}
+/* ---------- TICKER ---------- */
+.ns-ticker { position: relative; z-index: 2; overflow: hidden; margin-top: 0; padding: 20px 0; border-block: 1px solid var(--line-o); background: #000; }
+.ns-ticker-track { display: flex; width: max-content; animation: ns-tick 32s linear infinite; }
+.ns-ticker span { display: inline-flex; align-items: center; gap: 28px; padding-right: 28px; color: var(--o2); font-size: 15px; font-weight: 800; letter-spacing: .14em; text-transform: uppercase; white-space: nowrap; }
+.ns-ticker span::after { content: "✦"; color: #fff; text-shadow: var(--glow); }
+@keyframes ns-tick { to { transform: translateX(-50%); } }
 
 /* =====================================================
-   TITLES + SECTIONS GENERAL
+   FONCTIONNALITÉS (onglets)
 ===================================================== */
-
-.innoshop .section {
-  width: 100%;
-  padding: 85px max(5%, calc((100vw - 1320px) / 2));
+.ns-features { padding: 110px 0; }
+.ns-tabs { display: grid; grid-template-columns: 380px 1fr; gap: 28px; align-items: stretch; }
+.ns-tablist { display: grid; gap: 10px; align-content: start; }
+.ns-tab {
+  display: flex; align-items: center; gap: 14px; width: 100%; padding: 16px 18px; text-align: left;
+  border: 1px solid var(--line); border-radius: 16px; background: var(--panel);
+  transition: all .25s ease;
 }
-
-.innoshop .section-heading {
-  max-width: 850px;
-  margin: 0 auto 42px;
-  text-align: center;
+.ns-tab-n { font-size: 13px; font-weight: 900; color: var(--mut); min-width: 26px; }
+.ns-tab-t { flex: 1; color: #bdbdbd; font-size: 15px; font-weight: 700; line-height: 1.3; }
+.ns-tab:hover { border-color: var(--line-o); }
+.ns-tab.on {
+  border-color: var(--o); background: linear-gradient(135deg, rgba(255,106,0,.2), rgba(255,106,0,.04));
+  box-shadow: var(--glow-s);
 }
+.ns-tab.on .ns-tab-n { color: var(--o); text-shadow: var(--glow); }
+.ns-tab.on .ns-tab-t { color: #fff; }
 
-.innoshop .section-eyebrow {
-  display: inline-flex;
-  align-items: center;
-  margin-bottom: 15px;
-  padding: 8px 13px;
-  border: 1px solid rgba(227, 6, 19, 0.14);
-  border-radius: 999px;
-  background: rgba(227, 6, 19, 0.05);
-  color: var(--red);
-  font-size: 10px;
-  font-weight: 850;
-  letter-spacing: 1.2px;
-  text-transform: uppercase;
+.ns-panel {
+  display: grid; grid-template-columns: 1fr 1fr; gap: 32px; align-items: center; padding: 40px;
+  border: 1px solid var(--line-o); border-radius: 28px;
+  background: radial-gradient(500px 300px at 100% 0%, rgba(255,106,0,.16), transparent 60%), var(--panel);
+  box-shadow: var(--glow-s); animation: ns-in .45s ease;
 }
+@keyframes ns-in { from { opacity: 0; transform: translateY(14px); } }
+.ns-panel-big { font-size: 88px; font-weight: 900; line-height: .9; color: transparent; -webkit-text-stroke: 1.5px var(--o); text-shadow: var(--glow); }
+.ns-panel h3 { margin: 14px 0 20px; color: #fff; font-size: 26px; font-weight: 900; line-height: 1.2; }
 
-.innoshop .title {
-  color: var(--dark);
-  font-size: clamp(25px, 3vw, 38px);
-  font-weight: 900;
-  line-height: 1.22;
-  letter-spacing: -1px;
-  text-align: center;
-}
+/* ---------- MINI-MAQUETTES ---------- */
+.ns .mock { width: 100%; padding: 16px; overflow: hidden; border: 1px solid var(--line); border-radius: 16px; background: #080808; color: var(--txt); font-size: 12px; }
+.ns .mock-title { display: flex; justify-content: space-between; gap: 8px; margin-bottom: 12px; color: var(--o2); font-size: 13px; font-weight: 800; }
+.ns .mock-title span { color: var(--mut); font-weight: 500; }
+.ns .mock-table { width: 100%; border-collapse: collapse; text-align: left; }
+.ns .mock-table th { padding: 8px 5px; border-bottom: 1px solid var(--line-o); color: var(--o); font-size: 10px; font-weight: 800; text-transform: uppercase; letter-spacing: .06em; }
+.ns .mock-table td { padding: 9px 5px; border-bottom: 1px solid var(--line); font-size: 12px; }
+.ns .dot { display: inline-block; width: 8px; height: 8px; margin-right: 4px; border-radius: 50%; background: var(--o); box-shadow: 0 0 8px var(--o); }
 
-.innoshop .subtitle {
-  max-width: 650px;
-  margin: 14px auto 0;
-  color: var(--muted);
-  font-size: 14px;
-  line-height: 1.9;
-}
+.ns .mock-pos { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; border-color: var(--line-o); background: #000; }
+.ns .pos-left { display: flex; flex-direction: column; gap: 8px; min-height: 150px; padding: 14px; border: 1px dashed var(--line-o); border-radius: 12px; background: #121212; color: #fff; font-size: 12px; }
+.ns .pos-left strong { color: var(--o2); font-size: 15px; text-shadow: var(--glow); }
+.ns .pos-left hr { width: 100%; border: 0; border-top: 1px dashed var(--line-o); }
+.ns .pos-head { color: var(--o2); font-weight: 900; }
+.ns .pos-keys { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+.ns .pos-keys span { display: grid; place-items: center; min-height: 38px; border: 1px solid var(--line); border-radius: 10px; background: #1b1b1b; color: #fff; font-size: 11px; font-weight: 700; }
+.ns .pos-keys span:nth-child(3n) { background: rgba(255,106,0,.18); border-color: var(--line-o); color: var(--o3); }
+.ns .pos-keys span:last-child { background: linear-gradient(135deg, var(--o), var(--o2)); border-color: transparent; color: #000; box-shadow: var(--glow-s); }
 
-.innoshop .red-title {
-  color: var(--red);
-}
+.ns .article-body, .ns .client-body { display: flex; align-items: flex-start; gap: 14px; }
+.ns .article-photo { width: 96px; height: 124px; flex: 0 0 auto; object-fit: cover; border: 1px solid var(--line-o); border-radius: 12px; box-shadow: var(--glow-s); }
+.ns .client-avatar { display: grid; place-items: center; width: 64px; height: 64px; flex: 0 0 auto; border-radius: 50%; background: linear-gradient(135deg, var(--o), var(--o2)); color: #000; box-shadow: var(--glow); }
+.ns .mock dl { display: grid; flex: 1; grid-template-columns: auto minmax(0, 1fr); gap: 7px 12px; min-width: 0; }
+.ns .mock dt { color: var(--mut); font-size: 11px; }
+.ns .mock dd { margin: 0; overflow-wrap: anywhere; color: #fff; font-size: 12px; font-weight: 700; text-align: right; }
 
-.innoshop .red-title > span {
-  color: var(--dark);
-}
-
-.innoshop .card {
-  min-width: 0;
-  border: 1px solid var(--border);
-  border-radius: 17px;
-  background: #fff;
-  box-shadow: 0 5px 22px rgba(20, 20, 40, 0.035);
-}
+.ns .chart { display: flex; align-items: flex-end; gap: 6px; height: 110px; padding: 8px 0; border-bottom: 1px solid var(--line); }
+.ns .chart span { flex: 1; min-width: 0; border-radius: 5px 5px 0 0; background: linear-gradient(180deg, var(--o3), var(--o)); box-shadow: 0 0 12px rgba(255,106,0,.5); }
+.ns .kpis { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 8px; margin-top: 14px; text-align: center; }
+.ns .kpis div { display: flex; flex-direction: column; align-items: center; gap: 4px; }
+.ns .kpis b { color: #fff; font-size: 12px; }
+.ns .kpis small { color: var(--mut); font-size: 10px; }
 
 /* =====================================================
-   FONCTIONNALITÉS — BENTO GRID STYLE
+   POURQUOI (bento)
 ===================================================== */
-
-.innoshop .features {
-  background: #fff;
-}
-
-.features-bento-grid {
-  display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 1.75rem;
-}
-
-.feature-card {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  background: #ffffff;
-  border: 1px solid var(--border);
-  border-radius: 1.25rem;
-  padding: 1.75rem;
-  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.03), 0 2px 4px -1px rgba(0, 0, 0, 0.02);
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-  position: relative;
-  overflow: hidden;
-}
-
-.feature-card:hover {
-  transform: translateY(-5px);
-  border-color: rgba(227, 6, 19, 0.3);
-  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.08), 0 10px 10px -5px rgba(0, 0, 0, 0.02);
-}
-
-.feature-card-large {
-  grid-column: span 2;
-}
-
-.card-top-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 1.25rem;
-}
-
-.feature-badge {
-  font-size: 0.85rem;
-  font-weight: 700;
-  color: #94a3b8;
-  background-color: #f1f5f9;
-  padding: 0.25rem 0.65rem;
-  border-radius: 0.5rem;
-}
-
-.feature-card h3 {
-  font-size: 1.25rem;
-  font-weight: 850;
-  color: var(--dark);
-  margin-bottom: 1rem;
-}
-
-.innoshop .bullets {
-  list-style: none;
-  padding: 0;
-  margin: 0 0 1.5rem 0;
-}
-
-.innoshop .bullets li {
-  position: relative;
-  margin: 7px 0;
-  padding-left: 1.5rem;
-  color: var(--text);
-  font-size: 0.95rem;
-  line-height: 1.65;
-}
-
-.innoshop .bullets li::before {
-  position: absolute;
-  top: 8px;
-  left: 0;
-  width: 6px;
-  height: 6px;
-  border-radius: 50%;
-  background: var(--red);
-  content: "";
-}
-
-.feature-mockup-wrapper {
-  margin-top: auto;
-  background: #f8fafc;
-  border: 1px solid #f1f5f9;
-  border-radius: 0.85rem;
-  padding: 1rem;
-  overflow: hidden;
-}
+.ns-why { padding: 110px 0; background: linear-gradient(180deg, var(--bg), #0b0603 50%, var(--bg)); }
+.ns-bento { display: grid; grid-template-columns: 1.15fr 1fr 1fr; grid-template-rows: auto auto; gap: 18px; }
+.ns-photo { position: relative; grid-row: span 2; min-height: 520px; overflow: hidden; border: 1px solid var(--line-o); border-radius: 28px; box-shadow: var(--glow); }
+.ns-photo img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+.ns-photo::after { content: ""; position: absolute; inset: 0; background: linear-gradient(180deg, transparent 30%, rgba(0,0,0,.92)); }
+.ns-photo-cap { position: absolute; z-index: 2; left: 26px; right: 26px; bottom: 26px; display: grid; gap: 14px; }
+.ns-photo-cap h3 { color: #fff; font-size: 26px; font-weight: 900; line-height: 1.15; }
+.ns-photo-cap p { color: #cfcfcf; font-size: 14px; }
+.ns-why-intro { grid-column: span 2; display: flex; flex-direction: column; justify-content: center; gap: 18px; padding: 34px; border: 1px solid var(--line); border-radius: 28px; background: var(--panel); }
+.ns-why-intro h2 { color: #fff; font-size: clamp(28px, 3.4vw, 42px); font-weight: 900; line-height: 1.15; letter-spacing: -1px; }
+.ns-why-intro p { max-width: 520px; color: var(--mut); font-size: 16px; line-height: 1.8; }
+.ns-why-intro .ns-btn { align-self: flex-start; }
+.ns-why-grid { grid-column: span 2; display: grid; grid-template-columns: 1fr 1fr; gap: 18px; }
+.ns-why-card { display: flex; flex-direction: column; gap: 16px; padding: 26px; border: 1px solid var(--line); border-radius: 24px; background: linear-gradient(180deg, var(--panel2), var(--panel)); transition: all .3s ease; }
+.ns-why-card:hover { transform: translateY(-6px); border-color: var(--o); box-shadow: var(--glow-s); }
+.ns-why-card h4 { color: #fff; font-size: 17px; font-weight: 800; margin-bottom: 8px; }
+.ns-why-card p { color: var(--mut); font-size: 14px; line-height: 1.7; }
 
 /* =====================================================
-   MINI-MAQUETTES
+   MÉTIERS (cartes image, bullets au survol)
 ===================================================== */
-
-.innoshop .mock {
-  width: 100%;
-  margin-top: auto;
-  padding: 12px;
-  overflow: hidden;
-  border: 1px solid var(--border);
-  border-radius: 11px;
-  background: #fff;
-  color: var(--text);
-  font-size: 10px;
-}
-
-.innoshop .mock-title {
-  display: flex;
-  justify-content: space-between;
-  gap: 8px;
-  margin-bottom: 10px;
-  color: var(--dark);
-  font-size: 11px;
-  font-weight: 800;
-}
-
-.innoshop .mock-title span {
-  color: var(--muted);
-  font-weight: 500;
-}
-
-.innoshop .mock-table {
-  width: 100%;
-  border-collapse: collapse;
-  text-align: left;
-}
-
-.innoshop .mock-table th {
-  padding: 6px 4px;
-  border-bottom: 1px solid var(--border);
-  color: var(--muted);
-  font-size: 9px;
-  font-weight: 700;
-}
-
-.innoshop .mock-table td {
-  padding: 7px 4px;
-  border-bottom: 1px solid #f0f1f4;
-  font-size: 9px;
-}
-
-.innoshop .dot {
-  display: inline-block;
-  width: 7px;
-  height: 7px;
-  margin-right: 3px;
-  border-radius: 50%;
-  background: #16a34a;
-}
-
-.innoshop .mock-pos {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 8px;
-  border-color: #0f172a;
-  background: #0f172a;
-}
-
-.innoshop .pos-left {
-  display: flex;
-  flex-direction: column;
-  gap: 7px;
-  min-height: 130px;
-  padding: 10px;
-  border-radius: 7px;
-  background: #fff;
-  color: var(--dark);
-  font-size: 9px;
-}
-
-.innoshop .pos-head {
-  margin-bottom: 4px;
-  font-size: 10px;
-  font-weight: 900;
-}
-
-.innoshop .pos-keys {
-  display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 5px;
-}
-
-.innoshop .pos-keys span {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  min-height: 29px;
-  padding: 4px;
-  border-radius: 5px;
-  background: #1d4ed8;
-  color: #fff;
-  font-size: 8px;
-  font-weight: 700;
-  text-align: center;
-}
-
-.innoshop .pos-keys span:nth-child(3n) {
-  background: #db2777;
-}
-
-.innoshop .pos-keys span:nth-child(4n) {
-  background: #0891b2;
-}
-
-.innoshop .article-body,
-.innoshop .client-body {
-  display: flex;
-  align-items: flex-start;
-  gap: 10px;
-}
-
-.innoshop .article-photo {
-  display: block;
-  width: 76px;
-  height: 100px;
-  flex: 0 0 auto;
-  border-radius: 7px;
-  background: #e5c9d4;
-  object-fit: cover;
-}
-
-.innoshop .client-avatar {
-  display: grid;
-  width: 56px;
-  height: 56px;
-  flex: 0 0 auto;
-  place-items: center;
-  border-radius: 50%;
-  background: #e5e7eb;
-  color: #475569;
-}
-
-.innoshop .mock dl {
-  display: grid;
-  flex: 1;
-  grid-template-columns: auto minmax(0, 1fr);
-  gap: 5px 8px;
-  min-width: 0;
-}
-
-.innoshop .mock dt {
-  color: var(--muted);
-  font-size: 9px;
-}
-
-.innoshop .mock dd {
-  margin: 0;
-  overflow-wrap: anywhere;
-  color: var(--dark);
-  font-size: 9px;
-  font-weight: 700;
-  text-align: right;
-}
-
-.innoshop .chart {
-  display: flex;
-  align-items: flex-end;
-  gap: 5px;
-  height: 85px;
-  padding: 6px 0;
-  border-bottom: 1px solid var(--border);
-}
-
-.innoshop .chart span {
-  flex: 1;
-  min-width: 0;
-  border-radius: 4px 4px 0 0;
-  background: linear-gradient(180deg, #f04452, #e30613);
-}
-
-.innoshop .kpis {
-  display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 5px;
-  margin-top: 12px;
-  text-align: center;
-}
-
-.innoshop .kpis div {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 4px;
-  min-width: 0;
-}
-
-.innoshop .kpis b {
-  color: var(--dark);
-  font-size: 10px;
-}
-
-.innoshop .kpis small {
-  color: var(--muted);
-  font-size: 8px;
-}
+.ns-trades { padding: 110px 0; }
+.ns-trades-grid { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 18px; }
+.ns-trade { position: relative; min-height: 400px; overflow: hidden; border: 1px solid var(--line); border-radius: 24px; background: #000; transition: all .35s ease; }
+.ns-trade img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; opacity: .75; transition: transform .6s ease, opacity .4s ease; }
+.ns-trade::after { content: ""; position: absolute; inset: 0; background: linear-gradient(180deg, rgba(0,0,0,.05) 15%, rgba(0,0,0,.9) 70%, #000); }
+.ns-trade:hover { border-color: var(--o); box-shadow: var(--glow); transform: translateY(-8px); }
+.ns-trade:hover img { transform: scale(1.1); opacity: .5; }
+.ns-trade-body { position: absolute; z-index: 2; left: 0; right: 0; bottom: 0; padding: 22px; }
+.ns-trade h4 { display: flex; align-items: center; gap: 12px; color: #fff; font-size: 16px; font-weight: 800; line-height: 1.25; }
+.ns-trade .bullets { max-height: 0; margin-top: 0; opacity: 0; overflow: hidden; gap: 7px; transition: max-height .5s ease, opacity .4s ease, margin .4s ease; }
+.ns-trade .bullets li { font-size: 13px; }
+.ns-trade:hover .bullets, .ns-trade:focus-within .bullets { max-height: 220px; margin-top: 16px; opacity: 1; }
 
 /* =====================================================
-   POURQUOI INNOSHOP
+   RÉFÉRENCES
 ===================================================== */
-
-.innoshop .why {
-  padding: 85px max(5%, calc((100vw - 1320px) / 2));
-  background: linear-gradient(140deg, #fff 0%, #f7f8fb 100%);
+.ns-trust { padding: 90px 0 110px; text-align: center; border-top: 1px solid var(--line); }
+.ns-count { margin-top: 12px; color: var(--mut); font-size: 15px; }
+.clients-rows { display: grid; gap: 14px; margin-top: 40px; }
+.clients-marquee { overflow: hidden; padding: 8px 0; -webkit-mask-image: linear-gradient(to right, transparent, #000 8%, #000 92%, transparent); mask-image: linear-gradient(to right, transparent, #000 8%, #000 92%, transparent); }
+.clients-track { display: flex; width: max-content; animation: clients-left var(--clients-speed, 60s) linear infinite; }
+.clients-track.reverse { animation-name: clients-right; }
+.clients-marquee:hover .clients-track { animation-play-state: paused; }
+@keyframes clients-left  { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+@keyframes clients-right { from { transform: translateX(-50%); } to { transform: translateX(0); } }
+.client-card {
+  flex-shrink: 0; display: flex; align-items: center; justify-content: center; width: 170px; height: 84px; margin: 0 10px; padding: 0 20px;
+  background: #fff; border: 1px solid var(--line); border-radius: 16px; box-shadow: 0 4px 18px rgba(0,0,0,.5);
+  transition: transform .3s ease, box-shadow .3s ease, border-color .3s ease;
 }
-
-.innoshop .why-top {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  align-items: center;
-  gap: 55px;
-}
-
-.innoshop .why-text h2 {
-  color: var(--dark);
-  font-size: clamp(30px, 3.5vw, 43px);
-  font-weight: 900;
-  line-height: 1.2;
-  letter-spacing: -1px;
-}
-
-.innoshop .why-text > p {
-  max-width: 530px;
-  margin-top: 18px;
-  margin-bottom: 25px;
-  color: var(--muted);
-  font-size: 15px;
-  line-height: 1.9;
-}
-
-.innoshop .why-photo-wrap {
-  position: relative;
-  min-width: 0;
-  padding: 8px;
-  border: 1px solid #fff;
-  border-radius: 22px;
-  background: #fff;
-  box-shadow: 0 25px 65px rgba(23, 27, 43, 0.12);
-}
-
-.innoshop .why-photo {
-  display: block;
-  width: 100%;
-  height: 360px;
-  border-radius: 16px;
-  background: #e5e7eb;
-  object-fit: cover;
-  object-position: center;
-}
-
-.innoshop .why-photo-caption {
-  position: absolute;
-  right: 20px;
-  bottom: 23px;
-  left: 20px;
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  padding: 15px;
-  border: 1px solid rgba(255, 255, 255, 0.2);
-  border-radius: 13px;
-  background: rgba(23, 27, 43, 0.84);
-  color: #fff;
-  backdrop-filter: blur(12px);
-}
-
-.innoshop .why-photo-caption-icon {
-  display: grid;
-  width: 43px;
-  height: 43px;
-  flex: 0 0 auto;
-  place-items: center;
-  border-radius: 12px;
-  background: rgba(255, 255, 255, 0.13);
-  color: #ff6974;
-}
-
-.innoshop .why-photo-caption strong {
-  font-size: 13px;
-}
-
-.innoshop .why-photo-caption div > span {
-  margin-top: 3px;
-  color: #e5e7eb;
-  font-size: 11px;
-}
-
-.innoshop .why-grid {
-  display: grid;
-  grid-template-columns: repeat(4, minmax(0, 1fr));
-  gap: 17px;
-  margin-top: 42px;
-}
-
-.innoshop .why-card {
-  display: flex;
-  align-items: flex-start;
-  gap: 13px;
-  padding: 21px;
-  transition: transform 0.25s ease, box-shadow 0.25s ease;
-}
-
-.innoshop .why-card:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 15px 35px rgba(20, 20, 40, 0.08);
-}
-
-.innoshop .why-card h4 {
-  margin-bottom: 7px;
-  color: var(--dark);
-  font-size: 13px;
-  font-weight: 850;
-  line-height: 1.5;
-}
-
-.innoshop .why-card p {
-  color: var(--muted);
-  font-size: 11px;
-  line-height: 1.8;
-}
-
-/* =====================================================
-   MÉTIERS DU COMMERCE
-===================================================== */
-
-.innoshop .trades {
-  background: #fff;
-}
-
-.innoshop .grid-4 {
-  display: grid;
-  grid-template-columns: repeat(4, minmax(0, 1fr));
-  gap: 20px;
-}
-
-.innoshop .trade-card {
-  display: flex;
-  flex-direction: column;
-  min-width: 0;
-  overflow: hidden;
-  border: 1px solid var(--border);
-  border-radius: 16px;
-  background: #fff;
-  box-shadow: 0 5px 20px rgba(20, 20, 40, 0.04);
-  transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
-}
-
-.innoshop .trade-card:hover {
-  transform: translateY(-5px);
-  border-color: rgba(227, 6, 19, 0.23);
-  box-shadow: 0 18px 35px rgba(20, 20, 40, 0.09);
-}
-
-.innoshop .trade-image-wrap {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 100%;
-  height: 190px;
-  padding: 8px;
-  overflow: hidden;
-  background: #f7f8fa;
-}
-
-.innoshop .trade-img {
-  display: block;
-  width: 100%;
-  height: 100%;
-  object-fit: contain;
-  object-position: center;
-  transition: transform 0.4s ease;
-}
-
-.innoshop .trade-card:hover .trade-img {
-  transform: scale(1.04);
-}
-
-.innoshop .trade-body {
-  flex: 1;
-  padding: 17px;
-}
-
-.innoshop .trade-body h4 {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  margin-bottom: 13px;
-  color: var(--dark);
-  font-size: 13px;
-  font-weight: 850;
-  line-height: 1.5;
-}
-
-.innoshop .trade-body .bullets li {
-  margin: 6px 0;
-  font-size: 11px;
-}
+.client-card:hover { transform: translateY(-4px); border-color: var(--o); box-shadow: var(--glow); }
+.client-card img { max-width: 100%; max-height: 100%; object-fit: contain; }
+.client-card .client-ph { font-size: 14px; font-weight: 700; color: #6b7280; }
+.client-card:hover .client-ph { color: var(--o); }
 
 /* =====================================================
    CTA
 ===================================================== */
-
-.innoshop .cta {
-  position: relative;
-  isolation: isolate;
-  display: grid;
-  grid-template-columns: minmax(0, 1.25fr) minmax(280px, 0.75fr);
-  align-items: center;
-  gap: 40px;
-  padding: 65px max(5%, calc((100vw - 1320px) / 2));
-  overflow: hidden;
-  background: linear-gradient(120deg, #a9000b 0%, #e30613 65%, #f22c38 100%);
-  color: #fff;
+.ns-cta { padding: 0 0 110px; }
+.ns-cta-box {
+  position: relative; overflow: hidden; padding: 80px 40px; text-align: center; border: 1px solid var(--o); border-radius: 36px;
+  background: radial-gradient(700px 360px at 50% 0%, rgba(255,106,0,.4), transparent 65%), linear-gradient(180deg, #121212, #050505);
+  box-shadow: var(--glow);
 }
-
-.innoshop .cta::before {
-  position: absolute;
-  top: -160px;
-  right: 15%;
-  z-index: -1;
-  width: 370px;
-  height: 370px;
-  border-radius: 50%;
-  background: rgba(255, 255, 255, 0.1);
-  content: "";
-  filter: blur(3px);
-}
-
-.innoshop .cta-eyebrow {
-  display: inline-block;
-  margin-bottom: 15px;
-  color: rgba(255, 255, 255, 0.8);
-  font-size: 11px;
-  font-weight: 800;
-  letter-spacing: 1.2px;
-  text-transform: uppercase;
-}
-
-.innoshop .cta h2 {
-  max-width: 700px;
-  color: #fff;
-  font-size: clamp(27px, 3vw, 39px);
-  font-weight: 900;
-  line-height: 1.3;
-  letter-spacing: -0.8px;
-}
-
-.innoshop .cta p {
-  max-width: 630px;
-  margin-top: 15px;
-  color: rgba(255, 255, 255, 0.87);
-  font-size: 14px;
-  line-height: 1.9;
-}
-
-.innoshop .cta-buttons {
-  display: grid;
-  gap: 13px;
-}
-
-.innoshop .btn {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 10px;
-  min-height: 53px;
-  padding: 14px 18px;
-  border: 1px solid transparent;
-  border-radius: 12px;
-  font-size: 12px;
-  font-weight: 850;
-  text-align: center;
-  text-decoration: none;
-  transition: transform 0.25s ease, background 0.25s ease, box-shadow 0.25s ease;
-}
-
-.innoshop .btn:hover {
-  transform: translateY(-3px);
-}
-
-.innoshop .btn-dark {
-  background: var(--dark);
-  color: #fff;
-  box-shadow: 0 8px 22px rgba(0, 0, 0, 0.15);
-}
-
-.innoshop .btn-dark:hover {
-  background: #0c0e17;
-}
-
-.innoshop .btn-light {
-  border-color: rgba(255, 255, 255, 0.4);
-  background: #fff;
-  color: var(--red);
-}
-
-.innoshop .btn-light:hover {
-  background: #fff4f4;
-}
+.ns-cta-box h2 { max-width: 820px; margin: 18px auto 0; color: #fff; font-size: clamp(28px, 4.4vw, 52px); font-weight: 900; line-height: 1.1; letter-spacing: -1.5px; }
+.ns-cta-box p { max-width: 620px; margin: 20px auto 0; color: #bdbdbd; font-size: 17px; line-height: 1.8; }
+.ns-cta-actions { display: flex; flex-wrap: wrap; justify-content: center; gap: 14px; margin-top: 38px; }
 
 /* =====================================================
-   FOOTER INNOSHOP
+   FOOTER
 ===================================================== */
-
-.innoshop .footer {
-  display: grid;
-  grid-template-columns: repeat(4, minmax(0, 1fr));
-  gap: 22px;
-  padding: 27px max(5%, calc((100vw - 1320px) / 2));
-  border-bottom: 1px solid var(--border);
-  background: #fff;
-}
-
-.innoshop .footer-item {
-  display: flex;
-  align-items: center;
-  gap: 13px;
-  min-width: 0;
-}
-
-.innoshop .footer-icon {
-  display: grid;
-  width: 44px;
-  height: 44px;
-  flex: 0 0 auto;
-  place-items: center;
-  border-radius: 12px;
-  background: #fff0f1;
-  color: var(--red);
-}
-
-.innoshop .footer-item b {
-  display: block;
-  color: var(--dark);
-  font-size: 11px;
-  font-weight: 850;
-  line-height: 1.5;
-}
-
-.innoshop .footer-item small {
-  display: block;
-  margin-top: 4px;
-  color: var(--muted);
-  font-size: 10px;
-  line-height: 1.5;
-}
-
-/* =====================================================
-   RESPONSIVE (TABLET & MOBILE)
-===================================================== */
-
-@media (max-width: 1100px) {
-  .features-bento-grid {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-  }
-  .feature-card-large {
-    grid-column: span 2;
-  }
-  .innoshop .grid-4,
-  .innoshop .why-grid,
-  .innoshop .footer {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-  }
-  .innoshop .why-top {
-    gap: 35px;
-  }
-}
-
-@media (max-width: 760px) {
-  .features-bento-grid {
-    grid-template-columns: 1fr;
-  }
-  .feature-card-large {
-    grid-column: span 1;
-  }
-  .innoshop .section,
-  .innoshop .why {
-    padding: 65px 25px;
-  }
-  .innoshop .why-top {
-    grid-template-columns: 1fr;
-    gap: 30px;
-  }
-  .innoshop .cta {
-    grid-template-columns: 1fr;
-    gap: 28px;
-    padding: 55px 25px;
-  }
-}
-
-@media (max-width: 540px) {
-  .features-bento-grid {
-    grid-template-columns: 1fr;
-  }
-  .feature-card-large {
-    grid-column: span 1;
-  }
-  .innoshop .grid-4,
-  .innoshop .why-grid,
-  .innoshop .footer {
-    grid-template-columns: minmax(0, 1fr);
-  }
-  .innoshop .hero-actions {
-    align-items: stretch;
-    flex-direction: column;
-  }
-  .innoshop .innoshop-btn {
-    width: 100%;
-  }
-}
-/* =====================================================
-   FONCTIONNALITÉS — FIX GRID & CARDS CARRÉES
-===================================================== */
-
-.innoshop .features {
-  display: block !important; /* Bech may3dlch l-parent flex/grid */
-  width: 100%;
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 85px 20px;
-  background: #ffffff;
-}
-
-.innoshop .features .section-heading {
-  width: 100%;
-  max-width: 750px;
-  margin: 0 auto 45px auto;
-  text-align: center;
-}
-
-/* Grid system m9ad mzyan */
-.innoshop .features-grid {
-  display: grid !important;
-  grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
-  gap: 24px !important;
-  width: 100%;
-}
-
-/* Feature Cards Style Square/Carré */
-.innoshop .feature-card {
-  display: flex !important;
-  flex-direction: column !important;
-  justify-content: space-between !important;
-  background: #ffffff;
-  border: 1px solid var(--border);
-  border-radius: 20px;
-  padding: 24px;
-  min-height: 480px; /* Ya3tiha shakl carré/équilibré */
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.04);
-  transition: all 0.3s ease;
-  overflow: hidden;
-}
-
-.innoshop .feature-card:hover {
-  transform: translateY(-5px);
-  border-color: rgba(227, 6, 19, 0.3);
-  box-shadow: 0 15px 30px rgba(227, 6, 19, 0.08);
-}
-
-.innoshop .card-top-header {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  width: 100%;
-  margin-bottom: 16px;
-}
-
-.innoshop .feature-badge {
-  font-size: 12px;
-  font-weight: 800;
-  color: #64748b;
-  background-color: #f1f5f9;
-  padding: 4px 10px;
-  border-radius: 8px;
-}
-
-.innoshop .feature-card-content h3 {
-  font-size: 17px;
-  font-weight: 850;
-  color: var(--dark);
-  margin-bottom: 12px;
-  line-height: 1.35;
-}
-
-.innoshop .feature-card-content .bullets {
-  list-style: none;
-  padding: 0;
-  margin: 0 0 16px 0;
-}
-
-.innoshop .feature-card-content .bullets li {
-  position: relative;
-  padding-left: 18px;
-  margin-bottom: 6px;
-  color: var(--text);
-  font-size: 13px;
-  line-height: 1.5;
-}
-
-.innoshop .feature-card-content .bullets li::before {
-  content: "";
-  position: absolute;
-  left: 0;
-  top: 7px;
-  width: 6px;
-  height: 6px;
-  border-radius: 50%;
-  background: var(--red);
-}
-
-/* Mockups container f kalla card */
-.innoshop .feature-mockup-wrapper {
-  margin-top: auto;
-  background: #f8fafc;
-  border: 1px solid #f1f5f9;
-  border-radius: 12px;
-  padding: 12px;
-  width: 100%;
-}
+.ns-footer { border-top: 1px solid var(--line-o); background: #000; padding: 36px 0; }
+.ns-footer-grid { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 24px; }
+.ns-fitem { display: flex; align-items: center; gap: 14px; }
+.ns-fitem b { display: block; color: #fff; font-size: 14px; font-weight: 800; }
+.ns-fitem small { display: block; margin-top: 3px; color: var(--mut); font-size: 12px; }
 
 /* =====================================================
    RESPONSIVE
 ===================================================== */
-
-@media (max-width: 1024px) {
-  .innoshop .features-grid {
-    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
-  }
+@media (max-width: 1100px) {
+  .ns-tabs { grid-template-columns: 1fr; }
+  .ns-tablist { grid-template-columns: repeat(2, 1fr); }
+  .ns-bento { grid-template-columns: 1fr 1fr; }
+  .ns-photo { grid-row: auto; grid-column: span 2; min-height: 380px; }
+  .ns-why-intro, .ns-why-grid { grid-column: span 2; }
+  .ns-trades-grid { grid-template-columns: repeat(2, 1fr); }
+  .ns-footer-grid { grid-template-columns: repeat(2, 1fr); }
 }
-
-@media (max-width: 680px) {
-  .innoshop .features-grid {
-    grid-template-columns: 1fr !important;
-  }
-  
-  .innoshop .feature-card {
-    min-height: auto;
-  }
+@media (max-width: 760px) {
+  .ns-hero { padding-top: 120px; }
+  .ns-chip { display: none; }
+  .ns-panel { grid-template-columns: 1fr; padding: 24px; }
+  .ns-panel-big { font-size: 56px; }
+  .ns-tablist { grid-template-columns: 1fr; }
+  .ns-bento, .ns-why-grid { grid-template-columns: 1fr; }
+  .ns-photo, .ns-why-intro, .ns-why-grid { grid-column: auto; }
+  .ns-cta-box { padding: 54px 22px; }
+  .ns-btn { width: 100%; }
+  .client-card { width: 140px; height: 72px; margin: 0 8px; }
+}
+@media (max-width: 560px) {
+  .ns-trades-grid, .ns-footer-grid { grid-template-columns: 1fr; }
+  /* sur mobile les bullets sont toujours visibles */
+  .ns-trade .bullets { max-height: none; margin-top: 14px; opacity: 1; }
+  .ns-trade { min-height: 460px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .clients-track, .ns-ticker-track, .ns-chip, .ns-dot { animation: none !important; }
 }

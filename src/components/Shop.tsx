@@ -1,4 +1,4 @@
-import React, { type ReactNode } from 'react';
+import React, { useState, type ReactNode } from 'react';
 import {
   ShoppingCart,
   Package,
@@ -31,7 +31,7 @@ import {
 
 import './Innoshop.css';
 
-import heroImage from '@/assets/inn.jpg';
+import heroImage from '@/assets/shoop.jpeg';
 import commercanteImage from '@/assets/commercante.jpg';
 import articleImage from '@/assets/article.jpg';
 import supermarcheImage from '@/assets/sup.jpg';
@@ -84,95 +84,6 @@ const CLIENT_LOGOS: ClientLogo[] = REAL_LOGOS.length
   ? REAL_LOGOS
   : PLACEHOLDER_LOGOS;
 
-const MARQUEE_CSS = `
-.innoshop-trust {
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 72px 20px;
-  text-align: center;
-}
-.innoshop-trust-eyebrow {
-  display: inline-block;
-  font-size: 12px;
-  font-weight: 800;
-  letter-spacing: .2em;
-  text-transform: uppercase;
-  color: #e31b23;
-}
-.innoshop-trust h2 {
-  margin: 10px 0 0;
-  font-size: clamp(26px, 4vw, 40px);
-  font-weight: 800;
-  line-height: 1.15;
-  color: #111827;
-}
-
-.clients-marquee {
-  overflow: hidden;
-  padding: 8px 0;
-  -webkit-mask-image: linear-gradient(to right, transparent, #000 8%, #000 92%, transparent);
-  mask-image: linear-gradient(to right, transparent, #000 8%, #000 92%, transparent);
-}
-.clients-track {
-  display: flex;
-  width: max-content;
-  animation: clients-left var(--clients-speed, 60s) linear infinite;
-}
-.clients-track.reverse { animation-name: clients-right; }
-.clients-marquee:hover .clients-track { animation-play-state: paused; }
-
-@keyframes clients-left  { from { transform: translateX(0); }    to { transform: translateX(-50%); } }
-@keyframes clients-right { from { transform: translateX(-50%); } to { transform: translateX(0); } }
-
-.client-card {
-  flex-shrink: 0;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 170px;
-  height: 84px;
-  margin: 0 10px;
-  padding: 0 20px;
-  background: #fff;
-  border: 1px solid #e5e7eb;
-  border-radius: 16px;
-  box-shadow: 0 4px 14px rgba(15, 23, 42, 0.06);
-  transition: transform .3s ease, box-shadow .3s ease, border-color .3s ease;
-}
-.client-card:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 12px 28px rgba(15, 23, 42, 0.12);
-  border-color: #e31b23;
-}
-.client-card img {
-  max-width: 100%;
-  max-height: 100%;
-  object-fit: contain;
-  filter: none;
-  opacity: 1;
-  transition: transform .3s ease;
-}
-.client-card:hover img { filter: none; opacity: 1; transform: scale(1.05); }
-.client-card:hover img { filter: none; opacity: 1; }
-.client-card .client-ph {
-  font-size: 14px;
-  font-weight: 700;
-  color: #9ca3af;
-  transition: color .3s ease;
-}
-.client-card:hover .client-ph { color: #e31b23; }
-
-.clients-rows { display: grid; gap: 12px; margin-top: 36px; }
-.clients-count { margin-top: 12px; color: #64748b; font-size: 15px; text-align: center; }
-
-@media (max-width: 640px) {
-  .client-card { width: 140px; height: 72px; margin: 0 8px; }
-}
-@media (prefers-reduced-motion: reduce) {
-  .clients-track { animation: none !important; }
-}
-`;
-
 const MarqueeRow = ({
   logos,
   reverse = false,
@@ -223,17 +134,13 @@ const Bullets = ({ items }: { items: string[] }) => (
   </ul>
 );
 
-const RedIcon = ({
+const Ico = ({
   children,
-  round = true,
+  solid = false,
 }: {
   children: ReactNode;
-  round?: boolean;
-}) => (
-  <span className={`red-icon ${round ? 'round' : ''}`}>
-    {children}
-  </span>
-);
+  solid?: boolean;
+}) => <span className={`ns-ico${solid ? ' solid' : ''}`}>{children}</span>;
 
 const stockRows: (string | number)[][] = [
   ['Eau', 1200, '6,00', 'Boissons'],
@@ -331,22 +238,22 @@ const features = [
 
 const whyCards = [
   {
-    icon: <Clock size={24} />,
+    icon: <Clock size={22} />,
     title: 'Gagnez du temps',
     text: 'Des encaissements rapides et une gestion simplifiée de vos opérations.',
   },
   {
-    icon: <ShieldCheck size={24} />,
+    icon: <ShieldCheck size={22} />,
     title: 'Maîtrisez votre activité',
     text: 'Un suivi en temps réel de vos stocks, ventes et performances.',
   },
   {
-    icon: <TrendingUp size={24} />,
+    icon: <TrendingUp size={22} />,
     title: 'Développez vos ventes',
     text: 'Des outils pour vos promotions, remises et fidélisation clients.',
   },
   {
-    icon: <Headphones size={24} />,
+    icon: <Headphones size={22} />,
     title: "Profitez d'un accompagnement",
     text: 'Installation, formation et assistance technique par des experts.',
   },
@@ -453,25 +360,34 @@ const trades = [
 
 const footerItems = [
   {
-    icon: <Settings size={28} />,
+    icon: <Settings size={24} />,
     title: 'Installation et paramétrage',
     text: 'Une mise en place rapide et efficace',
   },
   {
-    icon: <Users size={28} />,
+    icon: <Users size={24} />,
     title: 'Formation de vos équipes',
     text: 'Une prise en main simple et rapide',
   },
   {
-    icon: <Headphones size={28} />,
+    icon: <Headphones size={24} />,
     title: 'Assistance technique',
     text: 'Un support réactif et professionnel',
   },
   {
-    icon: <BarChart3 size={28} />,
+    icon: <BarChart3 size={24} />,
     title: 'Une solution évolutive',
     text: 'Pour accompagner votre croissance',
   },
+];
+
+const tickerWords = [
+  'Encaissement',
+  'Stocks',
+  'Articles & tarifs',
+  'Fidélité clients',
+  'Reporting',
+  'Multi-magasins',
 ];
 
 /* ================= MINI-MAQUETTES ================= */
@@ -572,17 +488,17 @@ const MockStats = () => (
 
     <div className="kpis">
       <div>
-        <Euro size={16} color="#16a34a" />
+        <Euro size={16} color="#ff6a00" />
         <b>125 680 DH</b>
         <small>Chiffre d'affaires</small>
       </div>
       <div>
-        <Ticket size={16} color="#f59e0b" />
+        <Ticket size={16} color="#ff8a1f" />
         <b>2 350</b>
         <small>Tickets</small>
       </div>
       <div>
-        <Boxes size={16} color="#2563eb" />
+        <Boxes size={16} color="#ffb347" />
         <b>1 248</b>
         <small>Articles vendus</small>
       </div>
@@ -653,6 +569,9 @@ const mocks: Record<string, ReactNode> = {
 /* ================= PAGE INNOSHOP ================= */
 
 export default function InnoShop() {
+  const [active, setActive] = useState(0);
+  const current = features[active];
+
   const goToContact = () => {
     window.location.href = '/#contact';
   };
@@ -669,241 +588,230 @@ export default function InnoShop() {
   const rowTwo = CLIENT_LOGOS.slice(half);
 
   return (
-    <main className="innoshop">
-      <style>{MARQUEE_CSS}</style>
-
+    <main className="ns">
       {/* HERO */}
-      <section className="hero" id="innoshop-accueil">
-        <div className="hero-card">
-          <div className="hero-grid">
-            <div className="hero-visual">
-              <span className="hero-visual-badge">
-                <span className="hero-visual-dot" />
-                Une activité mieux connectée
-              </span>
-              <div className="hero-visual-bg" aria-hidden="true">
-                <img src={IMAGES.hero} alt="" />
-                <div className="hero-visual-tint" />
-              </div>
+      <section className="ns-hero" id="innoshop-accueil">
+        <div className="ns-wrap">
+          <span className="ns-pill">
+            <span className="ns-dot" />
+            Solutions commerce &amp; retail
+          </span>
 
+          <h1>
+            La solution de gestion commerciale{' '}
+            <span>pensée pour votre commerce.</span>
+          </h1>
+
+          <p className="ns-hero-sub">
+            Une solution complète pour encaisser, gérer vos stocks, fidéliser
+            vos clients et piloter votre activité. Gagnez du temps et améliorez
+            l'expérience de vos clients.
+          </p>
+
+          <div className="ns-hero-actions">
+            <button
+              type="button"
+              className="ns-btn ns-btn-fill"
+              onClick={goToContact}
+            >
+              Demander une démonstration
+              <ArrowRight size={18} />
+            </button>
+            <button
+              type="button"
+              className="ns-btn ns-btn-line"
+              onClick={() => scrollToSection('innoshop-fonctionnalites')}
+            >
+              Découvrir nos solutions
+            </button>
+          </div>
+
+          <div className="ns-hero-checks">
+            <span>
+              <Check size={17} />
+              Solution complète
+            </span>
+            <span>
+              <Check size={17} />
+              Accompagnement personnalisé
+            </span>
+          </div>
+
+          <div className="ns-stage">
+            <span className="ns-chip c1">
+              <ShoppingCart size={18} /> Caisse
+            </span>
+            <span className="ns-chip c2">
+              <Package size={18} /> Stocks
+            </span>
+            <span className="ns-chip c3">
+              <BarChart3 size={18} /> Reporting
+            </span>
+
+            <div className="ns-stage-frame">
               <img
-                className="hero-visual-img"
                 src={IMAGES.hero}
                 alt="Interface de caisse INNOSHOP"
                 loading="eager"
               />
             </div>
-
-            <div className="hero-text">
-              <span className="hero-eyebrow">
-                <span className="hero-eyebrow-dot" />
-                Solutions commerce &amp; retail
-              </span>
-
-              <h1 className="hero-heading">
-                La solution de gestion commerciale{' '}
-                <span>pensée pour votre commerce.</span>
-              </h1>
-
-              <p className="hero-sub">
-                Une solution complète pour encaisser, gérer vos stocks,
-                fidéliser vos clients et piloter votre activité. Gagnez
-                du temps et améliorez l'expérience de vos clients.
-              </p>
-
-              <div className="hero-actions">
-                <button
-                  type="button"
-                  className="innoshop-btn innoshop-btn-red"
-                  onClick={goToContact}
-                >
-                  Demander une démonstration
-                  <ArrowRight size={18} />
-                </button>
-
-                <button
-                  type="button"
-                  className="innoshop-btn innoshop-btn-outline"
-                  onClick={() =>
-                    scrollToSection('innoshop-fonctionnalites')
-                  }
-                >
-                  Découvrir nos solutions
-                </button>
-              </div>
-
-              <div className="hero-checks">
-                <span>
-                  <Check size={17} />
-                  Solution complète
-                </span>
-                <span>
-                  <Check size={17} />
-                  Accompagnement personnalisé
-                </span>
-              </div>
-            </div>
           </div>
+        </div>
 
-          <div className="hero-banner">
-            <span className="hero-banner-icon">
-              <Sparkles size={44} strokeWidth={1.6} />
-            </span>
-            <div className="hero-banner-text">
-              <strong>Toute votre activité, mieux connectée.</strong>
-              <span>
-                Caisse, stocks, clients et reporting réunis dans une seule
-                solution pensée pour votre commerce.
-              </span>
-            </div>
+        <div className="ns-ticker" aria-hidden="true">
+          <div className="ns-ticker-track">
+            {[...tickerWords, ...tickerWords, ...tickerWords, ...tickerWords].map(
+              (w, i) => (
+                <span key={i}>{w}</span>
+              )
+            )}
           </div>
         </div>
       </section>
 
-      {/* FONCTIONNALITÉS */}
-      <section className="section features" id="innoshop-fonctionnalites">
-        <div className="section-heading">
-          <span className="section-eyebrow">Une solution complète</span>
-          <h2 className="title">
-            Les fonctionnalités majeures d'<Logo size="inline" />
-          </h2>
-          <p className="subtitle">
-            Une solution ergonomique et performante pour piloter l'ensemble de votre commerce.
-          </p>
-        </div>
-
-        <div className="features-grid">
-          {features.map((feature) => (
-            <article className="card feature-card" key={feature.n}>
-              <div className="card-top-header">
-                <span className="feature-badge">#{feature.n}</span>
-                <RedIcon round={true}>{feature.icon}</RedIcon>
-              </div>
-
-              <div className="feature-card-content">
-                <h3>{feature.title}</h3>
-                <Bullets items={feature.items} />
-              </div>
-
-              <div className="feature-mockup-wrapper">
-                {mocks[feature.mock]}
-              </div>
-            </article>
-          ))}
-        </div>
-      </section>
-
-      {/* POURQUOI */}
-      <section className="why">
-        <div className="why-top">
-          <div className="why-text">
-            <span className="section-eyebrow">
-              Votre commerce, notre priorité
-            </span>
-
-            <h2>
-              Pourquoi choisir <Logo size="xl" /> ?
+      {/* FONCTIONNALITÉS : ONGLETS */}
+      <section className="ns-features" id="innoshop-fonctionnalites">
+        <div className="ns-wrap">
+          <div className="ns-head">
+            <span className="ns-pill">Une solution complète</span>
+            <h2 className="ns-title">
+              Les fonctionnalités majeures d'<Logo size="inline" />
             </h2>
-
-            <p>
-              Une solution fiable et performante pour accompagner
-              la croissance de votre commerce, centraliser vos opérations
-              et simplifier votre quotidien.
+            <p className="ns-sub">
+              Une solution ergonomique et performante pour piloter l'ensemble
+              de votre commerce.
             </p>
-
-            <button
-              type="button"
-              className="innoshop-btn innoshop-btn-red"
-              onClick={goToContact}
-            >
-              Parlons de votre projet
-              <ArrowRight size={18} />
-            </button>
           </div>
 
-          <div className="why-photo-wrap">
-            <img
-              className="why-photo"
-              src={IMAGES.commercante}
-              alt="Commerçante utilisant une solution de gestion"
-              loading="lazy"
-            />
+          <div className="ns-tabs">
+            <div className="ns-tablist" role="tablist">
+              {features.map((f, i) => (
+                <button
+                  type="button"
+                  role="tab"
+                  aria-selected={i === active}
+                  className={`ns-tab${i === active ? ' on' : ''}`}
+                  key={f.n}
+                  onClick={() => setActive(i)}
+                >
+                  <span className="ns-tab-n">{f.n}</span>
+                  <span className="ns-tab-t">{f.title}</span>
+                  <Ico solid={i === active}>{f.icon}</Ico>
+                </button>
+              ))}
+            </div>
 
-            <div className="why-photo-caption">
-              <span className="why-photo-caption-icon">
-                <CheckCircle2 size={23} />
-              </span>
+            <div className="ns-panel" key={current.n} role="tabpanel">
               <div>
-                <strong>Une gestion simplifiée</strong>
-                <span>Des outils adaptés à votre activité</span>
+                <div className="ns-panel-big">{current.n}</div>
+                <h3>{current.title}</h3>
+                <Bullets items={current.items} />
               </div>
+              <div>{mocks[current.mock]}</div>
             </div>
           </div>
         </div>
+      </section>
 
-        <div className="why-grid">
-          {whyCards.map((card) => (
-            <div className="card why-card" key={card.title}>
-              <RedIcon>{card.icon}</RedIcon>
-              <div>
-                <h4>{card.title}</h4>
-                <p>{card.text}</p>
+      {/* POURQUOI : BENTO */}
+      <section className="ns-why">
+        <div className="ns-wrap">
+          <div className="ns-bento">
+            <div className="ns-photo">
+              <img
+                src={IMAGES.commercante}
+                alt="Commerçante utilisant une solution de gestion"
+                loading="lazy"
+              />
+              <div className="ns-photo-cap">
+                <Ico solid>
+                  <CheckCircle2 size={22} />
+                </Ico>
+                <h3>Une gestion simplifiée</h3>
+                <p>Des outils adaptés à votre activité</p>
               </div>
             </div>
-          ))}
+
+            <div className="ns-why-intro">
+              <span className="ns-pill" style={{ alignSelf: 'flex-start' }}>
+                Votre commerce, notre priorité
+              </span>
+              <h2>
+                Pourquoi choisir <Logo size="xl" /> ?
+              </h2>
+              <p>
+                Une solution fiable et performante pour accompagner la
+                croissance de votre commerce, centraliser vos opérations et
+                simplifier votre quotidien.
+              </p>
+              <button
+                type="button"
+                className="ns-btn ns-btn-fill"
+                onClick={goToContact}
+              >
+                Parlons de votre projet
+                <ArrowRight size={18} />
+              </button>
+            </div>
+
+            <div className="ns-why-grid">
+              {whyCards.map((card) => (
+                <div className="ns-why-card" key={card.title}>
+                  <Ico>{card.icon}</Ico>
+                  <div>
+                    <h4>{card.title}</h4>
+                    <p>{card.text}</p>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
         </div>
       </section>
 
       {/* MÉTIERS */}
-      <section className="section trades" id="innoshop-metiers">
-        <div className="section-heading">
-          <span className="section-eyebrow">
-            Une solution polyvalente
-          </span>
+      <section className="ns-trades" id="innoshop-metiers">
+        <div className="ns-wrap">
+          <div className="ns-head">
+            <span className="ns-pill">Une solution polyvalente</span>
+            <h2 className="ns-title">
+              <Logo size="inline" /> s'adapte à tous{' '}
+              <em>les métiers du commerce</em>
+            </h2>
+            <p className="ns-sub">
+              Une solution adaptée aux spécificités de chaque point de vente.
+            </p>
+          </div>
 
-          <h2 className="title red-title">
-            <Logo size="inline" /> s'adapte à tous
-            <span> les métiers du commerce</span>
-          </h2>
-
-          <p className="subtitle">
-            Une solution adaptée aux spécificités de chaque point de vente.
-          </p>
-        </div>
-
-        <div className="grid-4">
-          {trades.map((trade) => (
-            <article className="trade-card" key={trade.title}>
-              <div className="trade-image-wrap">
-                <img
-                  className="trade-img"
-                  src={trade.img}
-                  alt={trade.title}
-                  loading="lazy"
-                />
-              </div>
-
-              <div className="trade-body">
-                <h4>
-                  <RedIcon>{trade.icon}</RedIcon>
-                  <span>{trade.title}</span>
-                </h4>
-
-                <Bullets items={trade.items} />
-              </div>
-            </article>
-          ))}
+          <div className="ns-trades-grid">
+            {trades.map((trade) => (
+              <article className="ns-trade" key={trade.title} tabIndex={0}>
+                <img src={trade.img} alt={trade.title} loading="lazy" />
+                <div className="ns-trade-body">
+                  <h4>
+                    <Ico solid>{trade.icon}</Ico>
+                    <span>{trade.title}</span>
+                  </h4>
+                  <Bullets items={trade.items} />
+                </div>
+              </article>
+            ))}
+          </div>
         </div>
       </section>
 
       {/* CONFIANCE : LOGOS CLIENTS */}
-      <section className="innoshop-trust" id="innoshop-clients">
-        <span className="innoshop-trust-eyebrow">Nos références</span>
-        <h2>Soyez parmi ceux qui nous font confiance</h2>
-        <p className="clients-count">
-          Plus de {CLIENT_LOGOS.length} établissements utilisent déjà nos
-          solutions au quotidien.
-        </p>
+      <section className="ns-trust" id="innoshop-clients">
+        <div className="ns-wrap">
+          <div className="ns-head" style={{ marginBottom: 0 }}>
+            <span className="ns-pill">Nos références</span>
+            <h2 className="ns-title">Soyez parmi ceux qui nous font confiance</h2>
+            <p className="ns-count">
+              Plus de {CLIENT_LOGOS.length} établissements utilisent déjà nos
+              solutions au quotidien.
+            </p>
+          </div>
+        </div>
 
         <div className="clients-rows">
           <MarqueeRow
@@ -919,53 +827,48 @@ export default function InnoShop() {
       </section>
 
       {/* CTA */}
-      <section className="cta" id="innoshop-contact">
-        <div className="cta-text">
-          <span className="cta-eyebrow">
-            Prêt à passer à l'étape suivante ?
-          </span>
+      <section className="ns-cta" id="innoshop-contact">
+        <div className="ns-wrap">
+          <div className="ns-cta-box">
+            <span className="ns-pill">Prêt à passer à l'étape suivante ?</span>
 
-          <h2>
-            Passez à une gestion plus performante avec <Logo size="xl" />
-          </h2>
+            <h2>
+              Passez à une gestion plus performante avec <Logo size="xl" />
+            </h2>
 
-          <p>
-            Découvrez comment INNOSHOP peut répondre aux besoins
-            de votre commerce et faciliter la gestion de votre activité.
-          </p>
-        </div>
+            <p>
+              Découvrez comment INNOSHOP peut répondre aux besoins de votre
+              commerce et faciliter la gestion de votre activité.
+            </p>
 
-        <div className="cta-buttons">
-          <a
-            href="/#contact"
-            className="btn btn-dark"
-          >
-            <Calendar size={20} />
-            Demander une démonstration
-            <ArrowRight size={17} />
-          </a>
-
-          <a
-            href="/#contact"
-            className="btn btn-light"
-          >
-            <Phone size={20} />
-            Nous contacter
-          </a>
+            <div className="ns-cta-actions">
+              <a href="/#contact" className="ns-btn ns-btn-fill">
+                <Calendar size={20} />
+                Demander une démonstration
+                <ArrowRight size={17} />
+              </a>
+              <a href="/#contact" className="ns-btn ns-btn-line">
+                <Phone size={20} />
+                Nous contacter
+              </a>
+            </div>
+          </div>
         </div>
       </section>
 
       {/* FOOTER SPÉCIFIQUE INNOSHOP */}
-      <footer className="footer">
-        {footerItems.map((item) => (
-          <div className="footer-item" key={item.title}>
-            <span className="footer-icon">{item.icon}</span>
-            <div>
-              <b>{item.title}</b>
-              <small>{item.text}</small>
+      <footer className="ns-footer">
+        <div className="ns-wrap ns-footer-grid">
+          {footerItems.map((item) => (
+            <div className="ns-fitem" key={item.title}>
+              <Ico>{item.icon}</Ico>
+              <div>
+                <b>{item.title}</b>
+                <small>{item.text}</small>
+              </div>
             </div>
-          </div>
-        ))}
+          ))}
+        </div>
       </footer>
     </main>
   );
