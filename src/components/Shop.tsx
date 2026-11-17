@@ -658,15 +658,7 @@ export default function InnoShop() {
           </div>
         </div>
 
-        <div className="ns-ticker" aria-hidden="true">
-          <div className="ns-ticker-track">
-            {[...tickerWords, ...tickerWords, ...tickerWords, ...tickerWords].map(
-              (w, i) => (
-                <span key={i}>{w}</span>
-              )
-            )}
-          </div>
-        </div>
+        
       </section>
 
       {/* FONCTIONNALITÉS : ONGLETS */}
