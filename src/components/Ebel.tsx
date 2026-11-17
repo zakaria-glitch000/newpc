@@ -1,14 +1,14 @@
+
 import React, { useState } from "react";
 import "./Ebel.css";
 
-/* Images : adapte les chemins/noms à tes vrais fichiers */
 import heroImg from "@/assets/ebel.jpeg";
 import rdvImg from "@/assets/1ebel.jpeg";
 import caImg from "@/assets/2ebel.jpeg";
 import gestionImg from "@/assets/3ebel.jpeg";
 import devicesImg from "@/assets/4ebel.jpeg";
 import wheelCenterImg from "@/assets/easy.jpeg";
-import supportImg from "@/assets/supportt.jpeg"; // Remplace par l'image de ton choix pour les services (ex: l'image de la femme au casque)
+import supportImg from "@/assets/supportt.jpeg";
 
 /* =====================================================
    LOGOS CLIENTS
@@ -22,19 +22,27 @@ const REAL_LOGOS = Object.entries(logoModules)
   .sort(([a], [b]) => a.localeCompare(b))
   .map(([path, src]) => {
     const file = path.split("/").pop() || "client";
-    return { name: file.replace(/\.[^.]+$/, "").replace(/[-_]/g, " "), src };
+    return {
+      name: file.replace(/\.[^.]+$/, "").replace(/[-_]/g, " "),
+      src,
+    };
   });
 
 const PLACEHOLDER_LOGOS = Array.from({ length: 24 }, (_, i) => ({
   name: `Client ${String(i + 1).padStart(2, "0")}`,
 }));
 
-const CLIENT_LOGOS = REAL_LOGOS.length ? REAL_LOGOS : PLACEHOLDER_LOGOS;
+const CLIENT_LOGOS = REAL_LOGOS.length
+  ? REAL_LOGOS
+  : PLACEHOLDER_LOGOS;
 
+/* =====================================================
+   MARQUEE
+===================================================== */
 const MARQUEE_CSS = `
 .clients-marquee {
   overflow: hidden;
-  padding: 8px 0;
+  padding: 12px 0;
   -webkit-mask-image: linear-gradient(to right, transparent, #000 8%, #000 92%, transparent);
   mask-image: linear-gradient(to right, transparent, #000 8%, #000 92%, transparent);
 }
@@ -43,12 +51,20 @@ const MARQUEE_CSS = `
   width: max-content;
   animation: clients-left var(--clients-speed, 60s) linear infinite;
 }
-.clients-track.reverse { animation-name: clients-right; }
-.clients-marquee:hover .clients-track { animation-play-state: paused; }
-
-@keyframes clients-left  { from { transform: translateX(0); }    to { transform: translateX(-50%); } }
-@keyframes clients-right { from { transform: translateX(-50%); } to { transform: translateX(0); } }
-
+.clients-track.reverse {
+  animation-name: clients-right;
+}
+.clients-marquee:hover .clients-track {
+  animation-play-state: paused;
+}
+@keyframes clients-left {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
+@keyframes clients-right {
+  from { transform: translateX(-50%); }
+  to { transform: translateX(0); }
+}
 .client-card {
   flex-shrink: 0;
   display: flex;
@@ -57,130 +73,48 @@ const MARQUEE_CSS = `
   width: 170px;
   height: 84px;
   margin: 0 10px;
-  padding: 0 20px;
+  padding: 12px 20px;
   background: #fff;
-  border: 1px solid #e5e7eb;
+  border: 1px solid #e2e8f0;
   border-radius: 16px;
-  box-shadow: 0 4px 14px rgba(15, 23, 42, 0.06);
+  box-shadow: 0 4px 14px rgba(15, 23, 42, 0.05);
   transition: transform .3s ease, box-shadow .3s ease, border-color .3s ease;
 }
 .client-card:hover {
   transform: translateY(-4px);
-  box-shadow: 0 12px 28px rgba(15, 23, 42, 0.12);
-  border-color: #f26522;
+  box-shadow: 0 12px 28px rgba(15, 23, 42, 0.10);
+  border-color: #f97316;
 }
 .client-card img {
   max-width: 100%;
   max-height: 100%;
   object-fit: contain;
-  filter: none;
-  opacity: 1;
-  transition: transform .3s ease;
 }
-.client-card:hover img { filter: none; opacity: 1; transform: scale(1.05); }
 .client-card .client-ph {
   font-size: 14px;
   font-weight: 700;
-  color: #9ca3af;
-  transition: color .3s ease;
+  color: #94a3b8;
 }
-.client-card:hover .client-ph { color: #f26522; }
-
-.clients-rows { display: grid; gap: 12px; margin-top: 36px; }
-.clients-count { margin-top: 12px; color: #64748b; font-size: 15px; text-align: center; }
-
-/* Styles pour la section Services PC Maroc */
-.pc-services-section {
-  padding: 80px 20px;
-  background-color: #f8fafc;
+.client-card:hover .client-ph {
+  color: #f97316;
 }
-.pc-services-container {
-  max-width: 1200px;
-  margin: 0 auto;
+.clients-rows {
   display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 50px;
-  align-items: center;
+  gap: 14px;
+  margin-top: 32px;
 }
-.pc-services-img img {
-  width: 100%;
-  border-radius: 24px;
-  object-fit: cover;
-  box-shadow: 0 20px 40px rgba(0,0,0,0.08);
-}
-.pc-services-content .eyebrow {
-  color: #f26522;
-  font-weight: 700;
-  font-size: 14px;
-  letter-spacing: 1px;
-  text-transform: uppercase;
-  display: block;
-  margin-bottom: 8px;
-}
-.pc-services-content h2 {
-  font-size: 32px;
-  color: #0f172a;
-  margin-bottom: 16px;
-  line-height: 1.2;
-}
-.pc-services-desc {
-  color: #475569;
-  font-size: 16px;
-  line-height: 1.6;
-  margin-bottom: 30px;
-}
-.service-accordion {
-  display: flex;
-  flex-direction: column;
-  gap: 15px;
-}
-.service-item {
-  background: #ffffff;
-  border: 1px solid #e2e8f0;
-  border-radius: 12px;
-  overflow: hidden;
-  transition: border-color 0.3s ease;
-}
-.service-item.active {
-  border-color: #f26522;
-  box-shadow: 0 4px 12px rgba(242, 101, 34, 0.08);
-}
-.service-header {
-  width: 100%;
-  padding: 18px 20px;
-  background: none;
-  border: none;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  font-size: 16px;
-  font-weight: 700;
-  color: #0f172a;
-  cursor: pointer;
-  text-align: left;
-}
-.service-header span:last-child {
-  font-size: 20px;
-  color: #f26522;
-  font-weight: 400;
-}
-.service-body {
-  padding: 0 20px 20px 20px;
+.clients-count {
+  margin-top: 12px;
   color: #64748b;
-  font-size: 15px;
-  line-height: 1.6;
+  font-size: 14px;
+  text-align: center;
 }
-
-@media (max-width: 968px) {
-  .pc-services-container {
-    grid-template-columns: 1fr;
-    gap: 30px;
-  }
-}
-
 @media (max-width: 640px) {
-  .client-card { width: 140px; height: 72px; margin: 0 8px; }
-  .pc-services-content h2 { font-size: 26px; }
+  .client-card {
+    width: 140px;
+    height: 72px;
+    margin: 0 8px;
+  }
 }
 @media (prefers-reduced-motion: reduce) {
   .clients-track { animation: none !important; }
@@ -189,6 +123,7 @@ const MARQUEE_CSS = `
 
 function MarqueeRow({ logos, reverse = false, speed = 60 }) {
   const loop = [...logos, ...logos];
+
   return (
     <div className="clients-marquee">
       <div
@@ -198,7 +133,12 @@ function MarqueeRow({ logos, reverse = false, speed = 60 }) {
         {loop.map((l, i) => (
           <div className="client-card" key={`${l.name}-${i}`}>
             {l.src ? (
-              <img src={l.src} alt={l.name} loading="lazy" decoding="async" />
+              <img
+                src={l.src}
+                alt={l.name}
+                loading="lazy"
+                decoding="async"
+              />
             ) : (
               <span className="client-ph">{l.name}</span>
             )}
@@ -209,6 +149,9 @@ function MarqueeRow({ logos, reverse = false, speed = 60 }) {
   );
 }
 
+/* =====================================================
+   BLOCS
+===================================================== */
 const BLOCKS = [
   {
     title: (
@@ -248,7 +191,9 @@ const BLOCKS = [
   },
 ];
 
-/* Icônes simples (SVG) */
+/* =====================================================
+   ICONES
+===================================================== */
 const Icon = ({ name }) => {
   const common = {
     width: 30,
@@ -260,6 +205,7 @@ const Icon = ({ name }) => {
     strokeLinecap: "round",
     strokeLinejoin: "round",
   };
+
   switch (name) {
     case "calendar":
       return (
@@ -268,6 +214,7 @@ const Icon = ({ name }) => {
           <path d="M3 10h18M8 3v4M16 3v4M8 14h2M12 14h2M8 17h2" />
         </svg>
       );
+
     case "users":
       return (
         <svg {...common}>
@@ -277,6 +224,7 @@ const Icon = ({ name }) => {
           <path d="M17 14c2.5 0 4 1.8 4 4.5" />
         </svg>
       );
+
     case "box":
       return (
         <svg {...common}>
@@ -284,14 +232,16 @@ const Icon = ({ name }) => {
           <path d="M4 7l8 4 8-4M12 11v10" />
         </svg>
       );
+
     case "heart":
       return (
         <svg {...common}>
           <circle cx="9" cy="8" r="3.2" />
-          <path d="M3 20c0-3.3 2.7-6 6-6 1 0 2 .2 2.800.7" />
-          <path d="M17 20s-4-2.600-4-5.200a2.200 2.200 0 014-1.300 2.200 2.200 0 014 1.300C21 17.400 17 20 17 20z" />
+          <path d="M3 20c0-3.3 2.7-6 6-6 1 0 2 .2 2.8.7" />
+          <path d="M17 20s-4-2.6-4-5.2a2.2 2.2 0 014-1.3 2.2 2.2 0 014 1.3C21 17.4 17 20 17 20z" />
         </svg>
       );
+
     case "chart":
       return (
         <svg {...common}>
@@ -301,6 +251,7 @@ const Icon = ({ name }) => {
           <rect x="17" y="5" width="3" height="13" />
         </svg>
       );
+
     case "doc":
     default:
       return (
@@ -312,6 +263,9 @@ const Icon = ({ name }) => {
   }
 };
 
+/* =====================================================
+   DONNEES
+===================================================== */
 const FEATURES = [
   { icon: "calendar", label: "Planning et RDV" },
   { icon: "users", label: "Gestion des équipes" },
@@ -331,6 +285,9 @@ const WHEEL = [
   "Gestion des stocks",
 ];
 
+/* =====================================================
+   COMPOSANT PRINCIPAL
+===================================================== */
 export default function Beaute() {
   const R = 175;
   const N = 50;
@@ -339,94 +296,176 @@ export default function Beaute() {
   const rowOne = CLIENT_LOGOS.slice(0, half);
   const rowTwo = CLIENT_LOGOS.slice(half);
 
-  // État pour gérer les accordéons de la partie services
   const [activeService, setActiveService] = useState(0);
 
   return (
-    <div className="page">
+    <main className="page">
       <style>{MARQUEE_CSS}</style>
 
-      {/* HERO */}
-      <header
-        className="hero"
+      {/* =====================================================
+          HERO — DESIGN SYSTEM PC MAROC
+      ===================================================== */}
+      <section
+        id="accueil"
+        className="eb-hero"
         style={{ backgroundImage: `url(${heroImg})` }}
       >
-        <div className="hero-inner">
-          <span className="eyebrow">BEAUTÉ &amp; BIEN-ÊTRE</span>
-          <h1>
-            LOGICIEL DE CAISSE POUR SALONS DE COIFFURE &amp; INSTITUTS DE
-            BEAUTÉ
-          </h1>
-          <p>
-            Découvrez un outil moderne et innovant pour optimiser votre
-            chiffre d'affaires, gérer vos stocks et vos prestations, proposer
-            un programme de fidélité et simplifier la gestion quotidienne de
-            votre salon.
-          </p>
-          <a href="#demo" className="btn btn-orange">
-            Demander une démo <span aria-hidden>→</span>
-          </a>
+        <div className="eb-hero-overlay" />
+
+        <div className="eb-hero-glow eb-hero-glow-left" />
+        <div className="eb-hero-glow eb-hero-glow-right" />
+
+        <div className="eb-hero-container">
+          <div className="eb-hero-content">
+
+            <div className="eb-hero-badge">
+              <span className="eb-hero-dot" />
+              BEAUTÉ &amp; BIEN-ÊTRE
+            </div>
+
+            <h1>
+              LOGICIEL DE CAISSE POUR
+              <span>
+                SALONS DE COIFFURE
+              </span>
+              &amp; INSTITUTS DE BEAUTÉ
+            </h1>
+
+            <p>
+              Découvrez un outil moderne et innovant pour optimiser votre
+              chiffre d'affaires, gérer vos stocks et vos prestations,
+              proposer un programme de fidélité et simplifier la gestion
+              quotidienne de votre salon.
+            </p>
+
+            <div className="eb-hero-actions">
+              <a href="#demo" className="eb-btn-primary">
+                Demander une démo
+                <span>→</span>
+              </a>
+            </div>
+
+            <div className="eb-hero-footer">
+              <span>
+                <span className="eb-footer-icon">✓</span>
+                Gestion complète de votre salon
+              </span>
+
+              <span>
+                <span className="eb-footer-icon">✓</span>
+                Planning et rendez-vous intelligents
+              </span>
+
+              <span>
+                <span className="eb-footer-icon">✓</span>
+                Fidélisation et suivi des clients
+              </span>
+            </div>
+          </div>
         </div>
-      </header>
 
-      {/* 3 BLOCS ALTERNÉS */}
-      {BLOCKS.map((b, i) => (
-        <section className={`bb-row ${b.reverse ? "reverse" : ""}`} key={i}>
-          <div className="bb-img">
-            <img src={b.img} alt="" />
-          </div>
-          <div className="bb-text">
-            <span className="eyebrow">BEAUTÉ &amp; BIEN-ÊTRE</span>
-            <h3>{b.title}</h3>
-            <p>{b.text}</p>
-          </div>
-        </section>
-      ))}
+        <div className="eb-hero-floating">
+          <span>✦</span>
+          Innovation · Simplicité · Performance
+        </div>
+      </section>
 
-      {/* FONCTIONNALITÉS */}
-      <section className="bb-features">
+      {/* =====================================================
+          BLOCS ALTERNES
+      ===================================================== */}
+      <section className="eb-blocks-section">
+        {BLOCKS.map((b, i) => (
+          <div
+            className={`bb-row ${b.reverse ? "reverse" : ""}`}
+            key={i}
+          >
+            <div className="bb-img">
+              <img src={b.img} alt="" loading="lazy" />
+            </div>
+
+            <div className="bb-text">
+              <span className="section-eyebrow">
+                BEAUTÉ &amp; BIEN-ÊTRE
+              </span>
+
+              <h3>{b.title}</h3>
+
+              <p>{b.text}</p>
+            </div>
+          </div>
+        ))}
+      </section>
+
+      {/* =====================================================
+          FONCTIONNALITES
+      ===================================================== */}
+      <section className="bb-features" id="solutions">
         <div className="bb-features-img">
-          <img src={devicesImg} alt="EasyBeauty sur plusieurs écrans" />
+          <img
+            src={devicesImg}
+            alt="EasyBeauty sur plusieurs écrans"
+            loading="lazy"
+          />
         </div>
+
         <div className="bb-features-text">
-          <span className="eyebrow">FONCTIONNALITÉS</span>
+          <span className="section-eyebrow">
+            FONCTIONNALITÉS
+          </span>
+
           <h3>
-            DÉCOUVREZ QUELQUES FONCTIONNALITÉS DISPONIBLES SUR LE LOGICIEL
-            EASYBEAUTY
+            DÉCOUVREZ QUELQUES FONCTIONNALITÉS DISPONIBLES SUR LE
+            LOGICIEL EASYBEAUTY
           </h3>
+
           <div className="feat-grid">
             {FEATURES.map((f) => (
               <div className="feat-card" key={f.label}>
                 <span className="feat-icon">
                   <Icon name={f.icon} />
                 </span>
-                <span className="feat-label">{f.label}</span>
+
+                <span className="feat-label">
+                  {f.label}
+                </span>
               </div>
             ))}
           </div>
         </div>
       </section>
 
-      {/* OUTILS (roue) */}
+      {/* =====================================================
+          OUTILS
+      ===================================================== */}
       <section className="bb-tools">
-        <h2 className="tools-title">
-          <span className="line" />
-          Les outils dont vous avez besoin
-          <span className="line" />
-        </h2>
-        <p className="bb-tools-sub">
-          Les fonctionnalités bien pensées pour développer votre activité.
-        </p>
+        <div className="section-heading">
+          <span className="section-eyebrow">
+            VOTRE SOLUTION
+          </span>
+
+          <h2 className="tools-title">
+            Les outils dont vous avez besoin
+          </h2>
+
+          <div className="section-line" />
+
+          <p className="bb-tools-sub">
+            Les fonctionnalités bien pensées pour développer votre activité.
+          </p>
+        </div>
 
         <div className="wheel">
           <span className="wheel-ring" />
+
           <div className="wheel-center">
-            <img src={wheelCenterImg} alt="" />
+            <img src={wheelCenterImg} alt="EasyBeauty" />
           </div>
+
           {WHEEL.map((label, i) => {
             const angle = (i * 360) / WHEEL.length - 90;
             const x = Math.cos((angle * Math.PI) / 180) * R;
             const y = Math.sin((angle * Math.PI) / 180) * R;
+
             return (
               <div
                 className="wheel-node"
@@ -438,18 +477,29 @@ export default function Beaute() {
               >
                 <strong>{i + 1}</strong>
                 <span>{label}</span>
-            </div>
-          );
+              </div>
+            );
           })}
         </div>
       </section>
 
-      {/* CONFIANCE */}
+      {/* =====================================================
+          CONFIANCE CLIENTS
+      ===================================================== */}
       <section className="trust">
-        <h2>Soyez parmi ceux qui nous font confiance</h2>
+        <div className="section-heading">
+          <span className="section-eyebrow">
+            NOS CLIENTS
+          </span>
+
+          <h2>Soyez parmi ceux qui nous font confiance</h2>
+
+          <div className="section-line" />
+        </div>
+
         <p className="clients-count">
-          Plus de {CLIENT_LOGOS.length} établissements utilisent déjà nos
-          solutions au quotidien.
+          Plus de {CLIENT_LOGOS.length} établissements utilisent déjà
+          nos solutions au quotidien.
         </p>
 
         <div className="clients-rows">
@@ -457,6 +507,7 @@ export default function Beaute() {
             logos={rowOne}
             speed={Math.max(30, rowOne.length * 2.2)}
           />
+
           <MarqueeRow
             logos={rowTwo}
             reverse
@@ -465,79 +516,150 @@ export default function Beaute() {
         </div>
       </section>
 
-      {/* NOUVELLE SECTION : LES SERVICES PC MAROC */}
+      {/* =====================================================
+          SERVICES PC MAROC
+      ===================================================== */}
       <section className="pc-services-section">
         <div className="pc-services-container">
+
           <div className="pc-services-img">
-            <img src={supportImg} alt="Support PC Maroc" />
+            <img
+              src={supportImg}
+              alt="Support PC Maroc"
+              loading="lazy"
+            />
           </div>
+
           <div className="pc-services-content">
-            <span className="eyebrow">NOS SERVICES</span>
-            <h2>Les services PC MAROC, plus qu'une simple Hotline</h2>
+            <span className="section-eyebrow">
+              NOS SERVICES
+            </span>
+
+            <h2>
+              Les services PC MAROC, plus qu'une simple Hotline
+            </h2>
+
             <p className="pc-services-desc">
-              Nous croyons en la force du capital humain. Notre équipe talentueuse est le pilier de notre succès, apportant expertise, passion et dévouement à chaque projet.
+              Nous croyons en la force du capital humain. Notre équipe
+              talentueuse est le pilier de notre succès, apportant
+              expertise, passion et dévouement à chaque projet.
             </p>
 
             <div className="service-accordion">
-              {/* Accordéon 1 : Conseil et Formation */}
-              <div className={`service-item ${activeService === 0 ? "active" : ""}`}>
-                <button className="service-header" onClick={() => setActiveService(activeService === 0 ? null : 0)}>
-                  <span>- Conseil et Formation</span>
+
+              <div
+                className={`service-item ${
+                  activeService === 0 ? "active" : ""
+                }`}
+              >
+                <button
+                  className="service-header"
+                  onClick={() =>
+                    setActiveService(activeService === 0 ? null : 0)
+                  }
+                  aria-expanded={activeService === 0}
+                >
+                  <span>Conseil et Formation</span>
                   <span>{activeService === 0 ? "−" : "+"}</span>
                 </button>
+
                 {activeService === 0 && (
                   <div className="service-body">
-                    Notre équipe est à même de vous accompagner dans votre projet. Écouter, détecter vos besoins et analyser pour vous proposer la meilleure solution en terme de délai et de budget.
+                    Notre équipe est à même de vous accompagner dans
+                    votre projet. Écouter, détecter vos besoins et
+                    analyser pour vous proposer la meilleure solution
+                    en terme de délai et de budget.
                   </div>
                 )}
               </div>
 
-              {/* Accordéon 2 : Installation et paramétrage */}
-              <div className={`service-item ${activeService === 1 ? "active" : ""}`}>
-                <button className="service-header" onClick={() => setActiveService(activeService === 1 ? null : 1)}>
-                  <span>+ Installation et paramétrage</span>
+              <div
+                className={`service-item ${
+                  activeService === 1 ? "active" : ""
+                }`}
+              >
+                <button
+                  className="service-header"
+                  onClick={() =>
+                    setActiveService(activeService === 1 ? null : 1)
+                  }
+                  aria-expanded={activeService === 1}
+                >
+                  <span>Installation et paramétrage</span>
                   <span>{activeService === 1 ? "−" : "+"}</span>
                 </button>
+
                 {activeService === 1 && (
                   <div className="service-body">
-                    PC MAROC dispose d’une équipe d’installation, chargée d’assurer un service de maintenance continu pour notre clientèle : service rapide, tranquillité d’esprit, disponibilité maximale.
+                    PC MAROC dispose d’une équipe d’installation,
+                    chargée d’assurer un service de maintenance continu
+                    pour notre clientèle : service rapide, tranquillité
+                    d’esprit, disponibilité maximale.
                   </div>
                 )}
               </div>
 
-              {/* Accordéon 3 : Support Technique */}
-              <div className={`service-item ${activeService === 2 ? "active" : ""}`}>
-                <button className="service-header" onClick={() => setActiveService(activeService === 2 ? null : 2)}>
-                  <span>+ Support Technique</span>
+              <div
+                className={`service-item ${
+                  activeService === 2 ? "active" : ""
+                }`}
+              >
+                <button
+                  className="service-header"
+                  onClick={() =>
+                    setActiveService(activeService === 2 ? null : 2)
+                  }
+                  aria-expanded={activeService === 2}
+                >
+                  <span>Support Technique</span>
                   <span>{activeService === 2 ? "−" : "+"}</span>
                 </button>
+
                 {activeService === 2 && (
                   <div className="service-body">
-                    Le Support Technique de PC MAROC est un service qui vous permet d’être accompagné et initié à la bonne utilisation de votre solution beauté et bien être de manière optimale et à chaque évolution de votre installation.
+                    Le Support Technique de PC MAROC est un service
+                    qui vous permet d’être accompagné et initié à la
+                    bonne utilisation de votre solution beauté et
+                    bien-être de manière optimale et à chaque évolution
+                    de votre installation.
                   </div>
                 )}
               </div>
+
             </div>
           </div>
         </div>
       </section>
 
-      {/* BANNIÈRE CTA */}
+      {/* =====================================================
+          CTA FINAL
+      ===================================================== */}
       <section className="cta" id="demo">
-        <h2>
-          Prêt à digitaliser
-          <br />
-          votre salon ?
-        </h2>
-        <span className="cta-sep" />
-        <p>
-          Parlons de votre projet et découvrez la solution adaptée à votre
-          activité.
-        </p>
-        <a href="#contact" className="btn btn-white">
-          Demander une démo <span aria-hidden>→</span>
-        </a>
+        <div className="cta-content">
+          <span className="cta-label">
+            VOTRE PROJET COMMENCE ICI
+          </span>
+
+          <h2>
+            Prêt à digitaliser
+            <br />
+            votre salon ?
+          </h2>
+
+          <span className="cta-sep" />
+
+          <p>
+            Parlons de votre projet et découvrez la solution adaptée
+            à votre activité.
+          </p>
+
+          <a href="#contact" className="btn btn-white">
+            Demander une démo
+            <span aria-hidden>→</span>
+          </a>
+        </div>
       </section>
-    </div>
+
+    </main>
   );
 }

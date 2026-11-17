@@ -1,3 +1,4 @@
+
 import React, { useState, type ReactNode } from 'react';
 import {
   ShoppingCart,
@@ -31,8 +32,8 @@ import {
 
 import './Innoshop.css';
 
-import heroImage from '@/assets/innoshopp.jpeg';
-import commercanteImage from '@/assets/commercante.jpg';
+import heroImage from '@/assets/pontalon.jpeg';
+import commercanteImage from '@/assets/teet.jpeg';
 import articleImage from '@/assets/article.jpg';
 import supermarcheImage from '@/assets/march.jpeg';
 import boutiqueImage from '@/assets/bout.jpeg';
@@ -41,6 +42,10 @@ import epicerieImage from '@/assets/picerie.jpeg';
 import bazarImage from '@/assets/bazzard.jpeg';
 import parfumerieImage from '@/assets/perfume.jpeg';
 import librairieImage from '@/assets/libr.jpeg';
+
+/* =====================================================
+   IMAGES
+===================================================== */
 
 const IMAGES = {
   hero: heroImage,
@@ -58,33 +63,48 @@ const IMAGES = {
 
 /* =====================================================
    LOGOS CLIENTS
-   -> Mets les logos dans : src/assets/innoshop/
-      (png, jpg, webp, svg) : ils sont chargés automatiquement.
-   -> Si le dossier est vide, 24 placeholders s'affichent.
 ===================================================== */
-type ClientLogo = { name: string; src?: string };
+
+type ClientLogo = {
+  name: string;
+  src?: string;
+};
 
 const logoModules = import.meta.glob<string>(
-  '@/assets/innoshop/*.{png,jpg,jpeg,webp,svg}',
-  { eager: true, import: 'default' }
+  '/src/assets/innoshop/*.{png,jpg,jpeg,webp,svg}',
+  {
+    eager: true,
+    import: 'default',
+  }
 );
 
 const REAL_LOGOS: ClientLogo[] = Object.entries(logoModules)
   .sort(([a], [b]) => a.localeCompare(b))
   .map(([path, src]) => {
     const file = path.split('/').pop() || 'client';
-    return { name: file.replace(/\.[^.]+$/, '').replace(/[-_]/g, ' '), src };
+
+    return {
+      name: file.replace(/\.[^.]+$/, '').replace(/[-_]/g, ' '),
+      src,
+    };
   });
 
-const PLACEHOLDER_LOGOS: ClientLogo[] = Array.from({ length: 24 }, (_, i) => ({
-  name: `Client ${String(i + 1).padStart(2, '0')}`,
-}));
+const PLACEHOLDER_LOGOS: ClientLogo[] = Array.from(
+  { length: 24 },
+  (_, index) => ({
+    name: `Client ${String(index + 1).padStart(2, '0')}`,
+  })
+);
 
 const CLIENT_LOGOS: ClientLogo[] = REAL_LOGOS.length
   ? REAL_LOGOS
   : PLACEHOLDER_LOGOS;
 
-const MarqueeRow = ({
+/* =====================================================
+   COMPOSANTS RÉUTILISABLES
+===================================================== */
+
+function MarqueeRow({
   logos,
   reverse = false,
   speed = 60,
@@ -92,72 +112,98 @@ const MarqueeRow = ({
   logos: ClientLogo[];
   reverse?: boolean;
   speed?: number;
-}) => {
-  // On duplique la liste pour une boucle sans coupure
+}) {
   const loop = [...logos, ...logos];
 
   return (
     <div className="clients-marquee">
       <div
         className={`clients-track${reverse ? ' reverse' : ''}`}
-        style={{ '--clients-speed': `${speed}s` } as React.CSSProperties}
+        style={
+          {
+            '--clients-speed': `${speed}s`,
+          } as React.CSSProperties
+        }
       >
-        {loop.map((l, i) => (
-          <div className="client-card" key={`${l.name}-${i}`}>
-            {l.src ? (
-              <img src={l.src} alt={l.name} loading="lazy" decoding="async" />
+        {loop.map((logo, index) => (
+          <div className="client-card" key={`${logo.name}-${index}`}>
+            {logo.src ? (
+              <img
+                src={logo.src}
+                alt={logo.name}
+                loading="lazy"
+                decoding="async"
+              />
             ) : (
-              <span className="client-ph">{l.name}</span>
+              <span className="client-ph">{logo.name}</span>
             )}
           </div>
         ))}
       </div>
     </div>
   );
-};
+}
 
-const Logo = ({
+function Logo({
   size = 'lg',
 }: {
   size?: 'lg' | 'xl' | 'inline';
-}) => (
-  <span className={`logo logo-${size}`}>
-    INN<span className="logo-o">O</span>SHOP
-  </span>
-);
+}) {
+  return (
+    <span className={`logo logo-${size}`}>
+      INN<span className="logo-o">O</span>SHOP
+    </span>
+  );
+}
 
-const Bullets = ({ items }: { items: string[] }) => (
-  <ul className="bullets">
-    {items.map((item) => (
-      <li key={item}>{item}</li>
-    ))}
-  </ul>
-);
+function Bullets({ items }: { items: string[] }) {
+  return (
+    <ul className="bullets">
+      {items.map((item) => (
+        <li key={item}>{item}</li>
+      ))}
+    </ul>
+  );
+}
 
-const Ico = ({
+function Ico({
   children,
   solid = false,
 }: {
   children: ReactNode;
   solid?: boolean;
-}) => <span className={`ns-ico${solid ? ' solid' : ''}`}>{children}</span>;
+}) {
+  return (
+    <span className={`ns-ico${solid ? ' solid' : ''}`} aria-hidden="true">
+      {children}
+    </span>
+  );
+}
+
+/* =====================================================
+   DONNÉES DES MAQUETTES
+===================================================== */
 
 const stockRows: (string | number)[][] = [
-  ['Eau', 1200, '6,00', 'Boissons'],
-  ['Lait', 350, '12,00', 'Produits laitiers'],
-  ['Riz', 180, '15,00', 'Épicerie'],
-  ['Huile', 95, '25,00', 'Épicerie'],
-  ['Sucre', 210, '9,00', 'Épicerie'],
+  ['Eau', 1200, '6,00 DH', 'Boissons'],
+  ['Lait', 350, '12,00 DH', 'Produits laitiers'],
+  ['Riz', 180, '15,00 DH', 'Épicerie'],
+  ['Huile', 95, '25,00 DH', 'Épicerie'],
+  ['Sucre', 210, '9,00 DH', 'Épicerie'],
 ];
 
-const stores: string[][] = [
-  ['Magasin 1', 'Casablanca', '12 560'],
-  ['Magasin 2', 'Rabat', '8 230'],
-  ['Magasin 3', 'Marrakech', '9 450'],
-  ['Magasin 4', 'Tanger', '7 690'],
+const stores = [
+  ['Magasin 1', 'Casablanca', '12 560 DH'],
+  ['Magasin 2', 'Rabat', '8 230 DH'],
+  ['Magasin 3', 'Marrakech', '9 450 DH'],
+  ['Magasin 4', 'Tanger', '7 690 DH'],
 ];
 
 const bars = [30, 45, 38, 60, 52, 70, 48, 66, 80, 58, 72, 90];
+
+/* =====================================================
+   FONCTIONNALITÉS
+===================================================== */
 
 const features = [
   {
@@ -236,6 +282,10 @@ const features = [
   },
 ];
 
+/* =====================================================
+   POURQUOI INNOSHOP
+===================================================== */
+
 const whyCards = [
   {
     icon: <Clock size={22} />,
@@ -258,6 +308,10 @@ const whyCards = [
     text: 'Installation, formation et assistance technique par des experts.',
   },
 ];
+
+/* =====================================================
+   MÉTIERS
+===================================================== */
 
 const trades = [
   {
@@ -358,6 +412,10 @@ const trades = [
   },
 ];
 
+/* =====================================================
+   FOOTER
+===================================================== */
+
 const footerItems = [
   {
     icon: <Settings size={24} />,
@@ -381,181 +439,189 @@ const footerItems = [
   },
 ];
 
-const tickerWords = [
-  'Encaissement',
-  'Stocks',
-  'Articles & tarifs',
-  'Fidélité clients',
-  'Reporting',
-  'Multi-magasins',
-];
+/* =====================================================
+   MINI-MAQUETTES
+===================================================== */
 
-/* ================= MINI-MAQUETTES ================= */
+function MockStock() {
+  return (
+    <div className="mock">
+      <div className="mock-title">Stock des articles</div>
 
-const MockStock = () => (
-  <div className="mock">
-    <div className="mock-title">Stock des articles</div>
-
-    <table className="mock-table">
-      <thead>
-        <tr>
-          <th>Article</th>
-          <th>Stock</th>
-          <th>Prix</th>
-          <th>Famille</th>
-        </tr>
-      </thead>
-      <tbody>
-        {stockRows.map((row) => (
-          <tr key={String(row[0])}>
-            {row.map((cell, index) => (
-              <td key={index}>{cell}</td>
-            ))}
+      <table className="mock-table">
+        <thead>
+          <tr>
+            <th>Article</th>
+            <th>Stock</th>
+            <th>Prix</th>
+            <th>Famille</th>
           </tr>
+        </thead>
+
+        <tbody>
+          {stockRows.map((row) => (
+            <tr key={String(row[0])}>
+              {row.map((cell, index) => (
+                <td key={index}>{cell}</td>
+              ))}
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
+  );
+}
+
+function MockArticle() {
+  return (
+    <div className="mock mock-article">
+      <div className="mock-title">Fiche article</div>
+
+      <div className="article-body">
+        <img
+          className="article-photo"
+          src={IMAGES.article}
+          alt="Exemple de fiche article"
+          loading="lazy"
+        />
+
+        <dl>
+          <dt>Nom</dt>
+          <dd>JACKETTE SLIM</dd>
+          <dt>Famille</dt>
+          <dd>FASHION</dd>
+          <dt>Prix de vente</dt>
+          <dd>580,00 DH</dd>
+          <dt>Code-barre</dt>
+          <dd>1234567890123</dd>
+          <dt>Stock</dt>
+          <dd>6</dd>
+        </dl>
+      </div>
+    </div>
+  );
+}
+
+function MockClient() {
+  return (
+    <div className="mock mock-client">
+      <div className="mock-title">Fiche client</div>
+
+      <div className="client-body">
+        <div className="client-avatar">
+          <User size={28} />
+        </div>
+
+        <dl>
+          <dt>Nom</dt>
+          <dd>Ahmed Benali</dd>
+          <dt>Téléphone</dt>
+          <dd>06xxxxxxxx</dd>
+          <dt>Email</dt>
+          <dd>ahmed@email.com</dd>
+          <dt>Solde points</dt>
+          <dd>320</dd>
+          <dt>Remise</dt>
+          <dd>5 %</dd>
+          <dt>Catégorie</dt>
+          <dd>Client fidèle</dd>
+        </dl>
+      </div>
+    </div>
+  );
+}
+
+function MockStats() {
+  return (
+    <div className="mock">
+      <div className="mock-title">
+        Statistiques de ventes
+        <span>Ce mois</span>
+      </div>
+
+      <div className="chart">
+        {bars.map((height, index) => (
+          <span key={index} style={{ height: `${height}%` }} />
         ))}
-      </tbody>
-    </table>
-  </div>
-);
-
-const MockArticle = () => (
-  <div className="mock mock-article">
-    <div className="mock-title">Fiche article</div>
-
-    <div className="article-body">
-      <img
-        className="article-photo"
-        src={IMAGES.article}
-        alt="Exemple de fiche article"
-        loading="lazy"
-      />
-
-      <dl>
-        <dt>Nom</dt>
-        <dd>JACKETTE SLIM</dd>
-        <dt>Famille</dt>
-        <dd>FASHION</dd>
-        <dt>Prix de vente</dt>
-        <dd>580,00</dd>
-        <dt>Code-barre</dt>
-        <dd>1234567890123</dd>
-        <dt>Stock</dt>
-        <dd>6</dd>
-      </dl>
-    </div>
-  </div>
-);
-
-const MockClient = () => (
-  <div className="mock mock-client">
-    <div className="mock-title">Fiche client</div>
-
-    <div className="client-body">
-      <div className="client-avatar">
-        <User size={28} />
       </div>
 
-      <dl>
-        <dt>Nom</dt>
-        <dd>Ahmed Benali</dd>
-        <dt>Téléphone</dt>
-        <dd>06xxxxxxxx</dd>
-        <dt>Email</dt>
-        <dd>ahmed@email.com</dd>
-        <dt>Solde points</dt>
-        <dd>320</dd>
-        <dt>Remise</dt>
-        <dd>5 %</dd>
-        <dt>Catégorie</dt>
-        <dd>Client fidèle</dd>
-      </dl>
-    </div>
-  </div>
-);
+      <div className="kpis">
+        <div>
+          <Euro size={16} color="#e87532" />
+          <b>125 680 DH</b>
+          <small>Chiffre d'affaires</small>
+        </div>
 
-const MockStats = () => (
-  <div className="mock">
-    <div className="mock-title">
-      Statistiques de ventes
-      <span>Ce mois</span>
-    </div>
+        <div>
+          <Ticket size={16} color="#e87532" />
+          <b>2 350</b>
+          <small>Tickets</small>
+        </div>
 
-    <div className="chart">
-      {bars.map((height, index) => (
-        <span key={index} style={{ height: `${height}%` }} />
-      ))}
-    </div>
-
-    <div className="kpis">
-      <div>
-        <Euro size={16} color="#ff6a00" />
-        <b>125 680 DH</b>
-        <small>Chiffre d'affaires</small>
-      </div>
-      <div>
-        <Ticket size={16} color="#ff8a1f" />
-        <b>2 350</b>
-        <small>Tickets</small>
-      </div>
-      <div>
-        <Boxes size={16} color="#ffb347" />
-        <b>1 248</b>
-        <small>Articles vendus</small>
+        <div>
+          <Boxes size={16} color="#e87532" />
+          <b>1 248</b>
+          <small>Articles vendus</small>
+        </div>
       </div>
     </div>
-  </div>
-);
+  );
+}
 
-const MockStores = () => (
-  <div className="mock">
-    <div className="mock-title">Mes magasins</div>
+function MockStores() {
+  return (
+    <div className="mock">
+      <div className="mock-title">Mes magasins</div>
 
-    <table className="mock-table">
-      <thead>
-        <tr>
-          <th>Magasin</th>
-          <th>Ville</th>
-          <th>Statut</th>
-          <th>CA du jour</th>
-        </tr>
-      </thead>
-
-      <tbody>
-        {stores.map(([name, city, revenue]) => (
-          <tr key={name}>
-            <td>{name}</td>
-            <td>{city}</td>
-            <td>
-              <span className="dot" /> Ouvert
-            </td>
-            <td>{revenue}</td>
+      <table className="mock-table">
+        <thead>
+          <tr>
+            <th>Magasin</th>
+            <th>Ville</th>
+            <th>Statut</th>
+            <th>CA du jour</th>
           </tr>
-        ))}
-      </tbody>
-    </table>
-  </div>
-);
+        </thead>
 
-const MockPos = () => (
-  <div className="mock mock-pos">
-    <div className="pos-left">
-      <div className="pos-head">Ticket de vente</div>
-      <p>Article 01&nbsp; — 120 DH</p>
-      <p>Article 02&nbsp; — 85 DH</p>
-      <hr />
-      <strong>Total : 205 DH</strong>
+        <tbody>
+          {stores.map(([name, city, revenue]) => (
+            <tr key={name}>
+              <td>{name}</td>
+              <td>{city}</td>
+              <td>
+                <span className="dot" /> Ouvert
+              </td>
+              <td>{revenue}</td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
     </div>
+  );
+}
 
-    <div className="pos-keys">
-      <span>Articles</span>
-      <span>Clients</span>
-      <span>Remise</span>
-      <span>Espèces</span>
-      <span>Carte</span>
-      <span>Valider</span>
+function MockPos() {
+  return (
+    <div className="mock mock-pos">
+      <div className="pos-left">
+        <div className="pos-head">Ticket de vente</div>
+        <p>Article 01 — 120 DH</p>
+        <p>Article 02 — 85 DH</p>
+        <hr />
+        <strong>Total : 205 DH</strong>
+      </div>
+
+      <div className="pos-keys">
+        <span>Articles</span>
+        <span>Clients</span>
+        <span>Remise</span>
+        <span>Espèces</span>
+        <span>Carte</span>
+        <span>Valider</span>
+      </div>
     </div>
-  </div>
-);
+  );
+}
 
 const mocks: Record<string, ReactNode> = {
   pos: <MockPos />,
@@ -566,10 +632,13 @@ const mocks: Record<string, ReactNode> = {
   stores: <MockStores />,
 };
 
-/* ================= PAGE INNOSHOP ================= */
+/* =====================================================
+   PAGE INNOSHOP
+===================================================== */
 
 export default function InnoShop() {
   const [active, setActive] = useState(0);
+
   const current = features[active];
 
   const goToContact = () => {
@@ -589,91 +658,116 @@ export default function InnoShop() {
 
   return (
     <main className="ns">
-      {/* HERO */}
-      <section className="ns-hero" id="innoshop-accueil">
-        <div className="ns-wrap">
-          <span className="ns-pill">
-            <span className="ns-dot" />
-            Solutions commerce &amp; retail
-          </span>
 
-          <h1>
-            La solution de gestion commerciale{' '}
-            <span>pensée pour votre commerce.</span>
-          </h1>
+      {/* ================= HERO PREMIUM ================= */}
+      <section className="ns-hero ns-hero-premium" id="innoshop-accueil">
 
-          <p className="ns-hero-sub">
-            Une solution complète pour encaisser, gérer vos stocks, fidéliser
-            vos clients et piloter votre activité. Gagnez du temps et améliorez
-            l'expérience de vos clients.
-          </p>
+        {/* Image de fond */}
+        <div className="ns-hero-background">
+          <img
+            src={IMAGES.hero}
+            alt="Solution de caisse et de gestion INNOSHOP"
+            loading="eager"
+            decoding="async"
+          />
+        </div>
 
-          <div className="ns-hero-actions">
-            <button
-              type="button"
-              className="ns-btn ns-btn-fill"
-              onClick={goToContact}
-            >
-              Demander une démonstration
-              <ArrowRight size={18} />
-            </button>
-            <button
-              type="button"
-              className="ns-btn ns-btn-line"
-              onClick={() => scrollToSection('innoshop-fonctionnalites')}
-            >
-              Découvrir nos solutions
-            </button>
-          </div>
+        {/* Voiles et lumières */}
+        <div className="ns-hero-overlay" />
+        <div className="ns-hero-bottom-overlay" />
+        <div className="ns-hero-glow ns-hero-glow-one" />
+        <div className="ns-hero-glow ns-hero-glow-two" />
 
-          <div className="ns-hero-checks">
-            <span>
-              <Check size={17} />
-              Solution complète
-            </span>
-            <span>
-              <Check size={17} />
-              Accompagnement personnalisé
-            </span>
-          </div>
+        <div className="ns-wrap ns-hero-content">
 
-          <div className="ns-stage">
-            <span className="ns-chip c1">
-              <ShoppingCart size={18} /> Caisse
-            </span>
-            <span className="ns-chip c2">
-              <Package size={18} /> Stocks
-            </span>
-            <span className="ns-chip c3">
-              <BarChart3 size={18} /> Reporting
+          <div className="ns-hero-copy">
+
+            <span className="ns-hero-badge">
+              <span className="ns-hero-badge-dot">
+                <span />
+              </span>
+              Solutions commerce &amp; retail
             </span>
 
-            <div className="ns-stage-frame">
-              <img
-                src={IMAGES.hero}
-                alt="Interface de caisse INNOSHOP"
-                loading="eager"
-              />
+            <h1>
+              La solution de gestion commerciale
+              <span>pensée pour votre commerce.</span>
+            </h1>
+
+            <p className="ns-hero-sub">
+              Une solution complète pour encaisser, gérer vos stocks, fidéliser
+              vos clients et piloter votre activité. Gagnez du temps et améliorez
+              l'expérience de vos clients.
+            </p>
+
+            <div className="ns-hero-checks">
+              <span>
+                <CheckCircle2 size={19} />
+                Solution complète
+              </span>
+
+              <span>
+                <ShieldCheck size={19} />
+                Accompagnement personnalisé
+              </span>
+            </div>
+
+            <div className="ns-hero-actions">
+              <button
+                type="button"
+                className="ns-btn ns-btn-fill"
+                onClick={goToContact}
+              >
+                Demander une démonstration
+                <ArrowRight size={18} />
+              </button>
+
+              <button
+                type="button"
+                className="ns-btn ns-btn-line"
+                onClick={() => scrollToSection('innoshop-fonctionnalites')}
+              >
+                Découvrir nos solutions
+                <ArrowRight size={17} />
+              </button>
+            </div>
+
+            <div className="ns-hero-trust">
+              <span className="ns-hero-trust-line" />
+              <span>Encaissement</span>
+              <span className="ns-hero-trust-separator">·</span>
+              <span>Stocks</span>
+              <span className="ns-hero-trust-separator">·</span>
+              <span>Reporting</span>
             </div>
           </div>
         </div>
 
-        
+        <div className="ns-hero-floating-card">
+          <span className="ns-hero-floating-icon">
+            <ShoppingCart size={21} />
+          </span>
+          <span>
+            <b>INNOSHOP</b>
+            <small>La gestion simplifiée</small>
+          </span>
+          <span className="ns-hero-floating-check">
+            <Check size={16} />
+          </span>
+        </div>
       </section>
 
-     
-
-     
-
-      {/* MÉTIERS */}
+      {/* ================= MÉTIERS ================= */}
       <section className="ns-trades" id="innoshop-metiers">
         <div className="ns-wrap">
           <div className="ns-head">
             <span className="ns-pill">Une solution polyvalente</span>
+
             <h2 className="ns-title">
               <Logo size="inline" /> s'adapte à tous{' '}
               <em>les métiers du commerce</em>
             </h2>
+
             <p className="ns-sub">
               Une solution adaptée aux spécificités de chaque point de vente.
             </p>
@@ -682,12 +776,19 @@ export default function InnoShop() {
           <div className="ns-trades-grid">
             {trades.map((trade) => (
               <article className="ns-trade" key={trade.title} tabIndex={0}>
-                <img src={trade.img} alt={trade.title} loading="lazy" />
+                <img
+                  src={trade.img}
+                  alt={trade.title}
+                  loading="lazy"
+                  decoding="async"
+                />
+
                 <div className="ns-trade-body">
                   <h4>
                     <Ico solid>{trade.icon}</Ico>
                     <span>{trade.title}</span>
                   </h4>
+
                   <Bullets items={trade.items} />
                 </div>
               </article>
@@ -695,14 +796,17 @@ export default function InnoShop() {
           </div>
         </div>
       </section>
- {/* FONCTIONNALITÉS : ONGLETS */}
+
+      {/* ================= FONCTIONNALITÉS ================= */}
       <section className="ns-features" id="innoshop-fonctionnalites">
         <div className="ns-wrap">
           <div className="ns-head">
             <span className="ns-pill">Une solution complète</span>
+
             <h2 className="ns-title">
               Les fonctionnalités majeures d'<Logo size="inline" />
             </h2>
+
             <p className="ns-sub">
               Une solution ergonomique et performante pour piloter l'ensemble
               de votre commerce.
@@ -710,35 +814,49 @@ export default function InnoShop() {
           </div>
 
           <div className="ns-tabs">
-            <div className="ns-tablist" role="tablist">
-              {features.map((f, i) => (
+            <div
+              className="ns-tablist"
+              role="tablist"
+              aria-label="Fonctionnalités INNOSHOP"
+            >
+              {features.map((feature, index) => (
                 <button
                   type="button"
                   role="tab"
-                  aria-selected={i === active}
-                  className={`ns-tab${i === active ? ' on' : ''}`}
-                  key={f.n}
-                  onClick={() => setActive(i)}
+                  id={`innoshop-tab-${feature.n}`}
+                  aria-controls="innoshop-feature-panel"
+                  aria-selected={index === active}
+                  className={`ns-tab${index === active ? ' on' : ''}`}
+                  key={feature.n}
+                  onClick={() => setActive(index)}
                 >
-                  <span className="ns-tab-n">{f.n}</span>
-                  <span className="ns-tab-t">{f.title}</span>
-                  <Ico solid={i === active}>{f.icon}</Ico>
+                  <span className="ns-tab-n">{feature.n}</span>
+                  <span className="ns-tab-t">{feature.title}</span>
+                  <Ico solid={index === active}>{feature.icon}</Ico>
                 </button>
               ))}
             </div>
 
-            <div className="ns-panel" key={current.n} role="tabpanel">
+            <div
+              className="ns-panel"
+              id="innoshop-feature-panel"
+              key={current.n}
+              role="tabpanel"
+              aria-labelledby={`innoshop-tab-${current.n}`}
+            >
               <div>
                 <div className="ns-panel-big">{current.n}</div>
                 <h3>{current.title}</h3>
                 <Bullets items={current.items} />
               </div>
+
               <div>{mocks[current.mock]}</div>
             </div>
           </div>
         </div>
       </section>
-       {/* POURQUOI : BENTO */}
+
+      {/* ================= POURQUOI INNOSHOP ================= */}
       <section className="ns-why">
         <div className="ns-wrap">
           <div className="ns-bento">
@@ -747,28 +865,34 @@ export default function InnoShop() {
                 src={IMAGES.commercante}
                 alt="Commerçante utilisant une solution de gestion"
                 loading="lazy"
+                decoding="async"
               />
+
               <div className="ns-photo-cap">
                 <Ico solid>
                   <CheckCircle2 size={22} />
                 </Ico>
+
                 <h3>Une gestion simplifiée</h3>
                 <p>Des outils adaptés à votre activité</p>
               </div>
             </div>
 
             <div className="ns-why-intro">
-              <span className="ns-pill" style={{ alignSelf: 'flex-start' }}>
+              <span className="ns-pill ns-why-pill">
                 Votre commerce, notre priorité
               </span>
+
               <h2>
                 Pourquoi choisir <Logo size="xl" /> ?
               </h2>
+
               <p>
                 Une solution fiable et performante pour accompagner la
                 croissance de votre commerce, centraliser vos opérations et
                 simplifier votre quotidien.
               </p>
+
               <button
                 type="button"
                 className="ns-btn ns-btn-fill"
@@ -783,6 +907,7 @@ export default function InnoShop() {
               {whyCards.map((card) => (
                 <div className="ns-why-card" key={card.title}>
                   <Ico>{card.icon}</Ico>
+
                   <div>
                     <h4>{card.title}</h4>
                     <p>{card.text}</p>
@@ -793,12 +918,17 @@ export default function InnoShop() {
           </div>
         </div>
       </section>
-      {/* CONFIANCE : LOGOS CLIENTS */}
+
+      {/* ================= CLIENTS ================= */}
       <section className="ns-trust" id="innoshop-clients">
         <div className="ns-wrap">
           <div className="ns-head" style={{ marginBottom: 0 }}>
             <span className="ns-pill">Nos références</span>
-            <h2 className="ns-title">Soyez parmi ceux qui nous font confiance</h2>
+
+            <h2 className="ns-title">
+              Soyez parmi ceux qui nous font confiance
+            </h2>
+
             <p className="ns-count">
               Plus de {CLIENT_LOGOS.length} établissements utilisent déjà nos
               solutions au quotidien.
@@ -811,6 +941,7 @@ export default function InnoShop() {
             logos={rowOne}
             speed={Math.max(30, rowOne.length * 2.2)}
           />
+
           <MarqueeRow
             logos={rowTwo}
             reverse
@@ -819,14 +950,17 @@ export default function InnoShop() {
         </div>
       </section>
 
-      {/* CTA */}
+      {/* ================= CTA ================= */}
       <section className="ns-cta" id="innoshop-contact">
         <div className="ns-wrap">
           <div className="ns-cta-box">
-            <span className="ns-pill">Prêt à passer à l'étape suivante ?</span>
+            <span className="ns-pill">
+              Prêt à passer à l'étape suivante ?
+            </span>
 
             <h2>
-              Passez à une gestion plus performante avec <Logo size="xl" />
+              Passez à une gestion plus performante avec{' '}
+              <Logo size="xl" />
             </h2>
 
             <p>
@@ -840,6 +974,7 @@ export default function InnoShop() {
                 Demander une démonstration
                 <ArrowRight size={17} />
               </a>
+
               <a href="/#contact" className="ns-btn ns-btn-line">
                 <Phone size={20} />
                 Nous contacter
@@ -849,12 +984,13 @@ export default function InnoShop() {
         </div>
       </section>
 
-      {/* FOOTER SPÉCIFIQUE INNOSHOP */}
+      {/* ================= FOOTER ================= */}
       <footer className="ns-footer">
         <div className="ns-wrap ns-footer-grid">
           {footerItems.map((item) => (
             <div className="ns-fitem" key={item.title}>
               <Ico>{item.icon}</Ico>
+
               <div>
                 <b>{item.title}</b>
                 <small>{item.text}</small>
