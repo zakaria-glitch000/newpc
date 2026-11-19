@@ -1,9 +1,10 @@
-import { useState, type ElementType } from 'react';import { motion } from 'framer-motion';
+import { useState, type ElementType } from 'react';
+import { motion } from 'framer-motion';
 import {
   ArrowRight,
   Building2,
+  CalendarCheck,
   CalendarDays,
-  Check,
   ChartNoAxesCombined,
   CheckCircle,
   Coins,
@@ -22,10 +23,9 @@ import {
   TrendingUp,
   Users,
   Utensils,
-  CalendarCheck,
 } from 'lucide-react';
 
-import heroImage from '@/assets/res.webp';
+import heroImage from '@/assets/bn.jpg';
 import caisseImage from '@/assets/ev.jpeg';
 import pdImage from '@/assets/prc.jpeg';
 import kdsImage from '@/assets/orga.jpeg';
@@ -41,6 +41,15 @@ import supportImage from '@/assets/supportt.jpeg';
 const CONTACT_LINK = '/#contact';
 
 /* =====================================================
+    COULEURS DE LA SECTION FONCTIONNALITÉS
+    (orange CSI, comme le reste de la page)
+===================================================== */
+
+const ACCENT = '#f26522';
+const ACCENT_SOFT = '#fff1e8';
+const IMAGE_BG = '#fde9dc';
+
+/* =====================================================
     DATA
 ===================================================== */
 
@@ -51,17 +60,18 @@ const TOP_BENEFITS: { icon: ElementType; lines: [string, string] }[] = [
   { icon: Settings, lines: ['Gestion', 'maîtrisée'] },
 ];
 
-/* Remplacez les images par vos vraies photos (ex: @/assets/features/xxx.webp) */
-const FEATURES: {
+type Feature = {
   icon: ElementType;
-  title: [string, string];
+  title: string;
   text: string;
   image: string;
   items: string[];
-}[] = [
+};
+
+const FEATURES: Feature[] = [
   {
     icon: Receipt,
-    title: ['Encaissement', 'et ventes'],
+    title: 'Encaissement et ventes',
     text: 'Un encaissement rapide, sécurisé et conforme (NF525) avec tous les modes de paiement. Gérez facilement les annulations, les remises, les amalgames et la clôture de caisse.',
     image: caisseImage,
     items: [
@@ -73,7 +83,7 @@ const FEATURES: {
   },
   {
     icon: Tablet,
-    title: ['Prise de commande', 'et gestion des tables'],
+    title: 'Prise de commande et gestion des tables',
     text: 'Simplifiez le service avec une prise de commande rapide et mobile, une gestion claire des tables et un envoi instantané des commandes en cuisine.',
     image: pdImage,
     items: [
@@ -83,9 +93,9 @@ const FEATURES: {
       'Suivi du service en temps réel',
     ],
   },
-    {
+  {
     icon: Receipt,
-    title: ['KDS - ', 'Gestion et suivi des commandes en cuisine'],
+    title: 'KDS - Gestion et suivi des commandes en cuisine',
     text: 'Un écran de production cuisine pour une préparation fluide , sans tickets papier et avec moins erreurs.',
     image: caiImage,
     items: [
@@ -97,7 +107,7 @@ const FEATURES: {
   },
   {
     icon: Package,
-    title: ['Gestion des stocks', 'et des consommations'],
+    title: 'Gestion des stocks et des consommations',
     text: 'Maîtrisez vos approvisionnements et vos coûts grâce à un suivi précis des stocks et des consommations par recette.',
     image: ERP_IMAGE,
     items: [
@@ -107,10 +117,9 @@ const FEATURES: {
       'Valorisation des stocks',
     ],
   },
-  
   {
     icon: TrendingUp,
-    title: ['Analyse des ventes', 'et rentabilité'],
+    title: 'Analyse des ventes et rentabilité',
     text: 'Suivez la performance de votre établissement avec des tableaux de bord clairs et détaillés pour prendre les bonnes décisions.',
     image: REPORTING_IMAGE,
     items: [
@@ -122,7 +131,7 @@ const FEATURES: {
   },
   {
     icon: CalendarCheck,
-    title: ['Organisation et gestion', 'de l’établissement'],
+    title: 'Organisation et gestion de l’établissement',
     text: 'Une solution complète pour mieux organiser votre activité, vos équipes et vos services au quotidien.',
     image: kdsImage,
     items: [
@@ -248,59 +257,79 @@ const stagger = {
 };
 
 /* =====================================================
-    LIGNE DE FONCTIONNALITÉ
+    LIGNE DE FONCTIONNALITÉ (texte | image, en alternance)
 ===================================================== */
 
 function FeatureRow({
-  icon: Icon,
-  title,
-  text,
-  image,
-  items,
-}: (typeof FEATURES)[number]) {
+  feature,
+  index,
+}: {
+  feature: Feature;
+  index: number;
+}) {
+  const { icon: Icon, title, text, image, items } = feature;
+  const imageFirst = index % 2 === 1;
+
   return (
     <motion.article
       variants={fadeUp}
-      className="grid overflow-hidden rounded-2xl bg-white shadow-lg shadow-slate-900/[0.07] ring-1 ring-slate-200/70 md:grid-cols-[250px_1fr] lg:grid-cols-[290px_1fr]"
+      initial="hidden"
+      whileInView="visible"
+      viewport={{ once: true, margin: '-60px' }}
+      transition={{ duration: 0.5 }}
+      className="grid items-center gap-6 md:grid-cols-2 md:gap-12"
     >
-      <div className="h-48 md:h-full">
-        <img
-          src={image}
-          alt={`${title[0]} ${title[1]}`}
-          loading="lazy"
-          decoding="async"
-          className="h-full w-full bg-gradient-to-br from-slate-100 to-orange-50 object-contain p-3 md:object-cover md:p-0"
-        />
-      </div>
+      {/* TEXTE */}
+      <div className={imageFirst ? 'md:order-2' : 'md:order-1'}>
+        <span
+          className="flex h-8 w-8 items-center justify-center rounded-lg"
+          style={{ backgroundColor: ACCENT_SOFT, color: ACCENT }}
+        >
+          <Icon className="h-4 w-4" strokeWidth={2} />
+        </span>
 
-      <div className="grid items-center gap-5 p-5 lg:grid-cols-[1.15fr_1fr] lg:gap-0 lg:p-6">
-        <div className="flex gap-4 lg:pr-6">
-          <span className="flex h-14 w-14 shrink-0 items-center justify-center rounded-2xl bg-gradient-to-br from-[#ff8a1f] to-[#f26522] text-white shadow-md shadow-orange-500/30">
-            <Icon className="h-7 w-7" strokeWidth={1.8} />
-          </span>
-          <div>
-            <h3 className="text-xl font-extrabold leading-tight tracking-tight text-[#0b1b3a]">
-              {title[0]}
-              <br />
-              {title[1]}
-            </h3>
-            <p className="mt-2 text-[13px] leading-5 text-slate-700">{text}</p>
-          </div>
-        </div>
+        <h3 className="mt-3 text-xl font-extrabold tracking-tight text-[#0b1b3a]">
+          {title}
+        </h3>
 
-        <ul className="space-y-2 border-slate-200 lg:border-l-2 lg:border-[#f26522]/70 lg:pl-6">
+        <p className="mt-2 text-[13px] leading-5 text-slate-500">{text}</p>
+
+        <ul className="mt-3 space-y-1.5">
           {items.map((item) => (
-            <li key={item} className="flex items-start gap-2.5">
-              <Check
-                className="mt-0.5 h-4 w-4 shrink-0 text-[#f26522]"
-                strokeWidth={3.5}
+            <li key={item} className="flex items-center gap-2">
+              <span
+                className="h-1.5 w-1.5 shrink-0 rounded-full"
+                style={{ backgroundColor: ACCENT }}
               />
-              <span className="text-[13px] font-medium leading-5 text-slate-800">
-                {item}
-              </span>
+              <span className="text-[12px] text-slate-500">{item}</span>
             </li>
           ))}
         </ul>
+
+        <a
+          href={CONTACT_LINK}
+          className="mt-4 inline-flex items-center gap-1.5 text-[12px] font-bold hover:underline"
+          style={{ color: ACCENT }}
+        >
+          En savoir plus
+          <ArrowRight className="h-3 w-3" strokeWidth={2.5} />
+        </a>
+      </div>
+
+      {/* IMAGE */}
+      <div className={imageFirst ? 'md:order-1' : 'md:order-2'}>
+        <div
+          className="overflow-hidden rounded-2xl shadow-lg shadow-slate-900/10"
+          style={{ backgroundColor: IMAGE_BG }}
+        >
+          <img
+            src={image}
+            alt={title}
+            loading="lazy"
+            decoding="async"
+            className="h-48 w-full object-cover sm:h-52"
+          />
+        </div>
       </div>
     </motion.article>
   );
@@ -319,7 +348,7 @@ function LogoCard({ logo }: { logo: ClientLogo }) {
           alt={logo.name}
           loading="lazy"
           decoding="async"
-         className="max-h-full max-w-full object-contain opacity-100 grayscale-0 transition-all duration-300 group-hover:scale-105"
+          className="max-h-full max-w-full object-contain opacity-100 grayscale-0 transition-all duration-300 group-hover:scale-105"
         />
       ) : (
         <div className="flex items-center gap-2 text-slate-400 transition-colors duration-300 group-hover:text-[#f26522]">
@@ -375,8 +404,8 @@ export default function SolutionsRestauration() {
   const half = Math.ceil(CLIENT_LOGOS.length / 2);
   const [activeService, setActiveService] = useState<number | null>(0);
   const goToContact = () => {
-  window.location.href = CONTACT_LINK;
-};
+    window.location.href = CONTACT_LINK;
+  };
   const rowOne = CLIENT_LOGOS.slice(0, half);
   const rowTwo = CLIENT_LOGOS.slice(half);
 
@@ -448,7 +477,6 @@ export default function SolutionsRestauration() {
               aria-hidden="true"
               className="absolute h-72 w-72 rounded-full bg-[#f26522]/25 blur-3xl"
             />
-       
           </motion.div>
         </div>
 
@@ -483,7 +511,7 @@ export default function SolutionsRestauration() {
         id="solutions"
         className="relative scroll-mt-24 bg-white py-12 sm:py-16"
       >
-        <div className="mx-auto max-w-6xl px-5 sm:px-8">
+        <div className="mx-auto max-w-4xl px-5 sm:px-8">
           <motion.div
             variants={fadeUp}
             initial="hidden"
@@ -491,26 +519,20 @@ export default function SolutionsRestauration() {
             viewport={{ once: true, margin: '-50px' }}
             className="flex items-center justify-center gap-4"
           >
-            <span className="hidden h-[3px] w-24 rounded bg-[#f26522] sm:block lg:w-40" />
+            <span className="hidden h-[3px] w-20 rounded bg-[#f26522] sm:block lg:w-32" />
             <h2 className="text-center text-2xl font-black leading-tight tracking-tight text-[#0b1b3a] sm:text-3xl lg:text-4xl">
               Toutes les fonctionnalités pour gérer
               <br />
               <span className="text-[#f26522]">votre restaurant de A à Z</span>
             </h2>
-            <span className="hidden h-[3px] w-24 rounded bg-[#f26522] sm:block lg:w-40" />
+            <span className="hidden h-[3px] w-20 rounded bg-[#f26522] sm:block lg:w-32" />
           </motion.div>
 
-          <motion.div
-            variants={stagger}
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true, margin: '-50px' }}
-            className="mt-10 space-y-4"
-          >
-            {FEATURES.map((f) => (
-              <FeatureRow key={f.title[0]} {...f} />
+          <div className="mt-12 space-y-12 sm:space-y-14">
+            {FEATURES.map((f, i) => (
+              <FeatureRow key={f.title} feature={f} index={i} />
             ))}
-          </motion.div>
+          </div>
         </div>
       </section>
 
@@ -534,10 +556,7 @@ export default function SolutionsRestauration() {
                 key={lines.join(' ')}
                 className="flex flex-col items-center px-2 text-center"
               >
-                <Icon
-                  className="h-9 w-9 text-[#ff8a1f]"
-                  strokeWidth={1.6}
-                />
+                <Icon className="h-9 w-9 text-[#ff8a1f]" strokeWidth={1.6} />
                 <p className="mt-2 text-xs font-semibold leading-tight sm:text-[13px]">
                   {lines[0]}
                   <br />
@@ -644,9 +663,10 @@ export default function SolutionsRestauration() {
                 variants={fadeUp}
                 className="mt-4 text-sm leading-relaxed text-slate-600 sm:text-base"
               >
-                Nous mettons la technologie CSI au service de votre établissement.
-                Nos solutions sont pensées pour simplifier votre quotidien,
-                améliorer votre rentabilité et accompagner durablement votre croissance.
+                Nous mettons la technologie CSI au service de votre
+                établissement. Nos solutions sont pensées pour simplifier votre
+                quotidien, améliorer votre rentabilité et accompagner
+                durablement votre croissance.
               </motion.p>
 
               <div className="mt-8 space-y-6">
@@ -738,10 +758,10 @@ export default function SolutionsRestauration() {
           </div>
         </div>
       </section>
+
       {/* ================= NOS SERVICES ================= */}
       <section className="ns-services" id="innoshop-services">
         <div className="ns-wrap ns-services-container">
-
           {/* IMAGE */}
           <div className="ns-services-image">
             <img
@@ -765,10 +785,7 @@ export default function SolutionsRestauration() {
 
           {/* CONTENT */}
           <div className="ns-services-content">
-
-            <span className="ns-pill">
-              NOS SERVICES
-            </span>
+            <span className="ns-pill">NOS SERVICES</span>
 
             <h2>
               Bien plus qu'un logiciel,
@@ -776,16 +793,19 @@ export default function SolutionsRestauration() {
             </h2>
 
             <p className="ns-services-desc">
-              Chez PC MAROC, nous vous accompagnons à chaque étape
-              pour garantir une utilisation optimale de votre solution.
-              Notre équipe met son expertise à votre service pour
-              simplifier votre quotidien et développer votre activité.
+              Chez PC MAROC, nous vous accompagnons à chaque étape pour
+              garantir une utilisation optimale de votre solution. Notre équipe
+              met son expertise à votre service pour simplifier votre quotidien
+              et développer votre activité.
             </p>
 
             <div className="ns-services-accordion">
-
               {/* SERVICE 1 */}
-              <div className={`ns-service-item ${activeService === 0 ? 'active' : ''}`}>
+              <div
+                className={`ns-service-item ${
+                  activeService === 0 ? 'active' : ''
+                }`}
+              >
                 <button
                   type="button"
                   className="ns-service-header"
@@ -795,11 +815,7 @@ export default function SolutionsRestauration() {
                   aria-expanded={activeService === 0}
                 >
                   <span className="ns-service-number">01</span>
-
-                  <span className="ns-service-title">
-                    Conseil et formation
-                  </span>
-
+                  <span className="ns-service-title">Conseil et formation</span>
                   <span className="ns-service-toggle">
                     {activeService === 0 ? '−' : '+'}
                   </span>
@@ -807,16 +823,20 @@ export default function SolutionsRestauration() {
 
                 {activeService === 0 && (
                   <div className="ns-service-body">
-                    Notre équipe vous accompagne dans le choix et la
-                    prise en main de votre solution. Nous analysons
-                    vos besoins afin de vous proposer les meilleures
-                    solutions et de former vos équipes à leur utilisation.
+                    Notre équipe vous accompagne dans le choix et la prise en
+                    main de votre solution. Nous analysons vos besoins afin de
+                    vous proposer les meilleures solutions et de former vos
+                    équipes à leur utilisation.
                   </div>
                 )}
               </div>
 
               {/* SERVICE 2 */}
-              <div className={`ns-service-item ${activeService === 1 ? 'active' : ''}`}>
+              <div
+                className={`ns-service-item ${
+                  activeService === 1 ? 'active' : ''
+                }`}
+              >
                 <button
                   type="button"
                   className="ns-service-header"
@@ -826,11 +846,9 @@ export default function SolutionsRestauration() {
                   aria-expanded={activeService === 1}
                 >
                   <span className="ns-service-number">02</span>
-
                   <span className="ns-service-title">
                     Installation et paramétrage
                   </span>
-
                   <span className="ns-service-toggle">
                     {activeService === 1 ? '−' : '+'}
                   </span>
@@ -838,17 +856,20 @@ export default function SolutionsRestauration() {
 
                 {activeService === 1 && (
                   <div className="ns-service-body">
-                    Nous assurons l'installation et le paramétrage
-                    de votre solution afin de vous permettre de
-                    démarrer dans les meilleures conditions.
-                    Notre équipe veille au bon fonctionnement de
-                    votre environnement de travail.
+                    Nous assurons l'installation et le paramétrage de votre
+                    solution afin de vous permettre de démarrer dans les
+                    meilleures conditions. Notre équipe veille au bon
+                    fonctionnement de votre environnement de travail.
                   </div>
                 )}
               </div>
 
               {/* SERVICE 3 */}
-              <div className={`ns-service-item ${activeService === 2 ? 'active' : ''}`}>
+              <div
+                className={`ns-service-item ${
+                  activeService === 2 ? 'active' : ''
+                }`}
+              >
                 <button
                   type="button"
                   className="ns-service-header"
@@ -858,11 +879,7 @@ export default function SolutionsRestauration() {
                   aria-expanded={activeService === 2}
                 >
                   <span className="ns-service-number">03</span>
-
-                  <span className="ns-service-title">
-                    Support technique
-                  </span>
-
+                  <span className="ns-service-title">Support technique</span>
                   <span className="ns-service-toggle">
                     {activeService === 2 ? '−' : '+'}
                   </span>
@@ -870,14 +887,13 @@ export default function SolutionsRestauration() {
 
                 {activeService === 2 && (
                   <div className="ns-service-body">
-                    Notre support technique vous accompagne au quotidien
-                    pour répondre à vos questions, résoudre vos difficultés
-                    et vous aider à exploiter pleinement les fonctionnalités
-                    de votre solution.
+                    Notre support technique vous accompagne au quotidien pour
+                    répondre à vos questions, résoudre vos difficultés et vous
+                    aider à exploiter pleinement les fonctionnalités de votre
+                    solution.
                   </div>
                 )}
               </div>
-
             </div>
 
             <button
@@ -888,10 +904,10 @@ export default function SolutionsRestauration() {
               Besoin d'accompagnement ?
               <ArrowRight size={18} />
             </button>
-
           </div>
         </div>
       </section>
+
       {/* =====================================================
           CTA FINAL
       ===================================================== */}
@@ -922,8 +938,8 @@ export default function SolutionsRestauration() {
               </h2>
 
               <p className="mt-4 max-w-xl text-sm leading-6 text-orange-50 sm:text-[15px]">
-                Découvrez comment PC MAROC peut répondre aux besoins de
-                votre établissement et faciliter la gestion de votre activité.
+                Découvrez comment PC MAROC peut répondre aux besoins de votre
+                établissement et faciliter la gestion de votre activité.
               </p>
             </div>
 
