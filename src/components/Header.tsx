@@ -1,30 +1,66 @@
+
 import { useEffect, useState, useCallback, useRef } from 'react';
+import type { MouseEvent } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Menu, X, ChevronDown, Calendar, Utensils, ShoppingBag, Sparkles, Shirt } from 'lucide-react';
+import {
+  Menu,
+  X,
+  ChevronDown,
+  Calendar,
+  Utensils,
+  ShoppingBag,
+  Sparkles,
+  Shirt,
+  Coffee,
+  Croissant,
+  Gamepad2,
+  Pizza,
+  Beef,
+  Salad,
+  Wine,
+  Music,
+  Store,
+  Apple,
+  Cigarette,
+  Armchair,
+  Sprout,
+  Dumbbell,
+  Factory,
+  Network,
+  HeartPulse,
+  ScanFace,
+  Scissors,
+  Footprints,
+  WashingMachine,
+  Brush,
+} from 'lucide-react';
+
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { NAV_LINKS } from '@/data/content';
 import { Logo } from './ui/Logo';
 
 const WHATSAPP_NUMBER = '212661973253';
 
-// Catégories et sous-types pour le dropdown "Commerce"
+// ======================================================
+// CATÉGORIES ET SOUS-CATÉGORIES AVEC ICONES
+// ======================================================
+
 const COMMERCE_CATEGORIES = [
   {
     title: 'Restauration',
     categoryKey: 'restauration',
     icon: Utensils,
     items: [
-      { label: 'Restauration', slug: 'restauration' },
-            { label: 'Cafe - Glacier', slug: 'cafe-glacier' },
-      { label: 'Boulangerie', slug: 'boulangerie' },
-      { label: 'Loisir', slug: 'Loisir' },
-
-      { label: 'Fast food', slug: 'fast-food' },
-      { label: 'Pizzeria', slug: 'pizzeria' },
-      { label: 'Burger', slug: 'burger' },
-      { label: 'Bar à salad', slug: 'bar-a-salad' },
-      { label: 'Bar-lounge', slug: 'bar-lounge' },
-      { label: 'Night club', slug: 'night-club' },
+      { label: 'Restauration', slug: 'restauration', icon: Utensils },
+      { label: 'Café - Glacier', slug: 'cafe-glacier', icon: Coffee },
+      { label: 'Boulangerie', slug: 'boulangerie', icon: Croissant },
+      { label: 'Loisir', slug: 'Loisir', icon: Gamepad2 },
+      { label: 'Fast food', slug: 'fast-food', icon: Store },
+      { label: 'Pizzeria', slug: 'pizzeria', icon: Pizza },
+      { label: 'Burger', slug: 'burger', icon: Beef },
+      { label: 'Bar à salade', slug: 'bar-a-salad', icon: Salad },
+      { label: 'Bar-lounge', slug: 'bar-lounge', icon: Wine },
+      { label: 'Night club', slug: 'night-club', icon: Music },
     ],
   },
   {
@@ -32,17 +68,20 @@ const COMMERCE_CATEGORIES = [
     categoryKey: 'retail',
     icon: ShoppingBag,
     items: [
-      { label: 'Textile et chaussure', slug: 'textile-chaussure' },
-            { label: 'Métiers de bouche', slug: 'metiers-de-bouche' },
-      { label: 'Supérette et alimentation', slug: 'superette-alimentation' },
-      { label: 'Cigarette Électronique', slug: 'cigarette-electronique' },
-
-      { label: 'Caviste', slug: 'caviste' },
-      { label: 'Équipement du foyer', slug: 'equipement-foyer' },
-      { label: 'Jardinerie, Bricolage et animalerie', slug: 'jardinerie-bricolage-animalerie' },
-      { label: 'Sport et loisirs', slug: 'sport-loisirs' },
-      { label: 'Gestion de production', slug: 'gestion-production' },
-      { label: 'Franchises & multisites', slug: 'franchises-multisites' },
+      { label: 'Textile et chaussure', slug: 'textile-chaussure', icon: Shirt },
+      { label: 'Métiers de bouche', slug: 'metiers-de-bouche', icon: Beef },
+      { label: 'Supérette et alimentation', slug: 'superette-alimentation', icon: Apple },
+      { label: 'Cigarette Électronique', slug: 'cigarette-electronique', icon: Cigarette },
+      { label: 'Caviste', slug: 'caviste', icon: Wine },
+      { label: 'Équipement du foyer', slug: 'equipement-foyer', icon: Armchair },
+      {
+        label: 'Jardinerie, Bricolage et animalerie',
+        slug: 'jardinerie-bricolage-animalerie',
+        icon: Sprout,
+      },
+      { label: 'Sport et loisirs', slug: 'sport-loisirs', icon: Dumbbell },
+      { label: 'Gestion de production', slug: 'gestion-production', icon: Factory },
+      { label: 'Franchises & multisites', slug: 'franchises-multisites', icon: Network },
     ],
   },
   {
@@ -50,22 +89,30 @@ const COMMERCE_CATEGORIES = [
     categoryKey: 'beaute-bien-etre',
     icon: Sparkles,
     items: [
-      { label: 'Salon de coiffure', slug: 'salon-de-coiffure' },
-      { label: 'SPA & Pilatesse', slug: 'spa' },
-      { label: 'Centre de remise en forme', slug: 'centre-remise-en-forme' },
-      { label: 'Centre de laser', slug: 'centre-de-laser' },
-      { label: "Institut d'esthétique", slug: 'institut-esthetique' },
+      { label: 'Salon de coiffure', slug: 'salon-de-coiffure', icon: Scissors },
+      { label: 'SPA & Pilates', slug: 'spa', icon: Sparkles },
+      {
+        label: 'Centre de remise en forme',
+        slug: 'centre-remise-en-forme',
+        icon: HeartPulse,
+      },
+      { label: 'Centre de laser', slug: 'centre-de-laser', icon: ScanFace },
+      {
+        label: "Institut d'esthétique",
+        slug: 'institut-esthetique',
+        icon: Brush,
+      },
     ],
   },
   {
-    title: 'PRESSING',
+    title: 'Pressing',
     categoryKey: 'pressing',
     icon: Shirt,
     items: [
-      { label: 'Blanchisserie', slug: 'blanchisserie' },
-      { label: 'Cordonnerie', slug: 'cordonnerie' },
-      { label: 'Teinturier', slug: 'teinturier' },
-      { label: 'Retoucherie', slug: 'retoucherie' },
+      { label: 'Blanchisserie', slug: 'blanchisserie', icon: WashingMachine },
+      { label: 'Cordonnerie', slug: 'cordonnerie', icon: Footprints },
+      { label: 'Teinturier', slug: 'teinturier', icon: Shirt },
+      { label: 'Retoucherie', slug: 'retoucherie', icon: Scissors },
     ],
   },
 ];
@@ -74,50 +121,79 @@ export function Header() {
   const [scrolled, setScrolled] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
   const [pendingHash, setPendingHash] = useState('');
-  
+
   const [dropdownOpen, setDropdownOpen] = useState(false);
   const [mobileCommerceOpen, setMobileCommerceOpen] = useState(false);
   const [activeMobileCategory, setActiveMobileCategory] = useState<string | null>(null);
 
   const dropdownRef = useRef<HTMLDivElement>(null);
+
   const location = useLocation();
   const navigate = useNavigate();
 
+  // Fermer le dropdown en cliquant à l'extérieur
   useEffect(() => {
-    const handleClickOutside = (event: MouseEvent) => {
-      if (dropdownRef.current && !dropdownRef.current.contains(event.target as Node)) {
+    const handleClickOutside = (event: globalThis.MouseEvent) => {
+      if (
+        dropdownRef.current &&
+        !dropdownRef.current.contains(event.target as Node)
+      ) {
         setDropdownOpen(false);
       }
     };
+
     document.addEventListener('mousedown', handleClickOutside);
-    return () => document.removeEventListener('mousedown', handleClickOutside);
+
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside);
+    };
   }, []);
 
+  // Détection du scroll
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 24);
+
     onScroll();
+
     window.addEventListener('scroll', onScroll, { passive: true });
+
     return () => window.removeEventListener('scroll', onScroll);
   }, []);
 
+  // Bloquer le scroll lorsque le menu mobile est ouvert
   useEffect(() => {
     document.body.style.overflow = mobileOpen ? 'hidden' : '';
-    return () => { document.body.style.overflow = ''; };
+
+    return () => {
+      document.body.style.overflow = '';
+    };
   }, [mobileOpen]);
 
+  // Gérer les ancres après navigation
   useEffect(() => {
     if (!pendingHash || location.pathname !== '/') return;
+
     const hash = pendingHash;
+
     const timer = window.setTimeout(() => {
-      const element = document.getElementById(decodeURIComponent(hash.replace(/^#/, '')));
+      const element = document.getElementById(
+        decodeURIComponent(hash.replace(/^#/, ''))
+      );
+
       if (element) {
-        element.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        element.scrollIntoView({
+          behavior: 'smooth',
+          block: 'start',
+        });
       }
+
       setPendingHash('');
     }, 150);
+
     return () => window.clearTimeout(timer);
   }, [location.pathname, pendingHash]);
 
+  // Navigation générale
   const handleNavigation = useCallback(
     (href: string) => {
       setMobileOpen(false);
@@ -129,6 +205,7 @@ export function Header() {
       }
 
       const hashIndex = href.indexOf('#');
+
       if (hashIndex === -1) {
         setPendingHash('');
         navigate(href);
@@ -136,13 +213,21 @@ export function Header() {
       }
 
       const hash = href.slice(hashIndex);
+
       if (location.pathname === '/') {
-        const element = document.getElementById(decodeURIComponent(hash.replace(/^#/, '')));
+        const element = document.getElementById(
+          decodeURIComponent(hash.replace(/^#/, ''))
+        );
+
         if (element) {
-          element.scrollIntoView({ behavior: 'smooth', block: 'start' });
+          element.scrollIntoView({
+            behavior: 'smooth',
+            block: 'start',
+          });
         } else {
           setPendingHash(hash);
         }
+
         return;
       }
 
@@ -152,8 +237,10 @@ export function Header() {
     [location.pathname, navigate]
   );
 
-  const handleLogoClick = (event: React.MouseEvent<HTMLAnchorElement>) => {
+  // Navigation du logo
+  const handleLogoClick = (event: MouseEvent<HTMLAnchorElement>) => {
     event.preventDefault();
+
     setMobileOpen(false);
     setDropdownOpen(false);
     setPendingHash('');
@@ -161,86 +248,214 @@ export function Header() {
     if (location.pathname !== '/') {
       navigate('/');
     } else {
-      window.scrollTo({ top: 0, behavior: 'smooth' });
+      window.scrollTo({
+        top: 0,
+        behavior: 'smooth',
+      });
     }
   };
 
-  const linksWithDropdown = ['Commerce', 'Type de Commerce', 'Produit', 'Développement'];
+  // URL d'une famille
+  const getCategoryUrl = (categoryKey: string) => {
+    return `/shop?category=${categoryKey}`;
+  };
+
+  // URL d'une sous-famille
+  const getSubCategoryUrl = (categoryKey: string, slug: string) => {
+    return `/shop?category=${categoryKey}&type=${slug}`;
+  };
+
+  const linksWithDropdown = [
+    'Commerce',
+    'Type de Commerce',
+    'Produit',
+    'Développement',
+  ];
 
   return (
     <>
+      {/* ================================================== */}
+      {/* HEADER DESKTOP */}
+      {/* ================================================== */}
+
       <motion.header
         initial={{ y: -20, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
-        transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
+        transition={{
+          duration: 0.5,
+          ease: [0.22, 1, 0.36, 1],
+        }}
         className={`fixed inset-x-0 top-0 z-50 transition-all duration-300 ${
-          scrolled ? 'border-b border-gray-200 bg-white shadow-sm' : 'border-b border-transparent bg-white'
+          scrolled
+            ? 'border-b border-gray-200 bg-white/95 shadow-sm backdrop-blur-xl'
+            : 'border-b border-transparent bg-white'
         }`}
       >
         <div className="mx-auto flex h-20 max-w-7xl items-center justify-between px-6 lg:px-8">
           <div className="flex items-center gap-10">
-            <Link to="/" onClick={handleLogoClick} aria-label="Accueil PC MAROC" className="flex items-center gap-2">
+            {/* LOGO */}
+            <Link
+              to="/"
+              onClick={handleLogoClick}
+              aria-label="Accueil PC MAROC"
+              className="flex items-center gap-2"
+            >
               <Logo />
             </Link>
 
+            {/* NAVIGATION DESKTOP */}
             <nav className="hidden items-center gap-8 lg:flex">
               {NAV_LINKS.map((link) => {
-                if (link.label === 'Accueil' || link.label === 'Contact') return null;
+                if (
+                  link.label === 'Accueil' ||
+                  link.label === 'Contact'
+                ) {
+                  return null;
+                }
 
-                const isCommerce = link.label === 'Commerce' || link.label === 'Type de Commerce';
+                const isCommerce =
+                  link.label === 'Commerce' ||
+                  link.label === 'Type de Commerce';
+
                 const hasDropdown = linksWithDropdown.includes(link.label);
-                const isAfterDeveloppement = link.label === 'Développement';
 
+                const isAfterDeveloppement =
+                  link.label === 'Développement';
+
+                // MENU COMMERCE
                 if (isCommerce) {
                   return (
-                    <div key={link.href} className="relative flex items-center gap-8" ref={dropdownRef}>
+                    <div
+                      key={link.href}
+                      className="relative"
+                      ref={dropdownRef}
+                    >
                       <button
                         onClick={() => setDropdownOpen(!dropdownOpen)}
-                        className="flex items-center gap-1.5 text-sm font-semibold text-gray-900 transition-colors hover:text-[#f96302] focus:outline-none"
+                        aria-expanded={dropdownOpen}
+                        className="group flex items-center gap-2 py-3 text-sm font-semibold text-gray-900 transition-colors hover:text-[#f96302]"
                       >
-                        Type De Commerce
-                        <ChevronDown className={`h-4 w-4 text-gray-500 transition-transform duration-200 ${dropdownOpen ? 'rotate-180' : ''}`} />
+                        Type de Commerce
+
+                        <ChevronDown
+                          className={`h-4 w-4 text-gray-500 transition-transform duration-200 ${
+                            dropdownOpen ? 'rotate-180' : ''
+                          }`}
+                        />
                       </button>
 
-                      {/* MEGA MENU DESKTOP */}
+                      {/* MEGA MENU */}
                       <AnimatePresence>
                         {dropdownOpen && (
                           <motion.div
-                            initial={{ opacity: 0, y: 12, scale: 0.98 }}
-                            animate={{ opacity: 1, y: 0, scale: 1 }}
-                            exit={{ opacity: 0, y: 12, scale: 0.98 }}
+                            initial={{
+                              opacity: 0,
+                              y: 12,
+                              scale: 0.98,
+                            }}
+                            animate={{
+                              opacity: 1,
+                              y: 0,
+                              scale: 1,
+                            }}
+                            exit={{
+                              opacity: 0,
+                              y: 12,
+                              scale: 0.98,
+                            }}
                             transition={{ duration: 0.2 }}
-                            className="absolute -left-20 top-full mt-3 w-[880px] rounded-3xl border border-gray-100 bg-white p-6 shadow-2xl shadow-black/10"
+                            className="absolute -left-20 top-full mt-3 w-[880px] rounded-3xl border border-gray-100 bg-white p-7 shadow-2xl shadow-black/10"
                           >
                             <div className="grid grid-cols-4 gap-6">
                               {COMMERCE_CATEGORIES.map((cat) => {
                                 const IconComp = cat.icon;
+
                                 return (
-                                  <div key={cat.title} className="flex flex-col gap-3">
-                                    <div className="flex items-center gap-2 border-b border-gray-100 pb-2.5 text-[#f96302]">
-                                      <IconComp className="h-4 w-4" />
-                                      <span className="text-xs font-bold uppercase tracking-wider text-gray-900">
+                                  <div
+                                    key={cat.title}
+                                    className="flex flex-col gap-4"
+                                  >
+                                    {/* TITRE CLIQUABLE DE LA FAMILLE */}
+                                    <a
+                                      href={getCategoryUrl(cat.categoryKey)}
+                                      onClick={(e) => {
+                                        e.preventDefault();
+                                        handleNavigation(
+                                          getCategoryUrl(cat.categoryKey)
+                                        );
+                                      }}
+                                      className="group flex items-center gap-2.5 border-b border-gray-100 pb-3 text-[#f96302] transition-all hover:border-orange-300"
+                                    >
+                                      <span className="flex h-9 w-9 items-center justify-center rounded-xl bg-orange-50 transition-all group-hover:bg-[#f96302]">
+                                        <IconComp className="h-4 w-4 text-[#f96302] group-hover:text-white" />
+                                      </span>
+
+                                      <span className="text-xs font-extrabold uppercase tracking-wider text-gray-900 transition-colors group-hover:text-[#f96302]">
                                         {cat.title}
                                       </span>
-                                    </div>
+                                    </a>
+
+                                    {/* SOUS-FAMILLES AVEC ICONES */}
                                     <div className="flex flex-col gap-1">
-                                      {cat.items.map((item) => (
-                                        <a
-                                          key={item.slug}
-                                          href={`/shop?category=${cat.categoryKey}&type=${item.slug}`}
-                                          onClick={(e) => {
-                                            e.preventDefault();
-                                            handleNavigation(`/shop?category=${cat.categoryKey}&type=${item.slug}`);
-                                          }}
-                                          className="rounded-lg px-2.5 py-1.5 text-xs font-medium text-gray-600 transition-all hover:bg-orange-50 hover:text-[#f96302]"
-                                        >
-                                          {item.label}
-                                        </a>
-                                      ))}
+                                      {cat.items.map((item) => {
+                                        const ItemIcon = item.icon;
+
+                                        return (
+                                          <a
+                                            key={item.slug}
+                                            href={getSubCategoryUrl(
+                                              cat.categoryKey,
+                                              item.slug
+                                            )}
+                                            onClick={(e) => {
+                                              e.preventDefault();
+
+                                              handleNavigation(
+                                                getSubCategoryUrl(
+                                                  cat.categoryKey,
+                                                  item.slug
+                                                )
+                                              );
+                                            }}
+                                            className="group flex items-center gap-2.5 rounded-xl px-2 py-2 text-xs font-medium text-gray-600 transition-all hover:translate-x-1 hover:bg-orange-50 hover:text-[#f96302]"
+                                          >
+                                            <ItemIcon className="h-4 w-4 shrink-0 text-gray-400 transition-colors group-hover:text-[#f96302]" />
+
+                                            <span>{item.label}</span>
+                                          </a>
+                                        );
+                                      })}
                                     </div>
                                   </div>
                                 );
                               })}
+                            </div>
+
+                            {/* FOOTER MEGA MENU */}
+                            <div className="mt-6 flex items-center justify-between rounded-2xl bg-gradient-to-r from-orange-50 to-white px-5 py-4">
+                              <div className="flex items-center gap-3">
+                                <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-white shadow-sm">
+                                  <Sparkles className="h-5 w-5 text-[#f96302]" />
+                                </div>
+
+                                <div>
+                                  <p className="text-sm font-bold text-gray-900">
+                                    PC MAROC
+                                  </p>
+                                  <p className="text-xs text-gray-500">
+                                    Des solutions adaptées à chaque métier
+                                  </p>
+                                </div>
+                              </div>
+
+                              <button
+                                onClick={() =>
+                                  handleNavigation('/#contact')
+                                }
+                                className="rounded-xl bg-[#f96302] px-4 py-2.5 text-xs font-bold text-white transition-all hover:bg-orange-600"
+                              >
+                                Demander une démo
+                              </button>
                             </div>
                           </motion.div>
                         )}
@@ -249,8 +464,12 @@ export function Header() {
                   );
                 }
 
+                // AUTRES LIENS
                 return (
-                  <div key={link.href} className="flex items-center gap-8">
+                  <div
+                    key={link.href}
+                    className="flex items-center gap-8"
+                  >
                     <a
                       href={link.href}
                       onClick={(event) => {
@@ -260,16 +479,22 @@ export function Header() {
                       className="flex items-center gap-1.5 text-sm font-semibold text-gray-900 transition-colors hover:text-[#f96302]"
                     >
                       {link.label}
-                      {hasDropdown && <ChevronDown className="h-4 w-4 text-gray-500" />}
+
+                      {hasDropdown && (
+                        <ChevronDown className="h-4 w-4 text-gray-500" />
+                      )}
                     </a>
 
-                    {isAfterDeveloppement && <div className="h-5 w-[1px] bg-gray-300" />}
+                    {isAfterDeveloppement && (
+                      <div className="h-5 w-px bg-gray-300" />
+                    )}
                   </div>
                 );
               })}
             </nav>
           </div>
 
+          {/* BOUTON DEMO DESKTOP */}
           <div className="hidden items-center gap-6 lg:flex">
             <a
               href="/#contact"
@@ -284,9 +509,10 @@ export function Header() {
             </a>
           </div>
 
+          {/* BOUTON MOBILE */}
           <button
             onClick={() => setMobileOpen(true)}
-            className="flex h-10 w-10 items-center justify-center rounded-lg text-gray-700 lg:hidden"
+            className="flex h-10 w-10 items-center justify-center rounded-lg text-gray-700 transition-colors hover:bg-orange-50 hover:text-[#f96302] lg:hidden"
             aria-label="Ouvrir le menu"
             aria-expanded={mobileOpen}
           >
@@ -295,91 +521,198 @@ export function Header() {
         </div>
       </motion.header>
 
-      {/* MOBILE MENU */}
+      {/* ================================================== */}
+      {/* MENU MOBILE */}
+      {/* ================================================== */}
+
       <AnimatePresence>
         {mobileOpen && (
           <>
+            {/* OVERLAY */}
             <motion.div
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
-              className="fixed inset-0 z-[60] bg-black/20 backdrop-blur-sm lg:hidden"
+              className="fixed inset-0 z-[60] bg-black/30 backdrop-blur-sm lg:hidden"
               onClick={() => setMobileOpen(false)}
             />
 
+            {/* PANNEAU MOBILE */}
             <motion.div
               initial={{ x: '100%' }}
               animate={{ x: 0 }}
               exit={{ x: '100%' }}
-              transition={{ type: 'spring', damping: 30, stiffness: 300 }}
+              transition={{
+                type: 'spring',
+                damping: 30,
+                stiffness: 300,
+              }}
               className="fixed right-0 top-0 z-[70] flex h-full w-[85%] max-w-sm flex-col border-l border-gray-200 bg-white lg:hidden"
             >
+              {/* HEADER MOBILE */}
               <div className="flex items-center justify-between border-b border-gray-200 px-6 py-5">
-                <Link to="/" onClick={handleLogoClick} aria-label="Accueil PC MAROC">
+                <Link
+                  to="/"
+                  onClick={handleLogoClick}
+                  aria-label="Accueil PC MAROC"
+                >
                   <Logo />
                 </Link>
 
                 <button
                   onClick={() => setMobileOpen(false)}
-                  className="flex h-10 w-10 items-center justify-center rounded-lg text-gray-700"
+                  className="flex h-10 w-10 items-center justify-center rounded-xl text-gray-700 transition-colors hover:bg-orange-50 hover:text-[#f96302]"
                   aria-label="Fermer le menu"
                 >
                   <X className="h-6 w-6" />
                 </button>
               </div>
 
+              {/* NAVIGATION MOBILE */}
               <nav className="flex flex-1 flex-col gap-2 overflow-y-auto px-6 py-6">
                 {NAV_LINKS.map((link) => {
-                  const isCommerce = link.label === 'Commerce' || link.label === 'Type de Commerce';
+                  const isCommerce =
+                    link.label === 'Commerce' ||
+                    link.label === 'Type de Commerce';
 
                   if (isCommerce) {
                     return (
-                      <div key={link.href} className="flex flex-col">
+                      <div
+                        key={link.href}
+                        className="flex flex-col"
+                      >
+                        {/* OUVRIR COMMERCE */}
                         <button
-                          onClick={() => setMobileCommerceOpen(!mobileCommerceOpen)}
-                          className="flex items-center justify-between rounded-lg px-2 py-3 text-base font-medium text-gray-900 transition-colors hover:bg-gray-50 hover:text-[#f96302]"
+                          onClick={() =>
+                            setMobileCommerceOpen(!mobileCommerceOpen)
+                          }
+                          className="flex items-center justify-between rounded-xl px-3 py-3 text-base font-bold text-gray-900 transition-colors hover:bg-orange-50 hover:text-[#f96302]"
                         >
-                          Commerce
-                          <ChevronDown className={`h-4 w-4 text-gray-400 transition-transform ${mobileCommerceOpen ? 'rotate-180' : ''}`} />
+                          <span className="flex items-center gap-3">
+                            <ShoppingBag className="h-5 w-5 text-[#f96302]" />
+                            Type de Commerce
+                          </span>
+
+                          <ChevronDown
+                            className={`h-4 w-4 text-gray-400 transition-transform ${
+                              mobileCommerceOpen ? 'rotate-180' : ''
+                            }`}
+                          />
                         </button>
 
+                        {/* FAMILLES */}
                         <AnimatePresence>
                           {mobileCommerceOpen && (
                             <motion.div
-                              initial={{ height: 0, opacity: 0 }}
-                              animate={{ height: 'auto', opacity: 1 }}
-                              exit={{ height: 0, opacity: 0 }}
-                              className="flex flex-col pl-3 gap-2 overflow-hidden my-2"
+                              initial={{
+                                height: 0,
+                                opacity: 0,
+                              }}
+                              animate={{
+                                height: 'auto',
+                                opacity: 1,
+                              }}
+                              exit={{
+                                height: 0,
+                                opacity: 0,
+                              }}
+                              transition={{ duration: 0.25 }}
+                              className="my-2 flex flex-col gap-2 overflow-hidden pl-2"
                             >
                               {COMMERCE_CATEGORIES.map((cat) => {
-                                const isCatOpen = activeMobileCategory === cat.title;
-                                return (
-                                  <div key={cat.title} className="flex flex-col border-l-2 border-orange-100 pl-3">
-                                    <button
-                                      onClick={() => setActiveMobileCategory(isCatOpen ? null : cat.title)}
-                                      className="flex items-center justify-between py-1.5 text-sm font-semibold text-gray-800"
-                                    >
-                                      {cat.title}
-                                      <ChevronDown className={`h-3.5 w-3.5 text-gray-400 transition-transform ${isCatOpen ? 'rotate-180' : ''}`} />
-                                    </button>
+                                const IconComp = cat.icon;
 
-                                    {isCatOpen && (
-                                      <div className="flex flex-col gap-1.5 my-1 pl-2">
-                                        {cat.items.map((item) => (
-                                          <a
-                                            key={item.slug}
-                                            href={`/shop?category=${cat.categoryKey}&type=${item.slug}`}
-                                            onClick={(event) => {
-                                              event.preventDefault();
-                                              handleNavigation(`/shop?category=${cat.categoryKey}&type=${item.slug}`);
-                                            }}
-                                            className="text-xs font-medium text-gray-600 hover:text-[#f96302]"
-                                          >
-                                            {item.label}
-                                          </a>
-                                        ))}
-                                      </div>
-                                    )}
+                                const isCatOpen =
+                                  activeMobileCategory === cat.title;
+
+                                return (
+                                  <div
+                                    key={cat.title}
+                                    className="flex flex-col rounded-xl border border-gray-100 bg-gray-50/70 px-3 py-2"
+                                  >
+                                    {/* NOM FAMILLE + FLÈCHE */}
+                                    <div className="flex items-center justify-between gap-2">
+                                      {/* CLIC SUR LE NOM = PAGE FAMILLE */}
+                                      <button
+                                        onClick={() =>
+                                          handleNavigation(
+                                            getCategoryUrl(cat.categoryKey)
+                                          )
+                                        }
+                                        className="flex flex-1 items-center gap-3 py-2 text-left text-sm font-bold text-gray-800 transition-colors hover:text-[#f96302]"
+                                      >
+                                        <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-lg bg-orange-100 text-[#f96302]">
+                                          <IconComp className="h-4 w-4" />
+                                        </span>
+
+                                        {cat.title}
+                                      </button>
+
+                                      {/* FLÈCHE = SOUS-FAMILLES */}
+                                      <button
+                                        onClick={() =>
+                                          setActiveMobileCategory(
+                                            isCatOpen ? null : cat.title
+                                          )
+                                        }
+                                        className="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg text-gray-500 transition-colors hover:bg-orange-100 hover:text-[#f96302]"
+                                        aria-label={`Afficher les sous-catégories ${cat.title}`}
+                                        aria-expanded={isCatOpen}
+                                      >
+                                        <ChevronDown
+                                          className={`h-4 w-4 transition-transform ${
+                                            isCatOpen ? 'rotate-180' : ''
+                                          }`}
+                                        />
+                                      </button>
+                                    </div>
+
+                                    {/* SOUS-FAMILLES AVEC ICONES */}
+                                    <AnimatePresence>
+                                      {isCatOpen && (
+                                        <motion.div
+                                          initial={{
+                                            height: 0,
+                                            opacity: 0,
+                                          }}
+                                          animate={{
+                                            height: 'auto',
+                                            opacity: 1,
+                                          }}
+                                          exit={{
+                                            height: 0,
+                                            opacity: 0,
+                                          }}
+                                          transition={{ duration: 0.2 }}
+                                          className="overflow-hidden"
+                                        >
+                                          <div className="mb-2 ml-4 flex flex-col gap-1 border-l-2 border-orange-200 pl-3">
+                                            {cat.items.map((item) => {
+                                              const ItemIcon = item.icon;
+
+                                              return (
+                                                <button
+                                                  key={item.slug}
+                                                  onClick={() =>
+                                                    handleNavigation(
+                                                      getSubCategoryUrl(
+                                                        cat.categoryKey,
+                                                        item.slug
+                                                      )
+                                                    )
+                                                  }
+                                                  className="flex items-center gap-3 rounded-lg px-2 py-2.5 text-left text-xs font-medium text-gray-600 transition-all hover:bg-orange-50 hover:text-[#f96302]"
+                                                >
+                                                  <ItemIcon className="h-4 w-4 shrink-0 text-gray-400" />
+
+                                                  {item.label}
+                                                </button>
+                                              );
+                                            })}
+                                          </div>
+                                        </motion.div>
+                                      )}
+                                    </AnimatePresence>
                                   </div>
                                 );
                               })}
@@ -398,7 +731,7 @@ export function Header() {
                         event.preventDefault();
                         handleNavigation(link.href);
                       }}
-                      className="flex items-center justify-between rounded-lg px-2 py-3 text-base font-medium text-gray-900 transition-colors hover:bg-gray-50 hover:text-[#f96302]"
+                      className="flex items-center justify-between rounded-xl px-3 py-3 text-base font-medium text-gray-900 transition-colors hover:bg-orange-50 hover:text-[#f96302]"
                     >
                       {link.label}
                     </a>
@@ -406,6 +739,7 @@ export function Header() {
                 })}
               </nav>
 
+              {/* BOUTON DEMO MOBILE */}
               <div className="border-t border-gray-200 p-6">
                 <a
                   href="/#contact"
@@ -424,7 +758,10 @@ export function Header() {
         )}
       </AnimatePresence>
 
-      {/* WHATSAPP FLOTTANT */}
+      {/* ================================================== */}
+      {/* BOUTON WHATSAPP FLOTTANT */}
+      {/* ================================================== */}
+
       <a
         href={`https://wa.me/${WHATSAPP_NUMBER}`}
         target="_blank"
