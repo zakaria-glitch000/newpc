@@ -43,6 +43,8 @@ import bazarImage from '@/assets/bazzard.jpeg';
 import parfumerieImage from '@/assets/perfume.jpeg';
 import librairieImage from '@/assets/libr.jpeg';
 import supportImage from '@/assets/supportt.jpeg';
+import commercesImage from '@/assets/shoop.jpeg';
+
 /* =====================================================
    IMAGES
 ===================================================== */
@@ -58,7 +60,7 @@ const IMAGES = {
   bazar: bazarImage,
   parfumerie: parfumerieImage,
   librairie: librairieImage,
-  specialise: commercanteImage,
+  specialise:commercesImage,
 };
 
 /* =====================================================
