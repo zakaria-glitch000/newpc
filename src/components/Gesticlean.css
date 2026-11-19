@@ -123,9 +123,9 @@
   z-index: -2;
   background: linear-gradient(
     90deg,
-    rgba(255, 255, 255, 0.96) 0%,
-    rgba(255, 255, 255, 0.86) 48%,
-    rgba(255, 255, 255, 0.34) 100%
+    rgba(255, 255, 255, .82) 0%,
+    rgba(255, 255, 255, .68) 48%,
+    rgba(255, 255, 255, .30) 100%
   );
 }
 
@@ -137,7 +137,7 @@
   pointer-events: none;
   background: linear-gradient(
     to top,
-    rgba(241, 245, 249, 0.65),
+    rgba(241, 245, 249, .28),
     transparent 48%
   );
 }
@@ -755,12 +755,12 @@
   }
 
   .gc-hero-overlay {
-    background: linear-gradient(
-      90deg,
-      rgba(255, 255, 255, .97),
-      rgba(255, 255, 255, .88)
-    );
-  }
+  background: linear-gradient(
+    90deg,
+    rgba(255, 255, 255, .91),
+    rgba(255, 255, 255, .78)
+  );
+}
 
   .gc-hero-container {
     padding: 65px 22px;
@@ -925,5 +925,204 @@
     animation-iteration-count: 1 !important;
     scroll-behavior: auto !important;
     transition-duration: .01ms !important;
+  }
+}
+
+/* =====================================================
+   GESTICLEAN — PREMIUM DESIGN UPGRADE
+===================================================== */
+
+/* HERO */
+.page.gesticlean .gc-hero {
+  min-height: 720px;
+  background-position: center;
+}
+
+.page.gesticlean .gc-hero-overlay {
+  background: linear-gradient(
+    90deg,
+    rgba(255, 255, 255, .75) 0%,
+    rgba(255, 255, 255, .58) 42%,
+    rgba(255, 255, 255, .28) 72%,
+    rgba(255, 255, 255, .08) 100%
+  );
+}
+
+.page.gesticlean .gc-hero::after {
+  background: linear-gradient(
+    to top,
+    rgba(241, 245, 249, .16),
+    transparent 45%
+  );
+}
+.page.gesticlean .gc-hero-container {
+  max-width: 1320px;
+  padding: 90px 45px;
+}
+
+.page.gesticlean .gc-hero-badge {
+  border-color: rgba(249, 115, 22, .22);
+  background: rgba(255, 255, 255, .88);
+  box-shadow: 0 8px 25px rgba(15, 23, 42, .07);
+  backdrop-filter: blur(10px);
+}
+
+.page.gesticlean .gc-hero h1 {
+  font-size: clamp(42px, 5.4vw, 72px);
+  line-height: 1.12;
+  letter-spacing: -.05em;
+}
+
+.page.gesticlean .gc-hero-content > p {
+  color: #475569;
+  font-size: 16px;
+  line-height: 1.95;
+}
+
+.page.gesticlean .gc-btn-primary {
+  min-height: 58px;
+  padding: 16px 30px;
+  border-radius: 14px;
+  background: linear-gradient(135deg, #f97316, #ea580c);
+  box-shadow: 0 10px 25px rgba(234, 88, 12, .24);
+}
+
+.page.gesticlean .gc-btn-primary:hover {
+  background: linear-gradient(135deg, #ea580c, #c2410c);
+  transform: translateY(-4px);
+}
+
+/* TITRES DES SECTIONS */
+.page.gesticlean .gc-section-heading h2,
+.page.gesticlean .gc-intro h2 {
+  letter-spacing: -.045em;
+}
+
+.page.gesticlean .gc-section-line {
+  width: 65px;
+  height: 5px;
+  box-shadow: 0 3px 10px rgba(249, 115, 22, .22);
+}
+
+/* INTRO */
+.page.gesticlean .gc-intro {
+  max-width: 1080px;
+}
+
+/* IMAGES */
+.page.gesticlean .gc-product-img,
+.page.gesticlean .gc-conveyor-img,
+.page.gesticlean .gc-services-img {
+  border-radius: 26px;
+  box-shadow: 0 18px 45px rgba(15, 23, 42, .09);
+  transition: transform .35s ease, box-shadow .35s ease;
+}
+
+.page.gesticlean .gc-product-img:hover,
+.page.gesticlean .gc-conveyor-img:hover,
+.page.gesticlean .gc-services-img:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 24px 50px rgba(15, 23, 42, .13);
+}
+
+/* FEATURE CARDS */
+.page.gesticlean .gc-feature-card {
+  position: relative;
+  overflow: hidden;
+  padding: 32px 28px;
+  border: 1px solid #e8edf4;
+  border-radius: 22px;
+  background: linear-gradient(145deg, #ffffff, #fcfcfd);
+  box-shadow: 0 8px 25px rgba(15, 23, 42, .045);
+}
+
+.page.gesticlean .gc-feature-card::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 0;
+  height: 3px;
+  background: linear-gradient(90deg, #f97316, #fbbf24);
+  transition: width .35s ease;
+}
+
+.page.gesticlean .gc-feature-card:hover::before {
+  width: 100%;
+}
+
+.page.gesticlean .gc-feature-card:hover {
+  transform: translateY(-7px);
+  border-color: #fed7aa;
+  box-shadow: 0 18px 35px rgba(249, 115, 22, .10);
+}
+
+.page.gesticlean .gc-feature-icon {
+  width: 60px;
+  height: 60px;
+  border-radius: 17px;
+  background: linear-gradient(145deg, #fff7ed, #ffedd5);
+}
+
+/* ACCORDION */
+.page.gesticlean .gc-accordion li {
+  border-radius: 17px;
+  box-shadow: 0 4px 15px rgba(15, 23, 42, .025);
+}
+
+.page.gesticlean .gc-accordion li.open {
+  border-color: #fdba74;
+  box-shadow: 0 10px 25px rgba(249, 115, 22, .09);
+}
+
+.page.gesticlean .gc-acc-head {
+  padding: 20px;
+}
+
+.page.gesticlean .gc-acc-sign {
+  width: 34px;
+  height: 34px;
+  border-radius: 11px;
+}
+
+/* SECTIONS */
+.page.gesticlean .gc-product,
+.page.gesticlean .gc-conveyor {
+  background: #f8fafc;
+}
+
+.page.gesticlean .gc-features {
+  background: #fff;
+}
+
+/* MOBILE */
+@media (max-width: 640px) {
+  .page.gesticlean .gc-hero {
+    min-height: auto;
+    background-position: 65% center;
+  }
+
+.page.gesticlean .gc-hero-overlay {
+  background: linear-gradient(
+    90deg,
+    rgba(255, 255, 255, .92) 0%,
+    rgba(255, 255, 255, .82) 65%,
+    rgba(255, 255, 255, .70) 100%
+  );
+}
+  .page.gesticlean .gc-hero-container {
+    padding: 65px 22px;
+  }
+
+  .page.gesticlean .gc-hero h1 {
+    font-size: clamp(35px, 9vw, 44px);
+  }
+
+  .page.gesticlean .gc-hero-content > p {
+    font-size: 14px;
+  }
+
+  .page.gesticlean .gc-feature-card {
+    padding: 25px 21px;
   }
 }

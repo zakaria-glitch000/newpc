@@ -803,8 +803,8 @@ export default function Gesticlean() {
             </div>
 
             <h1>
-              SOLUTION LOGICIELLE
-              <span>POUR PRESSING</span>
+              SOLUTION    LOGICIELLE   
+              <span> POUR PRESSING</span>
               &amp; BLANCHISSERIE
             </h1>
 

@@ -325,10 +325,10 @@
   inset: 0;
   background: linear-gradient(
     90deg,
-    rgba(255, 255, 255, .98) 0%,
-    rgba(255, 255, 255, .94) 38%,
-    rgba(255, 255, 255, .78) 65%,
-    rgba(255, 255, 255, .32) 100%
+    rgba(255, 255, 255, .90) 0%,
+    rgba(255, 255, 255, .82) 38%,
+    rgba(255, 255, 255, .55) 65%,
+    rgba(255, 255, 255, .15) 100%
   );
 }
 
@@ -338,33 +338,34 @@
   inset: 0;
   background: linear-gradient(
     0deg,
-    rgba(247, 248, 250, .72) 0%,
+    rgba(247, 248, 250, .35) 0%,
     transparent 32%,
-    rgba(255, 255, 255, .12) 100%
+    rgba(255, 255, 255, .05) 100%
   );
 }
 
 .ns-hero-glow {
   position: absolute;
   z-index: -1;
-  width: 420px;
-  height: 420px;
+  width: 350px;
+  height: 350px;
   border-radius: 50%;
-  filter: blur(100px);
+  filter: blur(80px);
   pointer-events: none;
 }
 
 .ns-hero-glow-one {
   top: 4%;
   left: -180px;
-  background: rgba(232, 117, 50, .13);
+  background: rgba(232, 117, 50, .07);
 }
 
 .ns-hero-glow-two {
   right: -170px;
   bottom: -10%;
-  background: rgba(242, 154, 97, .17);
+  background: rgba(242, 154, 97, .09);
 }
+
 
 .ns-hero-content {
   position: relative;

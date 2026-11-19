@@ -32,7 +32,7 @@ import {
 
 import './Innoshop.css';
 
-import heroImage from '@/assets/pontalon.jpeg';
+import heroImage from '@/assets/dal.jpeg';
 import commercanteImage from '@/assets/teet.jpeg';
 import articleImage from '@/assets/article.jpg';
 import supermarcheImage from '@/assets/march.jpeg';
