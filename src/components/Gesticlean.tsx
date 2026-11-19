@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect } from "react";
 import "./Gesticlean.css";
 
@@ -21,6 +20,7 @@ import accTicket from "@/assets/imp.jpeg";
 import accMarquage from "@/assets/marq.jpeg";
 import accScanner from "@/assets/scann.jpeg";
 import accTiroir from "@/assets/tirr.jpeg";
+import accBadge from "@/assets/carte.jpeg";
 
 /* =====================================================
    DONNÉES
@@ -42,11 +42,11 @@ const SERVICES = [
   },
   {
     title: "Installation et paramétrage",
-    text: "",
+    text: " Nous assurons l'installation et le paramétrage de votre solution afin de vous permettre de démarrer dans les meilleures conditions. Notre équipe veille au bon fonctionnement de votre environnement de travail.",
   },
   {
     title: "Support Technique",
-    text: "",
+    text: " Notre support technique vous accompagne au quotidien pour répondre à vos questions, résoudre vos difficultés et vous aider à exploiter pleinement les fonctionnalités de votre solution.",
   },
 ];
 
@@ -246,6 +246,14 @@ const ACC_ICONS = {
       <path d="M10 14.5h4" />
     </>
   ),
+
+  badge: (
+    <>
+      <rect x="2" y="5" width="20" height="14" rx="2" />
+      <path d="M2 10h20" />
+      <path d="M6 15h4" />
+    </>
+  ),
 };
 
 const ACCESSORIES = [
@@ -253,46 +261,55 @@ const ACCESSORIES = [
     key: "convoyeur",
     label: "Convoyeur",
     img: accConvoyeur,
-    x: 25,
+    x: 24,
     y: 18,
-    pillX: 0.5,
-    pillY: 13,
+    pillX: 1,
+    pillY: 13.5,
   },
   {
     key: "ticket",
     label: "Imprimante\nticket",
     img: accTicket,
-    x: 25,
+    x: 24,
     y: 48,
-    pillX: -0.5,
-    pillY: 42,
+    pillX: 0,
+    pillY: 42.5,
   },
   {
     key: "marquage",
     label: "Imprimante\nde marquage",
     img: accMarquage,
-    x: 25,
+    x: 24,
     y: 78,
-    pillX: -0.5,
-    pillY: 72,
+    pillX: 0,
+    pillY: 72.5,
   },
   {
     key: "scanner",
     label: "Scanner",
     img: accScanner,
-    x: 75,
-    y: 23,
-    pillX: 84.5,
-    pillY: 18,
+    x: 76,
+    y: 18,
+    pillX: 83.5,
+    pillY: 13.5,
   },
   {
     key: "tiroir",
-    label: "Tiroir-caisse",
+    label: "Tiroir-\ncaisse",
     img: accTiroir,
-    x: 75,
-    y: 65,
-    pillX: 84.5,
-    pillY: 60,
+    x: 76,
+    y: 48,
+    pillX: 83.5,
+    pillY: 42.5,
+  },
+  {
+    key: "badge",
+    label: "Badge\nFidélité",
+    img: accBadge,
+    x: 76,
+    y: 78,
+    pillX: 83.5,
+    pillY: 72.5,
   },
 ];
 
@@ -450,7 +467,7 @@ const CONNECT_CSS = `
   display: flex;
   align-items: center;
   gap: 10px;
-  padding: 6px 22px 6px 6px;
+  padding: 6px 20px 6px 6px;
   background: #fff;
   border: 1px solid #fed7aa;
   border-radius: 999px;
@@ -561,20 +578,25 @@ function ConnectedCash() {
           preserveAspectRatio="none"
           aria-hidden="true"
         >
-          <path d="M470 115 C 520 125, 545 170, 565 210" />
-          <circle cx="470" cy="115" r="7" />
+          {/* Gauche */}
+          <path d="M460 115 C 515 125, 540 170, 565 210" />
+          <circle cx="460" cy="115" r="7" />
 
-          <path d="M458 298 C 510 295, 540 310, 556 330" />
-          <circle cx="458" cy="298" r="7" />
+          <path d="M452 298 C 505 295, 535 310, 556 330" />
+          <circle cx="452" cy="298" r="7" />
 
-          <path d="M482 463 C 520 440, 540 410, 552 405" />
-          <circle cx="482" cy="463" r="7" />
+          <path d="M472 463 C 515 440, 535 410, 552 405" />
+          <circle cx="472" cy="463" r="7" />
 
-          <path d="M1133 115 C 1090 120, 1055 160, 1040 200" />
-          <circle cx="1133" cy="115" r="7" />
+          {/* Droite */}
+          <path d="M1143 115 C 1095 120, 1060 160, 1040 200" />
+          <circle cx="1143" cy="115" r="7" />
 
-          <path d="M1150 378 C 1120 360, 1100 340, 1090 320" />
-          <circle cx="1150" cy="378" r="7" />
+          <path d="M1150 298 C 1110 295, 1085 310, 1068 325" />
+          <circle cx="1150" cy="298" r="7" />
+
+          <path d="M1133 463 C 1100 440, 1080 410, 1062 400" />
+          <circle cx="1133" cy="463" r="7" />
         </svg>
 
         <div className="cc-center">
@@ -803,7 +825,7 @@ export default function Gesticlean() {
             </div>
 
             <h1>
-              SOLUTION    LOGICIELLE   
+              SOLUTION LOGICIELLE
               <span> POUR PRESSING</span>
               &amp; BLANCHISSERIE
             </h1>
