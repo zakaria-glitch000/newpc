@@ -26,12 +26,12 @@ import {
 } from 'lucide-react';
 
 import heroImage from '@/assets/res.webp';
-import caisseImage from '@/assets/00.png';
-import pdImage from '@/assets/bb33.png';
-import kdsImage from '@/assets/bb4.png';
-import ERP_IMAGE from '@/assets/bb5.png';
-import REPORTING_IMAGE from '@/assets/bb6.png';
-import caiImage from '@/assets/2.jpg';
+import caisseImage from '@/assets/ev.jpeg';
+import pdImage from '@/assets/prc.jpeg';
+import kdsImage from '@/assets/orga.jpeg';
+import ERP_IMAGE from '@/assets/og.jpeg';
+import REPORTING_IMAGE from '@/assets/av.jpeg';
+import caiImage from '@/assets/ca.jpeg';
 import supportImage from '@/assets/supportt.jpeg';
 
 /* =====================================================
@@ -83,6 +83,18 @@ const FEATURES: {
       'Suivi du service en temps réel',
     ],
   },
+    {
+    icon: Receipt,
+    title: ['KDS - ', 'Gestion et suivi des commandes en cuisine'],
+    text: 'Un écran de production cuisine pour une préparation fluide , sans tickets papier et avec moins erreurs.',
+    image: caiImage,
+    items: [
+      'Réception instantanée',
+      'Plusieurs modes de paiement',
+      'Gestion des additions et des partages',
+      'Remises, offres et cartes cadeaux',
+    ],
+  },
   {
     icon: Package,
     title: ['Gestion des stocks', 'et des consommations'],
@@ -95,6 +107,7 @@ const FEATURES: {
       'Valorisation des stocks',
     ],
   },
+  
   {
     icon: TrendingUp,
     title: ['Analyse des ventes', 'et rentabilité'],
