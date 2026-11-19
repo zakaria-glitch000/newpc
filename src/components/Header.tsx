@@ -42,7 +42,7 @@ import { Logo } from './ui/Logo';
 const WHATSAPP_NUMBER = '212661973253';
 
 // ======================================================
-// CATÉGORIES ET SOUS-CATÉGORIES AVEC ICONES
+// CATÉGORIES ET SOUS-CATÉGORIES
 // ======================================================
 
 const COMMERCE_CATEGORIES = [
@@ -117,6 +117,31 @@ const COMMERCE_CATEGORIES = [
   },
 ];
 
+// ======================================================
+// URL DES FAMILLES
+// ======================================================
+
+const CATEGORY_ROUTES: Record<string, string> = {
+  restauration: '/solutions-restauration',
+  retail: '/Shop',
+  'beaute-bien-etre': '/Ebel',
+  pressing: '/Gesticlean',
+};
+
+// URL de la famille
+const getCategoryUrl = (categoryKey: string): string => {
+  return CATEGORY_ROUTES[categoryKey] || '/';
+};
+
+// Toutes les sous-familles utilisent le lien de leur famille
+const getSubCategoryUrl = (categoryKey: string, _slug: string): string => {
+  return getCategoryUrl(categoryKey);
+};
+
+// ======================================================
+// HEADER
+// ======================================================
+
 export function Header() {
   const [scrolled, setScrolled] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
@@ -131,7 +156,10 @@ export function Header() {
   const location = useLocation();
   const navigate = useNavigate();
 
-  // Fermer le dropdown en cliquant à l'extérieur
+  // ======================================================
+  // FERMER LE DROPDOWN EN CLIQUANT À L'EXTÉRIEUR
+  // ======================================================
+
   useEffect(() => {
     const handleClickOutside = (event: globalThis.MouseEvent) => {
       if (
@@ -149,7 +177,10 @@ export function Header() {
     };
   }, []);
 
-  // Détection du scroll
+  // ======================================================
+  // DÉTECTION DU SCROLL
+  // ======================================================
+
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 24);
 
@@ -160,7 +191,10 @@ export function Header() {
     return () => window.removeEventListener('scroll', onScroll);
   }, []);
 
-  // Bloquer le scroll lorsque le menu mobile est ouvert
+  // ======================================================
+  // BLOQUER LE SCROLL DU BODY SUR MOBILE
+  // ======================================================
+
   useEffect(() => {
     document.body.style.overflow = mobileOpen ? 'hidden' : '';
 
@@ -169,7 +203,10 @@ export function Header() {
     };
   }, [mobileOpen]);
 
-  // Gérer les ancres après navigation
+  // ======================================================
+  // GÉRER LES ANCRES APRÈS NAVIGATION
+  // ======================================================
+
   useEffect(() => {
     if (!pendingHash || location.pathname !== '/') return;
 
@@ -193,51 +230,67 @@ export function Header() {
     return () => window.clearTimeout(timer);
   }, [location.pathname, pendingHash]);
 
-  // Navigation générale
+  // ======================================================
+  // NAVIGATION GÉNÉRALE
+  // ======================================================
+
   const handleNavigation = useCallback(
     (href: string) => {
       setMobileOpen(false);
       setDropdownOpen(false);
 
-      if (href.startsWith('/shop')) {
-        navigate(href);
+      // Liens externes
+      if (/^https?:\/\//i.test(href)) {
+        window.location.href = href;
         return;
       }
 
-      const hashIndex = href.indexOf('#');
-
-      if (hashIndex === -1) {
+      // Navigation vers les pages internes
+      if (href.startsWith('/')) {
         setPendingHash('');
-        navigate(href);
-        return;
-      }
 
-      const hash = href.slice(hashIndex);
+        if (href.includes('#')) {
+          const [path, hash] = href.split('#');
 
-      if (location.pathname === '/') {
-        const element = document.getElementById(
-          decodeURIComponent(hash.replace(/^#/, ''))
-        );
+          if (path === '' || path === '/') {
+            if (location.pathname === '/') {
+              const element = document.getElementById(
+                decodeURIComponent(hash)
+              );
 
-        if (element) {
-          element.scrollIntoView({
-            behavior: 'smooth',
-            block: 'start',
-          });
-        } else {
-          setPendingHash(hash);
+              if (element) {
+                element.scrollIntoView({
+                  behavior: 'smooth',
+                  block: 'start',
+                });
+              } else {
+                setPendingHash(`#${hash}`);
+              }
+            } else {
+              setPendingHash(`#${hash}`);
+              navigate('/');
+            }
+
+            return;
+          }
+
+          navigate(href);
+          return;
         }
 
+        navigate(href);
         return;
       }
 
-      setPendingHash(hash);
-      navigate('/');
+      navigate(href);
     },
     [location.pathname, navigate]
   );
 
-  // Navigation du logo
+  // ======================================================
+  // NAVIGATION DU LOGO
+  // ======================================================
+
   const handleLogoClick = (event: MouseEvent<HTMLAnchorElement>) => {
     event.preventDefault();
 
@@ -255,15 +308,9 @@ export function Header() {
     }
   };
 
-  // URL d'une famille
-  const getCategoryUrl = (categoryKey: string) => {
-    return `/shop?category=${categoryKey}`;
-  };
-
-  // URL d'une sous-famille
-  const getSubCategoryUrl = (categoryKey: string, slug: string) => {
-    return `/shop?category=${categoryKey}&type=${slug}`;
-  };
+  // ======================================================
+  // LIENS AVEC DROPDOWN
+  // ======================================================
 
   const linksWithDropdown = [
     'Commerce',
@@ -271,6 +318,10 @@ export function Header() {
     'Produit',
     'Développement',
   ];
+
+  // ======================================================
+  // RENDER
+  // ======================================================
 
   return (
     <>
@@ -294,6 +345,7 @@ export function Header() {
         <div className="mx-auto flex h-20 max-w-7xl items-center justify-between px-6 lg:px-8">
           <div className="flex items-center gap-10">
             {/* LOGO */}
+
             <Link
               to="/"
               onClick={handleLogoClick}
@@ -304,6 +356,7 @@ export function Header() {
             </Link>
 
             {/* NAVIGATION DESKTOP */}
+
             <nav className="hidden items-center gap-8 lg:flex">
               {NAV_LINKS.map((link) => {
                 if (
@@ -322,7 +375,6 @@ export function Header() {
                 const isAfterDeveloppement =
                   link.label === 'Développement';
 
-                // MENU COMMERCE
                 if (isCommerce) {
                   return (
                     <div
@@ -345,6 +397,7 @@ export function Header() {
                       </button>
 
                       {/* MEGA MENU */}
+
                       <AnimatePresence>
                         {dropdownOpen && (
                           <motion.div
@@ -376,6 +429,7 @@ export function Header() {
                                     className="flex flex-col gap-4"
                                   >
                                     {/* TITRE CLIQUABLE DE LA FAMILLE */}
+
                                     <a
                                       href={getCategoryUrl(cat.categoryKey)}
                                       onClick={(e) => {
@@ -395,32 +449,28 @@ export function Header() {
                                       </span>
                                     </a>
 
-                                    {/* SOUS-FAMILLES AVEC ICONES */}
+                                    {/* SOUS-CATÉGORIES */}
+
                                     <div className="flex flex-col gap-1">
                                       {cat.items.map((item) => {
                                         const ItemIcon = item.icon;
 
+                                        const url = getSubCategoryUrl(
+                                          cat.categoryKey,
+                                          item.slug
+                                        );
+
                                         return (
                                           <a
                                             key={item.slug}
-                                            href={getSubCategoryUrl(
-                                              cat.categoryKey,
-                                              item.slug
-                                            )}
+                                            href={url}
                                             onClick={(e) => {
                                               e.preventDefault();
-
-                                              handleNavigation(
-                                                getSubCategoryUrl(
-                                                  cat.categoryKey,
-                                                  item.slug
-                                                )
-                                              );
+                                              handleNavigation(url);
                                             }}
                                             className="group flex items-center gap-2.5 rounded-xl px-2 py-2 text-xs font-medium text-gray-600 transition-all hover:translate-x-1 hover:bg-orange-50 hover:text-[#f96302]"
                                           >
                                             <ItemIcon className="h-4 w-4 shrink-0 text-gray-400 transition-colors group-hover:text-[#f96302]" />
-
                                             <span>{item.label}</span>
                                           </a>
                                         );
@@ -432,6 +482,7 @@ export function Header() {
                             </div>
 
                             {/* FOOTER MEGA MENU */}
+
                             <div className="mt-6 flex items-center justify-between rounded-2xl bg-gradient-to-r from-orange-50 to-white px-5 py-4">
                               <div className="flex items-center gap-3">
                                 <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-white shadow-sm">
@@ -464,7 +515,6 @@ export function Header() {
                   );
                 }
 
-                // AUTRES LIENS
                 return (
                   <div
                     key={link.href}
@@ -495,6 +545,7 @@ export function Header() {
           </div>
 
           {/* BOUTON DEMO DESKTOP */}
+
           <div className="hidden items-center gap-6 lg:flex">
             <a
               href="/#contact"
@@ -510,6 +561,7 @@ export function Header() {
           </div>
 
           {/* BOUTON MOBILE */}
+
           <button
             onClick={() => setMobileOpen(true)}
             className="flex h-10 w-10 items-center justify-center rounded-lg text-gray-700 transition-colors hover:bg-orange-50 hover:text-[#f96302] lg:hidden"
@@ -529,6 +581,7 @@ export function Header() {
         {mobileOpen && (
           <>
             {/* OVERLAY */}
+
             <motion.div
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
@@ -538,6 +591,7 @@ export function Header() {
             />
 
             {/* PANNEAU MOBILE */}
+
             <motion.div
               initial={{ x: '100%' }}
               animate={{ x: 0 }}
@@ -550,6 +604,7 @@ export function Header() {
               className="fixed right-0 top-0 z-[70] flex h-full w-[85%] max-w-sm flex-col border-l border-gray-200 bg-white lg:hidden"
             >
               {/* HEADER MOBILE */}
+
               <div className="flex items-center justify-between border-b border-gray-200 px-6 py-5">
                 <Link
                   to="/"
@@ -569,6 +624,7 @@ export function Header() {
               </div>
 
               {/* NAVIGATION MOBILE */}
+
               <nav className="flex flex-1 flex-col gap-2 overflow-y-auto px-6 py-6">
                 {NAV_LINKS.map((link) => {
                   const isCommerce =
@@ -581,7 +637,6 @@ export function Header() {
                         key={link.href}
                         className="flex flex-col"
                       >
-                        {/* OUVRIR COMMERCE */}
                         <button
                           onClick={() =>
                             setMobileCommerceOpen(!mobileCommerceOpen)
@@ -601,6 +656,7 @@ export function Header() {
                         </button>
 
                         {/* FAMILLES */}
+
                         <AnimatePresence>
                           {mobileCommerceOpen && (
                             <motion.div
@@ -631,8 +687,8 @@ export function Header() {
                                     className="flex flex-col rounded-xl border border-gray-100 bg-gray-50/70 px-3 py-2"
                                   >
                                     {/* NOM FAMILLE + FLÈCHE */}
+
                                     <div className="flex items-center justify-between gap-2">
-                                      {/* CLIC SUR LE NOM = PAGE FAMILLE */}
                                       <button
                                         onClick={() =>
                                           handleNavigation(
@@ -648,7 +704,6 @@ export function Header() {
                                         {cat.title}
                                       </button>
 
-                                      {/* FLÈCHE = SOUS-FAMILLES */}
                                       <button
                                         onClick={() =>
                                           setActiveMobileCategory(
@@ -667,7 +722,8 @@ export function Header() {
                                       </button>
                                     </div>
 
-                                    {/* SOUS-FAMILLES AVEC ICONES */}
+                                    {/* SOUS-CATÉGORIES */}
+
                                     <AnimatePresence>
                                       {isCatOpen && (
                                         <motion.div
@@ -690,21 +746,20 @@ export function Header() {
                                             {cat.items.map((item) => {
                                               const ItemIcon = item.icon;
 
+                                              const url = getSubCategoryUrl(
+                                                cat.categoryKey,
+                                                item.slug
+                                              );
+
                                               return (
                                                 <button
                                                   key={item.slug}
                                                   onClick={() =>
-                                                    handleNavigation(
-                                                      getSubCategoryUrl(
-                                                        cat.categoryKey,
-                                                        item.slug
-                                                      )
-                                                    )
+                                                    handleNavigation(url)
                                                   }
                                                   className="flex items-center gap-3 rounded-lg px-2 py-2.5 text-left text-xs font-medium text-gray-600 transition-all hover:bg-orange-50 hover:text-[#f96302]"
                                                 >
                                                   <ItemIcon className="h-4 w-4 shrink-0 text-gray-400" />
-
                                                   {item.label}
                                                 </button>
                                               );
@@ -740,6 +795,7 @@ export function Header() {
               </nav>
 
               {/* BOUTON DEMO MOBILE */}
+
               <div className="border-t border-gray-200 p-6">
                 <a
                   href="/#contact"

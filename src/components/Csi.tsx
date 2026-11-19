@@ -23,6 +23,10 @@ import {
   TrendingUp,
   Users,
   Utensils,
+    Bike,
+  Check,
+  QrCode,
+  ShoppingBag,
 } from 'lucide-react';
 
 import heroImage from '@/assets/bn.jpg';
@@ -33,7 +37,13 @@ import ERP_IMAGE from '@/assets/og.jpeg';
 import REPORTING_IMAGE from '@/assets/av.jpeg';
 import caiImage from '@/assets/ca.jpeg';
 import supportImage from '@/assets/supportt.jpeg';
+import herImage from '@/assets/cho.jpeg';
 
+
+
+import techHeroImage from '@/assets/bn.jpg';   // caisse + sac + jus
+import clickCollectImage from '@/assets/bn.jpg';
+import qrOrderImage from '@/assets/bn.jpg';
 /* =====================================================
     CONTACT
 ===================================================== */
@@ -334,7 +344,49 @@ function FeatureRow({
     </motion.article>
   );
 }
+/* =====================================================
+    NOUVELLES TECHNOLOGIES
+===================================================== */
 
+const TECH_CARDS: {
+  icon: ElementType;
+  title: string;
+  text?: string;
+  list?: string[];
+  image?: string;
+  glovo?: boolean;
+  chart?: boolean;
+}[] = [
+  {
+    icon: ShoppingBag,
+    title: 'Click & Collect',
+    text: 'Vos clients commandent en ligne et retirent leur commande en restaurant, sans attente.',
+    image: clickCollectImage,
+  },
+  {
+    icon: Bike,
+    title: 'Interface Glovo',
+    text: 'Réception automatique des commandes Glovo directement dans votre caisse, avec synchronisation des menus.',
+    glovo: true,
+  },
+  {
+    icon: QrCode,
+    title: 'QR Order',
+    text: 'Un simple QR Code sur la table pour consulter le menu, commander et payer en toute autonomie.',
+    image: qrOrderImage,
+  },
+  {
+    icon: Rocket,
+    title: 'Une technologie moderne',
+    list: [
+      'Service plus rapide',
+      'Moins de file d’attente',
+      'Plus de ventes',
+      'Une expérience client optimale',
+    ],
+    chart: true,
+  },
+];
 /* =====================================================
     LOGOS CLIENTS — CARTE + LIGNE MARQUEE
 ===================================================== */
@@ -567,7 +619,140 @@ export default function SolutionsRestauration() {
           </div>
         </div>
       </section>
+      {/* =====================================================
+          NOUVELLES TECHNOLOGIES
+      ===================================================== */}
 
+      <section className="relative isolate overflow-hidden bg-gradient-to-br from-white via-orange-50/40 to-white py-14 sm:py-20">
+        <div
+          aria-hidden="true"
+          className="pointer-events-none absolute -right-24 bottom-0 -z-10 h-80 w-80 rounded-full bg-orange-100/60 blur-3xl"
+        />
+
+        <div className="mx-auto grid max-w-6xl items-center gap-10 px-5 sm:px-8 lg:grid-cols-[1fr_1.1fr]">
+          {/* GAUCHE */}
+          <motion.div
+            variants={fadeUp}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, margin: '-60px' }}
+            transition={{ duration: 0.5 }}
+          >
+            <div className="flex items-center gap-4">
+              <span className="text-4xl font-black tracking-tight text-[#0b1b3a]">
+                CSI
+              </span>
+              <span className="h-[3px] w-24 rounded bg-[#f26522]" />
+            </div>
+
+            <h2 className="mt-5 text-3xl font-black leading-[1.1] tracking-tight text-[#0b1b3a] sm:text-4xl lg:text-[2.6rem]">
+              Les nouvelles technologies pour une restauration plus{' '}
+              <span className="text-[#f26522]">rapide et connectée</span>
+            </h2>
+
+            <p className="mt-5 max-w-md text-sm leading-relaxed text-slate-600 sm:text-base">
+              Des solutions digitales modernes qui enrichissent l’expérience
+              client, augmentent vos ventes et optimisent votre organisation.
+            </p>
+
+            <div className="mt-8 overflow-hidden rounded-3xl rounded-tl-[90px] shadow-xl shadow-slate-900/10 ring-1 ring-orange-100">
+              <img
+                src={techHeroImage}
+                alt="Caisse tactile CSI avec commande à emporter"
+                loading="lazy"
+                decoding="async"
+                className="h-64 w-full object-cover sm:h-72"
+              />
+            </div>
+          </motion.div>
+
+          {/* DROITE : 4 CARTES */}
+          <motion.div
+            variants={stagger}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, margin: '-60px' }}
+            className="space-y-4"
+          >
+            {TECH_CARDS.map(
+              ({ icon: Icon, title, text, list, image, glovo, chart }) => (
+                <motion.div
+                  key={title}
+                  variants={fadeUp}
+                  className="flex items-center gap-4 rounded-[28px] bg-white p-4 shadow-lg shadow-slate-900/[0.06] ring-1 ring-slate-100 sm:gap-5 sm:p-5"
+                >
+                  {/* Icône */}
+                  <span className="flex h-16 w-16 shrink-0 items-center justify-center rounded-2xl bg-gradient-to-br from-[#ff8a1f] to-[#f26522] text-white shadow-md shadow-orange-500/30 sm:h-20 sm:w-20">
+                    <Icon className="h-8 w-8 sm:h-10 sm:w-10" strokeWidth={1.8} />
+                  </span>
+
+                  {/* Texte */}
+                  <div className="min-w-0 flex-1">
+                    <h3 className="text-lg font-black tracking-tight text-[#0b1b3a] sm:text-xl">
+                      {title}
+                    </h3>
+
+                    {text && (
+                      <p className="mt-1 text-xs leading-snug text-slate-600 sm:text-[13px]">
+                        {text}
+                      </p>
+                    )}
+
+                    {list && (
+                      <ul className="mt-1.5 space-y-1">
+                        {list.map((item) => (
+                          <li
+                            key={item}
+                            className="flex items-center gap-2 text-xs text-slate-700 sm:text-[13px]"
+                          >
+                            <Check
+                              className="h-4 w-4 shrink-0 text-[#f26522]"
+                              strokeWidth={3}
+                            />
+                            {item}
+                          </li>
+                        ))}
+                      </ul>
+                    )}
+                  </div>
+
+                  {/* Séparateur + visuel */}
+                  <span className="hidden h-20 w-px shrink-0 bg-[#f26522]/60 sm:block" />
+
+                  <div className="hidden shrink-0 sm:block">
+                    {image && (
+                      <img
+                        src={image}
+                        alt={title}
+                        loading="lazy"
+                        decoding="async"
+                        className="h-20 w-32 rounded-2xl object-cover"
+                      />
+                    )}
+
+                    {glovo && (
+                      <div className="flex h-20 w-32 items-center justify-center rounded-2xl bg-[#ffc244]">
+                        <span className="text-2xl font-black tracking-tight text-[#00a082]">
+                          Glovo
+                        </span>
+                      </div>
+                    )}
+
+                    {chart && (
+                      <div className="flex h-20 w-32 items-center justify-center">
+                        <ChartNoAxesCombined
+                          className="h-16 w-16 text-[#f26522]"
+                          strokeWidth={2.2}
+                        />
+                      </div>
+                    )}
+                  </div>
+                </motion.div>
+              ),
+            )}
+          </motion.div>
+        </div>
+      </section>
       {/* =====================================================
           ILS NOUS FONT CONFIANCE (LOGOS CLIENTS)
       ===================================================== */}
@@ -713,7 +898,7 @@ export default function SolutionsRestauration() {
             >
               <div className="relative overflow-hidden rounded-3xl bg-slate-900 shadow-2xl shadow-slate-900/15 ring-1 ring-slate-200/50">
                 <img
-                  src={heroImage}
+                  src={herImage}
                   alt="Équipe et solutions CSI"
                   loading="lazy"
                   decoding="async"
