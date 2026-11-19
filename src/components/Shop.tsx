@@ -42,7 +42,7 @@ import epicerieImage from '@/assets/picerie.jpeg';
 import bazarImage from '@/assets/bazzard.jpeg';
 import parfumerieImage from '@/assets/perfume.jpeg';
 import librairieImage from '@/assets/libr.jpeg';
-
+import supportImage from '@/assets/supportt.jpeg';
 /* =====================================================
    IMAGES
 ===================================================== */
@@ -638,7 +638,7 @@ const mocks: Record<string, ReactNode> = {
 
 export default function InnoShop() {
   const [active, setActive] = useState(0);
-
+const [activeService, setActiveService] = useState<number | null>(0);
   const current = features[active];
 
   const goToContact = () => {
@@ -947,6 +947,161 @@ export default function InnoShop() {
             reverse
             speed={Math.max(30, rowTwo.length * 2.4)}
           />
+        </div>
+      </section>
+
+      {/* ================= NOS SERVICES ================= */}
+      <section className="ns-services" id="innoshop-services">
+        <div className="ns-wrap ns-services-container">
+
+          {/* IMAGE */}
+          <div className="ns-services-image">
+            <img
+              src={supportImage}
+              alt="Accompagnement et support technique PC MAROC"
+              loading="lazy"
+              decoding="async"
+            />
+
+            <div className="ns-services-image-card">
+              <span className="ns-services-image-icon">
+                <Headphones size={24} />
+              </span>
+
+              <div>
+                <strong>PC MAROC</strong>
+                <span>À vos côtés à chaque étape</span>
+              </div>
+            </div>
+          </div>
+
+          {/* CONTENT */}
+          <div className="ns-services-content">
+
+            <span className="ns-pill">
+              NOS SERVICES
+            </span>
+
+            <h2>
+              Bien plus qu'un logiciel,
+              <span> un véritable accompagnement.</span>
+            </h2>
+
+            <p className="ns-services-desc">
+              Chez PC MAROC, nous vous accompagnons à chaque étape
+              pour garantir une utilisation optimale de votre solution.
+              Notre équipe met son expertise à votre service pour
+              simplifier votre quotidien et développer votre activité.
+            </p>
+
+            <div className="ns-services-accordion">
+
+              {/* SERVICE 1 */}
+              <div className={`ns-service-item ${activeService === 0 ? 'active' : ''}`}>
+                <button
+                  type="button"
+                  className="ns-service-header"
+                  onClick={() =>
+                    setActiveService(activeService === 0 ? null : 0)
+                  }
+                  aria-expanded={activeService === 0}
+                >
+                  <span className="ns-service-number">01</span>
+
+                  <span className="ns-service-title">
+                    Conseil et formation
+                  </span>
+
+                  <span className="ns-service-toggle">
+                    {activeService === 0 ? '−' : '+'}
+                  </span>
+                </button>
+
+                {activeService === 0 && (
+                  <div className="ns-service-body">
+                    Notre équipe vous accompagne dans le choix et la
+                    prise en main de votre solution. Nous analysons
+                    vos besoins afin de vous proposer les meilleures
+                    solutions et de former vos équipes à leur utilisation.
+                  </div>
+                )}
+              </div>
+
+              {/* SERVICE 2 */}
+              <div className={`ns-service-item ${activeService === 1 ? 'active' : ''}`}>
+                <button
+                  type="button"
+                  className="ns-service-header"
+                  onClick={() =>
+                    setActiveService(activeService === 1 ? null : 1)
+                  }
+                  aria-expanded={activeService === 1}
+                >
+                  <span className="ns-service-number">02</span>
+
+                  <span className="ns-service-title">
+                    Installation et paramétrage
+                  </span>
+
+                  <span className="ns-service-toggle">
+                    {activeService === 1 ? '−' : '+'}
+                  </span>
+                </button>
+
+                {activeService === 1 && (
+                  <div className="ns-service-body">
+                    Nous assurons l'installation et le paramétrage
+                    de votre solution afin de vous permettre de
+                    démarrer dans les meilleures conditions.
+                    Notre équipe veille au bon fonctionnement de
+                    votre environnement de travail.
+                  </div>
+                )}
+              </div>
+
+              {/* SERVICE 3 */}
+              <div className={`ns-service-item ${activeService === 2 ? 'active' : ''}`}>
+                <button
+                  type="button"
+                  className="ns-service-header"
+                  onClick={() =>
+                    setActiveService(activeService === 2 ? null : 2)
+                  }
+                  aria-expanded={activeService === 2}
+                >
+                  <span className="ns-service-number">03</span>
+
+                  <span className="ns-service-title">
+                    Support technique
+                  </span>
+
+                  <span className="ns-service-toggle">
+                    {activeService === 2 ? '−' : '+'}
+                  </span>
+                </button>
+
+                {activeService === 2 && (
+                  <div className="ns-service-body">
+                    Notre support technique vous accompagne au quotidien
+                    pour répondre à vos questions, résoudre vos difficultés
+                    et vous aider à exploiter pleinement les fonctionnalités
+                    de votre solution.
+                  </div>
+                )}
+              </div>
+
+            </div>
+
+            <button
+              type="button"
+              className="ns-btn ns-btn-fill ns-services-contact"
+              onClick={goToContact}
+            >
+              Besoin d'accompagnement ?
+              <ArrowRight size={18} />
+            </button>
+
+          </div>
         </div>
       </section>
 
