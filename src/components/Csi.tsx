@@ -2,7 +2,13 @@ import { useState, type ElementType } from 'react';
 import { motion } from 'framer-motion';
 import {
   ArrowRight,
+  ArrowUpRight,
+  Bell,
   Building2,
+  ChefHat,
+  MessageCircle,
+  ShoppingCart,
+  Store,
   CalendarCheck,
   CalendarDays,
   ChartNoAxesCombined,
@@ -49,6 +55,11 @@ import qrOrderImage from '@/assets/bn.jpg';
 ===================================================== */
 
 const CONTACT_LINK = '/#contact';
+
+/* Pages vers lesquelles pointent les 2 cartes « Pilotez votre restaurant ».
+   Adaptez ces chemins aux routes réelles du site. */
+const GMS_LINK = '/gms';
+const REPORT_LINK = '/report';
 
 /* =====================================================
     COULEURS DE LA SECTION FONCTIONNALITÉS
@@ -159,6 +170,62 @@ const ADVANTAGES: { icon: ElementType; lines: [string, string] }[] = [
   { icon: Coins, lines: ['Meilleure', 'maîtrise des coûts'] },
   { icon: RefreshCw, lines: ['Un contrôle total', 'de votre activité'] },
   { icon: Laptop, lines: ['Accessible', 'partout (PC et mobile)'] },
+];
+
+/* =====================================================
+    PILOTEZ VOTRE RESTAURANT (ERP / GMS + REPORTING)
+    Style "cartes" : badge jaune, coins arrondis, lien avec flèche
+===================================================== */
+
+const PILOT_CSS = `
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap');
+.csi-pilot, .csi-pilot * { font-family: 'Poppins', ui-sans-serif, system-ui, sans-serif; }
+`;
+
+const PILOT_CARDS: {
+  badge: string;
+  label: string;
+  title: string;
+  text: string;
+  image: string;
+  imageAlt: string;
+  items: { icon: ElementType; text: string }[];
+  cta: string;
+  href: string;
+}[] = [
+  {
+    badge: 'ERP / GMS',
+    label: 'Gestion centralisée',
+    title: 'Front-Office & Back-Office',
+    text: 'Une gestion centralisée qui relie la caisse à l’ensemble de votre exploitation.',
+    image: ERP_IMAGE,
+    imageAlt: 'CSI GMS : ERP front-office et back-office pour restaurant',
+    items: [
+      { icon: ShoppingCart, text: 'Gestion des ventes' },
+      { icon: Package, text: 'Achats & stocks' },
+      { icon: ChefHat, text: 'Consommations par recette' },
+      { icon: Store, text: 'Gestion multi-sites' },
+      { icon: ChartNoAxesCombined, text: 'Analyses et performance' },
+    ],
+    cta: 'Découvrir l’ERP / GMS',
+    href: GMS_LINK,
+  },
+  {
+    badge: 'Reporting CSI',
+    label: 'Suivi en temps réel',
+    title: 'Votre caisse toujours connectée',
+    text: 'Suivez votre activité en temps réel, depuis votre PC ou mobile.',
+    image: REPORTING_IMAGE,
+    imageAlt: 'CSI Reporting : suivi du chiffre d’affaires sur mobile',
+    items: [
+      { icon: ChartNoAxesCombined, text: 'Suivi des ventes et du chiffre d’affaires' },
+      { icon: Bell, text: 'Alertes (annulations, retours, pertes)' },
+      { icon: TrendingUp, text: 'Performances par période' },
+      { icon: MessageCircle, text: 'Rapports et notifications sur WhatsApp' },
+    ],
+    cta: 'Découvrir le reporting',
+    href: REPORT_LINK,
+  },
 ];
 
 const CTA_FEATURES: { icon: ElementType; title: string; text: string }[] = [
@@ -753,6 +820,124 @@ export default function SolutionsRestauration() {
           </motion.div>
         </div>
       </section>
+      {/* =====================================================
+          PILOTEZ VOTRE RESTAURANT (ERP / GMS + REPORTING)
+      ===================================================== */}
+
+      <section
+        id="pilotage"
+        className="csi-pilot relative scroll-mt-24 bg-[#f7f8fa] py-14 sm:py-20"
+      >
+        <style>{PILOT_CSS}</style>
+
+        <div className="mx-auto max-w-6xl px-5 sm:px-8">
+          <motion.div
+            variants={fadeUp}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, margin: '-50px' }}
+            transition={{ duration: 0.5 }}
+            className="mx-auto max-w-3xl text-center"
+          >
+            <span className="inline-flex w-fit items-center rounded-full bg-[#ffc21a] px-3.5 py-1.5 text-[11px] font-bold uppercase tracking-wider text-[#0b1b3a]">
+              CSI
+            </span>
+
+            <h2 className="mt-4 text-3xl font-semibold leading-tight tracking-tight text-[#0b1b3a] sm:text-4xl lg:text-[2.6rem]">
+              Pilotez votre restaurant,{' '}
+              <span className="text-[#f26522]">où que vous soyez</span>
+            </h2>
+
+            <p className="mt-4 text-sm leading-relaxed text-slate-500 sm:text-base">
+              Un ERP puissant et un reporting en temps réel pour garder le
+              contrôle de votre activité.
+            </p>
+          </motion.div>
+
+          <motion.div
+            variants={stagger}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, margin: '-60px' }}
+            className="mt-10 grid gap-6 sm:mt-12 md:grid-cols-2 lg:gap-8"
+          >
+            {PILOT_CARDS.map(
+              ({ badge, label, title, text, image, imageAlt, items, cta, href }) => (
+                <motion.div
+                  key={title}
+                  variants={fadeUp}
+                  transition={{ duration: 0.5 }}
+                  className="h-full"
+                >
+                  <article className="group flex h-full flex-col overflow-hidden rounded-[32px] border border-slate-200/80 bg-white shadow-[0_12px_32px_-16px_rgba(15,23,42,0.18)] transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_22px_44px_-18px_rgba(15,23,42,0.28)]">
+                    {/* Visuel + badge */}
+                    <div
+                      className="relative"
+                      style={{ backgroundColor: IMAGE_BG }}
+                    >
+                      <img
+                        src={image}
+                        alt={imageAlt}
+                        loading="lazy"
+                        decoding="async"
+                        className="h-56 w-full object-cover sm:h-64"
+                      />
+                      <span className="absolute left-4 top-4 rounded-full bg-[#ffc21a] px-3.5 py-1.5 text-[11px] font-bold uppercase tracking-wider text-[#0b1b3a]">
+                        {badge}
+                      </span>
+                    </div>
+
+                    {/* Contenu */}
+                    <div className="flex flex-1 flex-col p-7 sm:p-8">
+                      <p className="text-[11px] font-semibold uppercase tracking-wider text-slate-500">
+                        {label}
+                      </p>
+
+                      <h3 className="mt-3 text-2xl font-semibold leading-snug tracking-tight text-[#0b1b3a]">
+                        {title}
+                      </h3>
+
+                      <p className="mt-3 text-[15px] leading-7 text-slate-500">
+                        {text}
+                      </p>
+
+                      <ul className="mb-7 mt-6 space-y-3">
+                        {items.map(({ icon: ItemIcon, text: itemText }) => (
+                          <li key={itemText} className="flex items-center gap-3.5">
+                            <span
+                              className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl ring-1 ring-orange-100"
+                              style={{
+                                backgroundColor: ACCENT_SOFT,
+                                color: ACCENT,
+                              }}
+                            >
+                              <ItemIcon className="h-5 w-5" strokeWidth={2} />
+                            </span>
+                            <span className="text-[15px] font-medium leading-snug text-slate-700">
+                              {itemText}
+                            </span>
+                          </li>
+                        ))}
+                      </ul>
+
+                      <a
+                        href={href}
+                        className="mt-auto flex items-center justify-between border-t border-slate-100 pt-5 text-sm font-semibold text-[#0b1b3a]"
+                      >
+                        <span className="underline-offset-4 group-hover:underline">
+                          {cta}
+                        </span>
+                        <ArrowUpRight className="h-[18px] w-[18px]" />
+                      </a>
+                    </div>
+                  </article>
+                </motion.div>
+              ),
+            )}
+          </motion.div>
+        </div>
+      </section>
+
       {/* =====================================================
           ILS NOUS FONT CONFIANCE (LOGOS CLIENTS)
       ===================================================== */}
