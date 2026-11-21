@@ -2,6 +2,7 @@ import { useEffect, useState, type ElementType } from 'react';
 import { AnimatePresence, motion } from 'framer-motion';
 import {
   ArrowRight,
+  Wifi,
   ArrowUpRight,
   Bell,
   BedDouble,
@@ -57,7 +58,7 @@ import herImage from '@/assets/cho.jpeg';
 import techHeroImage from '@/assets/bn.jpg'; // caisse + sac + jus
 import clickCollectImage from '@/assets/cc.jpeg';
 import qrOrderImage from '@/assets/qr.jpeg';
-
+import tmImage from '@/assets/tm.jpeg';
 /* Images « métiers » : adaptez les noms / extensions à vos vrais fichiers */
 import posImage from '@/assets/00.png';
 import fastFoodImage from '@/assets/ff.jpeg';
@@ -78,7 +79,7 @@ const CONTACT_LINK = '/#contact';
 /* Pages vers lesquelles pointent les 2 cartes « Pilotez votre restaurant ».
    Adaptez ces chemins aux routes réelles du site. */
 const GMS_LINK = '/gms';
-const REPORT_LINK = 'https://wa.me/212661973253';
+const REPORT_LINK = '/report';
 
 /* =====================================================
     COULEURS DE LA SECTION FONCTIONNALITÉS
@@ -366,15 +367,16 @@ const PILOT_CARDS: {
   {
     badge: 'Reporting CSI',
     label: 'Suivi en temps réel',
-    title: 'Votre caisse toujours connectée',
+    title: 'Logiciel reporting CSI',
     text: 'Suivez votre activité en temps réel, depuis votre PC ou mobile.',
     image: REPORTIN_IMAGE,
     imageAlt: 'CSI Reporting : suivi du chiffre d’affaires sur mobile',
     items: [
+{ icon: Wifi, text: 'Votre caisse toujours connectée' },
       { icon: ChartNoAxesCombined, text: 'Suivi des ventes et du chiffre d’affaires' },
       { icon: Bell, text: 'Alertes (annulations, retours, pertes)' },
       { icon: TrendingUp, text: 'Performances par période' },
-      { icon: MessageCircle, text: 'Rapports et notifications sur WhatsApp' },
+      { icon: MessageCircle, text: 'Rapports et notifications par WhatsApp' },
     ],
     cta: 'Découvrir le reporting',
     href: REPORT_LINK,
@@ -605,7 +607,7 @@ const TECH_CARDS: {
       'Plus de ventes',
       'Une expérience client optimale',
     ],
-    chart: true,
+    image: tmImage,
   },
 ];
 
@@ -732,18 +734,7 @@ function MetiersShowcase() {
               {currentName}
             </div>
 
-            {/* mini écran de caisse flottant */}
-            {posImage && (
-              <div className="absolute -bottom-2 -right-2 hidden w-48 rotate-[-3deg] overflow-hidden rounded-xl bg-white shadow-2xl shadow-black/50 ring-4 ring-white/90 sm:block sm:w-56 lg:w-64">
-                <img
-                  src={posImage}
-                  alt="Écran de caisse PC MAROC"
-                  loading="lazy"
-                  decoding="async"
-                  className="h-auto w-full"
-                />
-              </div>
-            )}
+        
 
             {/* barre de progression de la rotation auto */}
             {auto && (

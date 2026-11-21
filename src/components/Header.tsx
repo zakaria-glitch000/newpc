@@ -505,7 +505,7 @@ export function Header() {
                                 }
                                 className="rounded-xl bg-[#f96302] px-4 py-2.5 text-xs font-bold text-white transition-all hover:bg-orange-600"
                               >
-                                Demander une démo
+                                Contacter nous
                               </button>
                             </div>
                           </motion.div>
@@ -556,7 +556,7 @@ export function Header() {
               className="inline-flex items-center justify-center gap-2 rounded-2xl bg-gradient-to-r from-[#ff8c00] via-[#f96302] to-[#e05500] px-7 py-3.5 text-sm font-bold text-white shadow-[0_10px_25px_-5px_rgba(249,99,2,0.4)] transition-all hover:scale-[1.02] hover:shadow-[0_15px_30px_-5px_rgba(249,99,2,0.6)] active:scale-[0.98]"
             >
               <Calendar className="h-4 w-4" />
-              Demander une démo
+              Contacter nous
             </a>
           </div>
 
@@ -806,7 +806,7 @@ export function Header() {
                   className="flex w-full items-center justify-center gap-2 rounded-2xl bg-gradient-to-r from-[#ff8c00] via-[#f96302] to-[#e05500] px-5 py-4 text-base font-bold text-white shadow-[0_10px_25px_-5px_rgba(249,99,2,0.4)] transition-all hover:shadow-[0_15px_30px_-5px_rgba(249,99,2,0.6)]"
                 >
                   <Calendar className="h-5 w-5" />
-                  Demander une démo
+                  Contacter nous
                 </a>
               </div>
             </motion.div>

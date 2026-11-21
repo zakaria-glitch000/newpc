@@ -38,7 +38,8 @@ const OFFICES = [
     title: 'Service Client',
     name: null as string | null,
     address: null as string[] | null,
-    phone: '0522584717',
+    phone: '0522 58 47 17',
+    Whatsapp: '0661 97 32 53',
     email: 'contact@pcmaroc.ma',
   },
 ];
@@ -202,6 +203,7 @@ export function Footer() {
             links={serviceLinks}
             onSectionClick={handleSectionClick}
           />
+          
 
           {/* Contact */}
           <div className="space-y-8 sm:col-span-2 lg:col-span-1">
@@ -252,6 +254,16 @@ export function Footer() {
                         </a>
                       )}
 
+  <div className="mt-3 space-y-2 border-t border-slate-900/10 pt-2.5">
+                      {office.Whatsapp && (
+                        <a
+                          href={`tel:${office.Whatsapp.replace(/\s/g, '')}`}
+                          className="flex items-center gap-2.5 text-sm font-bold text-slate-950 transition-colors hover:text-white"
+                        >
+                          <Phone className="h-4 w-4 shrink-0 text-slate-900" />
+                          <span>{office.Whatsapp}</span>
+                        </a>
+                      )}
                       {office.email && (
                         <a
                           href={`mailto:${office.email}`}
@@ -262,6 +274,7 @@ export function Footer() {
                         </a>
                       )}
                     </div>
+                  </div>
                   </div>
                 ))}
               </div>
