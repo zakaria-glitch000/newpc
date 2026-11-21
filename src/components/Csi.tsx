@@ -1,12 +1,18 @@
-import { useState, type ElementType } from 'react';
-import { motion } from 'framer-motion';
+import { useEffect, useState, type ElementType } from 'react';
+import { AnimatePresence, motion } from 'framer-motion';
 import {
   ArrowRight,
   ArrowUpRight,
   Bell,
+  BedDouble,
   Building2,
   ChefHat,
+  Coffee,
+  ConciergeBell,
+  Croissant,
   MessageCircle,
+  Pizza,
+  Sandwich,
   ShoppingCart,
   Store,
   CalendarCheck,
@@ -29,7 +35,7 @@ import {
   TrendingUp,
   Users,
   Utensils,
-    Bike,
+  Bike,
   Check,
   QrCode,
   ShoppingBag,
@@ -40,16 +46,29 @@ import caisseImage from '@/assets/ev.jpeg';
 import pdImage from '@/assets/prc.jpeg';
 import kdsImage from '@/assets/orga.jpeg';
 import ERP_IMAGE from '@/assets/og.jpeg';
+import ERPP_IMAGE from '@/assets/bo.jpeg';
+import REPORTIN_IMAGE from '@/assets/rep.jpeg';
+
 import REPORTING_IMAGE from '@/assets/av.jpeg';
 import caiImage from '@/assets/ca.jpeg';
 import supportImage from '@/assets/supportt.jpeg';
 import herImage from '@/assets/cho.jpeg';
 
+import techHeroImage from '@/assets/bn.jpg'; // caisse + sac + jus
+import clickCollectImage from '@/assets/cc.jpeg';
+import qrOrderImage from '@/assets/qr.jpeg';
 
+/* Images « métiers » : adaptez les noms / extensions à vos vrais fichiers */
+import posImage from '@/assets/00.png';
+import fastFoodImage from '@/assets/ff.jpeg';
+import restaurantImage from '@/assets/rs.jpeg';
+import pizzeriaImage from '@/assets/pizzeria.jpeg';
+import boulangerieImage from '@/assets/bl.jpeg';
+import courtFoodImage from '@/assets/fc.jpeg';
+import cafeBarImage from '@/assets/cafe.jpeg';
+import hotellerieImage from '@/assets/hotel.jpeg';
+import themeImage from '@/assets/theme.jpeg';
 
-import techHeroImage from '@/assets/bn.jpg';   // caisse + sac + jus
-import clickCollectImage from '@/assets/bn.jpg';
-import qrOrderImage from '@/assets/bn.jpg';
 /* =====================================================
     CONTACT
 ===================================================== */
@@ -59,7 +78,7 @@ const CONTACT_LINK = '/#contact';
 /* Pages vers lesquelles pointent les 2 cartes « Pilotez votre restaurant ».
    Adaptez ces chemins aux routes réelles du site. */
 const GMS_LINK = '/gms';
-const REPORT_LINK = '/report';
+const REPORT_LINK = 'https://wa.me/212661973253';
 
 /* =====================================================
     COULEURS DE LA SECTION FONCTIONNALITÉS
@@ -173,6 +192,140 @@ const ADVANTAGES: { icon: ElementType; lines: [string, string] }[] = [
 ];
 
 /* =====================================================
+    MÉTIERS DE LA RESTAURATION (NOUVELLE SECTION)
+    Mettez vos images dans : src/assets/metiers/
+    Noms attendus (png, jpg, jpeg ou webp) :
+      pos, fast-food, restaurant, pizzeria, boulangerie,
+      court-food, cafe-bar, hotellerie, theme
+    Si une image manque, un dégradé orange s'affiche.
+===================================================== */
+
+type Metier = {
+  icon: ElementType;
+  lines: [string, string?];
+  image: string;
+  key: string;
+  tagline: string;
+  points: string[];
+  tags: string[];
+};
+
+const METIERS: Metier[] = [
+  {
+    icon: Sandwich,
+    lines: ['Fast Food'],
+    image: fastFoodImage,
+    key: 'fast-food',
+    tagline: 'Servez plus vite, même aux heures de pointe.',
+    points: [
+      'Prise de commande tactile ultra-rapide',
+      'Écran cuisine (KDS) sans tickets papier',
+      'Menus, formules et suppléments en un clic',
+      'Comptoir, à emporter et livraison (Glovo)',
+    ],
+    tags: ['Comptoir', 'Drive', 'Livraison'],
+  },
+  {
+    icon: ConciergeBell,
+    lines: ['Restaurant', 'Traditionnel'],
+    image: restaurantImage,
+    key: 'restaurant',
+    tagline: 'Un service fluide, de la table à l’addition.',
+    points: [
+      'Plan de salle et suivi des tables en temps réel',
+      'Prise de commande sur PAD (mobile)',
+      'Partage et fractionnement des additions',
+      'Fiches recettes et maîtrise des coûts',
+    ],
+    tags: ['Salle', 'Terrasse', 'Réservations'],
+  },
+  {
+    icon: Pizza,
+    lines: ['Pizzeria'],
+    image: pizzeriaImage,
+    key: 'pizzeria',
+    tagline: 'Sur place, à emporter ou en livraison : tout est sous contrôle.',
+    points: [
+      'Commandes personnalisées (tailles, ingrédients)',
+      'Envoi instantané en cuisine',
+      'Click & Collect et livraison',
+      'Consommations suivies par recette',
+    ],
+    tags: ['Sur place', 'Click & Collect', 'Livraison'],
+  },
+  {
+    icon: Croissant,
+    lines: ['Boulangerie'],
+    image: boulangerieImage,
+    key: 'boulangerie',
+    tagline: 'Encaissez vite, sans file d’attente au comptoir.',
+    points: [
+      'Encaissement rapide au comptoir',
+      'Produits à la pièce ou au poids',
+      'Suivi des stocks et des pertes',
+      'Ventes par produit et par période',
+    ],
+    tags: ['Comptoir', 'Stocks', 'Rapports'],
+  },
+  {
+    icon: Store,
+    lines: ['Court Food'],
+    image: courtFoodImage,
+    key: 'court-food',
+    tagline: 'Plusieurs enseignes, une seule solution centralisée.',
+    points: [
+      'Gestion multi-points de vente',
+      'Encaissement et reporting centralisés',
+      'Suivi des performances par stand',
+      'Gestion des équipes et des droits d’accès',
+    ],
+    tags: ['Multi-sites', 'Reporting', 'Équipes'],
+  },
+  {
+    icon: Coffee,
+    lines: ['Café / Bar'],
+    image: cafeBarImage,
+    key: 'cafe-bar',
+    tagline: 'Des commandes éclair et un bar toujours bien tenu.',
+    points: [
+      'Écran tactile avec raccourcis boissons',
+      'Comptes et tables ouverts en un geste',
+      'Plusieurs tarifs (happy hour, terrasse…)',
+      'Suivi du stock de boissons',
+    ],
+    tags: ['Bar', 'Terrasse', 'Tarifs'],
+  },
+  {
+    icon: BedDouble,
+    lines: ['Hôtellerie'],
+    image: hotellerieImage,
+    key: 'hotellerie',
+    tagline: 'Restaurant, bar, terrasse : tous vos points de vente reliés.',
+    points: [
+      'Multi-points de vente (restaurant, bar, terrasse…)',
+      'Gestion des équipes et des droits d’accès',
+      'Suivi des ventes en temps réel',
+      'Reporting centralisé sur PC et mobile',
+    ],
+    tags: ['Multi-points', 'Temps réel', 'Mobile'],
+  },
+  {
+    icon: ChefHat,
+    lines: ['Restaurant', 'à thème'],
+    image: themeImage,
+    key: 'theme',
+    tagline: 'Une expérience unique, une gestion maîtrisée.',
+    points: [
+      'Menus et formules sur mesure',
+      'Réservations et gestion de l’occupation',
+      'Cartes cadeaux, offres et remises',
+      'Analyse des ventes et des marges',
+    ],
+    tags: ['Réservations', 'Offres', 'Marges'],
+  },
+];
+
+/* =====================================================
     PILOTEZ VOTRE RESTAURANT (ERP / GMS + REPORTING)
     Style "cartes" : badge jaune, coins arrondis, lien avec flèche
 ===================================================== */
@@ -196,9 +349,9 @@ const PILOT_CARDS: {
   {
     badge: 'ERP / GMS',
     label: 'Gestion centralisée',
-    title: 'Front-Office & Back-Office',
+    title: ' Logiciel Back Office - GMS',
     text: 'Une gestion centralisée qui relie la caisse à l’ensemble de votre exploitation.',
-    image: ERP_IMAGE,
+    image: ERPP_IMAGE,
     imageAlt: 'CSI GMS : ERP front-office et back-office pour restaurant',
     items: [
       { icon: ShoppingCart, text: 'Gestion des ventes' },
@@ -215,7 +368,7 @@ const PILOT_CARDS: {
     label: 'Suivi en temps réel',
     title: 'Votre caisse toujours connectée',
     text: 'Suivez votre activité en temps réel, depuis votre PC ou mobile.',
-    image: REPORTING_IMAGE,
+    image: REPORTIN_IMAGE,
     imageAlt: 'CSI Reporting : suivi du chiffre d’affaires sur mobile',
     items: [
       { icon: ChartNoAxesCombined, text: 'Suivi des ventes et du chiffre d’affaires' },
@@ -411,6 +564,7 @@ function FeatureRow({
     </motion.article>
   );
 }
+
 /* =====================================================
     NOUVELLES TECHNOLOGIES
 ===================================================== */
@@ -454,6 +608,285 @@ const TECH_CARDS: {
     chart: true,
   },
 ];
+
+/* =====================================================
+    MÉTIERS : VITRINE INTERACTIVE
+    Le visiteur choisit son activité -> la vitrine s'adapte.
+===================================================== */
+
+const AUTO_DELAY = 6; // secondes entre deux métiers (rotation automatique)
+
+function MetiersShowcase() {
+  const [active, setActive] = useState(0);
+  const [auto, setAuto] = useState(true);
+
+  useEffect(() => {
+    if (!auto) return;
+    const id = window.setInterval(
+      () => setActive((i) => (i + 1) % METIERS.length),
+      AUTO_DELAY * 1000,
+    );
+    return () => window.clearInterval(id);
+  }, [auto]);
+
+  const select = (i: number) => {
+    setAuto(false);
+    setActive(i);
+  };
+
+  const current = METIERS[active];
+  const CurrentIcon = current.icon;
+  const currentImage = current.image;
+  const currentName = current.lines.filter(Boolean).join(' ');
+
+  return (
+    <section
+      id="metiers"
+      className="relative isolate scroll-mt-24 overflow-hidden bg-[#0d0d0f] py-16 text-white sm:py-24"
+    >
+      {/* décor */}
+      <div
+        aria-hidden="true"
+        className="pointer-events-none absolute -left-40 top-0 -z-10 h-[28rem] w-[28rem] rounded-full bg-[#f26522]/25 blur-[120px]"
+      />
+      <div
+        aria-hidden="true"
+        className="pointer-events-none absolute -right-40 bottom-0 -z-10 h-[30rem] w-[30rem] rounded-full bg-[#ff8a1f]/20 blur-[130px]"
+      />
+      <div
+        aria-hidden="true"
+        className="pointer-events-none absolute inset-0 -z-10 opacity-[0.06]"
+        style={{
+          backgroundImage:
+            'radial-gradient(circle, #fff 1px, transparent 1px)',
+          backgroundSize: '28px 28px',
+        }}
+      />
+
+      <div className="mx-auto max-w-6xl px-5 sm:px-8">
+        {/* TITRE */}
+        <motion.div
+          variants={fadeUp}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, margin: '-50px' }}
+          transition={{ duration: 0.5 }}
+          className="mx-auto max-w-3xl text-center"
+        >
+          <span className="inline-flex items-center gap-2 rounded-full border border-orange-400/40 bg-orange-500/10 px-4 py-1.5 text-[11px] font-bold uppercase tracking-wider text-orange-300">
+            <span className="h-2 w-2 animate-pulse rounded-full bg-[#ff8a1f]" />
+            Pour tous les métiers CHR
+          </span>
+
+          <h2 className="mt-5 text-3xl font-black leading-[1.1] tracking-tight sm:text-4xl lg:text-[2.8rem]">
+            Une solution d’encaissement adaptée à{' '}
+            <span className="bg-gradient-to-r from-[#ff8a1f] to-[#f26522] bg-clip-text text-transparent">
+              tous les métiers de la restauration
+            </span>
+          </h2>
+
+          <p className="mt-4 text-sm leading-relaxed text-white/70 sm:text-base">
+            Choisissez votre activité et découvrez comment PC MAROC s’adapte
+            à votre quotidien.
+          </p>
+        </motion.div>
+
+        {/* VITRINE */}
+        <motion.div
+          variants={fadeUp}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, margin: '-60px' }}
+          transition={{ duration: 0.6 }}
+          className="mt-10 grid gap-6 rounded-[36px] bg-white/[0.04] p-4 ring-1 ring-white/10 backdrop-blur-sm sm:mt-12 sm:p-6 lg:grid-cols-[1.15fr_1fr] lg:gap-8"
+        >
+              {/* Visuel */}
+          <div className="relative h-72 overflow-hidden rounded-3xl bg-gradient-to-br from-[#ffb36b] to-[#f26522] sm:h-96 lg:h-[27rem]">
+            <AnimatePresence mode="wait">
+              <motion.div
+                key={current.key}
+                initial={{ opacity: 0, scale: 1.08 }}
+                animate={{ opacity: 1, scale: 1 }}
+                exit={{ opacity: 0 }}
+                transition={{ duration: 0.55 }}
+                className="absolute inset-0"
+              >
+                {currentImage && (
+                  <img
+                    src={currentImage}
+                    alt={currentName}
+                    decoding="async"
+                    className="h-full w-full object-cover"
+                  />
+                )}
+              </motion.div>
+            </AnimatePresence>
+
+            <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/10 to-transparent" />
+
+            {/* étiquette métier */}
+            <div className="absolute left-4 top-4 flex items-center gap-2.5 rounded-full bg-black/45 py-1.5 pl-1.5 pr-4 text-sm font-bold ring-1 ring-white/25 backdrop-blur-md sm:left-5 sm:top-5">
+              <span className="flex h-8 w-8 items-center justify-center rounded-full bg-gradient-to-br from-[#ff8a1f] to-[#f26522]">
+                <CurrentIcon className="h-4 w-4" strokeWidth={2} />
+              </span>
+              {currentName}
+            </div>
+
+            {/* mini écran de caisse flottant */}
+            {posImage && (
+              <div className="absolute -bottom-2 -right-2 hidden w-48 rotate-[-3deg] overflow-hidden rounded-xl bg-white shadow-2xl shadow-black/50 ring-4 ring-white/90 sm:block sm:w-56 lg:w-64">
+                <img
+                  src={posImage}
+                  alt="Écran de caisse PC MAROC"
+                  loading="lazy"
+                  decoding="async"
+                  className="h-auto w-full"
+                />
+              </div>
+            )}
+
+            {/* barre de progression de la rotation auto */}
+            {auto && (
+              <div className="absolute inset-x-0 bottom-0 h-1 bg-white/15">
+                <motion.div
+                  key={active}
+                  initial={{ width: '0%' }}
+                  animate={{ width: '100%' }}
+                  transition={{ duration: AUTO_DELAY, ease: 'linear' }}
+                  className="h-full bg-gradient-to-r from-[#ff8a1f] to-[#f26522]"
+                />
+              </div>
+            )}
+          </div>
+
+          {/* Détails */}
+          <div className="flex flex-col justify-center px-1 pb-2 lg:pr-4">
+            <AnimatePresence mode="wait">
+              <motion.div
+                key={current.key}
+                initial={{ opacity: 0, x: 28 }}
+                animate={{ opacity: 1, x: 0 }}
+                exit={{ opacity: 0, x: -20 }}
+                transition={{ duration: 0.4 }}
+              >
+                <p className="text-[11px] font-bold uppercase tracking-[0.18em] text-orange-300">
+                  Pour votre activité
+                </p>
+
+                <h3 className="mt-2 text-3xl font-black leading-tight tracking-tight sm:text-4xl">
+                  {currentName}
+                </h3>
+
+                <p className="mt-3 text-sm leading-relaxed text-white/75 sm:text-base">
+                  {current.tagline}
+                </p>
+
+                <ul className="mt-6 space-y-3">
+                  {current.points.map((pt, i) => (
+                    <motion.li
+                      key={pt}
+                      initial={{ opacity: 0, x: 16 }}
+                      animate={{ opacity: 1, x: 0 }}
+                      transition={{ delay: 0.12 + i * 0.07 }}
+                      className="flex items-start gap-3 text-sm text-white/90 sm:text-[15px]"
+                    >
+                      <span className="mt-0.5 flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-gradient-to-br from-[#ff8a1f] to-[#f26522]">
+                        <Check className="h-3 w-3" strokeWidth={3.5} />
+                      </span>
+                      {pt}
+                    </motion.li>
+                  ))}
+                </ul>
+
+                <div className="mt-6 flex flex-wrap gap-2">
+                  {current.tags.map((t) => (
+                    <span
+                      key={t}
+                      className="rounded-full bg-white/10 px-3 py-1 text-xs font-semibold text-orange-200 ring-1 ring-white/10"
+                    >
+                      {t}
+                    </span>
+                  ))}
+                </div>
+
+                <a
+                  href={CONTACT_LINK}
+                  className="group mt-8 inline-flex w-fit items-center gap-2.5 rounded-full bg-gradient-to-r from-[#f26522] to-[#ff8a1f] px-6 py-3 text-sm font-bold text-white shadow-lg shadow-orange-600/30 transition-all duration-300 hover:-translate-y-0.5 hover:shadow-xl focus:outline-none focus:ring-4 focus:ring-orange-300/40"
+                >
+                  Demander une démo pour mon activité
+                  <ArrowRight className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1" />
+                </a>
+              </motion.div>
+            </AnimatePresence>
+          </div>
+        </motion.div>
+
+        {/* LES 8 CARTES (sélecteur) */}
+        <motion.div
+          variants={stagger}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, margin: '-60px' }}
+          className="mt-8 grid grid-cols-2 gap-4 sm:gap-5 md:grid-cols-4"
+        >
+          {METIERS.map((m, i) => {
+            const Icon = m.icon;
+            const src = m.image;
+            const isActive = i === active;
+            const name = m.lines.filter(Boolean).join(' ');
+
+            return (
+              <motion.button
+                key={m.key}
+                type="button"
+                variants={fadeUp}
+                transition={{ duration: 0.45 }}
+                onClick={() => select(i)}
+                aria-pressed={isActive}
+                aria-label={name}
+                className={`group relative overflow-hidden rounded-[26px] bg-white text-left shadow-lg shadow-black/30 transition-all duration-300 focus:outline-none focus-visible:ring-4 focus-visible:ring-orange-300/60 ${
+                  isActive
+                    ? '-translate-y-1.5 ring-[3px] ring-[#ff8a1f] shadow-2xl shadow-orange-500/40'
+                    : 'opacity-80 ring-1 ring-white/10 hover:-translate-y-1 hover:opacity-100'
+                }`}
+              >
+                <div className="relative h-28 overflow-hidden bg-gradient-to-br from-[#ffb36b] to-[#f26522] sm:h-36 lg:h-40">
+                  {src && (
+                    <img
+                      src={src}
+                      alt=""
+                      aria-hidden="true"
+                      loading="lazy"
+                      decoding="async"
+                      className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-110"
+                    />
+                  )}
+                  <div className="pointer-events-none absolute inset-x-0 bottom-0 h-14 bg-gradient-to-t from-[#f26522]/60 to-transparent" />
+                </div>
+
+                <div className="relative flex items-center gap-3 rounded-t-[22px] bg-gradient-to-r from-[#f26522] to-[#ff8a1f] px-3.5 py-3 text-white sm:px-4 sm:py-3.5">
+                  <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-xl bg-white/20 ring-1 ring-white/30 transition-transform duration-300 group-hover:rotate-6 group-hover:scale-110 sm:h-10 sm:w-10">
+                    <Icon className="h-5 w-5 sm:h-6 sm:w-6" strokeWidth={1.8} />
+                  </span>
+                  <p className="text-[13px] font-extrabold leading-tight sm:text-base">
+                    {m.lines[0]}
+                    {m.lines[1] && (
+                      <>
+                        <br />
+                        {m.lines[1]}
+                      </>
+                    )}
+                  </p>
+                </div>
+              </motion.button>
+            );
+          })}
+        </motion.div>
+      </div>
+    </section>
+  );
+}
+
 /* =====================================================
     LOGOS CLIENTS — CARTE + LIGNE MARQUEE
 ===================================================== */
@@ -686,6 +1119,7 @@ export default function SolutionsRestauration() {
           </div>
         </div>
       </section>
+
       {/* =====================================================
           NOUVELLES TECHNOLOGIES
       ===================================================== */}
@@ -820,6 +1254,7 @@ export default function SolutionsRestauration() {
           </motion.div>
         </div>
       </section>
+
       {/* =====================================================
           PILOTEZ VOTRE RESTAURANT (ERP / GMS + REPORTING)
       ===================================================== */}
@@ -1128,6 +1563,12 @@ export default function SolutionsRestauration() {
           </div>
         </div>
       </section>
+
+      {/* =====================================================
+          MÉTIERS DE LA RESTAURATION (après « Pourquoi choisir »)
+      ===================================================== */}
+
+      <MetiersShowcase />
 
       {/* ================= NOS SERVICES ================= */}
       <section className="ns-services" id="innoshop-services">
