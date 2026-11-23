@@ -42,7 +42,7 @@ import {
   ShoppingBag,
 } from 'lucide-react';
 
-import heroImage from '@/assets/bn.jpg';
+import heroImage from '@/assets/bn.jpeg';
 import caisseImage from '@/assets/ev.jpeg';
 import pdImage from '@/assets/prc.jpeg';
 import kdsImage from '@/assets/orga.jpeg';
@@ -55,7 +55,7 @@ import caiImage from '@/assets/ca.jpeg';
 import supportImage from '@/assets/supportt.jpeg';
 import herImage from '@/assets/cho.jpeg';
 
-import techHeroImage from '@/assets/bn.jpg'; // caisse + sac + jus
+import techHeroImage from '@/assets/bn0.jpg'; // caisse + sac + jus
 import clickCollectImage from '@/assets/cc.jpeg';
 import qrOrderImage from '@/assets/qr.jpeg';
 import tmImage from '@/assets/tm.jpeg';

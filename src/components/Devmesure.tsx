@@ -4,7 +4,7 @@ import stockImage from '@/assets/stock.jpeg';
 import eventImage from '@/assets/event.jpeg';
 import reportImage from '@/assets/report.jpeg';
 import gmsImage from '@/assets/GMS.jpeg';
-import devImage from '@/assets/dev.jpg';
+import devImage from '@/assets/dev.jpeg';
 import { Link } from "react-router-dom";
 import {
   Cpu,
