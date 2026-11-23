@@ -5,7 +5,7 @@ import {
   BarChart3,
   Headphones,
 } from 'lucide-react';
-import heroImage from '@/assets/IMAGE.jpg'; // Hna dir la photo dyal l-POS terminal
+import heroImage from '@/assets/IMAGE.jpeg'; // Hna dir la photo dyal l-POS terminal
 
 // Les 3 cartes dyal la deuxième section (Fond blanc)
 const benefits = [
