@@ -10,7 +10,7 @@ import { Link } from 'react-router-dom';
 import pcImage from '@/assets/pc.jpeg';
 import caisseImage from '@/assets/00.png';
 import caissePeripheriquesImage from '@/assets/tf15.jpeg';
-import tca from '@/assets/supportt.jpeg';
+import tca from '@/assets/tca.jpeg';
 import csiMiniDoubleImage from '@/assets/39.jpeg';
 
 type FeatureProps = { icon: React.ReactNode; title: string; description: string; index: number };
@@ -162,25 +162,40 @@ export default function OraliPage() {
         </section>
 
         {/* FONCTIONNALITÉS */}
-        <section className="bg-[#020617] text-white">
+        <section className="bg-white">
           <div className="mx-auto w-full max-w-7xl px-5 py-16 sm:px-8 md:px-12 md:py-24 lg:px-16">
-            <div className="mb-12 grid gap-6 lg:grid-cols-[1fr_1.4fr] lg:items-end">
-              <div>
-                <p className="mb-4 font-mono text-xs uppercase tracking-[0.3em] text-orange-300">Fonctionnalités</p>
-                <h2 className="text-3xl font-extrabold leading-tight tracking-tight sm:text-4xl">
-                  Une solution complète, identique sur les deux modèles
+            <div className="grid items-start gap-8 lg:grid-cols-[0.8fr_1.6fr] lg:gap-10">
+              {/* Panneau noir */}
+              <div className="relative overflow-hidden bg-slate-950 p-8 text-white sm:p-10 lg:sticky lg:top-28">
+                <div className="absolute -right-10 -top-10 h-40 w-40 rounded-full bg-orange-500/30 blur-3xl" aria-hidden="true" />
+                <div className="absolute left-0 top-0 h-1.5 w-full bg-orange-500" aria-hidden="true" />
+                <p className="relative text-xs font-extrabold uppercase tracking-[0.25em] text-orange-400">
+                  Fonctionnalités
+                </p>
+                <h2 className="relative mt-4 text-3xl font-black leading-tight tracking-tight sm:text-4xl">
+                  Une solution complète, <span className="text-orange-400">identique sur les deux modèles</span>
                 </h2>
+                <p className="relative mt-4 text-sm leading-7 text-slate-300">
+                  Quel que soit le modèle choisi, vous bénéficiez des mêmes fonctionnalités avancées pour gérer votre activité.
+                </p>
+                <p className="relative mt-8 font-mono text-6xl font-black text-orange-500">10</p>
+                <p className="relative text-xs font-bold uppercase tracking-[0.2em] text-slate-400">fonctionnalités incluses</p>
+                <Link
+                  to="/#contact"
+                  className="group relative mt-8 inline-flex items-center gap-3 bg-orange-500 px-6 py-3.5 text-sm font-bold uppercase tracking-wider text-white transition hover:bg-orange-600"
+                >
+                  Demander une démo
+                  <ArrowRight className="h-4 w-4 transition group-hover:translate-x-1" />
+                </Link>
               </div>
-              <p className="text-sm leading-7 text-slate-400">
-                Quel que soit le modèle choisi, vous bénéficiez des mêmes fonctionnalités avancées pour gérer votre activité.
-              </p>
-            </div>
 
-            <ol className="grid grid-cols-1 border-l border-t border-white/10 md:grid-cols-2">
-              {features.map((f, i) => (
-                <Feature key={f.title} {...f} index={i + 1} />
-              ))}
-            </ol>
+              {/* Grille blanche */}
+              <ol className="grid grid-cols-1 gap-px border border-slate-200 bg-slate-200 sm:grid-cols-2">
+                {features.map((f, i) => (
+                  <Feature key={f.title} {...f} index={i + 1} />
+                ))}
+              </ol>
+            </div>
           </div>
         </section>
 
@@ -300,15 +315,15 @@ function ProductRow({ product, index }: { product: Product; index: number }) {
 
 function Feature({ icon, title, description, index }: FeatureProps) {
   return (
-    <li className="group flex gap-5 border-b border-r border-white/10 p-6 transition hover:bg-white/[0.04] sm:p-8">
-      <span className="font-mono text-sm text-slate-600 transition group-hover:text-orange-300">
+    <li className="group relative bg-white p-6 transition duration-300 hover:bg-orange-500 sm:p-7">
+      <span className="absolute right-5 top-5 font-mono text-xs font-bold text-orange-500 transition group-hover:text-white/80">
         {String(index).padStart(2, '0')}
       </span>
-      <div>
-        <div className="mb-3 text-orange-300">{icon}</div>
-        <h3 className="text-base font-bold">{title}</h3>
-        <p className="mt-2 text-sm leading-6 text-slate-400">{description}</p>
+      <div className="mb-4 flex h-11 w-11 items-center justify-center bg-slate-950 text-orange-400 transition group-hover:bg-white group-hover:text-orange-600">
+        {icon}
       </div>
+      <h3 className="text-base font-extrabold text-slate-950 transition group-hover:text-white">{title}</h3>
+      <p className="mt-2 text-sm leading-6 text-slate-600 transition group-hover:text-orange-50">{description}</p>
     </li>
   );
 }
