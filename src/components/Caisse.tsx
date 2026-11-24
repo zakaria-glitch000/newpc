@@ -10,7 +10,7 @@ import { Link } from 'react-router-dom';
 import pcImage from '@/assets/pc.jpeg';
 import caisseImage from '@/assets/00.png';
 import caissePeripheriquesImage from '@/assets/tf15.jpeg';
-import tca from '@/assets/tca.jpeg';
+import tca from '@/assets/supportt.jpeg';
 import csiMiniDoubleImage from '@/assets/39.jpeg';
 
 type FeatureProps = { icon: React.ReactNode; title: string; description: string; index: number };
