@@ -5,6 +5,7 @@ import eventImage from '@/assets/event.jpeg';
 import reportImage from '@/assets/report.jpeg';
 import gmsImage from '@/assets/GMS.jpeg';
 import devImage from '@/assets/dev.jpeg';
+import teamImage from '@/assets/spoet.jpeg';
 import { Link } from "react-router-dom";
 import {
   Cpu,
@@ -561,12 +562,11 @@ export default function DeveloppementSurMesure() {
 
               <div className="relative overflow-hidden rounded-[1.75rem] border border-white bg-white p-2 shadow-2xl shadow-orange-900/10">
                 <div className="relative overflow-hidden rounded-[1.35rem]">
-                  <img
-                    src="https://images.unsplash.com/photo-1521737711867-e3b97375f902?auto=format&fit=crop&w=1200&q=85"
-                    alt="Équipe professionnelle collaborant sur des solutions informatiques"
-                    className="h-[420px] w-full object-cover sm:h-[520px]"
-                    loading="lazy"
-                  />
+                <img src={teamImage}
+  alt="Équipe professionnelle collaborant sur des solutions informatiques"
+  className="h-[420px] w-full object-cover sm:h-[520px]"
+  loading="lazy"
+/>
 
                   <div className="absolute inset-0 bg-gradient-to-t from-slate-950/90 via-slate-950/10 to-white/5" />
 
