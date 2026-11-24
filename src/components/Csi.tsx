@@ -69,6 +69,7 @@ import courtFoodImage from '@/assets/fc.jpeg';
 import cafeBarImage from '@/assets/cafe.jpeg';
 import hotellerieImage from '@/assets/hotel.jpeg';
 import themeImage from '@/assets/theme.jpeg';
+import Affcsi from './Affcsi';
 
 /* =====================================================
     CONTACT
@@ -801,7 +802,7 @@ function MetiersShowcase() {
                 </div>
 
                 <a
-                  href={CONTACT_LINK}
+                  href='/Affcsi'
                   className="group mt-8 inline-flex w-fit items-center gap-2.5 rounded-full bg-gradient-to-r from-[#f26522] to-[#ff8a1f] px-6 py-3 text-sm font-bold text-white shadow-lg shadow-orange-600/30 transition-all duration-300 hover:-translate-y-0.5 hover:shadow-xl focus:outline-none focus:ring-4 focus:ring-orange-300/40"
                 >
                   Demander une démo pour mon activité
