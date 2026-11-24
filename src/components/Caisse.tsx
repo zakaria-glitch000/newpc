@@ -29,7 +29,28 @@ type Product = {
 };
 
 const products: Product[] = [
+ 
   {
+    name: 'CSI LAW 12',
+    tagline: 'Compacte et efficace',
+    description:
+      'Une caisse tactile tout-en-un, parfaite pour les petits espaces et les activités à taille humaine.',
+    images: [
+      { src: pcImage, alt: 'Caisse enregistreuse CSI LAW 12', label: 'Caisse' },
+      { src: csiMiniDoubleImage, alt: 'Caisse CSI LAW 12 avec double écran', label: 'Périphériques' },
+    ],
+    specs: [
+      { icon: <Tv className="h-4 w-4" />, label: 'Écran tactile 12"' },
+      { icon: <Maximize className="h-4 w-4" />, label: 'Design compact' },
+      { icon: <ShieldCheck className="h-4 w-4" />, label: 'Robuste et fiable' },
+      { icon: <Wrench className="h-4 w-4" />, label: 'Installation rapide' },
+    ],
+    extras: [
+      { icon: <KeyRound className="h-4 w-4" />, title: 'Lecteur de clef Dallas', description: 'Identification rapide et sécurisée du personnel' },
+      { icon: <Monitor className="h-4 w-4" />, title: 'Écran client / Afficheur', description: 'Double écran pour affichage des prix et offres' },
+    ],
+  },
+   {
     name: 'CSI TF-15',
     tagline: 'La performance au quotidien',
     description:
@@ -55,26 +76,6 @@ const products: Product[] = [
       { icon: <PanelTop className="h-4 w-4" />, title: 'Afficheur client', description: 'Affichage du montant' },
       { icon: <Monitor className="h-4 w-4" />, title: 'Écran client 10"', description: 'Publicité et affichage' },
       { icon: <Monitor className="h-4 w-4" />, title: 'Écran client 7"', description: 'Publicité et affichage' },
-    ],
-  },
-  {
-    name: 'CSI LAW 12',
-    tagline: 'Compacte et efficace',
-    description:
-      'Une caisse tactile tout-en-un, parfaite pour les petits espaces et les activités à taille humaine.',
-    images: [
-      { src: pcImage, alt: 'Caisse enregistreuse CSI LAW 12', label: 'Caisse' },
-      { src: csiMiniDoubleImage, alt: 'Caisse CSI LAW 12 avec double écran', label: 'Périphériques' },
-    ],
-    specs: [
-      { icon: <Tv className="h-4 w-4" />, label: 'Écran tactile 12"' },
-      { icon: <Maximize className="h-4 w-4" />, label: 'Design compact' },
-      { icon: <ShieldCheck className="h-4 w-4" />, label: 'Robuste et fiable' },
-      { icon: <Wrench className="h-4 w-4" />, label: 'Installation rapide' },
-    ],
-    extras: [
-      { icon: <KeyRound className="h-4 w-4" />, title: 'Lecteur de clef Dallas', description: 'Identification rapide et sécurisée du personnel' },
-      { icon: <Monitor className="h-4 w-4" />, title: 'Écran client / Afficheur', description: 'Double écran pour affichage des prix et offres' },
     ],
   },
 ];

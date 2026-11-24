@@ -6,7 +6,7 @@ import chrImg from '../assets/acsi.jpeg';
 import retailImg from '../assets/ashop.jpeg';
 import pressingImg from '../assets/aclean.jpeg';
 import spaImg from '../assets/abelle.jpeg';
-import devImg from '../assets/dev.jpeg';
+import devImg from '../assets/dv.jpeg';
 
 const expertisesData = [
 
