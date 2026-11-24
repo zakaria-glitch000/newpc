@@ -4,7 +4,7 @@ import stockImage from '@/assets/stock.jpeg';
 import eventImage from '@/assets/event.jpeg';
 import reportImage from '@/assets/report.jpeg';
 import gmsImage from '@/assets/GMS.jpeg';
-import devImage from '@/assets/dev.jpeg';
+import devImage from '@/assets/devv.jpeg';
 import teamImage from '@/assets/spoet.jpeg';
 import {
   Cpu,
