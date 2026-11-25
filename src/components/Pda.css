@@ -1,18 +1,21 @@
 @import url("https://fonts.googleapis.com/css2?family=Caveat:wght@600&display=swap");
 
 /* =========================================
-    — PDA / TERMINAL DE COMMANDE
-   Reproduction de la maquette
+   PDA / TERMINAL DE COMMANDE
+   Hero inchangé. Le reste : style éditorial
+   noir / orange / blanc, coins droits.
 ========================================= */
 
 .pda-page {
   --pda-top: 80px; /* hauteur de ta navbar fixe : mets 0 si tu n'en as pas */
   --pda-orange: #f26a1b;
+  --pda-orange-dark: #d9560b;
+  --pda-ink: #0b1220;
   --pda-navy: #12224d;
   --pda-text: #3b4560;
-  --pda-muted: #6b7690;
-  --pda-border: #e6e9f0;
-  --pda-surface: #f4f7fc;
+  --pda-muted: #5b657d;
+  --pda-border: #d9dee8;
+  --pda-surface: #f4f6fa;
 
   width: 100%;
   padding-top: var(--pda-top);
@@ -52,18 +55,10 @@
   margin: 0 auto;
 }
 
-.pda-stack {
-  display: grid;
-  gap: 20px;
-  padding: 8px 0 56px;
+.pda-section {
+  padding: 72px 0;
+  background: #fff;
 }
-
-/* tones */
-
-.pda-tone--orange { --fg: #f26a1b; --bg: #ffe8da; }
-.pda-tone--blue   { --fg: #2f7de1; --bg: #dcebfd; }
-.pda-tone--green  { --fg: #22a35a; --bg: #d9f5e4; }
-.pda-tone--purple { --fg: #7c4dde; --bg: #ece6fb; }
 
 /* eyebrow */
 
@@ -77,17 +72,79 @@
   text-transform: uppercase;
 }
 
-.pda-eyebrow--center {
-  font-size: 17px;
-  text-align: center;
-}
-
 .pda-eyebrow--small {
-  font-size: 15px;
-  letter-spacing: 1.2px;
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 2.4px;
 }
 
-/* HERO */
+/* en-tête de section */
+
+.pda-head {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 16px;
+  margin-bottom: 36px;
+  padding-bottom: 20px;
+  border-bottom: 2px solid var(--pda-ink);
+}
+
+.pda-head h2 {
+  max-width: 620px;
+  color: var(--pda-ink);
+  font-size: clamp(28px, 3.6vw, 44px);
+  font-weight: 800;
+  letter-spacing: -0.8px;
+  line-height: 1.1;
+}
+
+.pda-head > p {
+  max-width: 340px;
+  color: var(--pda-muted);
+  font-size: 14px;
+  line-height: 1.6;
+}
+
+/* bouton */
+
+.pda-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  min-height: 48px;
+  padding: 12px 24px;
+  background: var(--pda-ink);
+  color: #fff;
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 1px;
+  line-height: 1.3;
+  text-decoration: none;
+  text-transform: uppercase;
+  transition: background 0.25s ease;
+}
+
+.pda-btn svg {
+  width: 17px;
+  height: 17px;
+  flex-shrink: 0;
+  transition: transform 0.25s ease;
+}
+
+.pda-btn:hover {
+  background: var(--pda-orange);
+}
+
+.pda-btn:hover svg {
+  transform: translateX(4px);
+}
+
+/* =========================================
+   HERO (inchangé)
+========================================= */
 
 .pda-hero {
   position: relative;
@@ -209,29 +266,38 @@
   content: "";
 }
 
-/* PHONES */
+/* =========================================
+   LES 3 PRODUITS
+========================================= */
 
 .pda-phones {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 14px;
+  gap: 24px;
 }
 
 .pda-phone {
   display: flex;
   min-width: 0;
   flex-direction: column;
-  padding: 16px 14px 18px;
-  border-radius: 22px;
-  background: linear-gradient(160deg, #f1f4fa 0%, #fbfcfe 100%);
+  border: 1px solid var(--pda-border);
+  background: #fff;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.pda-phone:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 18px 40px -18px rgba(11, 18, 32, 0.35);
 }
 
 .pda-phone__image {
+  position: relative;
   display: flex;
-  height: 370px;
+  height: 360px;
   align-items: center;
   justify-content: center;
-  margin-bottom: 14px;
+  padding: 36px 24px 24px;
+  background: linear-gradient(135deg, #f4f6fa 0%, #fff4ec 100%);
 }
 
 .pda-phone__image img {
@@ -240,158 +306,208 @@
   object-fit: contain;
 }
 
-.pda-phone h2 {
-  color: var(--pda-navy);
-  font-size: 25px;
+.pda-phone__tag {
+  position: absolute;
+  top: 0;
+  left: 0;
+  padding: 7px 14px;
+  background: var(--pda-ink);
+  color: var(--pda-orange);
+  font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 2.5px;
+}
+
+.pda-phone__body {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  padding: 24px 24px 22px;
+}
+
+.pda-phone h3 {
+  color: var(--pda-ink);
+  font-size: 24px;
   font-weight: 800;
   letter-spacing: -0.4px;
   line-height: 1.2;
 }
 
 .pda-phone__subtitle {
-  margin: 4px 0 18px !important;
-  color: var(--pda-text);
-  font-size: 15.5px;
-  line-height: 1.4;
+  margin: 8px 0 18px !important;
+  color: var(--pda-muted);
+  font-size: 14px;
+  line-height: 1.45;
 }
 
 .pda-phone__features {
-  display: flex;
+  display: grid;
   margin-top: auto;
+  border-top: 1px solid var(--pda-border);
 }
 
 .pda-phone__features li {
   display: flex;
-  min-width: 0;
-  flex: 1 1 0;
-  flex-direction: column;
   align-items: center;
-  gap: 8px;
-  padding: 0 5px;
-  color: var(--pda-text);
-  font-size: 11.5px;
-  line-height: 1.3;
-  text-align: center;
+  gap: 12px;
+  padding: 11px 0;
+  border-bottom: 1px solid var(--pda-border);
+  color: var(--pda-ink);
+  font-size: 13.5px;
+  font-weight: 500;
+  line-height: 1.35;
 }
 
-.pda-phone__features li + li {
-  border-left: 1px solid var(--pda-border);
+.pda-phone__features li:last-child {
+  border-bottom: 0;
 }
 
 .pda-phone__features svg {
-  width: 32px;
-  height: 32px;
+  width: 22px;
+  height: 22px;
   flex-shrink: 0;
   color: var(--pda-orange);
-  stroke-width: 1.5;
+  stroke-width: 1.7;
 }
 
-/* AVANTAGES */
+/* carte centrale sombre */
+
+.pda-phone--dark {
+  border-color: var(--pda-ink);
+  background: var(--pda-ink);
+}
+
+.pda-phone--dark .pda-phone__body {
+  border-top: 4px solid var(--pda-orange);
+}
+
+.pda-phone--dark h3 {
+  color: #fff;
+}
+
+.pda-phone--dark .pda-phone__subtitle {
+  color: #cbd3e3;
+}
+
+.pda-phone--dark .pda-phone__features {
+  border-top-color: rgba(255, 255, 255, 0.18);
+}
+
+.pda-phone--dark .pda-phone__features li {
+  border-bottom-color: rgba(255, 255, 255, 0.18);
+  color: #fff;
+}
+
+/* =========================================
+   AVANTAGES (bande orange)
+========================================= */
 
 .pda-advantages {
-  padding: 22px 20px 24px;
-  border-radius: 22px;
-  background: linear-gradient(180deg, #fff0e6 0%, #fff8f3 100%);
-  text-align: center;
+  padding: 60px 0;
+  background: var(--pda-orange-dark);
+  color: #fff;
+}
+
+.pda-advantages__head {
+  margin-bottom: 34px;
+}
+
+.pda-advantages .pda-eyebrow {
+  color: #fff;
+  opacity: 0.9;
 }
 
 .pda-advantages h2 {
-  margin-bottom: 20px;
-  color: var(--pda-navy);
-  font-size: clamp(24px, 3vw, 34px);
+  max-width: 620px;
+  color: #fff;
+  font-size: clamp(26px, 3.4vw, 40px);
   font-weight: 800;
   letter-spacing: -0.6px;
-  line-height: 1.2;
+  line-height: 1.15;
 }
 
 .pda-advantages__grid {
   display: grid;
   grid-template-columns: repeat(4, minmax(0, 1fr));
-  gap: 6px;
 }
 
 .pda-advantage {
-  padding: 16px 16px 18px;
-  border-radius: 12px;
-  background: #fff;
+  padding: 4px 24px;
+  border-left: 1px solid rgba(255, 255, 255, 0.35);
 }
 
-.pda-advantage__icon {
-  display: flex;
-  width: 64px;
-  height: 64px;
-  align-items: center;
-  justify-content: center;
-  margin: 0 auto 10px;
-  border-radius: 50%;
-  background: var(--bg);
-  color: var(--fg);
+.pda-advantage:first-child {
+  padding-left: 0;
+  border-left: 0;
 }
 
-.pda-advantage__icon svg {
-  width: 32px;
-  height: 32px;
+.pda-advantage svg {
+  width: 38px;
+  height: 38px;
+  margin-bottom: 16px;
+  color: var(--pda-ink);
   stroke-width: 1.7;
 }
 
 .pda-advantage h3 {
-  color: var(--pda-navy);
-  font-size: 15.5px;
+  margin-bottom: 8px;
+  color: #fff;
+  font-size: 18px;
   font-weight: 800;
   line-height: 1.3;
 }
 
 .pda-advantage p {
-  margin-top: 6px !important;
-  color: var(--pda-muted);
-  font-size: 13px;
-  line-height: 1.5;
+  color: #fff;
+  font-size: 14px;
+  line-height: 1.6;
 }
 
-/* SOLUTION CONNECTÉE + SUPPORT */
+/* =========================================
+   SOLUTION CONNECTÉE (bande noire)
+========================================= */
 
-.pda-bottom {
-  display: grid;
-  grid-template-columns: 1.3fr 1fr;
-  gap: 0;
-  padding: 22px 24px;
-  border-radius: 22px;
-  background: var(--pda-surface);
+.pda-flow-band {
+  padding: 64px 0 68px;
+  background: var(--pda-ink);
 }
 
-.pda-bottom__left {
-  min-width: 0;
-  padding-right: 26px;
-}
-
-.pda-bottom h2 {
-  color: var(--pda-navy);
-  font-size: clamp(22px, 2.6vw, 30px);
+.pda-flow-band h2 {
+  max-width: 640px;
+  color: #fff;
+  font-size: clamp(26px, 3.4vw, 40px);
   font-weight: 800;
-  letter-spacing: -0.5px;
-  line-height: 1.2;
+  letter-spacing: -0.6px;
+  line-height: 1.15;
+}
+
+.pda-flow-band h2 span {
+  color: var(--pda-orange);
 }
 
 .pda-flow {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: 8px;
-  margin-top: 18px;
+  gap: 16px;
+  margin-top: 40px;
 }
 
 .pda-flow__step {
   min-width: 0;
   flex: 1 1 0;
-  text-align: center;
 }
 
 .pda-flow__image {
   display: flex;
-  height: 120px;
+  height: 190px;
   align-items: center;
   justify-content: center;
-  margin-bottom: 8px;
+  margin-bottom: 14px;
+  padding: 16px;
+  border-bottom: 5px solid var(--pda-orange);
+  background: #fff;
 }
 
 .pda-flow__image img {
@@ -401,56 +517,132 @@
 }
 
 .pda-flow__step figcaption {
-  color: var(--pda-navy);
-  font-size: 13.5px;
-  font-weight: 500;
-  line-height: 1.35;
-}
-
-.pda-flow__arrow {
-  width: 40px;
-  height: 40px;
-  flex: 0 0 auto;
-  color: var(--pda-orange);
-}
-
-.pda-support {
-  display: grid;
-  align-content: center;
-  gap: 14px;
-  padding-left: 30px;
-  border-left: 1px solid var(--pda-border);
-}
-
-.pda-support li {
-  display: flex;
-  align-items: center;
-  gap: 14px;
-}
-
-.pda-support svg {
-  width: 38px;
-  height: 38px;
-  flex-shrink: 0;
-  color: var(--pda-orange);
-  stroke-width: 1.6;
-}
-
-.pda-support h4 {
-  color: var(--pda-navy);
-  font-size: 14px;
+  color: #fff;
+  font-size: 15px;
   font-weight: 700;
-  line-height: 1.3;
-}
-
-.pda-support p {
-  margin-top: 2px !important;
-  color: var(--pda-muted);
-  font-size: 13px;
   line-height: 1.4;
 }
 
-/* RESPONSIVE */
+.pda-flow__step figcaption span {
+  display: block;
+  margin-bottom: 2px;
+  color: var(--pda-orange);
+  font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 2px;
+}
+
+.pda-flow__arrow {
+  width: 36px;
+  height: 36px;
+  flex: 0 0 auto;
+  margin-bottom: 50px;
+  color: var(--pda-orange);
+}
+
+/* =========================================
+   ACCOMPAGNEMENT
+========================================= */
+
+.pda-support {
+  display: grid;
+  grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr);
+  border: 1px solid var(--pda-border);
+  background: #fff;
+}
+
+.pda-support__image {
+  position: relative;
+  min-height: 420px;
+  background: var(--pda-ink);
+}
+
+.pda-support__image img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.pda-support__image::after {
+  content: "";
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  height: 6px;
+  background: var(--pda-orange);
+}
+
+.pda-support__content {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+  padding: 44px 40px;
+}
+
+.pda-support__content h2 {
+  color: var(--pda-ink);
+  font-size: clamp(26px, 3vw, 36px);
+  font-weight: 800;
+  letter-spacing: -0.6px;
+  line-height: 1.15;
+}
+
+.pda-support__intro {
+  max-width: 480px;
+  margin: 14px 0 26px !important;
+  color: var(--pda-muted);
+  font-size: 15px;
+  line-height: 1.65;
+}
+
+.pda-support__list {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  width: 100%;
+  margin-bottom: 30px !important;
+  border-top: 1px solid var(--pda-border);
+  border-left: 1px solid var(--pda-border);
+}
+
+.pda-support__list li {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  padding: 18px 16px;
+  border-right: 1px solid var(--pda-border);
+  border-bottom: 1px solid var(--pda-border);
+}
+
+.pda-support__list svg {
+  width: 28px;
+  height: 28px;
+  flex-shrink: 0;
+  color: var(--pda-orange);
+  stroke-width: 1.7;
+}
+
+.pda-support__list h4 {
+  color: var(--pda-ink);
+  font-size: 14px;
+  font-weight: 800;
+  line-height: 1.3;
+}
+
+.pda-support__list p {
+  margin-top: 3px !important;
+  color: var(--pda-muted);
+  font-size: 13px;
+  line-height: 1.45;
+}
+
+/* =========================================
+   RESPONSIVE
+========================================= */
 
 @media (max-width: 1000px) {
   .pda-phones {
@@ -462,21 +654,20 @@
 
   .pda-advantages__grid {
     grid-template-columns: repeat(2, minmax(0, 1fr));
+    row-gap: 32px;
   }
 
-  .pda-bottom {
-    grid-template-columns: 1fr;
-    gap: 24px;
-  }
-
-  .pda-bottom__left {
-    padding-right: 0;
+  .pda-advantage:nth-child(3) {
+    padding-left: 0;
+    border-left: 0;
   }
 
   .pda-support {
-    padding: 22px 0 0;
-    border-top: 1px solid var(--pda-border);
-    border-left: 0;
+    grid-template-columns: 1fr;
+  }
+
+  .pda-support__image {
+    min-height: 300px;
   }
 }
 
@@ -510,40 +701,60 @@
   .pda-eyebrow {
     font-size: 14px;
   }
+
+  .pda-eyebrow--small {
+    font-size: 12px;
+  }
+
+  .pda-section {
+    padding: 52px 0;
+  }
+
+  .pda-support__content {
+    padding: 30px 22px;
+  }
+
+  .pda-flow {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 18px;
+  }
+
+  .pda-flow__arrow {
+    align-self: center;
+    margin-bottom: 0;
+    transform: rotate(90deg);
+  }
 }
 
 @media (max-width: 560px) {
   .pda-advantages__grid {
     grid-template-columns: 1fr;
+    row-gap: 26px;
+  }
+
+  .pda-advantage,
+  .pda-advantage:first-child,
+  .pda-advantage:nth-child(3) {
+    padding: 0;
+    border-left: 0;
+  }
+
+  .pda-advantage + .pda-advantage {
+    padding-top: 26px;
+    border-top: 1px solid rgba(255, 255, 255, 0.35);
   }
 
   .pda-phone__image {
     height: 320px;
   }
 
-  .pda-phone__features {
-    flex-wrap: wrap;
-    row-gap: 16px;
+  .pda-support__list {
+    grid-template-columns: 1fr;
   }
 
-  .pda-phone__features li {
-    flex: 0 0 50%;
-  }
-
-  .pda-phone__features li:nth-child(odd) {
-    border-left: 0;
-  }
-
-  .pda-flow {
-    flex-direction: column;
-    gap: 14px;
-  }
-
-  .pda-flow__arrow {
-    transform: rotate(90deg);
-  }
-
-  .pda-flow__step {
+  .pda-support__content .pda-btn {
     width: 100%;
+    white-space: normal;
   }
 }

@@ -23,22 +23,22 @@ import caisseImage from "@/assets/00.png";
 import borneImage from "@/assets/bb1.png";
 import padImage from "@/assets/bb33.png";
 import kdsImage from "@/assets/4.jpg";
-import tkds from "@/assets/tkds.jpeg";
+import tkds from "@/assets/supportt.jpeg";
 
 const benefits = [
-  { Icon: Timer, tone: "orange", title: "Gain de temps", text: "Affichage instantané des commandes en cuisine." },
-  { Icon: ChefHat, tone: "blue", title: "Meilleure organisation", text: "Priorisation des commandes et suivi en temps réel." },
-  { Icon: FileX2, tone: "red", title: "Zéro ticket papier", text: "Plus écologique et plus fiable." },
-  { Icon: CircleCheck, tone: "blue", title: "Communication fluide", text: "Connecté à la caisse CSI, aux bornes et aux PAD." },
+  { Icon: Timer, title: "Gain de temps", text: "Affichage instantané des commandes en cuisine." },
+  { Icon: ChefHat, title: "Meilleure organisation", text: "Priorisation des commandes et suivi en temps réel." },
+  { Icon: FileX2, title: "Zéro ticket papier", text: "Plus écologique et plus fiable." },
+  { Icon: CircleCheck, title: "Communication fluide", text: "Connecté à la caisse CSI, aux bornes et aux PAD." },
 ];
 
 const features = [
-  { Icon: ListChecks, tone: "orange", title: "Affichage clair des commandes", text: "Par table ou par chronologie avec code couleur." },
-  { Icon: Clock, tone: "blue", title: "Suivi du temps de préparation", text: "Alertes visuelles pour respecter les délais." },
-  { Icon: ChefHat, tone: "orange", title: "Hiérarchisation des commandes", text: "Entrées, plats, desserts et menus." },
-  { Icon: Monitor, tone: "blue", title: "Gestion multi-postes", text: "Plusieurs écrans selon les postes de cuisine." },
-  { Icon: ArrowLeftRight, tone: "orange", title: "Communique avec tout le système", text: "Caisse CSI, bornes et PAD." },
-  { Icon: Settings, tone: "blue", title: "Interface simple", text: "Facile à prendre en main pour l’équipe." },
+  { Icon: ListChecks, title: "Affichage clair des commandes", text: "Par table ou par chronologie avec code couleur." },
+  { Icon: Clock, title: "Suivi du temps de préparation", text: "Alertes visuelles pour respecter les délais." },
+  { Icon: ChefHat, title: "Hiérarchisation des commandes", text: "Entrées, plats, desserts et menus." },
+  { Icon: Monitor, title: "Gestion multi-postes", text: "Plusieurs écrans selon les postes de cuisine." },
+  { Icon: ArrowLeftRight, title: "Communique avec tout le système", text: "Caisse CSI, bornes et PAD." },
+  { Icon: Settings, title: "Interface simple", text: "Facile à prendre en main pour l’équipe." },
 ];
 
 const gallery = [
@@ -55,10 +55,10 @@ const flow = [
 ];
 
 const support = [
-  { Icon: Settings, title: "Installation et paramétrage", text: "Par nos techniciens" },
+  { Icon: Wrench, title: "Installation et paramétrage", text: "Par nos techniciens" },
   { Icon: Users, title: "Formation des équipes", text: "Utilisation simple et rapide" },
   { Icon: Headset, title: "Assistance technique", text: "À distance ou sur site" },
-  { Icon: Wrench, title: "Suivi et maintenance", text: "Pour une utilisation en toute sérénité" },
+  { Icon: Settings, title: "Suivi et maintenance", text: "Pour une utilisation en toute sérénité" },
 ];
 
 function Logo() {
@@ -72,7 +72,7 @@ function Logo() {
 export default function KdsPage() {
   return (
     <main className="kds-page">
-      {/* HERO + AVANTAGES (la photo passe derrière les deux) */}
+      {/* HERO (inchangé) + AVANTAGES */}
       <div className="kds-top">
         <img
           className="kds-top__bg"
@@ -98,9 +98,10 @@ export default function KdsPage() {
         </header>
 
         <section className="kds-benefits" aria-label="Les avantages du KDS">
-          {benefits.map(({ Icon, tone, title, text }) => (
+          {benefits.map(({ Icon, title, text }, i) => (
             <article className="kds-benefit" key={title}>
-              <div className={`kds-benefit__icon kds-tone--${tone}`}>
+              <span className="kds-benefit__num">0{i + 1}</span>
+              <div className="kds-benefit__icon">
                 <Icon />
               </div>
               <h3>{title}</h3>
@@ -110,71 +111,97 @@ export default function KdsPage() {
         </section>
       </div>
 
-      <div className="kds-container kds-stack">
-        {/* ÉCRAN KDS + FONCTIONNALITÉS */}
-        <section className="kds-showcase">
-          <div className="kds-showcase__visual">
-            <img src={kdsImage} alt="Écran KDS affichant les commandes en cuisine" />
-          </div>
+      {/* ÉCRAN KDS + FONCTIONNALITÉS */}
+      <section className="kds-section">
+        <div className="kds-container">
+          <header className="kds-head">
+            <div>
+              <p className="kds-eyebrow kds-eyebrow--small">Les fonctionnalités du KDS</p>
+              <h2>Tout pour piloter votre cuisine</h2>
+            </div>
+            <p>Un écran clair, des alertes visuelles et une connexion directe à tout votre système.</p>
+          </header>
 
-          <aside className="kds-features">
-            <p className="kds-eyebrow kds-eyebrow--panel">
-              Les fonctionnalités du KDS
-            </p>
-            <ul>
-              {features.map(({ Icon, tone, title, text }) => (
-                <li key={title} className={`kds-tone-text--${tone}`}>
-                  <Icon />
+          <div className="kds-showcase">
+            <div className="kds-showcase__visual">
+              <span className="kds-showcase__tag">KDS</span>
+              <img src={kdsImage} alt="Écran KDS affichant les commandes en cuisine" />
+            </div>
+
+            <ul className="kds-features">
+              {features.map(({ Icon, title, text }, i) => (
+                <li key={title}>
+                  <div className="kds-features__icon">
+                    <Icon />
+                  </div>
                   <div>
                     <h4>{title}</h4>
                     <p>{text}</p>
                   </div>
+                  <span className="kds-features__num">0{i + 1}</span>
                 </li>
               ))}
             </ul>
-          </aside>
-        </section>
+          </div>
+        </div>
+      </section>
 
-        {/* GALERIE */}
-        <section className="kds-gallery" aria-label="Le KDS en situation">
+      {/* GALERIE */}
+      <section className="kds-gallery-wrap" aria-label="Le KDS en situation">
+        <div className="kds-container kds-gallery">
           {gallery.map(({ img, alt }) => (
             <figure key={alt}>
               <img src={img} alt={alt} loading="lazy" />
             </figure>
           ))}
-        </section>
+        </div>
+      </section>
 
-        {/* SOLUTION COMPLÈTE + ACCOMPAGNEMENT */}
-        <section className="kds-bottom">
-          <div className="kds-bottom__left">
-            <p className="kds-eyebrow kds-eyebrow--small">Une solution complète</p>
-            <h2>De la commande à la cuisine, sans délai</h2>
+      {/* SOLUTION COMPLÈTE */}
+      <section className="kds-flow-band">
+        <div className="kds-container">
+          <p className="kds-eyebrow kds-eyebrow--small">Une solution complète</p>
+          <h2>
+            De la commande à la cuisine, <span>sans délai</span>
+          </h2>
 
-            <div className="kds-flow">
-              {flow.map((step, i) => (
-                <React.Fragment key={step.label}>
-                  <figure className="kds-flow__step">
-                    <div className="kds-flow__image">
-                      <img src={step.img} alt={step.label} />
-                    </div>
-                    <figcaption>
-                      {step.label}
-                      {step.sub && <span>{step.sub}</span>}
-                    </figcaption>
-                  </figure>
-                  {i < flow.length - 1 && (
-                    <ArrowRight className="kds-flow__arrow" strokeWidth={2.2} />
-                  )}
-                </React.Fragment>
-              ))}
-            </div>
+          <div className="kds-flow">
+            {flow.map((step, i) => (
+              <React.Fragment key={step.label}>
+                <figure className="kds-flow__step">
+                  <div className="kds-flow__image">
+                    <img src={step.img} alt={step.label} />
+                  </div>
+                  <figcaption>
+                    {step.label}
+                    {step.sub && <span>{step.sub}</span>}
+                  </figcaption>
+                </figure>
+                {i < flow.length - 1 && (
+                  <ArrowRight className="kds-flow__arrow" strokeWidth={2.4} />
+                )}
+              </React.Fragment>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ACCOMPAGNEMENT */}
+      <section className="kds-section">
+        <div className="kds-container kds-support">
+          <div className="kds-support__image">
+            <img src={tkds} alt="Notre accompagnement" loading="lazy" />
           </div>
 
-          <div className="kds-bottom__right">
+          <div className="kds-support__content">
             <p className="kds-eyebrow kds-eyebrow--small">Notre accompagnement</p>
             <h2>Installation, formation et support</h2>
+            <p className="kds-support__intro">
+              Notre équipe technique vous accompagne à chaque étape pour une
+              mise en service rapide et une utilisation en toute sérénité.
+            </p>
 
-            <ul className="kds-support">
+            <ul className="kds-support__list">
               {support.map(({ Icon, title, text }) => (
                 <li key={title}>
                   <Icon />
@@ -185,81 +212,13 @@ export default function KdsPage() {
                 </li>
               ))}
             </ul>
+
+            <a href="/#contact" className="kds-btn">
+              Demander une démonstration <ArrowRight />
+            </a>
           </div>
-        </section>
-
-        {/* CARD ACCOMPAGNEMENT (AJOUTÉE EN BAS DE PAGE) */}
-        <section className="kds-accompaniment-card">
-          <div className="overflow-hidden rounded-3xl bg-[#f1f6ff] shadow-lg shadow-slate-200/50 border border-slate-200/80">
-            <div className="grid lg:grid-cols-[2fr_3fr]">
-              {/* Image khawya - Placeholder */}
-              <div className="relative min-h-[260px] bg-slate-200/70 lg:min-h-full">
-                <img
-                  src={tkds}
-                  alt="Notre accompagnement"
-                  className="absolute inset-0 h-full w-full object-cover"
-                />
-              </div>
-
-              {/* Content */}
-              <div className="flex flex-col justify-center p-6 sm:p-8 lg:p-10">
-                <span className="text-[12px] font-extrabold uppercase tracking-[0.16em] text-slate-500">
-                  NOTRE ACCOMPAGNEMENT
-                </span>
-
-                <h2 className="mt-2 text-2xl font-black tracking-tight text-[#0b2a5b] sm:text-3xl">
-                  Installation, formation et support
-                </h2>
-
-                <p className="mt-3 text-sm leading-relaxed text-slate-600">
-                  Notre équipe technique vous accompagne à chaque étape pour une mise en service rapide et une utilisation en toute sérénité.
-                </p>
-
-                <div className="mt-6 flex flex-wrap items-center justify-between gap-6">
-                  {/* Grid 4 icons */}
-                  <div className="grid grid-cols-2 gap-3 sm:grid-cols-4">
-                    <div className="flex flex-col items-center rounded-2xl bg-white p-3 text-center shadow-sm border border-slate-100">
-                      <Wrench className="h-6 w-6 text-[#f26522]" strokeWidth={2} />
-                      <span className="mt-2 text-[11px] font-bold leading-tight text-slate-700">
-                        Installation et paramétrage
-                      </span>
-                    </div>
-
-                    <div className="flex flex-col items-center rounded-2xl bg-white p-3 text-center shadow-sm border border-slate-100">
-                      <Users className="h-6 w-6 text-[#f26522]" strokeWidth={2} />
-                      <span className="mt-2 text-[11px] font-bold leading-tight text-slate-700">
-                        Formation des équipes
-                      </span>
-                    </div>
-
-                    <div className="flex flex-col items-center rounded-2xl bg-white p-3 text-center shadow-sm border border-slate-100">
-                      <Headset className="h-6 w-6 text-[#f26522]" strokeWidth={2} />
-                      <span className="mt-2 text-[11px] font-bold leading-tight text-slate-700">
-                        Assistance technique
-                      </span>
-                    </div>
-
-                    <div className="flex flex-col items-center rounded-2xl bg-white p-3 text-center shadow-sm border border-slate-100">
-                      <Settings className="h-6 w-6 text-[#f26522]" strokeWidth={2} />
-                      <span className="mt-2 text-[11px] font-bold leading-tight text-slate-700">
-                        Suivi et maintenance
-                      </span>
-                    </div>
-                  </div>
-
-                  {/* Bouton */}
-                  <a
-                    href="/#contact"
-                    className="inline-flex items-center gap-2 whitespace-nowrap rounded-full bg-[#f26522] px-6 py-3.5 text-sm font-bold text-white shadow-lg shadow-orange-950/20 transition duration-200 hover:-translate-y-0.5 hover:bg-[#d95316]"
-                  >
-                    Demander une démonstration <ArrowRight className="h-4 w-4" />
-                  </a>
-                </div>
-              </div>
-            </div>
-          </div>
-        </section>
-      </div>
+        </div>
+      </section>
     </main>
   );
 }

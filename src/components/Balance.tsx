@@ -25,7 +25,7 @@ import boucherieImage from "@/assets/73.jpeg";
 import poissonnerieImage from "@/assets/74.jpeg";
 import epicerieImage from "@/assets/75.jpeg";
 import rayonsImage from "@/assets/76.jpeg";
-import tbal from "@/assets/tbal.jpeg";
+import tbal from "@/assets/supportt.jpeg";
 
 const IMG = {
   logo: logoImage,
@@ -41,25 +41,21 @@ const IMG = {
 const advantages = [
   {
     icon: Zap,
-    color: "orange",
     title: "Encaissement plus rapide",
     text: "La pesée s'intègre automatiquement dans INNOSHOP.",
   },
   {
     icon: Target,
-    color: "blue",
     title: "Moins d'erreurs",
     text: "Prix et poids transmis directement à la caisse.",
   },
   {
     icon: CheckCircle2,
-    color: "green",
     title: "Gestion simplifiée",
     text: "Mise à jour des prix et produits depuis INNOSHOP.",
   },
   {
     icon: TrendingUp,
-    color: "purple",
     title: "Adaptée à votre commerce",
     text: "Fruits et légumes, boucherie, poissonnerie, rayons frais, épicerie…",
   },
@@ -68,31 +64,26 @@ const advantages = [
 const features = [
   {
     icon: Scale,
-    color: "orange",
     title: "Pesée en temps réel",
     text: "Affichage clair du poids et du prix sur la balance et à l'écran de la caisse.",
   },
   {
     icon: Barcode,
-    color: "blue",
     title: "Articles par code ou par famille",
     text: "Fruits et légumes, viandes, poissons, produits en vrac.",
   },
   {
     icon: Coins,
-    color: "green",
     title: "Mise à jour des prix",
     text: "Depuis INNOSHOP, sans intervention sur la balance.",
   },
   {
     icon: FileText,
-    color: "red",
     title: "Intégration caisse",
     text: "Le produit est ajouté automatiquement dans le ticket.",
   },
   {
     icon: PieChart,
-    color: "purple",
     title: "Suivi des ventes",
     text: "Statistiques par article, par rayon ou par période.",
   },
@@ -118,7 +109,7 @@ export default function OraliPage() {
     <main className="orali w-full min-h-screen overflow-hidden bg-white font-sans text-slate-800 antialiased">
 
       {/* =====================================================
-          HERO — IMAGE EN ARRIÈRE-PLAN
+          HERO — IMAGE EN ARRIÈRE-PLAN (inchangé)
       ===================================================== */}
       <header className="relative isolate flex min-h-[680px] items-center overflow-hidden bg-gradient-to-br from-white via-slate-50 to-sky-50 pt-28 sm:min-h-[740px] sm:pt-32">
 
@@ -228,152 +219,13 @@ export default function OraliPage() {
       {/* =====================================================
           AVANTAGES
       ===================================================== */}
-      <section
-        id="avantages"
-        className="relative z-10 mx-auto w-full max-w-7xl px-5 py-12 sm:px-8 sm:py-16 lg:px-10"
-      >
-        <div className="grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-4">
-          {advantages.map(({ icon: Icon, color, title, text }) => (
-            <article
-              className="group relative flex flex-col items-start overflow-hidden rounded-2xl border border-slate-200/80 bg-white p-6 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:border-blue-200 hover:shadow-xl hover:shadow-blue-900/5 sm:p-7"
-              key={title}
-            >
-              <div className="absolute right-0 top-0 h-24 w-24 rounded-full bg-blue-50 opacity-0 blur-2xl transition-opacity group-hover:opacity-100" />
-
-              <span
-                className={`icon-circle icon-circle--${color} relative mb-5 flex h-14 w-14 items-center justify-center rounded-2xl`}
-              >
-                <Icon size={28} />
-              </span>
-
-              <h3 className="relative mb-3 text-lg font-bold text-slate-900 transition-colors group-hover:text-blue-700">
-                {title}
-              </h3>
-
-              <p className="relative text-sm leading-7 text-slate-600">
-                {text}
-              </p>
-            </article>
-          ))}
-        </div>
-      </section>
-
-      {/* =====================================================
-          SOLUTION INTÉGRÉE
-      ===================================================== */}
-      <section className="integrated">
-        <div className="integrated__text">
-          <p className="eyebrow">UNE SOLUTION INTÉGRÉE</p>
-
-          <h2>
-            Balance + INNOSHOP
-            <br />
-            en parfaite synchronisation
-          </h2>
-
-          <p>
-            Le poids, le prix et la référence article sont automatiquement
-            envoyés à la caisse. Vous gagnez du temps et vous sécurisez vos
-            ventes.
-          </p>
-
-          <Link
-            to="/#contact"
-            className="group inline-flex items-center justify-center gap-3 rounded-xl bg-orange-500 px-7 py-4 text-sm font-bold text-white shadow-lg shadow-orange-500/20 transition-all duration-300 hover:-translate-y-1 hover:bg-orange-600 hover:shadow-xl"
-          >
-            Demander un devis
-            <ArrowRight size={18} className="transition-transform group-hover:translate-x-1" />
-          </Link>
-        </div>
-
-        <div className="integrated__visual">
-          <img
-            src={IMG.integrated}
-            alt="Balance et caisse INNOSHOP synchronisées"
-            loading="lazy"
-          />
-
-          <span className="caption caption--left">
-            <svg
-              className="caption__arrow"
-              viewBox="0 0 210 40"
-              aria-hidden="true"
-            >
-              <path
-                d="M4 36 C4 22 12 18 26 18 C90 18 150 16 196 6"
-                fill="none"
-                stroke="#f26a1b"
-                strokeWidth="2"
-                strokeLinecap="round"
-              />
-              <path
-                d="M184 2 L198 5 L190 17"
-                fill="none"
-                stroke="#f26a1b"
-                strokeWidth="2"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-              />
-              <path
-                d="M4 36 L0 26 M4 36 L12 31"
-                fill="none"
-                stroke="#f26a1b"
-                strokeWidth="2"
-                strokeLinecap="round"
-              />
-            </svg>
-
-            Transmission automatique
-            <br />
-            du poids et du prix
-          </span>
-
-          <span className="caption caption--right">
-            <svg
-              className="caption__arrow"
-              viewBox="0 0 120 40"
-              aria-hidden="true"
-            >
-              <path
-                d="M4 10 C30 -2 80 -2 104 24"
-                fill="none"
-                stroke="#f26a1b"
-                strokeWidth="2"
-                strokeLinecap="round"
-              />
-              <path
-                d="M92 22 L106 27 L108 12"
-                fill="none"
-                stroke="#f26a1b"
-                strokeWidth="2"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-              />
-            </svg>
-
-            Encaissement direct
-            <br />
-            dans INNOSHOP
-          </span>
-        </div>
-      </section>
-
-      {/* =====================================================
-          FONCTIONNALITÉS
-      ===================================================== */}
-      <section className="features">
-        <div className="features__header">
-          <p className="eyebrow eyebrow--center">LES FONCTIONNALITÉS</p>
-          <h2 className="features__title">
-            Tout ce qu'il vous faut pour une gestion efficace
-          </h2>
-        </div>
-
-        <div className="features__grid">
-          {features.map(({ icon: Icon, color, title, text }) => (
-            <article className="feature" key={title}>
-              <span className={`icon-circle icon-circle--${color}`}>
-                <Icon size={32} />
+      <section id="avantages" className="bl-advantages">
+        <div className="bl-container bl-advantages__grid">
+          {advantages.map(({ icon: Icon, title, text }, i) => (
+            <article className="bl-advantage" key={title}>
+              <span className="bl-advantage__num">0{i + 1}</span>
+              <span className="bl-advantage__icon">
+                <Icon size={26} />
               </span>
               <h3>{title}</h3>
               <p>{text}</p>
@@ -383,105 +235,180 @@ export default function OraliPage() {
       </section>
 
       {/* =====================================================
-          SECTEURS D'ACTIVITÉ
+          SOLUTION INTÉGRÉE
       ===================================================== */}
-      <section className="sectors">
-        <div className="sectors__intro">
-          <p className="eyebrow">
-            IDÉAL POUR TOUS LES
-            <br />
-            PROFESSIONNELS DU RETAIL
-          </p>
+      <section className="bl-integrated">
+        <div className="bl-container bl-integrated__inner">
+          <div className="bl-integrated__text">
+            <p className="bl-eyebrow">Une solution intégrée</p>
 
-          <h2>
-            Une solution adaptée
-            <br />à votre métier
-          </h2>
-        </div>
+            <h2>
+              Balance + INNOSHOP <span>en parfaite synchronisation</span>
+            </h2>
 
-        {sectors.map(({ img, label }) => (
-          <figure className="sector" key={label}>
-            <img src={img} alt={label} loading="lazy" />
-            <figcaption>{label}</figcaption>
-          </figure>
-        ))}
-      </section>
+            <p className="bl-integrated__desc">
+              Le poids, le prix et la référence article sont automatiquement
+              envoyés à la caisse. Vous gagnez du temps et vous sécurisez vos
+              ventes.
+            </p>
 
-      {/* =====================================================
-          CARD ACCOMPAGNEMENT (AJOUTÉE EN BAS DE PAGE)
-      ===================================================== */}
-      <section className="mx-auto w-full max-w-7xl px-5 py-12 sm:px-8 lg:px-10">
-        <div className="overflow-hidden rounded-3xl bg-[#f1f6ff] shadow-lg shadow-slate-200/50 border border-slate-200/80">
-          <div className="grid lg:grid-cols-[2fr_3fr]">
-            {/* Image khawya - Placeholder */}
-            <div className="relative min-h-[260px] bg-slate-200/70 lg:min-h-full">
+            <Link to="/#contact" className="bl-btn bl-btn--orange">
+              Demander un devis
+              <ArrowRight size={17} />
+            </Link>
+          </div>
+
+          <div className="bl-integrated__visual">
+            <div className="bl-integrated__frame">
               <img
-                src={tbal}
-                alt="Notre accompagnement"
-                className="absolute inset-0 h-full w-full object-cover"
+                src={IMG.integrated}
+                alt="Balance et caisse INNOSHOP synchronisées"
+                loading="lazy"
               />
             </div>
 
-            {/* Content */}
-            <div className="flex flex-col justify-center p-6 sm:p-8 lg:p-10">
-              <span className="text-[12px] font-extrabold uppercase tracking-[0.16em] text-slate-500">
-                NOTRE ACCOMPAGNEMENT
-              </span>
+            <span className="bl-caption bl-caption--left">
+              <svg className="bl-caption__arrow" viewBox="0 0 210 40" aria-hidden="true">
+                <path
+                  d="M4 36 C4 22 12 18 26 18 C90 18 150 16 196 6"
+                  fill="none"
+                  stroke="#f26a1b"
+                  strokeWidth="2"
+                  strokeLinecap="round"
+                />
+                <path
+                  d="M184 2 L198 5 L190 17"
+                  fill="none"
+                  stroke="#f26a1b"
+                  strokeWidth="2"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                />
+                <path
+                  d="M4 36 L0 26 M4 36 L12 31"
+                  fill="none"
+                  stroke="#f26a1b"
+                  strokeWidth="2"
+                  strokeLinecap="round"
+                />
+              </svg>
+              Transmission automatique
+              <br />
+              du poids et du prix
+            </span>
 
-              <h2 className="mt-2 text-2xl font-black tracking-tight text-[#0b2a5b] sm:text-3xl">
-                Installation, formation et support
-              </h2>
-
-              <p className="mt-3 text-sm leading-relaxed text-slate-600">
-                Notre équipe technique vous accompagne à chaque étape pour une mise en service rapide et une utilisation en toute sérénité.
-              </p>
-
-              <div className="mt-6 flex flex-wrap items-center justify-between gap-6">
-                {/* Grid 4 icons */}
-                <div className="grid grid-cols-2 gap-3 sm:grid-cols-4">
-                  <div className="flex flex-col items-center rounded-2xl bg-white p-3 text-center shadow-sm border border-slate-100">
-                    <Wrench className="h-6 w-6 text-[#f26522]" strokeWidth={2} />
-                    <span className="mt-2 text-[11px] font-bold leading-tight text-slate-700">
-                      Installation et paramétrage
-                    </span>
-                  </div>
-
-                  <div className="flex flex-col items-center rounded-2xl bg-white p-3 text-center shadow-sm border border-slate-100">
-                    <Users className="h-6 w-6 text-[#f26522]" strokeWidth={2} />
-                    <span className="mt-2 text-[11px] font-bold leading-tight text-slate-700">
-                      Formation des équipes
-                    </span>
-                  </div>
-
-                  <div className="flex flex-col items-center rounded-2xl bg-white p-3 text-center shadow-sm border border-slate-100">
-                    <Headphones className="h-6 w-6 text-[#f26522]" strokeWidth={2} />
-                    <span className="mt-2 text-[11px] font-bold leading-tight text-slate-700">
-                      Assistance technique
-                    </span>
-                  </div>
-
-                  <div className="flex flex-col items-center rounded-2xl bg-white p-3 text-center shadow-sm border border-slate-100">
-                    <Settings className="h-6 w-6 text-[#f26522]" strokeWidth={2} />
-                    <span className="mt-2 text-[11px] font-bold leading-tight text-slate-700">
-                      Suivi et maintenance
-                    </span>
-                  </div>
-                </div>
-
-                {/* Bouton */}
-                <Link
-                  to="/#contact"
-                  className="inline-flex items-center gap-2 whitespace-nowrap rounded-full bg-[#f26522] px-6 py-3.5 text-sm font-bold text-white shadow-lg shadow-orange-950/20 transition duration-200 hover:-translate-y-0.5 hover:bg-[#d95316]"
-                >
-                  Demander une démonstration <ArrowRight className="h-4 w-4" />
-                </Link>
-              </div>
-            </div>
+            <span className="bl-caption bl-caption--right">
+              <svg className="bl-caption__arrow" viewBox="0 0 120 40" aria-hidden="true">
+                <path
+                  d="M4 10 C30 -2 80 -2 104 24"
+                  fill="none"
+                  stroke="#f26a1b"
+                  strokeWidth="2"
+                  strokeLinecap="round"
+                />
+                <path
+                  d="M92 22 L106 27 L108 12"
+                  fill="none"
+                  stroke="#f26a1b"
+                  strokeWidth="2"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                />
+              </svg>
+              Encaissement direct
+              <br />
+              dans INNOSHOP
+            </span>
           </div>
         </div>
       </section>
 
-    
+      {/* =====================================================
+          FONCTIONNALITÉS
+      ===================================================== */}
+      <section className="bl-section">
+        <div className="bl-container bl-features">
+          <div className="bl-features__panel">
+            <p className="bl-eyebrow">Les fonctionnalités</p>
+            <h2>
+              Tout ce qu'il vous faut <span>pour une gestion efficace</span>
+            </h2>
+            <strong className="bl-features__count">05</strong>
+            <span className="bl-features__count-label">fonctionnalités clés</span>
+          </div>
+
+          <ol className="bl-features__grid">
+            {features.map(({ icon: Icon, title, text }, i) => (
+              <li className="bl-feature" key={title}>
+                <span className="bl-feature__num">0{i + 1}</span>
+                <span className="bl-feature__icon">
+                  <Icon size={26} />
+                </span>
+                <h3>{title}</h3>
+                <p>{text}</p>
+              </li>
+            ))}
+          </ol>
+        </div>
+      </section>
+
+      {/* =====================================================
+          SECTEURS D'ACTIVITÉ
+      ===================================================== */}
+      <section className="bl-sectors">
+        <div className="bl-container">
+          <header className="bl-head">
+            <div>
+              <p className="bl-eyebrow">Idéal pour tous les professionnels du retail</p>
+              <h2>Une solution adaptée à votre métier</h2>
+            </div>
+          </header>
+
+          <div className="bl-sectors__grid">
+            {sectors.map(({ img, label }) => (
+              <figure className="bl-sector" key={label}>
+                <div className="bl-sector__image">
+                  <img src={img} alt={label} loading="lazy" />
+                </div>
+                <figcaption>{label}</figcaption>
+              </figure>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* =====================================================
+          ACCOMPAGNEMENT
+      ===================================================== */}
+      <section className="bl-section">
+        <div className="bl-container bl-support">
+          <div className="bl-support__image">
+            <img src={tbal} alt="Notre accompagnement" loading="lazy" />
+          </div>
+
+          <div className="bl-support__content">
+            <p className="bl-eyebrow">Notre accompagnement</p>
+            <h2>Installation, formation et support</h2>
+            <p className="bl-support__intro">
+              Notre équipe technique vous accompagne à chaque étape pour une mise en service rapide
+              et une utilisation en toute sérénité.
+            </p>
+
+            <ul className="bl-support__list">
+              {support.map(({ icon: Icon, label }) => (
+                <li key={label}>
+                  <Icon size={26} />
+                  <span>{label}</span>
+                </li>
+              ))}
+            </ul>
+
+            <Link to="/#contact" className="bl-btn">
+              Demander une démonstration <ArrowRight size={17} />
+            </Link>
+          </div>
+        </div>
+      </section>
     </main>
   );
 }

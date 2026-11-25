@@ -26,19 +26,19 @@ const heroBadges = [
 ];
 
 const features = [
-  { icon: Barcode, color: "#e91e63", bg: "#fde4ec", title: "Saisie des articles", text: "Ajoutez rapidement de nouveaux produits (code, prix, famille, libellé...)." },
-  { icon: Search, color: "#1e6fe0", bg: "#e0ecfc", title: "Lecture de codes-barres", text: "Lecture rapide et fiable des codes produits, EAN, QR Code..." },
-  { icon: Box, color: "#1fa347", bg: "#dff5e6", title: "Inventaire", text: "Réalisez vos inventaires en quelques clics avec un comptage rapide et précis." },
-  { icon: Truck, color: "#f26a1b", bg: "#fde6d7", title: "Réception", text: "Enregistrez vos entrées de marchandises et mettez à jour vos stocks." },
-  { icon: ArrowLeftRight, color: "#6c3fd1", bg: "#ebe3fb", title: "Transfert", text: "Gérez les mouvements de stock entre vos magasins ou vos zones de stockage." },
-  { icon: BarChart3, color: "#f5b400", bg: "#fff3cc", title: "Consultation", text: "Visualisez les quantités, les emplacements et les informations produits." },
+  { icon: Barcode, title: "Saisie des articles", text: "Ajoutez rapidement de nouveaux produits (code, prix, famille, libellé...)." },
+  { icon: Search, title: "Lecture de codes-barres", text: "Lecture rapide et fiable des codes produits, EAN, QR Code..." },
+  { icon: Box, title: "Inventaire", text: "Réalisez vos inventaires en quelques clics avec un comptage rapide et précis." },
+  { icon: Truck, title: "Réception", text: "Enregistrez vos entrées de marchandises et mettez à jour vos stocks." },
+  { icon: ArrowLeftRight, title: "Transfert", text: "Gérez les mouvements de stock entre vos magasins ou vos zones de stockage." },
+  { icon: BarChart3, title: "Consultation", text: "Visualisez les quantités, les emplacements et les informations produits." },
 ];
 
 import c1 from "@/assets/c1.jpeg";
 import c2 from "@/assets/c2.jpeg";
 import c3 from "@/assets/c3.jpeg";
 import c4 from "@/assets/c4.jpeg";
-import tpda from "@/assets/tpda.jpeg";
+import tpda from "@/assets/supportt.jpeg";
 
 import a1 from "@/assets/a1.jpeg";
 import a2 from "@/assets/a2.jpeg";
@@ -96,7 +96,7 @@ function Logo() {
 export default function App() {
   return (
     <main className="stk-page">
-      {/* HERO */}
+      {/* HERO (inchangé) */}
       <header className="stk-hero">
         <div
           className="stk-hero__bg"
@@ -143,142 +143,112 @@ export default function App() {
         </div>
       </header>
 
-      <div className="stk-container stk-stack">
-        {/* FONCTIONNALITÉS */}
-        <section className="stk-block stk-block--peach">
-          <p className="stk-eyebrow">Les fonctionnalités</p>
-          <h2>Un terminal polyvalent pour toutes vos opérations</h2>
+      {/* FONCTIONNALITÉS */}
+      <section className="stk-section">
+        <div className="stk-container">
+          <header className="stk-head">
+            <div>
+              <p className="stk-eyebrow stk-eyebrow--small">Les fonctionnalités</p>
+              <h2>Un terminal polyvalent pour toutes vos opérations</h2>
+            </div>
+          </header>
 
-          <div className="stk-features">
-            {features.map(({ icon: Icon, color, bg, title, text }) => (
-              <article className="stk-feature" key={title}>
-                <div className="stk-feature__icon" style={{ background: bg, color }}>
-                  <Icon strokeWidth={2} />
+          <ol className="stk-features">
+            {features.map(({ icon: Icon, title, text }, i) => (
+              <li className="stk-feature" key={title}>
+                <span className="stk-feature__num">0{i + 1}</span>
+                <div className="stk-feature__icon">
+                  <Icon strokeWidth={1.9} />
                 </div>
                 <h3>{title}</h3>
                 <p>{text}</p>
-              </article>
+              </li>
             ))}
-          </div>
-        </section>
+          </ol>
+        </div>
+      </section>
 
-        {/* FONCTIONNEMENT */}
-        <section className="stk-block stk-block--soft">
-          <p className="stk-eyebrow">Un fonctionnement simple</p>
-          <h2>De la saisie à la mise à jour dans INNOSHOP</h2>
+      {/* FONCTIONNEMENT */}
+      <section className="stk-flow-band">
+        <div className="stk-container">
+          <p className="stk-eyebrow stk-eyebrow--small">Un fonctionnement simple</p>
+          <h2>
+            De la saisie à la mise à jour <span>dans INNOSHOP</span>
+          </h2>
 
           <div className="stk-steps">
             {steps.map((s, i) => (
               <React.Fragment key={s.title}>
                 <div className={`stk-step ${s.wide ? "stk-step--wide" : ""}`}>
                   <div className="stk-step__image">
-                    <span className="stk-step__num">{i + 1}</span>
+                    <span className="stk-step__num">0{i + 1}</span>
                     <img src={s.img} alt={s.title} loading="lazy" />
                   </div>
                   <h3>{s.title}</h3>
                   <p>{s.text}</p>
                 </div>
                 {i < steps.length - 1 && (
-                  <ArrowRight className="stk-steps__arrow" strokeWidth={2.2} />
+                  <ArrowRight className="stk-steps__arrow" strokeWidth={2.4} />
                 )}
               </React.Fragment>
             ))}
           </div>
-        </section>
+        </div>
+      </section>
 
-        {/* COMMERCES */}
-        <section className="stk-shops">
-          <div className="stk-shops__title">
-            <p className="stk-eyebrow">Idéal pour tous les commerces</p>
-            <h2>
-              Une solution adaptée
-              <br />
-              à votre activité
-            </h2>
-          </div>
-
-          {shops.map((s) => (
-            <figure key={s.label}>
-              <img src={s.img} alt={s.label} loading="lazy" />
-              <figcaption>{s.label}</figcaption>
-            </figure>
-          ))}
-        </section>
-
-        {/* CARD ACCOMPAGNEMENT (AJOUTÉE EN BAS DE PAGE) */}
-        <section className="stk-accompaniment-card" style={{ margin: "40px auto", maxWidth: "1200px" }}>
-          <div className="overflow-hidden rounded-3xl bg-[#f1f6ff] shadow-lg shadow-slate-200/50 border border-slate-200/80">
-            <div className="grid lg:grid-cols-[2fr_3fr]">
-              {/* Image khawya - Placeholder */}
-              <div className="relative min-h-[260px] bg-slate-200/70 lg:min-h-full">
-                <img
-                  src={tpda}
-                  alt="Notre accompagnement"
-                  className="absolute inset-0 h-full w-full object-cover"
-                />
-              </div>
-
-              {/* Content */}
-              <div className="flex flex-col justify-center p-6 sm:p-8 lg:p-10">
-                <span className="text-[12px] font-extrabold uppercase tracking-[0.16em] text-slate-500">
-                  NOTRE ACCOMPAGNEMENT
-                </span>
-
-                <h2 className="mt-2 text-2xl font-black tracking-tight text-[#0b2a5b] sm:text-3xl">
-                  Installation, formation et support
-                </h2>
-
-                <p className="mt-3 text-sm leading-relaxed text-slate-600">
-                  Notre équipe technique vous accompagne à chaque étape pour une mise en service rapide et une utilisation en toute sérénité.
-                </p>
-
-                <div className="mt-6 flex flex-wrap items-center justify-between gap-6">
-                  {/* Grid 4 icons */}
-                  <div className="grid grid-cols-2 gap-3 sm:grid-cols-4">
-                    <div className="flex flex-col items-center rounded-2xl bg-white p-3 text-center shadow-sm border border-slate-100">
-                      <Wrench className="h-6 w-6 text-[#f26522]" strokeWidth={2} />
-                      <span className="mt-2 text-[11px] font-bold leading-tight text-slate-700">
-                        Installation et paramétrage
-                      </span>
-                    </div>
-
-                    <div className="flex flex-col items-center rounded-2xl bg-white p-3 text-center shadow-sm border border-slate-100">
-                      <Users className="h-6 w-6 text-[#f26522]" strokeWidth={2} />
-                      <span className="mt-2 text-[11px] font-bold leading-tight text-slate-700">
-                        Formation des équipes
-                      </span>
-                    </div>
-
-                    <div className="flex flex-col items-center rounded-2xl bg-white p-3 text-center shadow-sm border border-slate-100">
-                      <Headset className="h-6 w-6 text-[#f26522]" strokeWidth={2} />
-                      <span className="mt-2 text-[11px] font-bold leading-tight text-slate-700">
-                        Assistance technique
-                      </span>
-                    </div>
-
-                    <div className="flex flex-col items-center rounded-2xl bg-white p-3 text-center shadow-sm border border-slate-100">
-                      <Settings className="h-6 w-6 text-[#f26522]" strokeWidth={2} />
-                      <span className="mt-2 text-[11px] font-bold leading-tight text-slate-700">
-                        Suivi et maintenance
-                      </span>
-                    </div>
-                  </div>
-
-                  {/* Bouton */}
-                  <a
-                    href="/#contact"
-                    className="inline-flex items-center gap-2 whitespace-nowrap rounded-full bg-[#f26522] px-6 py-3.5 text-sm font-bold text-white shadow-lg shadow-orange-950/20 transition duration-200 hover:-translate-y-0.5 hover:bg-[#d95316]"
-                  >
-                    Demander une démonstration <ArrowRight className="h-4 w-4" />
-                  </a>
-                </div>
-              </div>
+      {/* COMMERCES */}
+      <section className="stk-shops">
+        <div className="stk-container">
+          <header className="stk-head">
+            <div>
+              <p className="stk-eyebrow stk-eyebrow--small">Idéal pour tous les commerces</p>
+              <h2>Une solution adaptée à votre activité</h2>
             </div>
-          </div>
-        </section>
+          </header>
 
-   
-      </div>
+          <div className="stk-shops__grid">
+            {shops.map((s) => (
+              <figure className="stk-shop" key={s.label}>
+                <div className="stk-shop__image">
+                  <img src={s.img} alt={s.label} loading="lazy" />
+                </div>
+                <figcaption>{s.label}</figcaption>
+              </figure>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ACCOMPAGNEMENT */}
+      <section className="stk-section">
+        <div className="stk-container stk-support">
+          <div className="stk-support__image">
+            <img src={tpda} alt="Notre accompagnement" loading="lazy" />
+          </div>
+
+          <div className="stk-support__content">
+            <p className="stk-eyebrow stk-eyebrow--small">Notre accompagnement</p>
+            <h2>Installation, formation et support</h2>
+            <p className="stk-support__intro">
+              Notre équipe technique vous accompagne à chaque étape pour une
+              mise en service rapide et une utilisation en toute sérénité.
+            </p>
+
+            <ul className="stk-support__list">
+              {support.map(({ icon: Icon, text }) => (
+                <li key={text}>
+                  <Icon />
+                  <span>{text}</span>
+                </li>
+              ))}
+            </ul>
+
+            <a href="/#contact" className="stk-btn">
+              Demander une démonstration <ArrowRight />
+            </a>
+          </div>
+        </div>
+      </section>
     </main>
   );
 }
