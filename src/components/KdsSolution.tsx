@@ -17,88 +17,89 @@ import {
   Wifi,
   Zap,
 } from 'lucide-react';
+import type { ElementType } from 'react';
 import { Link } from 'react-router-dom';
-
 
 // ============================================================
 // TYPES
 // ============================================================
 
 type FeatureCardProps = {
-  icon: React.ElementType;
+  index: string;
+  icon: ElementType;
   title: string;
   description: string;
   items: string[];
 };
 
 type SourceCardProps = {
-  icon: React.ElementType;
+  index: string;
+  icon: ElementType;
   title: string;
   description: string;
 };
-
 
 // ============================================================
 // FEATURE CARD
 // ============================================================
 
 function FeatureCard({
+  index,
   icon: Icon,
   title,
   description,
   items,
 }: FeatureCardProps) {
   return (
-    <div className="group rounded-3xl border border-slate-200 bg-white p-7 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:border-brand-200 hover:shadow-xl">
-      <div className="mb-6 flex h-14 w-14 items-center justify-center rounded-2xl bg-brand-50 text-brand-600 transition-transform duration-300 group-hover:scale-110">
-        <Icon className="h-7 w-7" />
+    <div className="group relative h-full bg-white p-8 transition-colors duration-300 hover:bg-slate-950">
+      <span className="absolute right-6 top-6 font-mono text-xs font-bold text-orange-600">
+        {index}
+      </span>
+
+      <div className="flex h-12 w-12 items-center justify-center bg-slate-950 text-orange-400 transition-colors group-hover:bg-orange-600 group-hover:text-white">
+        <Icon className="h-6 w-6" />
       </div>
 
-      <h3 className="text-xl font-bold text-slate-900">
+      <h3 className="mt-5 pr-8 text-xl font-extrabold text-slate-950 transition-colors group-hover:text-white">
         {title}
       </h3>
 
-      <p className="mt-3 text-sm leading-7 text-slate-600">
+      <p className="mt-3 text-sm leading-relaxed text-slate-600 transition-colors group-hover:text-slate-300">
         {description}
       </p>
 
-      <div className="mt-6 space-y-3">
+      <ul className="mt-6 space-y-2.5 border-t border-slate-200 pt-5 transition-colors group-hover:border-white/20">
         {items.map((item) => (
-          <div
+          <li
             key={item}
-            className="flex items-start gap-3 text-sm text-slate-600"
+            className="flex items-start gap-2.5 text-sm text-slate-700 transition-colors group-hover:text-white"
           >
-            <span className="mt-0.5 flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-brand-50 text-brand-600">
-              <Check className="h-3.5 w-3.5" />
-            </span>
-
+            <Check className="mt-0.5 h-4 w-4 shrink-0 text-orange-600 group-hover:text-orange-400" />
             <span>{item}</span>
-          </div>
+          </li>
         ))}
-      </div>
+      </ul>
     </div>
   );
 }
 
-
 // ============================================================
-// KDS SCREEN MOCKUP
+// KDS SCREEN MOCKUP (hero)
 // ============================================================
 
 function KdsScreen() {
   return (
     <div className="relative mx-auto w-full max-w-2xl">
       {/* Glow */}
-      <div className="absolute -inset-8 rounded-[3rem] bg-brand-500/10 blur-3xl" />
+      <div className="absolute -inset-8 rounded-[3rem] bg-orange-500/10 blur-3xl" />
 
       {/* Monitor */}
       <div className="relative rounded-[1.8rem] border border-slate-300 bg-slate-950 p-3 shadow-2xl">
         <div className="overflow-hidden rounded-[1.25rem] bg-slate-100">
-
           {/* Top bar */}
           <div className="flex items-center justify-between border-b border-slate-200 bg-white px-5 py-4">
             <div className="flex items-center gap-3">
-              <div className="flex h-9 w-9 items-center justify-center rounded-xl bg-brand-600 text-white">
+              <div className="flex h-9 w-9 items-center justify-center rounded-xl bg-orange-600 text-white">
                 <ChefHat className="h-5 w-5" />
               </div>
 
@@ -106,9 +107,7 @@ function KdsScreen() {
                 <div className="text-sm font-bold text-slate-900">
                   Cuisine — Production
                 </div>
-                <div className="text-xs text-slate-500">
-                  Service du midi
-                </div>
+                <div className="text-xs text-slate-500">Service du midi</div>
               </div>
             </div>
 
@@ -120,7 +119,7 @@ function KdsScreen() {
 
           {/* Filters */}
           <div className="flex gap-2 overflow-hidden border-b border-slate-200 bg-white px-4 py-3">
-            <span className="whitespace-nowrap rounded-lg bg-brand-600 px-3 py-1.5 text-xs font-semibold text-white">
+            <span className="whitespace-nowrap rounded-lg bg-orange-600 px-3 py-1.5 text-xs font-semibold text-white">
               Toutes
             </span>
 
@@ -139,9 +138,8 @@ function KdsScreen() {
 
           {/* Orders */}
           <div className="grid gap-3 p-4 sm:grid-cols-2">
-
             {/* Order 1 */}
-            <div className="rounded-2xl border border-blue-200 bg-white p-4 shadow-sm">
+            <div className="rounded-2xl border border-slate-300 bg-white p-4 shadow-sm">
               <div className="flex items-center justify-between">
                 <div>
                   <span className="text-xs font-bold text-slate-900">
@@ -153,7 +151,7 @@ function KdsScreen() {
                   </div>
                 </div>
 
-                <div className="flex items-center gap-1 rounded-full bg-blue-50 px-2 py-1 text-[10px] font-bold text-blue-600">
+                <div className="flex items-center gap-1 rounded-full bg-slate-100 px-2 py-1 text-[10px] font-bold text-slate-700">
                   <Clock3 className="h-3 w-3" />
                   04:18
                 </div>
@@ -186,7 +184,7 @@ function KdsScreen() {
 
               <button
                 type="button"
-                className="mt-4 w-full rounded-xl bg-brand-600 py-2.5 text-xs font-bold text-white"
+                className="mt-4 w-full rounded-xl bg-orange-600 py-2.5 text-xs font-bold text-white"
               >
                 Démarrer
               </button>
@@ -229,9 +227,7 @@ function KdsScreen() {
                 </div>
 
                 <div className="flex items-center justify-between text-xs">
-                  <span className="font-medium text-slate-700">
-                    Coca-Cola
-                  </span>
+                  <span className="font-medium text-slate-700">Coca-Cola</span>
                   <span className="font-bold text-slate-900">×2</span>
                 </div>
               </div>
@@ -267,16 +263,12 @@ function KdsScreen() {
 
               <div className="space-y-3">
                 <div className="flex items-center justify-between text-xs">
-                  <span className="font-medium text-slate-700">
-                    Menu Poulet
-                  </span>
+                  <span className="font-medium text-slate-700">Menu Poulet</span>
                   <span className="font-bold text-slate-900">×3</span>
                 </div>
 
                 <div className="flex items-center justify-between text-xs">
-                  <span className="font-medium text-slate-700">
-                    Frites
-                  </span>
+                  <span className="font-medium text-slate-700">Frites</span>
                   <span className="font-bold text-slate-900">×3</span>
                 </div>
               </div>
@@ -345,33 +337,36 @@ function KdsScreen() {
   );
 }
 
-
 // ============================================================
 // SOURCE CARD
 // ============================================================
 
 function SourceCard({
+  index,
   icon: Icon,
   title,
   description,
 }: SourceCardProps) {
   return (
-    <div className="group rounded-3xl border border-slate-200 bg-white p-6 text-center shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-xl">
-      <div className="mx-auto flex h-14 w-14 items-center justify-center rounded-2xl bg-brand-50 text-brand-600 transition-transform duration-300 group-hover:scale-110">
-        <Icon className="h-7 w-7" />
+    <div className="group relative bg-white p-7 transition-colors duration-300 hover:bg-slate-950">
+      <span className="absolute right-6 top-6 font-mono text-xs font-bold text-orange-600">
+        {index}
+      </span>
+
+      <div className="flex h-12 w-12 items-center justify-center bg-slate-950 text-orange-400 transition-colors group-hover:bg-orange-600 group-hover:text-white">
+        <Icon className="h-6 w-6" />
       </div>
 
-      <h3 className="mt-5 text-lg font-bold text-slate-900">
+      <h3 className="mt-5 text-lg font-extrabold text-slate-950 transition-colors group-hover:text-white">
         {title}
       </h3>
 
-      <p className="mt-2 text-sm leading-6 text-slate-500">
+      <p className="mt-2 text-sm leading-relaxed text-slate-600 transition-colors group-hover:text-slate-300">
         {description}
       </p>
     </div>
   );
 }
-
 
 // ============================================================
 // PAGE
@@ -379,45 +374,42 @@ function SourceCard({
 
 export function KdsSolution() {
   return (
-    <div className="overflow-hidden bg-white">
-
+    <div className="overflow-hidden bg-white text-slate-800">
       {/* ======================================================
-          HERO
+          HERO (inchangé, sans bleu)
       ====================================================== */}
 
       <section className="relative isolate overflow-hidden">
-        <div className="absolute inset-0 -z-10 bg-gradient-to-b from-brand-50/70 via-white to-white" />
+        <div className="absolute inset-0 -z-10 bg-gradient-to-b from-orange-50/70 via-white to-white" />
 
-        <div className="absolute left-1/2 top-0 -z-10 h-[500px] w-[700px] -translate-x-1/2 rounded-full bg-brand-200/20 blur-3xl" />
+        <div className="absolute left-1/2 top-0 -z-10 h-[500px] w-[700px] -translate-x-1/2 rounded-full bg-orange-200/20 blur-3xl" />
 
         <div className="mx-auto max-w-7xl px-6 pb-20 pt-16 lg:px-8 lg:pb-28 lg:pt-24">
           <div className="grid items-center gap-14 lg:grid-cols-2 lg:gap-20">
-
             {/* Text */}
             <div>
-              <div className="mb-6 inline-flex items-center gap-2 rounded-full border border-brand-200 bg-white px-4 py-2 text-sm font-semibold text-brand-700 shadow-sm">
+              <div className="mb-6 inline-flex items-center gap-2 rounded-full border border-orange-200 bg-white px-4 py-2 text-sm font-semibold text-orange-700 shadow-sm">
                 <Monitor className="h-4 w-4" />
                 KDS · Kitchen Display System
               </div>
 
               <h1 className="max-w-3xl text-4xl font-bold tracking-tight text-slate-900 sm:text-5xl lg:text-6xl">
                 Une cuisine plus
-                <span className="block text-brand-600">
+                <span className="block text-orange-600">
                   connectée et organisée.
                 </span>
               </h1>
 
               <p className="mt-6 max-w-2xl text-lg leading-8 text-slate-600">
-                Organisez votre production et affichez les commandes en
-                temps réel directement sur les écrans de votre cuisine.
-                Chaque équipe reçoit les informations dont elle a besoin,
-                au bon moment.
+                Organisez votre production et affichez les commandes en temps
+                réel directement sur les écrans de votre cuisine. Chaque équipe
+                reçoit les informations dont elle a besoin, au bon moment.
               </p>
 
               <div className="mt-8 flex flex-col gap-3 sm:flex-row">
                 <a
                   href="/#contact"
-                  className="inline-flex items-center justify-center gap-2 rounded-xl bg-brand-600 px-6 py-3.5 text-sm font-semibold text-white shadow-lg shadow-brand-600/20 transition-all hover:-translate-y-0.5 hover:bg-brand-700"
+                  className="inline-flex items-center justify-center gap-2 rounded-xl bg-orange-600 px-6 py-3.5 text-sm font-semibold text-white shadow-lg shadow-orange-600/20 transition-all hover:-translate-y-0.5 hover:bg-orange-700"
                 >
                   Demander une démo
                   <ArrowRight className="h-4 w-4" />
@@ -425,7 +417,7 @@ export function KdsSolution() {
 
                 <a
                   href="#fonctionnement"
-                  className="inline-flex items-center justify-center gap-2 rounded-xl border border-slate-200 bg-white px-6 py-3.5 text-sm font-semibold text-slate-700 transition-all hover:border-brand-200 hover:text-brand-600"
+                  className="inline-flex items-center justify-center gap-2 rounded-xl border border-slate-200 bg-white px-6 py-3.5 text-sm font-semibold text-slate-700 transition-all hover:border-orange-200 hover:text-orange-600"
                 >
                   Découvrir le fonctionnement
                   <ArrowUpRight className="h-4 w-4" />
@@ -435,17 +427,17 @@ export function KdsSolution() {
               {/* Trust points */}
               <div className="mt-10 grid gap-4 sm:grid-cols-3">
                 <div className="flex items-center gap-2 text-sm text-slate-600">
-                  <Check className="h-4 w-4 text-brand-600" />
+                  <Check className="h-4 w-4 text-orange-600" />
                   Temps réel
                 </div>
 
                 <div className="flex items-center gap-2 text-sm text-slate-600">
-                  <Check className="h-4 w-4 text-brand-600" />
+                  <Check className="h-4 w-4 text-orange-600" />
                   Sans papier
                 </div>
 
                 <div className="flex items-center gap-2 text-sm text-slate-600">
-                  <Check className="h-4 w-4 text-brand-600" />
+                  <Check className="h-4 w-4 text-orange-600" />
                   Multi-postes
                 </div>
               </div>
@@ -473,11 +465,9 @@ export function KdsSolution() {
                 </div>
               </div>
             </div>
-
           </div>
         </div>
       </section>
-
 
       {/* ======================================================
           INTRO
@@ -485,30 +475,31 @@ export function KdsSolution() {
 
       <section
         id="fonctionnement"
-        className="border-y border-slate-100 bg-slate-50/70"
+        className="border-y border-slate-200 bg-slate-100"
       >
-        <div className="mx-auto max-w-7xl px-6 py-20 lg:px-8 lg:py-24">
+        <div className="mx-auto max-w-7xl px-6 py-20 lg:px-8 lg:py-28">
+          <div className="grid gap-8 border-t-2 border-slate-950 pt-10 lg:grid-cols-[1fr_1.1fr] lg:gap-16">
+            <div>
+              <span className="font-mono text-xs font-bold uppercase tracking-[0.25em] text-orange-600">
+                Cuisine connectée
+              </span>
 
-          <div className="mx-auto max-w-3xl text-center">
-            <span className="text-sm font-semibold uppercase tracking-wider text-brand-600">
-              Cuisine connectée
-            </span>
+              <h2 className="mt-4 text-3xl font-extrabold leading-tight tracking-tight text-slate-950 sm:text-4xl">
+                Chaque commande au bon poste,
+                <span className="block text-orange-600">au bon moment.</span>
+              </h2>
+            </div>
 
-            <h2 className="mt-3 text-3xl font-bold tracking-tight text-slate-900 sm:text-4xl">
-              Chaque commande au bon poste,
-              <span className="text-brand-600"> au bon moment.</span>
-            </h2>
-
-            <p className="mt-5 text-lg leading-8 text-slate-600">
+            <p className="text-lg leading-relaxed text-slate-600">
               Le KDS centralise les commandes et facilite leur préparation.
-              Vos équipes travaillent avec une information claire,
-              actualisée et adaptée à chaque poste de production.
+              Vos équipes travaillent avec une information claire, actualisée
+              et adaptée à chaque poste de production.
             </p>
           </div>
 
-          <div className="mt-14 grid gap-6 lg:grid-cols-3">
-
+          <div className="mt-14 grid gap-px border border-slate-300 bg-slate-300 lg:grid-cols-3">
             <FeatureCard
+              index="01"
               icon={RefreshCw}
               title="Affichage en temps réel"
               description="Chaque nouvelle commande apparaît instantanément sur les écrans de production."
@@ -520,6 +511,7 @@ export function KdsSolution() {
             />
 
             <FeatureCard
+              index="02"
               icon={ChefHat}
               title="Zones de production"
               description="Chaque équipe visualise uniquement les produits qui concernent son poste."
@@ -531,6 +523,7 @@ export function KdsSolution() {
             />
 
             <FeatureCard
+              index="03"
               icon={Timer}
               title="Orchestration & timing"
               description="Suivez les temps de préparation pour synchroniser les différents éléments d'une commande."
@@ -540,11 +533,9 @@ export function KdsSolution() {
                 'Gestion des commandes prioritaires',
               ]}
             />
-
           </div>
         </div>
       </section>
-
 
       {/* ======================================================
           WORKFLOW
@@ -552,288 +543,224 @@ export function KdsSolution() {
 
       <section className="bg-white">
         <div className="mx-auto max-w-7xl px-6 py-20 lg:px-8 lg:py-28">
-
-          <div className="grid items-center gap-14 lg:grid-cols-2 lg:gap-20">
-
-            {/* Left */}
-            <div>
-              <span className="text-sm font-semibold uppercase tracking-wider text-brand-600">
+          <div className="grid items-start gap-10 lg:grid-cols-[1fr_1fr] lg:gap-14">
+            {/* Left : panneau noir sticky */}
+            <div className="border-t-[6px] border-orange-500 bg-slate-950 p-8 text-white sm:p-10 lg:sticky lg:top-28">
+              <span className="font-mono text-xs font-bold uppercase tracking-[0.25em] text-orange-400">
                 Parcours d'une commande
               </span>
 
-              <h2 className="mt-3 text-3xl font-bold tracking-tight text-slate-900 sm:text-4xl">
+              <h2 className="mt-4 text-3xl font-extrabold leading-tight tracking-tight sm:text-4xl">
                 De la prise de commande
-                <span className="block text-brand-600">
-                  jusqu'au service.
-                </span>
+                <span className="block text-orange-400">jusqu'au service.</span>
               </h2>
 
-              <p className="mt-5 text-lg leading-8 text-slate-600">
+              <p className="mt-5 text-base leading-7 text-slate-300">
                 Chaque étape de préparation est visible en temps réel,
                 permettant aux équipes de cuisine et de salle de rester
                 parfaitement coordonnées.
               </p>
 
-              <div className="mt-10 space-y-7">
+              <div className="mt-8 border-t border-white/15">
+                {[
+                  {
+                    icon: Wifi,
+                    title: 'Réception',
+                    text: "La commande arrive immédiatement sur l'écran correspondant à la zone de production.",
+                  },
+                  {
+                    icon: PlayCircle,
+                    title: 'En préparation',
+                    text: 'Le cuisinier prend en charge la commande et démarre le suivi de préparation.',
+                  },
+                  {
+                    icon: Clock3,
+                    title: 'Suivi du temps',
+                    text: "Les minuteurs permettent de surveiller les délais et d'identifier rapidement les retards.",
+                  },
+                  {
+                    icon: PackageCheck,
+                    title: 'Prêt à servir',
+                    text: "Une fois la préparation terminée, l'équipe en salle est informée pour assurer le service.",
+                  },
+                ].map((step, index) => (
+                  <div
+                    key={step.title}
+                    className="flex gap-4 border-b border-white/15 py-5"
+                  >
+                    <div className="flex h-12 w-12 shrink-0 items-center justify-center bg-orange-600 text-white">
+                      <step.icon className="h-5 w-5" />
+                    </div>
 
-                {/* Step */}
-                <div className="flex gap-4">
-                  <div className="relative flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl bg-brand-50 text-brand-600">
-                    <Wifi className="h-5 w-5" />
+                    <div>
+                      <h3 className="font-bold text-white">
+                        <span className="mr-2 font-mono text-xs text-orange-400">
+                          0{index + 1}
+                        </span>
+                        {step.title}
+                      </h3>
+
+                      <p className="mt-1 text-sm leading-6 text-slate-300">
+                        {step.text}
+                      </p>
+                    </div>
                   </div>
-
-                  <div>
-                    <h3 className="font-bold text-slate-900">
-                      Réception
-                    </h3>
-
-                    <p className="mt-1 text-sm leading-6 text-slate-600">
-                      La commande arrive immédiatement sur l'écran
-                      correspondant à la zone de production.
-                    </p>
-                  </div>
-                </div>
-
-                {/* Step */}
-                <div className="flex gap-4">
-                  <div className="relative flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl bg-brand-50 text-brand-600">
-                    <PlayCircle className="h-5 w-5" />
-                  </div>
-
-                  <div>
-                    <h3 className="font-bold text-slate-900">
-                      En préparation
-                    </h3>
-
-                    <p className="mt-1 text-sm leading-6 text-slate-600">
-                      Le cuisinier prend en charge la commande et démarre
-                      le suivi de préparation.
-                    </p>
-                  </div>
-                </div>
-
-                {/* Step */}
-                <div className="flex gap-4">
-                  <div className="relative flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl bg-brand-50 text-brand-600">
-                    <Clock3 className="h-5 w-5" />
-                  </div>
-
-                  <div>
-                    <h3 className="font-bold text-slate-900">
-                      Suivi du temps
-                    </h3>
-
-                    <p className="mt-1 text-sm leading-6 text-slate-600">
-                      Les minuteurs permettent de surveiller les délais
-                      et d'identifier rapidement les retards.
-                    </p>
-                  </div>
-                </div>
-
-                {/* Step */}
-                <div className="flex gap-4">
-                  <div className="relative flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl bg-emerald-50 text-emerald-600">
-                    <PackageCheck className="h-5 w-5" />
-                  </div>
-
-                  <div>
-                    <h3 className="font-bold text-slate-900">
-                      Prêt à servir
-                    </h3>
-
-                    <p className="mt-1 text-sm leading-6 text-slate-600">
-                      Une fois la préparation terminée, l'équipe en salle
-                      est informée pour assurer le service.
-                    </p>
-                  </div>
-                </div>
-
+                ))}
               </div>
             </div>
 
             {/* Right visual */}
-            <div className="relative">
-              <div className="rounded-[2rem] border border-slate-200 bg-slate-50 p-6 shadow-xl">
-
-                <div className="mb-5 flex items-center justify-between">
-                  <div>
-                    <div className="text-sm font-bold text-slate-900">
-                      Suivi de production
-                    </div>
-                    <div className="text-xs text-slate-500">
-                      Vue cuisine
-                    </div>
+            <div className="border border-slate-200 border-t-[6px] border-t-orange-500 bg-slate-50 p-6 sm:p-8">
+              <div className="mb-5 flex items-center justify-between border-b border-slate-200 pb-5">
+                <div>
+                  <div className="text-lg font-extrabold text-slate-950">
+                    Suivi de production
                   </div>
-
-                  <div className="rounded-full bg-brand-50 px-3 py-1 text-xs font-semibold text-brand-600">
-                    8 commandes
+                  <div className="font-mono text-xs uppercase tracking-[0.2em] text-slate-500">
+                    Vue cuisine
                   </div>
                 </div>
 
-                <div className="space-y-3">
-
-                  <div className="rounded-2xl bg-white p-4 shadow-sm">
-                    <div className="flex items-center justify-between">
-                      <span className="text-xs font-bold text-slate-900">
-                        #1048 · Table 12
-                      </span>
-
-                      <span className="rounded-full bg-blue-50 px-2.5 py-1 text-[10px] font-bold text-blue-600">
-                        Nouvelle
-                      </span>
-                    </div>
-
-                    <div className="mt-3 h-2 overflow-hidden rounded-full bg-slate-100">
-                      <div className="h-full w-[18%] rounded-full bg-blue-500" />
-                    </div>
-                  </div>
-
-                  <div className="rounded-2xl bg-white p-4 shadow-sm">
-                    <div className="flex items-center justify-between">
-                      <span className="text-xs font-bold text-slate-900">
-                        #1049 · Borne
-                      </span>
-
-                      <span className="rounded-full bg-amber-50 px-2.5 py-1 text-[10px] font-bold text-amber-600">
-                        En cours
-                      </span>
-                    </div>
-
-                    <div className="mt-3 h-2 overflow-hidden rounded-full bg-slate-100">
-                      <div className="h-full w-[62%] rounded-full bg-amber-500" />
-                    </div>
-                  </div>
-
-                  <div className="rounded-2xl bg-white p-4 shadow-sm">
-                    <div className="flex items-center justify-between">
-                      <span className="text-xs font-bold text-slate-900">
-                        #1050 · Click & Collect
-                      </span>
-
-                      <span className="rounded-full bg-red-50 px-2.5 py-1 text-[10px] font-bold text-red-600">
-                        En retard
-                      </span>
-                    </div>
-
-                    <div className="mt-3 h-2 overflow-hidden rounded-full bg-slate-100">
-                      <div className="h-full w-[92%] rounded-full bg-red-500" />
-                    </div>
-                  </div>
-
-                  <div className="rounded-2xl bg-white p-4 shadow-sm">
-                    <div className="flex items-center justify-between">
-                      <span className="text-xs font-bold text-slate-900">
-                        #1047 · Table 08
-                      </span>
-
-                      <span className="rounded-full bg-emerald-50 px-2.5 py-1 text-[10px] font-bold text-emerald-600">
-                        Prête
-                      </span>
-                    </div>
-
-                    <div className="mt-3 h-2 overflow-hidden rounded-full bg-slate-100">
-                      <div className="h-full w-full rounded-full bg-emerald-500" />
-                    </div>
-                  </div>
-
+                <div className="bg-orange-600 px-3 py-1.5 text-xs font-bold text-white">
+                  8 commandes
                 </div>
               </div>
-            </div>
 
+              <div className="grid gap-px border border-slate-300 bg-slate-300">
+                {[
+                  {
+                    label: '#1048 · Table 12',
+                    status: 'Nouvelle',
+                    badge: 'bg-slate-100 text-slate-700',
+                    bar: 'bg-slate-700',
+                    width: 'w-[18%]',
+                  },
+                  {
+                    label: '#1049 · Borne',
+                    status: 'En cours',
+                    badge: 'bg-amber-50 text-amber-600',
+                    bar: 'bg-amber-500',
+                    width: 'w-[62%]',
+                  },
+                  {
+                    label: '#1050 · Click & Collect',
+                    status: 'En retard',
+                    badge: 'bg-red-50 text-red-600',
+                    bar: 'bg-red-500',
+                    width: 'w-[92%]',
+                  },
+                  {
+                    label: '#1047 · Table 08',
+                    status: 'Prête',
+                    badge: 'bg-emerald-50 text-emerald-600',
+                    bar: 'bg-emerald-500',
+                    width: 'w-full',
+                  },
+                ].map((order) => (
+                  <div key={order.label} className="bg-white p-4">
+                    <div className="flex items-center justify-between">
+                      <span className="text-xs font-bold text-slate-900">
+                        {order.label}
+                      </span>
+
+                      <span
+                        className={`px-2.5 py-1 text-[10px] font-bold ${order.badge}`}
+                      >
+                        {order.status}
+                      </span>
+                    </div>
+
+                    <div className="mt-3 h-2 overflow-hidden bg-slate-100">
+                      <div className={`h-full ${order.width} ${order.bar}`} />
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
           </div>
         </div>
       </section>
-
 
       {/* ======================================================
           STATUS COLORS
       ====================================================== */}
 
-      <section className="bg-slate-950">
-        <div className="mx-auto max-w-7xl px-6 py-20 lg:px-8 lg:py-24">
+      <section className="border-t-[6px] border-orange-500 bg-slate-950">
+        <div className="mx-auto max-w-7xl px-6 py-20 lg:px-8 lg:py-28">
+          <div className="mb-12 flex flex-col gap-4 border-b-2 border-white pb-6 md:flex-row md:items-end md:justify-between">
+            <div>
+              <span className="font-mono text-xs font-bold uppercase tracking-[0.25em] text-orange-400">
+                Pilotage visuel
+              </span>
 
-          <div className="mx-auto max-w-3xl text-center">
-            <span className="text-sm font-semibold uppercase tracking-wider text-brand-400">
-              Pilotage visuel
-            </span>
+              <h2 className="mt-3 max-w-2xl text-3xl font-extrabold tracking-tight text-white sm:text-4xl">
+                Une lecture immédiate de
+                <span className="text-orange-400"> l'état des commandes.</span>
+              </h2>
+            </div>
 
-            <h2 className="mt-3 text-3xl font-bold tracking-tight text-white sm:text-4xl">
-              Une lecture immédiate de
-              <span className="text-brand-400"> l'état des commandes.</span>
-            </h2>
-
-            <p className="mt-5 text-lg leading-8 text-slate-400">
+            <p className="max-w-sm text-sm leading-6 text-slate-300">
               Un système visuel simple permet à vos équipes de comprendre
               instantanément quelles commandes nécessitent leur attention.
             </p>
           </div>
 
-          <div className="mt-14 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
+          <div className="grid gap-px border border-white/15 bg-white/15 sm:grid-cols-2 lg:grid-cols-4">
+            {[
+              {
+                icon: RefreshCw,
+                title: 'Nouvelle',
+                text: "La commande vient d'arriver et attend sa prise en charge.",
+                tone: 'bg-slate-500',
+              },
+              {
+                icon: Timer,
+                title: 'En cours',
+                text: 'La préparation est en cours et le temps est suivi.',
+                tone: 'bg-amber-500',
+              },
+              {
+                icon: Bell,
+                title: 'En retard',
+                text: "Une alerte signale qu'une commande dépasse le délai prévu.",
+                tone: 'bg-red-500',
+              },
+              {
+                icon: Check,
+                title: 'Prête',
+                text: 'Tous les éléments sont terminés et peuvent être envoyés.',
+                tone: 'bg-emerald-500',
+              },
+            ].map((status, index) => (
+              <div
+                key={status.title}
+                className="relative bg-slate-950 p-7 transition-colors duration-300 hover:bg-slate-900"
+              >
+                <span
+                  className={`absolute left-0 top-0 h-1 w-full ${status.tone}`}
+                  aria-hidden="true"
+                />
 
-            {/* Nouvelle */}
-            <div className="rounded-3xl border border-white/10 bg-white/5 p-6">
-              <div className="mb-5 flex h-12 w-12 items-center justify-center rounded-2xl bg-blue-500/10 text-blue-400">
-                <RefreshCw className="h-6 w-6" />
+                <span className="absolute right-6 top-6 font-mono text-xs font-bold text-orange-400">
+                  0{index + 1}
+                </span>
+
+                <div className="flex h-12 w-12 items-center justify-center bg-orange-600 text-white">
+                  <status.icon className="h-6 w-6" />
+                </div>
+
+                <h3 className="mt-5 text-lg font-extrabold text-white">
+                  {status.title}
+                </h3>
+
+                <p className="mt-2 text-sm leading-relaxed text-slate-300">
+                  {status.text}
+                </p>
               </div>
-
-              <h3 className="text-lg font-bold text-white">
-                Nouvelle
-              </h3>
-
-              <p className="mt-2 text-sm leading-6 text-slate-400">
-                La commande vient d'arriver et attend sa prise en charge.
-              </p>
-            </div>
-
-            {/* En cours */}
-            <div className="rounded-3xl border border-white/10 bg-white/5 p-6">
-              <div className="mb-5 flex h-12 w-12 items-center justify-center rounded-2xl bg-amber-500/10 text-amber-400">
-                <Timer className="h-6 w-6" />
-              </div>
-
-              <h3 className="text-lg font-bold text-white">
-                En cours
-              </h3>
-
-              <p className="mt-2 text-sm leading-6 text-slate-400">
-                La préparation est en cours et le temps est suivi.
-              </p>
-            </div>
-
-            {/* Retard */}
-            <div className="rounded-3xl border border-white/10 bg-white/5 p-6">
-              <div className="mb-5 flex h-12 w-12 items-center justify-center rounded-2xl bg-red-500/10 text-red-400">
-                <Bell className="h-6 w-6" />
-              </div>
-
-              <h3 className="text-lg font-bold text-white">
-                En retard
-              </h3>
-
-              <p className="mt-2 text-sm leading-6 text-slate-400">
-                Une alerte signale qu'une commande dépasse le délai prévu.
-              </p>
-            </div>
-
-            {/* Prête */}
-            <div className="rounded-3xl border border-white/10 bg-white/5 p-6">
-              <div className="mb-5 flex h-12 w-12 items-center justify-center rounded-2xl bg-emerald-500/10 text-emerald-400">
-                <Check className="h-6 w-6" />
-              </div>
-
-              <h3 className="text-lg font-bold text-white">
-                Prête
-              </h3>
-
-              <p className="mt-2 text-sm leading-6 text-slate-400">
-                Tous les éléments sont terminés et peuvent être envoyés.
-              </p>
-            </div>
-
+            ))}
           </div>
         </div>
       </section>
-
 
       {/* ======================================================
           SOURCES
@@ -841,262 +768,215 @@ export function KdsSolution() {
 
       <section className="bg-white">
         <div className="mx-auto max-w-7xl px-6 py-20 lg:px-8 lg:py-28">
-
-          <div className="mx-auto max-w-3xl text-center">
-            <span className="text-sm font-semibold uppercase tracking-wider text-brand-600">
-              Commandes centralisées
-            </span>
-
-            <h2 className="mt-3 text-3xl font-bold tracking-tight text-slate-900 sm:text-4xl">
-              Toutes vos sources de commande
-              <span className="block text-brand-600">
-                réunies au même endroit.
+          <div className="mb-12 flex flex-col gap-4 border-b-2 border-slate-950 pb-6 md:flex-row md:items-end md:justify-between">
+            <div>
+              <span className="font-mono text-xs font-bold uppercase tracking-[0.25em] text-orange-600">
+                Commandes centralisées
               </span>
-            </h2>
 
-            <p className="mt-5 text-lg leading-8 text-slate-600">
+              <h2 className="mt-3 max-w-2xl text-3xl font-extrabold tracking-tight text-slate-950 sm:text-4xl">
+                Toutes vos sources de commande
+                <span className="block text-orange-600">
+                  réunies au même endroit.
+                </span>
+              </h2>
+            </div>
+
+            <p className="max-w-sm text-sm leading-6 text-slate-600">
               Salle, bornes, commandes en ligne ou livraison : vos flux
-              peuvent être centralisés pour simplifier l'organisation
-              de votre production.
+              peuvent être centralisés pour simplifier l'organisation de votre
+              production.
             </p>
           </div>
 
-          <div className="mt-14 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
-
+          <div className="grid gap-px border border-slate-300 bg-slate-300 sm:grid-cols-2 lg:grid-cols-4">
             <SourceCard
+              index="01"
               icon={Utensils}
               title="Salle"
               description="Commandes provenant de la caisse ou des PDA utilisés par vos équipes."
             />
 
             <SourceCard
+              index="02"
               icon={Monitor}
               title="Bornes"
               description="Commandes autonomes transmises directement au système de production."
             />
 
             <SourceCard
+              index="03"
               icon={Smartphone}
               title="Click & Collect"
               description="Commandes passées en ligne et préparées avant l'arrivée du client."
             />
 
             <SourceCard
+              index="04"
               icon={ShoppingBag}
               title="Livraison"
               description="Centralisation des commandes issues de vos canaux de livraison."
             />
-
           </div>
         </div>
       </section>
-
 
       {/* ======================================================
           BENEFITS
       ====================================================== */}
 
-      <section className="border-y border-slate-100 bg-slate-50">
-        <div className="mx-auto max-w-7xl px-6 py-20 lg:px-8 lg:py-24">
-
-          <div className="grid gap-10 lg:grid-cols-2 lg:items-center">
-
+      <section className="border-y border-slate-200 bg-slate-100">
+        <div className="mx-auto max-w-7xl px-6 py-20 lg:px-8 lg:py-28">
+          <div className="grid gap-12 lg:grid-cols-2 lg:items-center">
             <div>
-              <span className="text-sm font-semibold uppercase tracking-wider text-brand-600">
+              <span className="font-mono text-xs font-bold uppercase tracking-[0.25em] text-orange-600">
                 Optimisé pour vos équipes
               </span>
 
-              <h2 className="mt-3 text-3xl font-bold tracking-tight text-slate-900 sm:text-4xl">
+              <h2 className="mt-4 text-3xl font-extrabold tracking-tight text-slate-950 sm:text-4xl">
                 Plus de visibilité,
-                <span className="block text-brand-600">
+                <span className="block text-orange-600">
                   moins de friction en cuisine.
                 </span>
               </h2>
 
-              <p className="mt-5 max-w-xl text-lg leading-8 text-slate-600">
+              <p className="mt-5 max-w-xl text-lg leading-relaxed text-slate-600">
                 Le KDS transforme la manière dont vos équipes reçoivent,
                 priorisent et terminent les commandes.
               </p>
 
-              <div className="mt-8 space-y-4">
-
-                <div className="flex items-start gap-3">
-                  <div className="mt-0.5 flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-brand-100 text-brand-600">
-                    <Check className="h-4 w-4" />
-                  </div>
-
-                  <div>
-                    <div className="font-semibold text-slate-900">
-                      Moins d'erreurs
+              <ul className="mt-7 border-t border-slate-300">
+                {[
+                  {
+                    title: "Moins d'erreurs",
+                    text: 'Les informations sont affichées clairement et au bon poste.',
+                  },
+                  {
+                    title: 'Meilleure coordination',
+                    text: "Cuisine et salle partagent une vision commune de l'avancement.",
+                  },
+                  {
+                    title: 'Service plus fluide',
+                    text: 'Les commandes terminées sont immédiatement identifiées.',
+                  },
+                  {
+                    title: 'Production plus organisée',
+                    text: 'Chaque poste travaille avec les informations qui lui sont utiles.',
+                  },
+                ].map((item) => (
+                  <li
+                    key={item.title}
+                    className="flex items-start gap-3 border-b border-slate-300 py-4"
+                  >
+                    <div className="mt-0.5 flex h-6 w-6 shrink-0 items-center justify-center bg-orange-600 text-white">
+                      <Check className="h-4 w-4" />
                     </div>
-                    <div className="mt-1 text-sm text-slate-600">
-                      Les informations sont affichées clairement et au bon poste.
-                    </div>
-                  </div>
-                </div>
 
-                <div className="flex items-start gap-3">
-                  <div className="mt-0.5 flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-brand-100 text-brand-600">
-                    <Check className="h-4 w-4" />
-                  </div>
-
-                  <div>
-                    <div className="font-semibold text-slate-900">
-                      Meilleure coordination
+                    <div>
+                      <div className="font-bold text-slate-950">
+                        {item.title}
+                      </div>
+                      <div className="mt-1 text-sm text-slate-600">
+                        {item.text}
+                      </div>
                     </div>
-                    <div className="mt-1 text-sm text-slate-600">
-                      Cuisine et salle partagent une vision commune de l'avancement.
-                    </div>
-                  </div>
-                </div>
-
-                <div className="flex items-start gap-3">
-                  <div className="mt-0.5 flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-brand-100 text-brand-600">
-                    <Check className="h-4 w-4" />
-                  </div>
-
-                  <div>
-                    <div className="font-semibold text-slate-900">
-                      Service plus fluide
-                    </div>
-                    <div className="mt-1 text-sm text-slate-600">
-                      Les commandes terminées sont immédiatement identifiées.
-                    </div>
-                  </div>
-                </div>
-
-                <div className="flex items-start gap-3">
-                  <div className="mt-0.5 flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-brand-100 text-brand-600">
-                    <Check className="h-4 w-4" />
-                  </div>
-
-                  <div>
-                    <div className="font-semibold text-slate-900">
-                      Production plus organisée
-                    </div>
-                    <div className="mt-1 text-sm text-slate-600">
-                      Chaque poste travaille avec les informations qui lui sont utiles.
-                    </div>
-                  </div>
-                </div>
-
-              </div>
+                  </li>
+                ))}
+              </ul>
             </div>
 
             {/* Stats */}
-            <div className="grid gap-4 sm:grid-cols-2">
+            <div className="grid gap-px border border-slate-300 bg-slate-300 sm:grid-cols-2">
+              {[
+                {
+                  icon: Zap,
+                  title: 'Temps réel',
+                  text: 'Les nouvelles commandes apparaissent immédiatement.',
+                },
+                {
+                  icon: ChefHat,
+                  title: 'Multi-postes',
+                  text: 'Organisez facilement plusieurs zones de production.',
+                },
+                {
+                  icon: Clock3,
+                  title: 'Suivi',
+                  text: "Surveillez les délais de préparation en un coup d'œil.",
+                },
+                {
+                  icon: Coffee,
+                  title: 'Flexible',
+                  text: 'Adaptez les zones et les flux à votre organisation.',
+                },
+              ].map((stat) => (
+                <div
+                  key={stat.title}
+                  className="group bg-white p-7 transition-colors duration-300 hover:bg-slate-950"
+                >
+                  <div className="flex h-12 w-12 items-center justify-center bg-slate-950 text-orange-400 transition-colors group-hover:bg-orange-600 group-hover:text-white">
+                    <stat.icon className="h-6 w-6" />
+                  </div>
 
-              <div className="rounded-3xl border border-slate-200 bg-white p-7 shadow-sm">
-                <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-brand-50 text-brand-600">
-                  <Zap className="h-6 w-6" />
+                  <div className="mt-6 text-2xl font-extrabold text-slate-950 transition-colors group-hover:text-white">
+                    {stat.title}
+                  </div>
+
+                  <p className="mt-2 text-sm leading-6 text-slate-600 transition-colors group-hover:text-slate-300">
+                    {stat.text}
+                  </p>
                 </div>
-
-                <div className="mt-6 text-3xl font-bold text-slate-900">
-                  Temps réel
-                </div>
-
-                <p className="mt-2 text-sm leading-6 text-slate-500">
-                  Les nouvelles commandes apparaissent immédiatement.
-                </p>
-              </div>
-
-              <div className="rounded-3xl border border-slate-200 bg-white p-7 shadow-sm">
-                <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-brand-50 text-brand-600">
-                  <ChefHat className="h-6 w-6" />
-                </div>
-
-                <div className="mt-6 text-3xl font-bold text-slate-900">
-                  Multi-postes
-                </div>
-
-                <p className="mt-2 text-sm leading-6 text-slate-500">
-                  Organisez facilement plusieurs zones de production.
-                </p>
-              </div>
-
-              <div className="rounded-3xl border border-slate-200 bg-white p-7 shadow-sm">
-                <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-brand-50 text-brand-600">
-                  <Clock3 className="h-6 w-6" />
-                </div>
-
-                <div className="mt-6 text-3xl font-bold text-slate-900">
-                  Suivi
-                </div>
-
-                <p className="mt-2 text-sm leading-6 text-slate-500">
-                  Surveillez les délais de préparation en un coup d'œil.
-                </p>
-              </div>
-
-              <div className="rounded-3xl border border-slate-200 bg-white p-7 shadow-sm">
-                <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-brand-50 text-brand-600">
-                  <Coffee className="h-6 w-6" />
-                </div>
-
-                <div className="mt-6 text-3xl font-bold text-slate-900">
-                  Flexible
-                </div>
-
-                <p className="mt-2 text-sm leading-6 text-slate-500">
-                  Adaptez les zones et les flux à votre organisation.
-                </p>
-              </div>
-
+              ))}
             </div>
-
           </div>
         </div>
       </section>
-
 
       {/* ======================================================
           CTA
       ====================================================== */}
 
-      <section className="relative overflow-hidden bg-brand-600">
-        <div className="absolute -left-24 -top-24 h-72 w-72 rounded-full bg-white/10 blur-3xl" />
-        <div className="absolute -bottom-32 -right-24 h-80 w-80 rounded-full bg-black/10 blur-3xl" />
+      <section className="bg-orange-600">
+        <div className="mx-auto max-w-7xl px-6 py-20 lg:px-8 lg:py-24">
+          <div className="flex flex-col gap-8 lg:flex-row lg:items-center lg:justify-between">
+            <div className="max-w-2xl">
+              <div className="flex items-center gap-3">
+                <Monitor className="h-5 w-5 text-white" />
+                <span className="font-mono text-xs font-bold uppercase tracking-[0.2em] text-white/80">
+                  KDS
+                </span>
+              </div>
 
-        <div className="relative mx-auto max-w-7xl px-6 py-20 lg:px-8 lg:py-24">
+              <h2 className="mt-4 text-3xl font-extrabold tracking-tight text-white sm:text-4xl">
+                Prêt à digitaliser votre cuisine ?
+              </h2>
 
-          <div className="mx-auto max-w-3xl text-center">
-
-            <div className="mx-auto flex h-16 w-16 items-center justify-center rounded-2xl bg-white/15 text-white">
-              <Monitor className="h-8 w-8" />
+              <p className="mt-4 text-lg leading-relaxed text-white/90">
+                Découvrez comment une solution KDS peut améliorer
+                l'organisation de votre production et fluidifier le service de
+                vos équipes.
+              </p>
             </div>
 
-            <h2 className="mt-7 text-3xl font-bold tracking-tight text-white sm:text-4xl">
-              Prêt à digitaliser votre cuisine ?
-            </h2>
-
-            <p className="mt-5 text-lg leading-8 text-brand-100">
-              Découvrez comment une solution KDS peut améliorer
-              l'organisation de votre production et fluidifier le service
-              de vos équipes.
-            </p>
-
-            <div className="mt-8 flex flex-col justify-center gap-3 sm:flex-row">
+            <div className="flex shrink-0 flex-col gap-3 sm:flex-row lg:flex-col">
               <a
                 href="/#contact"
-                className="inline-flex items-center justify-center gap-2 rounded-xl bg-white px-7 py-3.5 text-sm font-bold text-brand-700 shadow-lg transition-all hover:-translate-y-0.5 hover:bg-slate-50"
+                className="group inline-flex items-center justify-center gap-3 bg-slate-950 px-7 py-4 text-sm font-bold uppercase tracking-wider text-white transition-colors hover:bg-white hover:text-slate-950"
               >
                 Demander une démo
-                <ArrowRight className="h-4 w-4" />
+                <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
               </a>
 
               <Link
                 to="/"
-                className="inline-flex items-center justify-center gap-2 rounded-xl border border-white/30 px-7 py-3.5 text-sm font-semibold text-white transition-all hover:bg-white/10"
+                className="inline-flex items-center justify-center gap-2 border border-white/60 px-7 py-4 text-sm font-bold uppercase tracking-wider text-white transition-colors hover:bg-white/10"
               >
                 Retour à l'accueil
                 <ArrowUpRight className="h-4 w-4" />
               </Link>
             </div>
-
           </div>
         </div>
       </section>
-
     </div>
   );
 }

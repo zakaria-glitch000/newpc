@@ -5,11 +5,12 @@ import {
   BarChart3,
   Bell,
   Check,
-  ChevronDown,
   Gift,
   HeartHandshake,
   Layers3,
   Megaphone,
+  Minus,
+  Plus,
   Smartphone,
   Sparkles,
   Star,
@@ -20,6 +21,7 @@ import {
   Zap,
 } from 'lucide-react';
 import { useState } from 'react';
+import type { ElementType } from 'react';
 
 const programTypes = [
   {
@@ -200,7 +202,7 @@ const faqs = [
   },
 ];
 
-function SectionTitle({
+function SectionHead({
   eyebrow,
   title,
   description,
@@ -210,18 +212,19 @@ function SectionTitle({
   description?: string;
 }) {
   return (
-    <div className="mx-auto max-w-3xl text-center">
-      <span className="mb-4 inline-flex items-center gap-2 rounded-full border border-brand-100 bg-brand-50 px-4 py-2 text-xs font-semibold uppercase tracking-[0.18em] text-brand-600">
-        <Sparkles className="h-3.5 w-3.5" />
-        {eyebrow}
-      </span>
+    <div className="mb-12 flex flex-col gap-4 border-b-2 border-slate-950 pb-6 md:flex-row md:items-end md:justify-between">
+      <div>
+        <span className="font-mono text-xs font-bold uppercase tracking-[0.25em] text-orange-600">
+          {eyebrow}
+        </span>
 
-      <h2 className="text-3xl font-bold tracking-tight text-slate-900 sm:text-4xl lg:text-5xl">
-        {title}
-      </h2>
+        <h2 className="mt-3 max-w-2xl font-extrabold tracking-tight text-slate-950 text-3xl sm:text-4xl">
+          {title}
+        </h2>
+      </div>
 
       {description && (
-        <p className="mt-5 text-base leading-7 text-slate-500 sm:text-lg">
+        <p className="max-w-sm text-sm leading-6 text-slate-600">
           {description}
         </p>
       )}
@@ -229,46 +232,35 @@ function SectionTitle({
   );
 }
 
-function FeatureCard({
+function IconBox({
   icon: Icon,
-  title,
-  description,
+  size = 'md',
 }: {
-  icon: typeof Star;
-  title: string;
-  description: string;
+  icon: ElementType;
+  size?: 'sm' | 'md';
 }) {
   return (
-    <motion.div
-      whileHover={{ y: -5 }}
-      transition={{ duration: 0.2 }}
-      className="group rounded-2xl border border-slate-200 bg-white p-6 shadow-sm transition-all duration-300 hover:border-brand-200 hover:shadow-xl hover:shadow-slate-200/50"
+    <div
+      className={`flex shrink-0 items-center justify-center bg-slate-950 text-orange-400 transition-colors group-hover:bg-orange-600 group-hover:text-white ${
+        size === 'sm' ? 'h-10 w-10' : 'h-12 w-12'
+      }`}
     >
-      <div className="mb-5 flex h-12 w-12 items-center justify-center rounded-xl bg-brand-50 text-brand-600 transition-colors group-hover:bg-brand-500 group-hover:text-white">
-        <Icon className="h-6 w-6" />
-      </div>
-
-      <h3 className="text-lg font-semibold text-slate-900">{title}</h3>
-
-      <p className="mt-3 text-sm leading-6 text-slate-500">{description}</p>
-
-      <div className="mt-5 flex items-center gap-1 text-sm font-semibold text-brand-600">
-        En savoir plus
-        <ArrowUpRight className="h-4 w-4 transition-transform group-hover:translate-x-1 group-hover:-translate-y-1" />
-      </div>
-    </motion.div>
+      <Icon className={size === 'sm' ? 'h-5 w-5' : 'h-6 w-6'} />
+    </div>
   );
 }
 
 function CheckItem({ children }: { children: string }) {
   return (
-    <div className="flex items-start gap-3">
-      <span className="mt-0.5 flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-brand-500 text-white">
+    <li className="flex items-start gap-3 border-b border-slate-200 py-3">
+      <span className="mt-0.5 flex h-5 w-5 shrink-0 items-center justify-center bg-orange-600 text-white">
         <Check className="h-3 w-3" />
       </span>
 
-      <span className="text-sm leading-6 text-slate-600">{children}</span>
-    </div>
+      <span className="text-sm font-medium leading-6 text-slate-800">
+        {children}
+      </span>
+    </li>
   );
 }
 
@@ -276,12 +268,12 @@ export function FideliteClient() {
   const [openFaq, setOpenFaq] = useState<number | null>(0);
 
   return (
-    <div className="bg-white">
+    <div className="bg-white text-slate-800">
       {/* =========================================================
-          HERO
+          HERO (structure inchangée)
       ========================================================== */}
       <section className="relative overflow-hidden pt-32 pb-20 sm:pt-40 sm:pb-28">
-        <div className="absolute inset-0 -z-10 bg-[radial-gradient(circle_at_top_right,_rgba(14,165,233,0.10),_transparent_35%),radial-gradient(circle_at_bottom_left,_rgba(99,102,241,0.08),_transparent_35%)]" />
+        <div className="absolute inset-0 -z-10 bg-[radial-gradient(circle_at_top_right,_rgba(249,115,22,0.10),_transparent_35%),radial-gradient(circle_at_bottom_left,_rgba(234,88,12,0.08),_transparent_35%)]" />
 
         <div className="mx-auto max-w-7xl px-6 lg:px-8">
           <div className="grid items-center gap-14 lg:grid-cols-2">
@@ -290,14 +282,14 @@ export function FideliteClient() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6 }}
             >
-              <div className="mb-6 inline-flex items-center gap-2 rounded-full border border-brand-100 bg-brand-50 px-4 py-2 text-sm font-semibold text-brand-600">
+              <div className="mb-6 inline-flex items-center gap-2 rounded-full border border-orange-100 bg-orange-50 px-4 py-2 text-sm font-semibold text-orange-600">
                 <HeartHandshake className="h-4 w-4" />
                 Fidélité client
               </div>
 
               <h1 className="max-w-2xl text-4xl font-bold leading-[1.08] tracking-tight text-slate-900 sm:text-5xl lg:text-6xl">
                 Transformez vos clients fidèles en{' '}
-                <span className="text-brand-500">ambassadeurs</span>
+                <span className="text-orange-500">ambassadeurs</span>
               </h1>
 
               <p className="mt-6 max-w-xl text-lg leading-8 text-slate-500">
@@ -309,7 +301,7 @@ export function FideliteClient() {
               <div className="mt-8 flex flex-col gap-3 sm:flex-row">
                 <a
                   href="/#contact"
-                  className="group inline-flex items-center justify-center gap-2 rounded-xl bg-brand-500 px-6 py-3.5 text-sm font-semibold text-white shadow-lg shadow-brand-500/20 transition-all hover:bg-brand-600"
+                  className="group inline-flex items-center justify-center gap-2 rounded-xl bg-orange-500 px-6 py-3.5 text-sm font-semibold text-white shadow-lg shadow-orange-500/20 transition-all hover:bg-orange-600"
                 >
                   Demander une démo
                   <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
@@ -317,7 +309,7 @@ export function FideliteClient() {
 
                 <a
                   href="#fonctionnalites"
-                  className="inline-flex items-center justify-center gap-2 rounded-xl border border-slate-200 bg-white px-6 py-3.5 text-sm font-semibold text-slate-700 transition-all hover:border-brand-200 hover:text-brand-600"
+                  className="inline-flex items-center justify-center gap-2 rounded-xl border border-slate-200 bg-white px-6 py-3.5 text-sm font-semibold text-slate-700 transition-all hover:border-orange-200 hover:text-orange-600"
                 >
                   Découvrir la solution
                 </a>
@@ -331,8 +323,8 @@ export function FideliteClient() {
               transition={{ duration: 0.7, delay: 0.15 }}
               className="relative"
             >
-              <div className="absolute -left-8 top-10 h-32 w-32 rounded-full bg-brand-400/20 blur-3xl" />
-              <div className="absolute -right-8 bottom-10 h-40 w-40 rounded-full bg-indigo-400/20 blur-3xl" />
+              <div className="absolute -left-8 top-10 h-32 w-32 rounded-full bg-orange-400/20 blur-3xl" />
+              <div className="absolute -right-8 bottom-10 h-40 w-40 rounded-full bg-orange-500/20 blur-3xl" />
 
               <div className="relative overflow-hidden rounded-3xl border border-slate-200 bg-white p-5 shadow-2xl shadow-slate-200/70">
                 <div className="flex items-center justify-between border-b border-slate-100 pb-5">
@@ -345,7 +337,7 @@ export function FideliteClient() {
                     </p>
                   </div>
 
-                  <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-brand-50 text-brand-600">
+                  <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-orange-50 text-orange-600">
                     <HeartHandshake className="h-5 w-5" />
                   </div>
                 </div>
@@ -372,14 +364,14 @@ export function FideliteClient() {
                     </div>
 
                     <div className="h-2 overflow-hidden rounded-full bg-white/10">
-                      <div className="h-full w-[82%] rounded-full bg-brand-400" />
+                      <div className="h-full w-[82%] rounded-full bg-orange-400" />
                     </div>
                   </div>
                 </div>
 
                 <div className="mt-5 grid grid-cols-2 gap-3">
                   <div className="rounded-2xl bg-slate-50 p-4">
-                    <Users className="h-5 w-5 text-brand-500" />
+                    <Users className="h-5 w-5 text-orange-500" />
                     <p className="mt-3 text-xl font-bold text-slate-900">
                       +28%
                     </p>
@@ -389,7 +381,7 @@ export function FideliteClient() {
                   </div>
 
                   <div className="rounded-2xl bg-slate-50 p-4">
-                    <Gift className="h-5 w-5 text-brand-500" />
+                    <Gift className="h-5 w-5 text-orange-500" />
                     <p className="mt-3 text-xl font-bold text-slate-900">
                       186
                     </p>
@@ -399,8 +391,8 @@ export function FideliteClient() {
                   </div>
                 </div>
 
-                <div className="mt-3 flex items-center gap-3 rounded-2xl border border-brand-100 bg-brand-50 p-4">
-                  <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-white text-brand-600">
+                <div className="mt-3 flex items-center gap-3 rounded-2xl border border-orange-100 bg-orange-50 p-4">
+                  <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-white text-orange-600">
                     <Megaphone className="h-5 w-5" />
                   </div>
 
@@ -422,15 +414,31 @@ export function FideliteClient() {
       {/* =========================================================
           INTRO
       ========================================================== */}
-      <section className="border-y border-slate-100 bg-slate-50/70 py-20 sm:py-24">
+      <section className="border-y border-slate-200 bg-slate-100 py-20 sm:py-24">
         <div className="mx-auto max-w-7xl px-6 lg:px-8">
-          <SectionTitle
-            eyebrow="Une fidélité mieux pensée"
-            title="Créez une relation durable avec vos clients"
-            description="Une bonne stratégie de fidélisation ne se limite pas à distribuer des remises. Elle permet de mieux connaître vos clients, de valoriser leur engagement et de créer des raisons concrètes de revenir."
-          />
+          <div className="grid gap-8 border-t-2 border-slate-950 pt-10 lg:grid-cols-[1fr_1.1fr] lg:gap-16">
+            <div>
+              <span className="font-mono text-xs font-bold uppercase tracking-[0.25em] text-orange-600">
+                Une fidélité mieux pensée
+              </span>
 
-          <div className="mt-14 grid gap-5 md:grid-cols-3">
+              <h2 className="mt-4 text-3xl font-extrabold leading-tight tracking-tight text-slate-950 sm:text-4xl">
+                Créez une relation durable
+                <span className="block text-orange-600">
+                  avec vos clients.
+                </span>
+              </h2>
+            </div>
+
+            <p className="text-lg leading-relaxed text-slate-600">
+              Une bonne stratégie de fidélisation ne se limite pas à
+              distribuer des remises. Elle permet de mieux connaître vos
+              clients, de valoriser leur engagement et de créer des raisons
+              concrètes de revenir.
+            </p>
+          </div>
+
+          <div className="mt-14 grid gap-4 md:grid-cols-3">
             {[
               {
                 icon: HeartHandshake,
@@ -454,17 +462,21 @@ export function FideliteClient() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.45, delay: index * 0.08 }}
-                className="rounded-2xl border border-slate-200 bg-white p-7 shadow-sm"
+                className="group relative border border-slate-200 border-t-4 border-t-orange-600 bg-white p-7 transition-colors duration-300 hover:bg-orange-600"
               >
-                <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-brand-50 text-brand-600">
+                <span className="absolute right-6 top-6 font-mono text-xs font-bold text-orange-600 transition-colors group-hover:text-white/80">
+                  0{index + 1}
+                </span>
+
+                <div className="flex h-12 w-12 items-center justify-center bg-slate-950 text-orange-400 transition-colors group-hover:bg-white group-hover:text-orange-600">
                   <item.icon className="h-6 w-6" />
                 </div>
 
-                <h3 className="mt-5 text-lg font-semibold text-slate-900">
+                <h3 className="mt-5 text-xl font-extrabold text-slate-950 transition-colors group-hover:text-white">
                   {item.title}
                 </h3>
 
-                <p className="mt-3 text-sm leading-6 text-slate-500">
+                <p className="mt-3 text-sm leading-relaxed text-slate-600 transition-colors group-hover:text-white">
                   {item.text}
                 </p>
               </motion.div>
@@ -476,15 +488,15 @@ export function FideliteClient() {
       {/* =========================================================
           TYPES DE PROGRAMMES
       ========================================================== */}
-      <section className="py-20 sm:py-28">
+      <section className="bg-white py-20 sm:py-28">
         <div className="mx-auto max-w-7xl px-6 lg:px-8">
-          <SectionTitle
+          <SectionHead
             eyebrow="Programmes"
-            title="Choisissez le modèle qui correspond à votre activité"
+            title="Choisissez le modèle qui correspond à votre activité."
             description="Construisez une mécanique de fidélisation simple à comprendre pour vos clients et facile à piloter pour vos équipes."
           />
 
-          <div className="mt-14 grid gap-6 lg:grid-cols-3">
+          <div className="grid gap-4 lg:grid-cols-3">
             {programTypes.map((item, index) => (
               <motion.div
                 key={item.title}
@@ -492,8 +504,26 @@ export function FideliteClient() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.45, delay: index * 0.08 }}
+                className="group relative h-full border border-slate-200 bg-white p-7 transition-all duration-300 hover:-translate-y-1 hover:bg-slate-950 hover:shadow-xl"
               >
-                <FeatureCard {...item} />
+                <span className="absolute right-6 top-6 font-mono text-xs font-bold text-orange-600">
+                  0{index + 1}
+                </span>
+
+                <IconBox icon={item.icon} />
+
+                <h3 className="mt-5 text-xl font-extrabold text-slate-950 transition-colors group-hover:text-white">
+                  {item.title}
+                </h3>
+
+                <p className="mt-3 text-sm leading-relaxed text-slate-600 transition-colors group-hover:text-slate-300">
+                  {item.description}
+                </p>
+
+                <div className="mt-6 flex items-center gap-1 border-t border-slate-200 pt-4 font-mono text-xs font-bold uppercase tracking-wider text-orange-600 transition-colors group-hover:border-white/20">
+                  En savoir plus
+                  <ArrowUpRight className="h-4 w-4 transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5" />
+                </div>
               </motion.div>
             ))}
           </div>
@@ -505,26 +535,28 @@ export function FideliteClient() {
       ========================================================== */}
       <section
         id="fonctionnalites"
-        className="overflow-hidden bg-slate-900 py-20 text-white sm:py-28"
+        className="overflow-hidden border-t-[6px] border-orange-500 bg-slate-950 py-20 text-white sm:py-28"
       >
         <div className="mx-auto max-w-7xl px-6 lg:px-8">
-          <div className="grid gap-14 lg:grid-cols-2 lg:items-center">
+          <div className="grid gap-14 lg:grid-cols-2 lg:items-start">
             <div>
-              <span className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-4 py-2 text-xs font-semibold uppercase tracking-[0.18em] text-brand-300">
-                <Sparkles className="h-3.5 w-3.5" />
+              <span className="font-mono text-xs font-bold uppercase tracking-[0.25em] text-orange-400">
                 Fonctionnalités
               </span>
 
-              <h2 className="mt-5 text-3xl font-bold tracking-tight sm:text-4xl lg:text-5xl">
-                Une solution pensée pour vos clients et vos équipes
+              <h2 className="mt-4 text-3xl font-extrabold leading-tight tracking-tight sm:text-4xl lg:text-5xl">
+                Une solution pensée{' '}
+                <span className="text-orange-400">
+                  pour vos clients et vos équipes.
+                </span>
               </h2>
 
-              <p className="mt-5 max-w-xl text-base leading-7 text-slate-400">
-                Centralisez les informations utiles et donnez à vos équipes les
-                moyens de piloter simplement votre programme de fidélité.
+              <p className="mt-5 max-w-xl text-base leading-7 text-slate-300">
+                Centralisez les informations utiles et donnez à vos équipes
+                les moyens de piloter simplement votre programme de fidélité.
               </p>
 
-              <div className="mt-8 grid gap-4 sm:grid-cols-2">
+              <div className="mt-8 grid gap-px border border-white/15 bg-white/15 sm:grid-cols-2">
                 {[
                   'Règles personnalisables',
                   'Données centralisées',
@@ -533,13 +565,13 @@ export function FideliteClient() {
                 ].map((item) => (
                   <div
                     key={item}
-                    className="flex items-center gap-3 rounded-xl border border-white/10 bg-white/5 p-4"
+                    className="flex items-center gap-3 bg-slate-950 p-4 transition-colors hover:bg-slate-900"
                   >
-                    <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-brand-500/20 text-brand-300">
+                    <div className="flex h-8 w-8 items-center justify-center bg-orange-600 text-white">
                       <Check className="h-4 w-4" />
                     </div>
 
-                    <span className="text-sm font-medium text-slate-200">
+                    <span className="text-sm font-medium text-slate-100">
                       {item}
                     </span>
                   </div>
@@ -547,43 +579,43 @@ export function FideliteClient() {
               </div>
             </div>
 
-            <div className="rounded-3xl border border-white/10 bg-white/[0.04] p-6">
-              <div className="mb-6 flex items-center justify-between">
+            <div className="border border-white/15 border-t-4 border-t-orange-500 bg-slate-900 p-6">
+              <div className="mb-6 flex items-center justify-between border-b border-white/15 pb-5">
                 <div>
-                  <p className="text-xs text-slate-500">Vue client</p>
-                  <p className="mt-1 text-lg font-semibold">Fidélité</p>
+                  <p className="font-mono text-xs uppercase tracking-[0.2em] text-slate-400">
+                    Vue client
+                  </p>
+                  <p className="mt-1 text-lg font-bold">Fidélité</p>
                 </div>
 
-                <div className="rounded-xl bg-brand-500/15 p-3 text-brand-300">
+                <div className="flex h-10 w-10 items-center justify-center bg-orange-600 text-white">
                   <Star className="h-5 w-5" />
                 </div>
               </div>
 
-              <div className="space-y-3">
+              <div className="grid gap-px bg-white/15">
                 {customerFeatures.map((item, index) => (
                   <div
                     key={item}
-                    className="flex items-center justify-between rounded-xl border border-white/10 bg-white/[0.03] p-4"
+                    className="flex items-center justify-between bg-slate-900 p-4"
                   >
                     <div className="flex items-center gap-3">
-                      <div className="flex h-9 w-9 items-center justify-center rounded-lg bg-white/5 text-brand-300">
+                      <div className="flex h-9 w-9 items-center justify-center bg-white/10 text-orange-400">
                         {index === 0 && <WalletCards className="h-4 w-4" />}
                         {index === 1 && <BarChart3 className="h-4 w-4" />}
                         {index === 2 && <Gift className="h-4 w-4" />}
                         {index === 3 && <Bell className="h-4 w-4" />}
                       </div>
 
-                      <span className="text-sm text-slate-300">{item}</span>
+                      <span className="text-sm text-slate-200">{item}</span>
                     </div>
 
-                    <Check className="h-4 w-4 text-brand-400" />
+                    <Check className="h-4 w-4 text-orange-400" />
                   </div>
                 ))}
               </div>
 
-              <div className="my-6 h-px bg-white/10" />
-
-              <p className="mb-4 text-xs font-semibold uppercase tracking-wider text-slate-500">
+              <p className="mb-4 mt-7 font-mono text-xs font-bold uppercase tracking-[0.2em] text-orange-400">
                 Côté commerce
               </p>
 
@@ -591,9 +623,9 @@ export function FideliteClient() {
                 {businessFeatures.map((item) => (
                   <div
                     key={item}
-                    className="flex items-center gap-3 text-sm text-slate-300"
+                    className="flex items-center gap-3 text-sm text-slate-200"
                   >
-                    <Check className="h-4 w-4 shrink-0 text-brand-400" />
+                    <Check className="h-4 w-4 shrink-0 text-orange-400" />
                     {item}
                   </div>
                 ))}
@@ -606,15 +638,15 @@ export function FideliteClient() {
       {/* =========================================================
           AVANCE
       ========================================================== */}
-      <section className="py-20 sm:py-28">
+      <section className="bg-white py-20 sm:py-28">
         <div className="mx-auto max-w-7xl px-6 lg:px-8">
-          <SectionTitle
+          <SectionHead
             eyebrow="Fonctionnalités avancées"
-            title="Allez plus loin dans l'engagement client"
+            title="Allez plus loin dans l'engagement client."
             description="Combinez données, animation commerciale et communication pour construire une expérience de fidélité qui évolue avec votre clientèle."
           />
 
-          <div className="mt-14 grid gap-6 lg:grid-cols-3">
+          <div className="grid gap-px border border-slate-300 bg-slate-300 lg:grid-cols-3">
             {advancedFeatures.map((item, index) => (
               <motion.div
                 key={item.title}
@@ -622,17 +654,21 @@ export function FideliteClient() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.45, delay: index * 0.08 }}
-                className="rounded-2xl border border-slate-200 bg-white p-7 shadow-sm"
+                className="group relative bg-white p-8 transition-colors duration-300 hover:bg-slate-950"
               >
-                <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-brand-50 text-brand-600">
-                  <item.icon className="h-6 w-6" />
+                <span className="font-mono text-4xl font-extrabold text-orange-600">
+                  0{index + 1}
+                </span>
+
+                <div className="mt-5">
+                  <IconBox icon={item.icon} />
                 </div>
 
-                <h3 className="mt-5 text-lg font-semibold text-slate-900">
+                <h3 className="mt-5 text-xl font-extrabold text-slate-950 transition-colors group-hover:text-white">
                   {item.title}
                 </h3>
 
-                <p className="mt-3 text-sm leading-6 text-slate-500">
+                <p className="mt-3 text-sm leading-relaxed text-slate-600 transition-colors group-hover:text-slate-300">
                   {item.description}
                 </p>
               </motion.div>
@@ -644,90 +680,75 @@ export function FideliteClient() {
       {/* =========================================================
           APPLICATION MOBILE
       ========================================================== */}
-      <section className="bg-slate-50 py-20 sm:py-28">
+      <section className="border-y border-slate-200 bg-slate-100 py-20 sm:py-28">
         <div className="mx-auto max-w-7xl px-6 lg:px-8">
           <div className="grid items-center gap-14 lg:grid-cols-2">
             <div className="order-2 lg:order-1">
               <div className="relative mx-auto max-w-sm">
-                <div className="absolute -inset-8 rounded-full bg-brand-400/10 blur-3xl" />
+                <div className="absolute inset-x-6 -bottom-4 top-4 bg-orange-500" aria-hidden="true" />
 
-                <div className="relative mx-auto w-[270px] rounded-[2.5rem] border-[7px] border-slate-900 bg-white p-3 shadow-2xl">
-                  <div className="overflow-hidden rounded-[2rem] bg-slate-50">
-                    <div className="bg-slate-900 px-5 pb-7 pt-8 text-white">
+                <div className="relative mx-auto w-[270px] border-[7px] border-slate-950 bg-white p-3 shadow-2xl">
+                  <div className="overflow-hidden bg-slate-50">
+                    <div className="border-b-4 border-orange-500 bg-slate-950 px-5 pb-7 pt-8 text-white">
                       <div className="flex items-center justify-between">
                         <div>
-                          <p className="text-[10px] text-white/50">
-                            Bonjour
-                          </p>
+                          <p className="text-[10px] text-white/50">Bonjour</p>
                           <p className="mt-1 text-sm font-semibold">
                             Votre fidélité
                           </p>
                         </div>
 
-                        <div className="flex h-8 w-8 items-center justify-center rounded-full bg-white/10">
+                        <div className="flex h-8 w-8 items-center justify-center bg-white/10">
                           <Bell className="h-4 w-4" />
                         </div>
                       </div>
 
                       <div className="mt-7">
-                        <p className="text-[10px] text-white/50">
-                          Mes points
+                        <p className="text-[10px] text-white/50">Mes points</p>
+                        <p className="mt-1 text-3xl font-bold text-orange-400">
+                          2 450
                         </p>
-                        <p className="mt-1 text-3xl font-bold">2 450</p>
                       </div>
                     </div>
 
-                    <div className="space-y-3 p-4">
-                      <div className="rounded-xl bg-white p-3 shadow-sm">
-                        <div className="flex items-center gap-3">
-                          <div className="flex h-9 w-9 items-center justify-center rounded-lg bg-brand-50 text-brand-600">
-                            <Gift className="h-4 w-4" />
-                          </div>
+                    <div className="space-y-2 p-4">
+                      {[
+                        {
+                          icon: Gift,
+                          title: 'Récompense disponible',
+                          text: 'Profitez de votre avantage',
+                        },
+                        {
+                          icon: Megaphone,
+                          title: 'Offre personnalisée',
+                          text: "Disponible aujourd'hui",
+                        },
+                        {
+                          icon: BarChart3,
+                          title: 'Mon historique',
+                          text: 'Consultez vos achats',
+                        },
+                      ].map((row) => (
+                        <div
+                          key={row.title}
+                          className="border border-slate-200 bg-white p-3"
+                        >
+                          <div className="flex items-center gap-3">
+                            <div className="flex h-9 w-9 items-center justify-center bg-slate-950 text-orange-400">
+                              <row.icon className="h-4 w-4" />
+                            </div>
 
-                          <div>
-                            <p className="text-xs font-semibold text-slate-800">
-                              Récompense disponible
-                            </p>
-                            <p className="mt-0.5 text-[10px] text-slate-400">
-                              Profitez de votre avantage
-                            </p>
+                            <div>
+                              <p className="text-xs font-semibold text-slate-800">
+                                {row.title}
+                              </p>
+                              <p className="mt-0.5 text-[10px] text-slate-400">
+                                {row.text}
+                              </p>
+                            </div>
                           </div>
                         </div>
-                      </div>
-
-                      <div className="rounded-xl bg-white p-3 shadow-sm">
-                        <div className="flex items-center gap-3">
-                          <div className="flex h-9 w-9 items-center justify-center rounded-lg bg-brand-50 text-brand-600">
-                            <Megaphone className="h-4 w-4" />
-                          </div>
-
-                          <div>
-                            <p className="text-xs font-semibold text-slate-800">
-                              Offre personnalisée
-                            </p>
-                            <p className="mt-0.5 text-[10px] text-slate-400">
-                              Disponible aujourd'hui
-                            </p>
-                          </div>
-                        </div>
-                      </div>
-
-                      <div className="rounded-xl bg-white p-3 shadow-sm">
-                        <div className="flex items-center gap-3">
-                          <div className="flex h-9 w-9 items-center justify-center rounded-lg bg-brand-50 text-brand-600">
-                            <BarChart3 className="h-4 w-4" />
-                          </div>
-
-                          <div>
-                            <p className="text-xs font-semibold text-slate-800">
-                              Mon historique
-                            </p>
-                            <p className="mt-0.5 text-[10px] text-slate-400">
-                              Consultez vos achats
-                            </p>
-                          </div>
-                        </div>
-                      </div>
+                      ))}
                     </div>
                   </div>
                 </div>
@@ -735,22 +756,25 @@ export function FideliteClient() {
             </div>
 
             <div className="order-1 lg:order-2">
-              <span className="inline-flex items-center gap-2 rounded-full border border-brand-100 bg-brand-50 px-4 py-2 text-xs font-semibold uppercase tracking-[0.18em] text-brand-600">
-                <Smartphone className="h-3.5 w-3.5" />
+              <div className="flex h-14 w-14 items-center justify-center bg-slate-950 text-orange-400">
+                <Smartphone className="h-7 w-7" />
+              </div>
+
+              <span className="mt-7 block font-mono text-xs font-bold uppercase tracking-[0.25em] text-orange-600">
                 Expérience digitale
               </span>
 
-              <h2 className="mt-5 text-3xl font-bold tracking-tight text-slate-900 sm:text-4xl">
-                Une expérience de fidélité à votre image
+              <h2 className="mt-3 text-3xl font-extrabold tracking-tight text-slate-950 sm:text-4xl">
+                Une expérience de fidélité à votre image.
               </h2>
 
-              <p className="mt-5 text-base leading-7 text-slate-500">
+              <p className="mt-5 text-lg leading-relaxed text-slate-600">
                 Donnez à vos clients un accès simple à leurs avantages, leurs
                 récompenses et leurs offres. Une expérience digitale peut
                 compléter votre programme et renforcer l'engagement.
               </p>
 
-              <div className="mt-8 space-y-4">
+              <ul className="mt-7 border-t border-slate-200">
                 {[
                   'Consulter les points et avantages',
                   'Découvrir les récompenses disponibles',
@@ -759,50 +783,55 @@ export function FideliteClient() {
                 ].map((item) => (
                   <CheckItem key={item}>{item}</CheckItem>
                 ))}
-              </div>
+              </ul>
             </div>
           </div>
         </div>
       </section>
 
       {/* =========================================================
-          PARCOURS CLIENT
+          PARCOURS CLIENT (bande orange)
       ========================================================== */}
-      <section className="py-20 sm:py-28">
+      <section className="bg-orange-600 py-20 text-white sm:py-28">
         <div className="mx-auto max-w-7xl px-6 lg:px-8">
-          <SectionTitle
-            eyebrow="Parcours client"
-            title="Une expérience simple du premier achat à la récompense"
-            description="Construisez un parcours clair qui donne envie à vos clients de revenir et de progresser dans votre programme."
-          />
+          <div className="mb-12 flex flex-col gap-4 border-b-2 border-white pb-6 md:flex-row md:items-end md:justify-between">
+            <div>
+              <span className="font-mono text-xs font-bold uppercase tracking-[0.25em] text-white/80">
+                Parcours client
+              </span>
 
-          <div className="relative mt-16">
-            <div className="absolute left-[10%] right-[10%] top-7 hidden h-px bg-slate-200 lg:block" />
-
-            <div className="grid gap-10 lg:grid-cols-4">
-              {journeySteps.map((step, index) => (
-                <motion.div
-                  key={step.number}
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.45, delay: index * 0.08 }}
-                  className="relative text-center"
-                >
-                  <div className="relative z-10 mx-auto flex h-14 w-14 items-center justify-center rounded-full border-4 border-white bg-brand-500 text-sm font-bold text-white shadow-lg shadow-brand-500/20">
-                    {step.number}
-                  </div>
-
-                  <h3 className="mt-6 text-lg font-semibold text-slate-900">
-                    {step.title}
-                  </h3>
-
-                  <p className="mt-3 text-sm leading-6 text-slate-500">
-                    {step.description}
-                  </p>
-                </motion.div>
-              ))}
+              <h2 className="mt-3 max-w-2xl text-3xl font-extrabold tracking-tight sm:text-4xl">
+                Une expérience simple du premier achat à la récompense.
+              </h2>
             </div>
+
+            <p className="max-w-sm text-sm leading-6 text-white/90">
+              Construisez un parcours clair qui donne envie à vos clients de
+              revenir et de progresser dans votre programme.
+            </p>
+          </div>
+
+          <div className="grid gap-px border border-white/40 bg-white/40 sm:grid-cols-2 lg:grid-cols-4">
+            {journeySteps.map((step, index) => (
+              <motion.div
+                key={step.number}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.45, delay: index * 0.08 }}
+                className="bg-orange-600 p-7 transition-colors duration-300 hover:bg-slate-950"
+              >
+                <span className="font-mono text-4xl font-extrabold">
+                  {step.number}
+                </span>
+
+                <h3 className="mt-4 text-lg font-extrabold">{step.title}</h3>
+
+                <p className="mt-2 text-sm leading-relaxed text-white/90">
+                  {step.description}
+                </p>
+              </motion.div>
+            ))}
           </div>
         </div>
       </section>
@@ -810,39 +839,40 @@ export function FideliteClient() {
       {/* =========================================================
           COUPONS
       ========================================================== */}
-      <section className="overflow-hidden bg-slate-50 py-20 sm:py-28">
+      <section className="overflow-hidden bg-white py-20 sm:py-28">
         <div className="mx-auto max-w-7xl px-6 lg:px-8">
-          <div className="grid gap-14 lg:grid-cols-2 lg:items-center">
+          <div className="grid gap-14 lg:grid-cols-2 lg:items-start">
             <div>
-              <span className="inline-flex items-center gap-2 rounded-full border border-brand-100 bg-brand-50 px-4 py-2 text-xs font-semibold uppercase tracking-[0.18em] text-brand-600">
-                <Gift className="h-3.5 w-3.5" />
+              <div className="flex h-14 w-14 items-center justify-center bg-slate-950 text-orange-400">
+                <Gift className="h-7 w-7" />
+              </div>
+
+              <span className="mt-7 block font-mono text-xs font-bold uppercase tracking-[0.25em] text-orange-600">
                 Coupons & offres
               </span>
 
-              <h2 className="mt-5 text-3xl font-bold tracking-tight text-slate-900 sm:text-4xl">
-                Animez votre programme avec des offres ciblées
+              <h2 className="mt-3 text-3xl font-extrabold tracking-tight text-slate-950 sm:text-4xl">
+                Animez votre programme avec des offres ciblées.
               </h2>
 
-              <p className="mt-5 text-base leading-7 text-slate-500">
+              <p className="mt-5 text-lg leading-relaxed text-slate-600">
                 Complétez votre programme de fidélité avec des coupons et des
                 avantages adaptés à vos objectifs commerciaux.
               </p>
 
-              <div className="mt-8 grid gap-4 sm:grid-cols-2">
+              <div className="mt-8 grid gap-px border border-slate-300 bg-slate-300 sm:grid-cols-2">
                 {couponFeatures.map((item) => (
                   <div
                     key={item.title}
-                    className="rounded-2xl border border-slate-200 bg-white p-5"
+                    className="group bg-white p-5 transition-colors duration-300 hover:bg-slate-950"
                   >
-                    <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-brand-50 text-brand-600">
-                      <item.icon className="h-5 w-5" />
-                    </div>
+                    <IconBox icon={item.icon} size="sm" />
 
-                    <h3 className="mt-4 text-sm font-semibold text-slate-900">
+                    <h3 className="mt-4 text-sm font-extrabold text-slate-950 transition-colors group-hover:text-white">
                       {item.title}
                     </h3>
 
-                    <p className="mt-2 text-xs leading-5 text-slate-500">
+                    <p className="mt-2 text-xs leading-5 text-slate-600 transition-colors group-hover:text-slate-300">
                       {item.description}
                     </p>
                   </div>
@@ -850,64 +880,58 @@ export function FideliteClient() {
               </div>
             </div>
 
-            <div>
-              <div className="rounded-3xl border border-slate-200 bg-white p-6 shadow-xl shadow-slate-200/60">
-                <div className="flex items-center justify-between border-b border-slate-100 pb-5">
-                  <div>
-                    <p className="text-xs text-slate-400">Exemples</p>
-                    <p className="mt-1 text-lg font-bold text-slate-900">
-                      Types d'offres
+            <div className="border border-slate-200 border-t-[6px] border-t-orange-500 bg-slate-50 p-6 sm:p-8">
+              <div className="flex items-center justify-between border-b border-slate-200 pb-5">
+                <div>
+                  <p className="font-mono text-xs uppercase tracking-[0.2em] text-slate-500">
+                    Exemples
+                  </p>
+                  <p className="mt-1 text-lg font-extrabold text-slate-950">
+                    Types d'offres
+                  </p>
+                </div>
+
+                <Gift className="h-6 w-6 text-orange-600" />
+              </div>
+
+              <div className="mt-5 grid gap-px border border-slate-300 bg-slate-300 sm:grid-cols-2">
+                {couponTypes.map((coupon) => (
+                  <div key={coupon.title} className="bg-white p-5">
+                    <div className="flex h-10 w-10 items-center justify-center bg-orange-600 text-sm font-bold text-white">
+                      {coupon.symbol}
+                    </div>
+
+                    <h3 className="mt-4 text-sm font-extrabold text-slate-950">
+                      {coupon.title}
+                    </h3>
+
+                    <p className="mt-2 text-xs leading-5 text-slate-600">
+                      {coupon.description}
                     </p>
                   </div>
+                ))}
+              </div>
 
-                  <Gift className="h-6 w-6 text-brand-500" />
-                </div>
+              <div className="mt-6">
+                <p className="font-mono text-xs font-bold uppercase tracking-[0.2em] text-orange-600">
+                  Conditions configurables
+                </p>
 
-                <div className="mt-5 grid gap-3 sm:grid-cols-2">
-                  {couponTypes.map((coupon) => (
-                    <div
-                      key={coupon.title}
-                      className="rounded-2xl bg-slate-50 p-5"
-                    >
-                      <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-white text-sm font-bold text-brand-600 shadow-sm">
-                        {coupon.symbol}
+                <div className="mt-4 grid gap-px border border-slate-300 bg-slate-300 sm:grid-cols-2">
+                  {restrictions.map((item) => (
+                    <div key={item.title} className="flex gap-3 bg-white p-4">
+                      <item.icon className="mt-0.5 h-4 w-4 shrink-0 text-orange-600" />
+
+                      <div>
+                        <p className="text-xs font-bold text-slate-900">
+                          {item.title}
+                        </p>
+                        <p className="mt-1 text-[11px] leading-4 text-slate-500">
+                          {item.description}
+                        </p>
                       </div>
-
-                      <h3 className="mt-4 text-sm font-semibold text-slate-900">
-                        {coupon.title}
-                      </h3>
-
-                      <p className="mt-2 text-xs leading-5 text-slate-500">
-                        {coupon.description}
-                      </p>
                     </div>
                   ))}
-                </div>
-
-                <div className="mt-5 border-t border-slate-100 pt-5">
-                  <p className="text-xs font-semibold uppercase tracking-wider text-slate-400">
-                    Conditions configurables
-                  </p>
-
-                  <div className="mt-4 grid gap-3 sm:grid-cols-2">
-                    {restrictions.map((item) => (
-                      <div
-                        key={item.title}
-                        className="flex gap-3 rounded-xl border border-slate-100 p-3"
-                      >
-                        <item.icon className="mt-0.5 h-4 w-4 shrink-0 text-brand-500" />
-
-                        <div>
-                          <p className="text-xs font-semibold text-slate-800">
-                            {item.title}
-                          </p>
-                          <p className="mt-1 text-[11px] leading-4 text-slate-400">
-                            {item.description}
-                          </p>
-                        </div>
-                      </div>
-                    ))}
-                  </div>
                 </div>
               </div>
             </div>
@@ -918,56 +942,78 @@ export function FideliteClient() {
       {/* =========================================================
           FAQ
       ========================================================== */}
-      <section className="py-20 sm:py-28">
-        <div className="mx-auto max-w-4xl px-6 lg:px-8">
-          <SectionTitle
-            eyebrow="FAQ"
-            title="Les questions fréquentes"
-            description="Quelques réponses aux questions que vous pouvez vous poser avant de mettre en place votre programme."
-          />
+      <section className="border-y border-slate-200 bg-slate-100 py-20 sm:py-28">
+        <div className="mx-auto max-w-7xl px-6 lg:px-8">
+          <div className="grid gap-12 lg:grid-cols-[0.8fr_1.2fr]">
+            <div>
+              <span className="font-mono text-xs font-bold uppercase tracking-[0.25em] text-orange-600">
+                FAQ
+              </span>
 
-          <div className="mt-12 space-y-3">
-            {faqs.map((faq, index) => {
-              const isOpen = openFaq === index;
+              <h2 className="mt-4 text-3xl font-extrabold tracking-tight text-slate-950 sm:text-4xl">
+                Les questions <span className="text-orange-600">fréquentes.</span>
+              </h2>
 
-              return (
-                <div
-                  key={faq.question}
-                  className="overflow-hidden rounded-2xl border border-slate-200 bg-white"
-                >
-                  <button
-                    type="button"
-                    onClick={() => setOpenFaq(isOpen ? null : index)}
-                    className="flex w-full items-center justify-between gap-5 px-6 py-5 text-left"
+              <p className="mt-5 text-lg leading-relaxed text-slate-600">
+                Quelques réponses aux questions que vous pouvez vous poser
+                avant de mettre en place votre programme.
+              </p>
+            </div>
+
+            <div className="border-t-2 border-slate-950">
+              {faqs.map((faq, index) => {
+                const isOpen = openFaq === index;
+
+                return (
+                  <div
+                    key={faq.question}
+                    className={`border-b border-slate-300 transition-colors ${
+                      isOpen ? 'bg-white' : 'bg-transparent'
+                    }`}
                   >
-                    <span className="text-sm font-semibold text-slate-900 sm:text-base">
-                      {faq.question}
-                    </span>
+                    <button
+                      type="button"
+                      onClick={() => setOpenFaq(isOpen ? null : index)}
+                      className="flex w-full items-center justify-between gap-5 px-5 py-5 text-left"
+                    >
+                      <span className="flex items-center gap-4">
+                        <span className="font-mono text-xs font-bold text-orange-600">
+                          0{index + 1}
+                        </span>
+                        <span className="text-sm font-bold text-slate-950 sm:text-base">
+                          {faq.question}
+                        </span>
+                      </span>
 
-                    <ChevronDown
-                      className={`h-5 w-5 shrink-0 text-slate-400 transition-transform duration-300 ${
-                        isOpen ? 'rotate-180 text-brand-500' : ''
-                      }`}
-                    />
-                  </button>
+                      <span
+                        className={`flex h-8 w-8 shrink-0 items-center justify-center text-white transition-colors ${
+                          isOpen ? 'bg-orange-600' : 'bg-slate-950'
+                        }`}
+                      >
+                        {isOpen ? (
+                          <Minus className="h-4 w-4" />
+                        ) : (
+                          <Plus className="h-4 w-4" />
+                        )}
+                      </span>
+                    </button>
 
-                  <motion.div
-                    initial={false}
-                    animate={{
-                      height: isOpen ? 'auto' : 0,
-                      opacity: isOpen ? 1 : 0,
-                    }}
-                    className="overflow-hidden"
-                  >
-                    <div className="border-t border-slate-100 px-6 pb-6 pt-4">
-                      <p className="text-sm leading-6 text-slate-500">
+                    <motion.div
+                      initial={false}
+                      animate={{
+                        height: isOpen ? 'auto' : 0,
+                        opacity: isOpen ? 1 : 0,
+                      }}
+                      className="overflow-hidden"
+                    >
+                      <p className="px-5 pb-6 pl-14 text-sm leading-6 text-slate-600">
                         {faq.answer}
                       </p>
-                    </div>
-                  </motion.div>
-                </div>
-              );
-            })}
+                    </motion.div>
+                  </div>
+                );
+              })}
+            </div>
           </div>
         </div>
       </section>
@@ -975,31 +1021,38 @@ export function FideliteClient() {
       {/* =========================================================
           CTA
       ========================================================== */}
-      <section className="pb-20 sm:pb-28">
-        <div className="mx-auto max-w-7xl px-6 lg:px-8">
-          <div className="relative overflow-hidden rounded-3xl bg-slate-900 px-7 py-14 sm:px-12 sm:py-16">
-            <div className="absolute -right-20 -top-20 h-72 w-72 rounded-full bg-brand-500/20 blur-3xl" />
-            <div className="absolute -bottom-20 -left-20 h-72 w-72 rounded-full bg-indigo-500/10 blur-3xl" />
+      <section className="bg-white px-6 py-20 sm:py-28 lg:px-8">
+        <div className="relative mx-auto max-w-7xl overflow-hidden bg-slate-950">
+          <div className="absolute left-0 top-0 h-2 w-full bg-orange-500" aria-hidden="true" />
 
-            <div className="relative mx-auto max-w-3xl text-center">
-              <div className="mx-auto flex h-14 w-14 items-center justify-center rounded-2xl bg-brand-500/15 text-brand-300">
-                <HeartHandshake className="h-7 w-7" />
+          <div className="relative px-8 py-14 sm:px-12 lg:px-16 lg:py-16">
+            <div className="absolute -right-20 -top-20 h-64 w-64 rounded-full bg-orange-600/25 blur-3xl" />
+
+            <div className="relative flex flex-col gap-8 lg:flex-row lg:items-center lg:justify-between">
+              <div className="max-w-2xl">
+                <div className="flex items-center gap-3">
+                  <HeartHandshake className="h-5 w-5 text-orange-400" />
+
+                  <span className="font-mono text-xs font-bold uppercase tracking-[0.2em] text-orange-400">
+                    Fidélisation
+                  </span>
+                </div>
+
+                <h2 className="mt-4 text-3xl font-extrabold tracking-tight text-white sm:text-4xl">
+                  Faites de la fidélité un véritable levier de croissance.
+                </h2>
+
+                <p className="mt-4 text-lg leading-relaxed text-slate-300">
+                  Parlons de votre activité et construisons ensemble un
+                  programme de fidélisation adapté à vos objectifs et à vos
+                  clients.
+                </p>
               </div>
 
-              <h2 className="mt-6 text-3xl font-bold tracking-tight text-white sm:text-4xl">
-                Faites de la fidélité un véritable levier de croissance
-              </h2>
-
-              <p className="mx-auto mt-5 max-w-2xl text-base leading-7 text-slate-400">
-                Parlons de votre activité et construisons ensemble un
-                programme de fidélisation adapté à vos objectifs et à vos
-                clients.
-              </p>
-
-              <div className="mt-8 flex flex-col justify-center gap-3 sm:flex-row">
+              <div className="flex shrink-0 flex-col gap-3 sm:flex-row lg:flex-col">
                 <a
                   href="/#contact"
-                  className="group inline-flex items-center justify-center gap-2 rounded-xl bg-brand-500 px-6 py-3.5 text-sm font-semibold text-white transition-all hover:bg-brand-400"
+                  className="group inline-flex items-center justify-center gap-3 bg-orange-600 px-7 py-4 text-sm font-bold uppercase tracking-wider text-white transition-all hover:bg-white hover:text-slate-950"
                 >
                   Demander une démo
                   <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
@@ -1007,7 +1060,7 @@ export function FideliteClient() {
 
                 <a
                   href="/"
-                  className="inline-flex items-center justify-center gap-2 rounded-xl border border-white/10 bg-white/5 px-6 py-3.5 text-sm font-semibold text-white transition-all hover:bg-white/10"
+                  className="inline-flex items-center justify-center gap-2 border border-white/30 px-7 py-4 text-sm font-bold uppercase tracking-wider text-white transition-colors hover:bg-white/10"
                 >
                   Retour à l'accueil
                 </a>

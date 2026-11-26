@@ -1,3 +1,4 @@
+import type { ElementType } from 'react';
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import {
@@ -199,106 +200,110 @@ const workflow = [
 ];
 
 function FeatureCard({
+  index,
   icon: Icon,
   title,
   description,
   items,
 }: {
-  icon: typeof Boxes;
+  index: string;
+  icon: ElementType;
   title: string;
   description: string;
   items: string[];
 }) {
   return (
-    <motion.div
-      whileHover={{ y: -5 }}
-      transition={{ duration: 0.25 }}
-      className="rounded-2xl border border-slate-200 bg-white p-7 shadow-sm transition-shadow hover:shadow-premium"
-    >
-      <div className="flex h-12 w-12 items-center justify-center rounded-xl border border-brand-100 bg-brand-50">
-        <Icon className="h-6 w-6 text-brand-600" />
+    <div className="group relative h-full bg-white p-7 transition-colors duration-300 hover:bg-slate-50">
+      <span className="absolute right-6 top-6 font-mono text-xs font-bold text-orange-600">
+        {index}
+      </span>
+
+      <div className="flex h-12 w-12 items-center justify-center bg-slate-950 text-orange-400">
+        <Icon className="h-6 w-6" />
       </div>
 
-      <h3 className="mt-5 font-display text-xl font-semibold text-slate-900">
+      <h3 className="mt-5 pr-8 font-display text-xl font-extrabold text-slate-950">
         {title}
       </h3>
 
-      <p className="mt-3 text-sm leading-relaxed text-slate-500">
+      <p className="mt-3 text-sm leading-relaxed text-slate-600">
         {description}
       </p>
 
-      <ul className="mt-5 space-y-2.5">
+      <ul className="mt-5 space-y-2.5 border-t border-slate-200 pt-5">
         {items.map((item) => (
           <li
             key={item}
-            className="flex items-start gap-2 text-sm text-slate-700"
+            className="flex items-start gap-2.5 text-sm text-slate-700"
           >
-            <Check className="mt-0.5 h-4 w-4 shrink-0 text-accent-500" />
+            <Check className="mt-0.5 h-4 w-4 shrink-0 text-orange-600" />
             <span>{item}</span>
           </li>
         ))}
       </ul>
-    </motion.div>
+    </div>
   );
 }
 
 function SectorCard({
+  index,
   icon: Icon,
   title,
   description,
   items,
 }: {
-  icon: typeof Store;
+  index: string;
+  icon: ElementType;
   title: string;
   description: string;
   items: string[];
 }) {
   return (
-    <motion.div
-      whileHover={{ y: -5 }}
-      transition={{ duration: 0.25 }}
-      className="rounded-2xl border border-slate-200 bg-white p-7"
-    >
-      <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-slate-900">
-        <Icon className="h-6 w-6 text-white" />
+    <div className="group relative h-full border border-slate-200 border-t-4 border-t-orange-600 bg-white p-7 transition-all duration-300 hover:-translate-y-1 hover:bg-slate-950 hover:shadow-xl">
+      <span className="absolute right-6 top-6 font-mono text-xs font-bold text-orange-600">
+        {index}
+      </span>
+
+      <div className="flex h-12 w-12 items-center justify-center bg-slate-950 text-orange-400 transition-colors group-hover:bg-orange-600 group-hover:text-white">
+        <Icon className="h-6 w-6" />
       </div>
 
-      <h3 className="mt-5 font-display text-xl font-semibold text-slate-900">
+      <h3 className="mt-5 font-display text-xl font-extrabold text-slate-950 transition-colors group-hover:text-white">
         {title}
       </h3>
 
-      <p className="mt-3 text-sm leading-relaxed text-slate-500">
+      <p className="mt-3 text-sm leading-relaxed text-slate-600 transition-colors group-hover:text-slate-300">
         {description}
       </p>
 
-      <ul className="mt-5 space-y-2">
+      <ul className="mt-5 space-y-2 border-t border-slate-200 pt-5 transition-colors group-hover:border-white/20">
         {items.map((item) => (
           <li
             key={item}
-            className="flex items-center gap-2 text-sm text-slate-700"
+            className="flex items-center gap-2.5 text-sm text-slate-700 transition-colors group-hover:text-white"
           >
-            <Check className="h-3.5 w-3.5 text-accent-500" />
+            <Check className="h-4 w-4 shrink-0 text-orange-600 group-hover:text-orange-400" />
             {item}
           </li>
         ))}
       </ul>
-    </motion.div>
+    </div>
   );
 }
 
 export function GestionStocks() {
   return (
-    <div className="bg-white">
+    <div className="bg-white text-slate-800">
       {/* =========================================================
-          HERO
+          HERO (inchangé)
       ========================================================== */}
       <section className="relative overflow-hidden bg-slate-50 py-20 lg:py-28">
-        <div className="absolute inset-0 bg-gradient-to-br from-brand-50/70 via-transparent to-accent-50/30" />
+        <div className="absolute inset-0 bg-gradient-to-br from-orange-50/70 via-transparent to-orange-100/40" />
 
         <div className="relative mx-auto max-w-7xl px-6 lg:px-8">
           <Link
             to="/#solutions"
-            className="inline-flex items-center gap-2 text-sm font-medium text-slate-500 transition-colors hover:text-brand-600"
+            className="inline-flex items-center gap-2 text-sm font-medium text-slate-500 transition-colors hover:text-orange-600"
           >
             <ArrowLeft className="h-4 w-4" />
             Retour aux solutions
@@ -311,14 +316,14 @@ export function GestionStocks() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6 }}
             >
-              <div className="inline-flex items-center gap-2 rounded-full border border-brand-200 bg-white px-4 py-2 text-sm font-semibold text-brand-700 shadow-sm">
+              <div className="inline-flex items-center gap-2 rounded-full border border-orange-200 bg-white px-4 py-2 text-sm font-semibold text-orange-700 shadow-sm">
                 <Boxes className="h-4 w-4" />
                 Gestion des stocks
               </div>
 
               <h1 className="mt-6 font-display text-4xl font-bold leading-tight tracking-tight text-slate-900 sm:text-5xl lg:text-6xl">
                 Une gestion des stocks
-                <span className="block text-brand-600">
+                <span className="block text-orange-600">
                   plus simple et plus précise
                 </span>
               </h1>
@@ -349,7 +354,7 @@ export function GestionStocks() {
               <div className="mt-9 flex flex-wrap gap-4">
                 <Link
                   to="/#contact"
-                  className="inline-flex items-center gap-2 rounded-xl bg-brand-600 px-6 py-3.5 text-sm font-semibold text-white shadow-sm transition-all hover:bg-brand-700 hover:shadow-lg"
+                  className="inline-flex items-center gap-2 rounded-xl bg-orange-600 px-6 py-3.5 text-sm font-semibold text-white shadow-sm transition-all hover:bg-orange-700 hover:shadow-lg"
                 >
                   Demander une étude
                   <ArrowUpRight className="h-4 w-4" />
@@ -357,7 +362,7 @@ export function GestionStocks() {
 
                 <a
                   href="#fonctionnalites"
-                  className="inline-flex items-center gap-2 rounded-xl border border-slate-200 bg-white px-6 py-3.5 text-sm font-semibold text-slate-700 transition-all hover:border-brand-200 hover:text-brand-600"
+                  className="inline-flex items-center gap-2 rounded-xl border border-slate-200 bg-white px-6 py-3.5 text-sm font-semibold text-slate-700 transition-all hover:border-orange-200 hover:text-orange-600"
                 >
                   Découvrir la solution
                 </a>
@@ -372,7 +377,7 @@ export function GestionStocks() {
               className="relative"
             >
               <div className="relative overflow-hidden rounded-3xl border border-slate-200 bg-white p-4 shadow-premium">
-                <div className="rounded-2xl bg-gradient-to-br from-slate-900 via-slate-800 to-brand-900 p-5 sm:p-7">
+                <div className="rounded-2xl bg-gradient-to-br from-slate-900 via-slate-800 to-slate-950 p-5 sm:p-7">
                   {/* Dashboard header */}
                   <div className="flex items-center justify-between border-b border-white/10 pb-5">
                     <div>
@@ -384,8 +389,8 @@ export function GestionStocks() {
                       </p>
                     </div>
 
-                    <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-brand-500/10">
-                      <BarChart3 className="h-5 w-5 text-brand-300" />
+                    <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-orange-500/10">
+                      <BarChart3 className="h-5 w-5 text-orange-400" />
                     </div>
                   </div>
 
@@ -439,8 +444,8 @@ export function GestionStocks() {
                       </div>
 
                       <div className="flex items-center gap-3">
-                        <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-brand-500/10">
-                          <ArrowRightLeft className="h-4 w-4 text-brand-300" />
+                        <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-orange-500/10">
+                          <ArrowRightLeft className="h-4 w-4 text-orange-400" />
                         </div>
 
                         <div className="flex-1">
@@ -448,7 +453,7 @@ export function GestionStocks() {
                           <div className="mt-1.5 h-1.5 w-20 rounded-full bg-white/5" />
                         </div>
 
-                        <span className="text-xs text-brand-300">
+                        <span className="text-xs text-orange-400">
                           Transfert
                         </span>
                       </div>
@@ -475,8 +480,8 @@ export function GestionStocks() {
               {/* Floating badge */}
               <div className="absolute -bottom-5 -left-5 hidden rounded-2xl border border-slate-200 bg-white p-4 shadow-lg sm:block">
                 <div className="flex items-center gap-3">
-                  <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-brand-50">
-                    <Zap className="h-5 w-5 text-brand-600" />
+                  <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-orange-50">
+                    <Zap className="h-5 w-5 text-orange-600" />
                   </div>
 
                   <div>
@@ -497,28 +502,30 @@ export function GestionStocks() {
       {/* =========================================================
           INTRO
       ========================================================== */}
-      <section className="py-20 lg:py-28">
+      <section className="bg-white py-20 lg:py-28">
         <div className="mx-auto max-w-7xl px-6 lg:px-8">
-          <div className="mx-auto max-w-3xl text-center">
-            <span className="text-sm font-semibold uppercase tracking-wider text-brand-600">
-              Une meilleure visibilité
-            </span>
-
-            <h2 className="mt-4 font-display text-3xl font-bold tracking-tight text-slate-900 sm:text-4xl">
-              Gardez le contrôle sur chaque
-              <span className="block">
-                mouvement de votre stock.
+          <div className="grid gap-8 border-t-2 border-slate-950 pt-10 lg:grid-cols-[1fr_1.1fr] lg:gap-16">
+            <div>
+              <span className="font-mono text-xs font-bold uppercase tracking-[0.25em] text-orange-600">
+                Une meilleure visibilité
               </span>
-            </h2>
 
-            <p className="mt-5 text-lg leading-relaxed text-slate-500">
+              <h2 className="mt-4 font-display text-3xl font-extrabold leading-tight tracking-tight text-slate-950 sm:text-4xl">
+                Gardez le contrôle sur chaque
+                <span className="block text-orange-600">
+                  mouvement de votre stock.
+                </span>
+              </h2>
+            </div>
+
+            <p className="text-lg leading-relaxed text-slate-600">
               Une bonne gestion des stocks permet de limiter les ruptures,
               mieux organiser les approvisionnements et donner à vos équipes
               une vision claire des produits disponibles.
             </p>
           </div>
 
-          <div className="mt-14 grid gap-5 md:grid-cols-3">
+          <div className="mt-14 grid gap-4 md:grid-cols-3">
             {advantages.map((item, index) => {
               const Icon = item.icon;
 
@@ -532,17 +539,21 @@ export function GestionStocks() {
                     duration: 0.45,
                     delay: index * 0.08,
                   }}
-                  className="rounded-2xl border border-slate-200 bg-slate-50 p-7"
+                  className="group relative border border-slate-200 border-t-4 border-t-orange-600 bg-white p-7 transition-colors duration-300 hover:bg-orange-600"
                 >
-                  <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-white shadow-sm">
-                    <Icon className="h-6 w-6 text-brand-600" />
+                  <span className="absolute right-6 top-6 font-mono text-xs font-bold text-orange-600 transition-colors group-hover:text-white/80">
+                    0{index + 1}
+                  </span>
+
+                  <div className="flex h-12 w-12 items-center justify-center bg-slate-950 text-orange-400 transition-colors group-hover:bg-white group-hover:text-orange-600">
+                    <Icon className="h-6 w-6" />
                   </div>
 
-                  <h3 className="mt-5 font-display text-xl font-semibold text-slate-900">
+                  <h3 className="mt-5 font-display text-xl font-extrabold text-slate-950 transition-colors group-hover:text-white">
                     {item.title}
                   </h3>
 
-                  <p className="mt-3 text-sm leading-relaxed text-slate-500">
+                  <p className="mt-3 text-sm leading-relaxed text-slate-600 transition-colors group-hover:text-white">
                     {item.description}
                   </p>
                 </motion.div>
@@ -557,56 +568,65 @@ export function GestionStocks() {
       ========================================================== */}
       <section
         id="fonctionnalites"
-        className="bg-slate-50 py-20 lg:py-28"
+        className="border-y border-slate-200 bg-slate-100 py-20 lg:py-28"
       >
         <div className="mx-auto max-w-7xl px-6 lg:px-8">
-          <div className="max-w-2xl">
-            <span className="text-sm font-semibold uppercase tracking-wider text-brand-600">
-              Fonctionnalités
-            </span>
+          <div className="grid items-start gap-8 lg:grid-cols-[0.8fr_1.6fr] lg:gap-10">
+            {/* Panneau noir */}
+            <div className="border-t-[6px] border-orange-500 bg-slate-950 p-8 text-white sm:p-10 lg:sticky lg:top-28">
+              <span className="font-mono text-xs font-bold uppercase tracking-[0.25em] text-orange-400">
+                Fonctionnalités
+              </span>
 
-            <h2 className="mt-4 font-display text-3xl font-bold tracking-tight text-slate-900 sm:text-4xl">
-              Tout ce qu’il faut pour piloter votre stock.
-            </h2>
+              <h2 className="mt-4 font-display text-3xl font-extrabold leading-tight tracking-tight sm:text-4xl">
+                Tout ce qu’il faut <span className="text-orange-400">pour piloter votre stock.</span>
+              </h2>
 
-            <p className="mt-5 text-lg leading-relaxed text-slate-500">
-              Une solution structurée pour suivre vos produits, vos
-              mouvements et vos besoins de réapprovisionnement au quotidien.
-            </p>
-          </div>
+              <p className="mt-5 text-sm leading-7 text-slate-300">
+                Une solution structurée pour suivre vos produits, vos
+                mouvements et vos besoins de réapprovisionnement au quotidien.
+              </p>
 
-          <div className="mt-12 grid gap-5 md:grid-cols-2">
-            {features.map((feature, index) => (
-              <motion.div
-                key={feature.title}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{
-                  duration: 0.45,
-                  delay: index * 0.07,
-                }}
-              >
-                <FeatureCard {...feature} />
-              </motion.div>
-            ))}
+              <p className="mt-8 font-mono text-6xl font-extrabold text-orange-400">04</p>
+              <p className="text-xs font-bold uppercase tracking-[0.2em] text-slate-400">
+                modules clés
+              </p>
+            </div>
+
+            {/* Grille */}
+            <div className="grid gap-px border border-slate-300 bg-slate-300 md:grid-cols-2">
+              {features.map((feature, index) => (
+                <motion.div
+                  key={feature.title}
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{
+                    duration: 0.45,
+                    delay: index * 0.07,
+                  }}
+                >
+                  <FeatureCard index={`0${index + 1}`} {...feature} />
+                </motion.div>
+              ))}
+            </div>
           </div>
         </div>
       </section>
 
       {/* =========================================================
-          PILOTAGE
+          PILOTAGE (bande noire)
       ========================================================== */}
-      <section className="bg-slate-950 py-20 text-white lg:py-28">
+      <section className="border-t-[6px] border-orange-500 bg-slate-950 py-20 text-white lg:py-28">
         <div className="mx-auto max-w-7xl px-6 lg:px-8">
           <div className="grid gap-14 lg:grid-cols-2 lg:items-center">
             <div>
-              <span className="text-sm font-semibold uppercase tracking-wider text-brand-300">
+              <span className="font-mono text-xs font-bold uppercase tracking-[0.25em] text-orange-400">
                 Pilotage & organisation
               </span>
 
-              <h2 className="mt-4 font-display text-3xl font-bold tracking-tight sm:text-4xl">
-                Une gestion pensée pour simplifier votre quotidien.
+              <h2 className="mt-4 font-display text-3xl font-extrabold leading-tight tracking-tight sm:text-4xl">
+                Une gestion pensée <span className="text-orange-400">pour simplifier votre quotidien.</span>
               </h2>
 
               <p className="mt-5 max-w-xl text-lg leading-relaxed text-slate-300">
@@ -615,25 +635,25 @@ export function GestionStocks() {
                 claire, plus structurée et plus efficace.
               </p>
 
-              <div className="mt-8 grid gap-6 sm:grid-cols-2">
+              <div className="mt-8 grid gap-px border border-white/15 bg-white/15 sm:grid-cols-2">
                 {managementFeatures.map((feature) => {
                   const Icon = feature.icon;
 
                   return (
                     <div
                       key={feature.title}
-                      className="flex gap-3"
+                      className="flex gap-3 bg-slate-950 p-5 transition-colors duration-300 hover:bg-slate-900"
                     >
-                      <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-white/10">
-                        <Icon className="h-5 w-5 text-brand-300" />
+                      <div className="flex h-10 w-10 shrink-0 items-center justify-center bg-orange-600 text-white">
+                        <Icon className="h-5 w-5" />
                       </div>
 
                       <div>
-                        <h3 className="font-semibold text-white">
+                        <h3 className="font-bold text-white">
                           {feature.title}
                         </h3>
 
-                        <p className="mt-1 text-sm leading-relaxed text-slate-400">
+                        <p className="mt-1 text-sm leading-relaxed text-slate-300">
                           {feature.description}
                         </p>
                       </div>
@@ -645,36 +665,36 @@ export function GestionStocks() {
 
             {/* Dashboard illustration */}
             <div className="relative">
-              <div className="rounded-3xl border border-white/10 bg-white/5 p-6 backdrop-blur-sm sm:p-8">
-                <div className="rounded-2xl border border-white/10 bg-slate-900 p-6">
-                  <div className="flex items-center justify-between border-b border-white/10 pb-5">
+              <div className="border border-white/15 bg-white/5 p-6 sm:p-8">
+                <div className="border-t-4 border-orange-500 bg-slate-900 p-6">
+                  <div className="flex items-center justify-between border-b border-white/15 pb-5">
                     <div>
-                      <p className="text-xs uppercase tracking-wider text-slate-500">
+                      <p className="font-mono text-xs uppercase tracking-[0.2em] text-slate-400">
                         Vue générale
                       </p>
 
-                      <p className="mt-1 text-lg font-semibold text-white">
+                      <p className="mt-1 text-lg font-bold text-white">
                         État des stocks
                       </p>
                     </div>
 
-                    <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-brand-500/10">
-                      <Boxes className="h-5 w-5 text-brand-300" />
+                    <div className="flex h-10 w-10 items-center justify-center bg-orange-600 text-white">
+                      <Boxes className="h-5 w-5" />
                     </div>
                   </div>
 
-                  <div className="mt-6 grid grid-cols-2 gap-3">
-                    <div className="rounded-xl bg-white/5 p-4">
-                      <p className="text-xs text-slate-500">
+                  <div className="mt-6 grid grid-cols-2 gap-px bg-white/15">
+                    <div className="bg-slate-900 p-4">
+                      <p className="text-xs text-slate-400">
                         Références
                       </p>
 
-                      <div className="mt-3 h-2 w-20 rounded-full bg-brand-400/40" />
-                      <div className="mt-2 h-2 w-28 rounded-full bg-white/10" />
+                      <div className="mt-3 h-2 w-20 bg-orange-400/60" />
+                      <div className="mt-2 h-2 w-28 bg-white/15" />
                     </div>
 
-                    <div className="rounded-xl bg-white/5 p-4">
-                      <p className="text-xs text-slate-500">
+                    <div className="bg-slate-900 p-4">
+                      <p className="text-xs text-slate-400">
                         Disponibilité
                       </p>
 
@@ -687,46 +707,46 @@ export function GestionStocks() {
                     </div>
                   </div>
 
-                  <div className="mt-3 rounded-xl bg-white/5 p-4">
+                  <div className="mt-px bg-slate-800/60 p-4">
                     <div className="flex items-center justify-between">
-                      <span className="text-sm text-slate-400">
+                      <span className="text-sm text-slate-300">
                         Niveau de stock
                       </span>
 
-                      <span className="text-sm font-medium text-brand-300">
+                      <span className="text-sm font-medium text-orange-400">
                         Suivi
                       </span>
                     </div>
 
-                    <div className="mt-4 h-2 overflow-hidden rounded-full bg-white/10">
-                      <div className="h-full w-3/4 rounded-full bg-brand-500" />
+                    <div className="mt-4 h-2 overflow-hidden bg-white/15">
+                      <div className="h-full w-3/4 bg-orange-500" />
                     </div>
 
-                    <div className="mt-3 flex justify-between text-xs text-slate-500">
+                    <div className="mt-3 flex justify-between text-xs text-slate-400">
                       <span>Minimum</span>
                       <span>Disponible</span>
                       <span>Objectif</span>
                     </div>
                   </div>
 
-                  <div className="mt-3 grid grid-cols-3 gap-2">
-                    <div className="rounded-xl bg-emerald-500/5 p-3 text-center">
+                  <div className="mt-px grid grid-cols-3 gap-px bg-white/15">
+                    <div className="bg-slate-900 p-3 text-center">
                       <ArrowDownToLine className="mx-auto h-4 w-4 text-emerald-400" />
-                      <p className="mt-2 text-xs text-slate-500">
+                      <p className="mt-2 text-xs text-slate-300">
                         Entrées
                       </p>
                     </div>
 
-                    <div className="rounded-xl bg-brand-500/5 p-3 text-center">
-                      <ArrowRightLeft className="mx-auto h-4 w-4 text-brand-300" />
-                      <p className="mt-2 text-xs text-slate-500">
+                    <div className="bg-slate-900 p-3 text-center">
+                      <ArrowRightLeft className="mx-auto h-4 w-4 text-orange-400" />
+                      <p className="mt-2 text-xs text-slate-300">
                         Transferts
                       </p>
                     </div>
 
-                    <div className="rounded-xl bg-amber-500/5 p-3 text-center">
+                    <div className="bg-slate-900 p-3 text-center">
                       <BellRing className="mx-auto h-4 w-4 text-amber-400" />
-                      <p className="mt-2 text-xs text-slate-500">
+                      <p className="mt-2 text-xs text-slate-300">
                         Alertes
                       </p>
                     </div>
@@ -741,101 +761,107 @@ export function GestionStocks() {
       {/* =========================================================
           REAPPROVISIONNEMENT
       ========================================================== */}
-      <section className="py-20 lg:py-28">
+      <section className="bg-white py-20 lg:py-28">
         <div className="mx-auto max-w-7xl px-6 lg:px-8">
-          <div className="overflow-hidden rounded-3xl border border-brand-100 bg-brand-50/50">
-            <div className="grid lg:grid-cols-2">
-              <div className="p-8 sm:p-12 lg:p-14">
-                <div className="flex h-14 w-14 items-center justify-center rounded-2xl bg-white shadow-sm">
-                  <BellRing className="h-7 w-7 text-brand-600" />
-                </div>
-
-                <span className="mt-7 block text-sm font-semibold uppercase tracking-wider text-brand-600">
-                  Réapprovisionnement
-                </span>
-
-                <h2 className="mt-3 font-display text-3xl font-bold tracking-tight text-slate-900 sm:text-4xl">
-                  Anticipez vos besoins avant la rupture.
-                </h2>
-
-                <p className="mt-5 text-lg leading-relaxed text-slate-500">
-                  Définissez des seuils adaptés à vos produits et identifiez
-                  rapidement les références qui nécessitent une attention
-                  particulière.
-                </p>
-
-                <ul className="mt-7 space-y-3">
-                  {[
-                    'Seuils minimum personnalisables',
-                    'Identification des produits sensibles',
-                    'Alertes de stock faible',
-                    'Meilleure anticipation des besoins',
-                  ].map((benefit) => (
-                    <li
-                      key={benefit}
-                      className="flex items-start gap-3 text-sm text-slate-700"
-                    >
-                      <div className="mt-0.5 flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-brand-600">
-                        <Check className="h-3 w-3 text-white" />
-                      </div>
-
-                      {benefit}
-                    </li>
-                  ))}
-                </ul>
+          <div className="grid border border-slate-200 lg:grid-cols-2">
+            <div className="border-t-[6px] border-orange-500 bg-slate-50 p-8 sm:p-12 lg:p-14">
+              <div className="flex h-14 w-14 items-center justify-center bg-slate-950 text-orange-400">
+                <BellRing className="h-7 w-7" />
               </div>
 
-              <div className="relative flex min-h-[350px] items-center justify-center overflow-hidden bg-slate-900 p-10">
-                <div className="absolute inset-0 bg-gradient-to-br from-brand-900/80 to-slate-950" />
+              <span className="mt-7 block font-mono text-xs font-bold uppercase tracking-[0.25em] text-orange-600">
+                Réapprovisionnement
+              </span>
 
-                <div className="relative w-full max-w-sm">
-                  <div className="rounded-2xl border border-white/10 bg-white/5 p-5 backdrop-blur-sm">
-                    <div className="flex items-center gap-3 border-b border-white/10 pb-4">
-                      <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-amber-500/10">
-                        <BellRing className="h-5 w-5 text-amber-400" />
-                      </div>
+              <h2 className="mt-3 font-display text-3xl font-extrabold tracking-tight text-slate-950 sm:text-4xl">
+                Anticipez vos besoins avant la rupture.
+              </h2>
 
-                      <div>
-                        <p className="text-sm font-semibold text-white">
-                          Alerte stock
-                        </p>
+              <p className="mt-5 text-lg leading-relaxed text-slate-600">
+                Définissez des seuils adaptés à vos produits et identifiez
+                rapidement les références qui nécessitent une attention
+                particulière.
+              </p>
 
-                        <p className="text-xs text-slate-500">
-                          Action recommandée
-                        </p>
-                      </div>
+              <ul className="mt-7 border-t border-slate-200">
+                {[
+                  'Seuils minimum personnalisables',
+                  'Identification des produits sensibles',
+                  'Alertes de stock faible',
+                  'Meilleure anticipation des besoins',
+                ].map((benefit) => (
+                  <li
+                    key={benefit}
+                    className="flex items-start gap-3 border-b border-slate-200 py-3 text-sm font-medium text-slate-800"
+                  >
+                    <div className="mt-0.5 flex h-5 w-5 shrink-0 items-center justify-center bg-orange-600">
+                      <Check className="h-3 w-3 text-white" />
                     </div>
 
-                    <div className="mt-5 space-y-3">
-                      {[
-                        'Stock faible',
-                        'Réapprovisionnement',
-                        'Seuil minimum',
-                      ].map((item, index) => (
-                        <div
-                          key={item}
-                          className="flex items-center justify-between rounded-xl bg-white/5 p-4"
-                        >
-                          <div className="flex items-center gap-3">
-                            <span
-                              className={`h-2.5 w-2.5 rounded-full ${
-                                index === 0
-                                  ? 'bg-amber-400'
-                                  : index === 1
-                                    ? 'bg-brand-400'
-                                    : 'bg-slate-500'
-                              }`}
-                            />
+                    {benefit}
+                  </li>
+                ))}
+              </ul>
+            </div>
 
-                            <span className="text-sm text-slate-300">
-                              {item}
-                            </span>
-                          </div>
+            <div className="relative flex min-h-[350px] items-center justify-center overflow-hidden bg-slate-950 p-10">
+              <div
+                className="absolute inset-0 opacity-[0.08]"
+                style={{
+                  backgroundImage:
+                    'linear-gradient(to right, #fff 1px, transparent 1px), linear-gradient(to bottom, #fff 1px, transparent 1px)',
+                  backgroundSize: '40px 40px',
+                }}
+                aria-hidden="true"
+              />
 
-                          <ArrowUpRight className="h-4 w-4 text-slate-500" />
+              <div className="relative w-full max-w-sm">
+                <div className="border border-white/15 border-t-4 border-t-orange-500 bg-slate-900 p-5">
+                  <div className="flex items-center gap-3 border-b border-white/15 pb-4">
+                    <div className="flex h-10 w-10 items-center justify-center bg-amber-500/15">
+                      <BellRing className="h-5 w-5 text-amber-400" />
+                    </div>
+
+                    <div>
+                      <p className="text-sm font-bold text-white">
+                        Alerte stock
+                      </p>
+
+                      <p className="text-xs text-slate-400">
+                        Action recommandée
+                      </p>
+                    </div>
+                  </div>
+
+                  <div className="mt-5 space-y-px bg-white/15">
+                    {[
+                      'Stock faible',
+                      'Réapprovisionnement',
+                      'Seuil minimum',
+                    ].map((item, index) => (
+                      <div
+                        key={item}
+                        className="flex items-center justify-between bg-slate-900 p-4"
+                      >
+                        <div className="flex items-center gap-3">
+                          <span
+                            className={`h-2.5 w-2.5 rounded-full ${
+                              index === 0
+                                ? 'bg-amber-400'
+                                : index === 1
+                                  ? 'bg-orange-400'
+                                  : 'bg-slate-500'
+                            }`}
+                          />
+
+                          <span className="text-sm text-slate-200">
+                            {item}
+                          </span>
                         </div>
-                      ))}
-                    </div>
+
+                        <ArrowUpRight className="h-4 w-4 text-slate-400" />
+                      </div>
+                    ))}
                   </div>
                 </div>
               </div>
@@ -847,23 +873,23 @@ export function GestionStocks() {
       {/* =========================================================
           MULTI SITES
       ========================================================== */}
-      <section className="bg-slate-50 py-20 lg:py-28">
+      <section className="border-y border-slate-200 bg-slate-100 py-20 lg:py-28">
         <div className="mx-auto max-w-7xl px-6 lg:px-8">
           <div className="grid gap-12 lg:grid-cols-[0.85fr_1.15fr] lg:items-center">
             <div>
-              <div className="flex h-14 w-14 items-center justify-center rounded-2xl bg-white shadow-sm">
-                <Warehouse className="h-7 w-7 text-brand-600" />
+              <div className="flex h-14 w-14 items-center justify-center bg-slate-950 text-orange-400">
+                <Warehouse className="h-7 w-7" />
               </div>
 
-              <span className="mt-7 block text-sm font-semibold uppercase tracking-wider text-brand-600">
+              <span className="mt-7 block font-mono text-xs font-bold uppercase tracking-[0.25em] text-orange-600">
                 Multi-sites
               </span>
 
-              <h2 className="mt-3 font-display text-3xl font-bold tracking-tight text-slate-900 sm:text-4xl">
+              <h2 className="mt-3 font-display text-3xl font-extrabold tracking-tight text-slate-950 sm:text-4xl">
                 Un seul pilotage pour plusieurs emplacements.
               </h2>
 
-              <p className="mt-5 text-lg leading-relaxed text-slate-500">
+              <p className="mt-5 text-lg leading-relaxed text-slate-600">
                 Si votre activité fonctionne avec plusieurs magasins,
                 agences, dépôts ou sites, centralisez les informations tout
                 en conservant une visibilité sur chaque emplacement.
@@ -871,14 +897,14 @@ export function GestionStocks() {
 
               <Link
                 to="/#contact"
-                className="mt-8 inline-flex items-center gap-2 font-semibold text-brand-600 transition-colors hover:text-brand-700"
+                className="group mt-8 inline-flex items-center gap-3 bg-slate-950 px-6 py-4 text-sm font-bold uppercase tracking-wider text-white transition-colors hover:bg-orange-600"
               >
                 Parler de votre organisation
-                <ArrowUpRight className="h-4 w-4" />
+                <ArrowUpRight className="h-4 w-4 transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5" />
               </Link>
             </div>
 
-            <div className="grid gap-4 sm:grid-cols-2">
+            <div className="grid gap-px border border-slate-300 bg-slate-300 sm:grid-cols-2">
               {[
                 {
                   icon: Warehouse,
@@ -906,17 +932,17 @@ export function GestionStocks() {
                 return (
                   <div
                     key={item.title}
-                    className="rounded-2xl border border-slate-200 bg-white p-6"
+                    className="group bg-white p-6 transition-colors duration-300 hover:bg-slate-950"
                   >
-                    <div className="flex h-11 w-11 items-center justify-center rounded-xl bg-brand-50">
-                      <Icon className="h-5 w-5 text-brand-600" />
+                    <div className="flex h-11 w-11 items-center justify-center bg-slate-950 text-orange-400 transition-colors group-hover:bg-orange-600 group-hover:text-white">
+                      <Icon className="h-5 w-5" />
                     </div>
 
-                    <h3 className="mt-4 font-display text-lg font-semibold text-slate-900">
+                    <h3 className="mt-4 font-display text-lg font-extrabold text-slate-950 transition-colors group-hover:text-white">
                       {item.title}
                     </h3>
 
-                    <p className="mt-2 text-sm leading-relaxed text-slate-500">
+                    <p className="mt-2 text-sm leading-relaxed text-slate-600 transition-colors group-hover:text-slate-300">
                       {item.text}
                     </p>
                   </div>
@@ -930,24 +956,26 @@ export function GestionStocks() {
       {/* =========================================================
           SECTEURS
       ========================================================== */}
-      <section className="py-20 lg:py-28">
+      <section className="bg-white py-20 lg:py-28">
         <div className="mx-auto max-w-7xl px-6 lg:px-8">
-          <div className="mx-auto max-w-2xl text-center">
-            <span className="text-sm font-semibold uppercase tracking-wider text-brand-600">
-              Secteurs d’activité
-            </span>
+          <div className="mb-12 flex flex-col gap-4 border-b-2 border-slate-950 pb-6 md:flex-row md:items-end md:justify-between">
+            <div>
+              <span className="font-mono text-xs font-bold uppercase tracking-[0.25em] text-orange-600">
+                Secteurs d’activité
+              </span>
 
-            <h2 className="mt-4 font-display text-3xl font-bold tracking-tight text-slate-900 sm:text-4xl">
-              Une solution adaptée à votre environnement.
-            </h2>
+              <h2 className="mt-3 max-w-2xl font-display text-3xl font-extrabold tracking-tight text-slate-950 sm:text-4xl">
+                Une solution adaptée à votre environnement.
+              </h2>
+            </div>
 
-            <p className="mt-5 text-lg leading-relaxed text-slate-500">
+            <p className="max-w-sm text-sm leading-6 text-slate-600">
               Nous adaptons la gestion des stocks à votre organisation, vos
               produits et vos contraintes opérationnelles.
             </p>
           </div>
 
-          <div className="mt-12 grid gap-5 md:grid-cols-3">
+          <div className="grid gap-4 md:grid-cols-3">
             {sectors.map((sector, index) => (
               <motion.div
                 key={sector.title}
@@ -959,7 +987,7 @@ export function GestionStocks() {
                   delay: index * 0.08,
                 }}
               >
-                <SectorCard {...sector} />
+                <SectorCard index={`0${index + 1}`} {...sector} />
               </motion.div>
             ))}
           </div>
@@ -969,48 +997,48 @@ export function GestionStocks() {
       {/* =========================================================
           ACCOMPAGNEMENT
       ========================================================== */}
-      <section className="py-20 lg:py-28">
+      <section className="border-y border-slate-200 bg-slate-100 py-20 lg:py-28">
         <div className="mx-auto max-w-7xl px-6 lg:px-8">
           <div className="grid gap-12 lg:grid-cols-[0.8fr_1.2fr] lg:items-center">
             <div>
-              <span className="text-sm font-semibold uppercase tracking-wider text-brand-600">
+              <span className="font-mono text-xs font-bold uppercase tracking-[0.25em] text-orange-600">
                 Notre accompagnement
               </span>
 
-              <h2 className="mt-4 font-display text-3xl font-bold tracking-tight text-slate-900 sm:text-4xl">
+              <h2 className="mt-4 font-display text-3xl font-extrabold tracking-tight text-slate-950 sm:text-4xl">
                 De l’analyse au déploiement.
               </h2>
 
-              <p className="mt-5 text-lg leading-relaxed text-slate-500">
-                PC MAROC  vous accompagne dans la mise en place d’une
+              <p className="mt-5 text-lg leading-relaxed text-slate-600">
+                PC MAROC vous accompagne dans la mise en place d’une
                 organisation de stock adaptée à votre activité et à vos
                 objectifs.
               </p>
 
               <Link
                 to="/#contact"
-                className="mt-8 inline-flex items-center gap-2 font-semibold text-brand-600 transition-colors hover:text-brand-700"
+                className="group mt-8 inline-flex items-center gap-3 bg-slate-950 px-6 py-4 text-sm font-bold uppercase tracking-wider text-white transition-colors hover:bg-orange-600"
               >
                 Parler de votre projet
-                <ArrowUpRight className="h-4 w-4" />
+                <ArrowUpRight className="h-4 w-4 transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5" />
               </Link>
             </div>
 
-            <div className="grid gap-4 sm:grid-cols-2">
+            <div className="grid gap-px border border-slate-300 bg-slate-300 sm:grid-cols-2">
               {workflow.map((step) => (
                 <div
                   key={step.number}
-                  className="rounded-2xl border border-slate-200 bg-white p-6"
+                  className="group bg-white p-7 transition-colors duration-300 hover:bg-slate-950"
                 >
-                  <span className="text-sm font-bold text-brand-600">
+                  <span className="font-mono text-3xl font-extrabold text-orange-600">
                     {step.number}
                   </span>
 
-                  <h3 className="mt-3 font-display text-lg font-semibold text-slate-900">
+                  <h3 className="mt-4 font-display text-lg font-extrabold text-slate-950 transition-colors group-hover:text-white">
                     {step.title}
                   </h3>
 
-                  <p className="mt-2 text-sm leading-relaxed text-slate-500">
+                  <p className="mt-2 text-sm leading-relaxed text-slate-600 transition-colors group-hover:text-slate-300">
                     {step.text}
                   </p>
                 </div>
@@ -1023,23 +1051,24 @@ export function GestionStocks() {
       {/* =========================================================
           CTA
       ========================================================== */}
-      <section className="px-6 pb-20 lg:px-8 lg:pb-28">
-        <div className="mx-auto max-w-7xl overflow-hidden rounded-3xl bg-slate-900">
+      <section className="bg-white px-6 py-20 lg:px-8 lg:py-28">
+        <div className="relative mx-auto max-w-7xl overflow-hidden bg-slate-950">
+          <div className="absolute left-0 top-0 h-2 w-full bg-orange-500" aria-hidden="true" />
+
           <div className="relative px-8 py-14 sm:px-12 lg:px-16 lg:py-16">
-            <div className="absolute -right-20 -top-20 h-64 w-64 rounded-full bg-brand-600/20 blur-3xl" />
-            <div className="absolute -bottom-20 -left-20 h-64 w-64 rounded-full bg-accent-500/10 blur-3xl" />
+            <div className="absolute -right-20 -top-20 h-64 w-64 rounded-full bg-orange-600/25 blur-3xl" />
 
             <div className="relative flex flex-col gap-8 lg:flex-row lg:items-center lg:justify-between">
               <div className="max-w-2xl">
                 <div className="flex items-center gap-3">
-                  <PackageCheck className="h-5 w-5 text-brand-300" />
+                  <PackageCheck className="h-5 w-5 text-orange-400" />
 
-                  <span className="text-sm font-semibold text-brand-300">
+                  <span className="font-mono text-xs font-bold uppercase tracking-[0.2em] text-orange-400">
                     Optimisez votre gestion
                   </span>
                 </div>
 
-                <h2 className="mt-4 font-display text-3xl font-bold tracking-tight text-white sm:text-4xl">
+                <h2 className="mt-4 font-display text-3xl font-extrabold tracking-tight text-white sm:text-4xl">
                   Prêt à mieux maîtriser vos stocks ?
                 </h2>
 
@@ -1052,10 +1081,10 @@ export function GestionStocks() {
 
               <Link
                 to="/#contact"
-                className="inline-flex shrink-0 items-center justify-center gap-2 rounded-xl bg-white px-6 py-3.5 text-sm font-semibold text-slate-900 transition-all hover:bg-slate-100"
+                className="group inline-flex shrink-0 items-center justify-center gap-3 bg-orange-600 px-7 py-4 text-sm font-bold uppercase tracking-wider text-white transition-all hover:bg-white hover:text-slate-950"
               >
                 Demander une étude
-                <ArrowUpRight className="h-4 w-4" />
+                <ArrowUpRight className="h-4 w-4 transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5" />
               </Link>
             </div>
           </div>

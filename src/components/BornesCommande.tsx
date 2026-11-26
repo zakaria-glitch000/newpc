@@ -1,3 +1,4 @@
+import type { ElementType } from 'react';
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import {
@@ -179,123 +180,102 @@ const rfidBenefits = [
 ];
 
 function FeatureCard({
+  index,
   icon: Icon,
   title,
   description,
   items,
 }: {
-  icon: typeof Monitor;
+  index: string;
+  icon: ElementType;
   title: string;
   description: string;
   items: string[];
 }) {
   return (
-    <motion.div
-      whileHover={{ y: -5 }}
-      transition={{ duration: 0.25 }}
-      className="rounded-2xl border border-slate-200 bg-white p-7 shadow-sm transition-shadow hover:shadow-premium"
-    >
-      <div className="flex h-12 w-12 items-center justify-center rounded-xl border border-orange-100 bg-orange-50">
-        <Icon className="h-6 w-6 text-orange-600" />
+    <div className="group relative h-full bg-white p-7 transition-colors duration-300 hover:bg-slate-50">
+      <span className="absolute right-6 top-6 font-mono text-xs font-bold text-orange-500">
+        {index}
+      </span>
+
+      <div className="flex h-12 w-12 items-center justify-center bg-slate-950 text-orange-400">
+        <Icon className="h-6 w-6" />
       </div>
 
-      <h3 className="mt-5 font-display text-xl font-semibold text-slate-900">
+      <h3 className="mt-5 font-display text-xl font-extrabold text-slate-950">
         {title}
       </h3>
 
-      <p className="mt-3 text-sm leading-relaxed text-slate-500">
+      <p className="mt-3 text-sm leading-relaxed text-slate-600">
         {description}
       </p>
 
-      <ul className="mt-5 space-y-2.5">
+      <ul className="mt-5 space-y-2.5 border-t border-slate-200 pt-5">
         {items.map((item) => (
           <li
             key={item}
-            className="flex items-start gap-2 text-sm text-slate-700"
+            className="flex items-start gap-2.5 text-sm text-slate-700"
           >
-            <Check className="mt-0.5 h-4 w-4 shrink-0 text-amber-500" />
+            <Check className="mt-0.5 h-4 w-4 shrink-0 text-orange-600" />
             <span>{item}</span>
           </li>
         ))}
       </ul>
-    </motion.div>
+    </div>
   );
 }
 
 function SectorCard({
+  index,
   icon: Icon,
   title,
   description,
   items,
 }: {
-  icon: typeof Store;
+  index: string;
+  icon: ElementType;
   title: string;
   description: string;
   items: string[];
 }) {
   return (
-    <motion.div
-      whileHover={{ y: -5 }}
-      transition={{ duration: 0.25 }}
-      className="rounded-2xl border border-slate-200 bg-white p-7"
-    >
-      <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-slate-900">
-        <Icon className="h-6 w-6 text-white" />
+    <div className="group relative h-full border border-slate-200 border-t-4 border-t-orange-500 bg-white p-7 transition-all duration-300 hover:-translate-y-1 hover:bg-slate-950 hover:shadow-xl">
+      <span className="absolute right-6 top-6 font-mono text-xs font-bold text-orange-500">
+        {index}
+      </span>
+
+      <div className="flex h-12 w-12 items-center justify-center bg-slate-950 text-orange-400 transition-colors group-hover:bg-orange-500 group-hover:text-white">
+        <Icon className="h-6 w-6" />
       </div>
 
-      <h3 className="mt-5 font-display text-xl font-semibold text-slate-900">
+      <h3 className="mt-5 font-display text-xl font-extrabold text-slate-950 transition-colors group-hover:text-white">
         {title}
       </h3>
 
-      <p className="mt-3 text-sm leading-relaxed text-slate-500">
+      <p className="mt-3 text-sm leading-relaxed text-slate-600 transition-colors group-hover:text-slate-300">
         {description}
       </p>
 
-      <ul className="mt-5 space-y-2">
+      <ul className="mt-5 space-y-2 border-t border-slate-200 pt-5 transition-colors group-hover:border-white/20">
         {items.map((item) => (
           <li
             key={item}
-            className="flex items-center gap-2 text-sm text-slate-700"
+            className="flex items-center gap-2.5 text-sm text-slate-700 transition-colors group-hover:text-white"
           >
-            <Check className="h-3.5 w-3.5 text-amber-500" />
+            <Check className="h-4 w-4 shrink-0 text-orange-600 group-hover:text-orange-400" />
             {item}
           </li>
         ))}
       </ul>
-    </motion.div>
-  );
-}
-
-function SmartFeature({
-  icon: Icon,
-  title,
-  description,
-}: {
-  icon: typeof Settings2;
-  title: string;
-  description: string;
-}) {
-  return (
-    <div className="flex gap-4">
-      <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl border border-orange-200 bg-orange-50">
-        <Icon className="h-5 w-5 text-orange-600" />
-      </div>
-
-      <div>
-        <h3 className="font-semibold text-slate-900">{title}</h3>
-        <p className="mt-1.5 text-sm leading-relaxed text-slate-500">
-          {description}
-        </p>
-      </div>
     </div>
   );
 }
 
 export function BornesCommande() {
   return (
-    <div className="bg-white">
+    <div className="bg-white text-slate-800">
       {/* =========================================================
-          HERO
+          HERO (inchangé)
       ========================================================== */}
       <section className="relative overflow-hidden bg-slate-50 py-20 lg:py-28">
         <div className="absolute inset-0 bg-gradient-to-br from-orange-50/70 via-transparent to-amber-50/30" />
@@ -439,19 +419,21 @@ export function BornesCommande() {
       {/* =========================================================
           INTRO
       ========================================================== */}
-      <section className="py-20 lg:py-28">
+      <section className="bg-white py-20 lg:py-28">
         <div className="mx-auto max-w-7xl px-6 lg:px-8">
-          <div className="mx-auto max-w-3xl text-center">
-            <span className="text-sm font-semibold uppercase tracking-wider text-orange-600">
-              Une nouvelle expérience client
-            </span>
+          <div className="grid gap-8 border-t-2 border-slate-950 pt-10 lg:grid-cols-[1fr_1.1fr] lg:gap-16">
+            <div>
+              <span className="font-mono text-xs font-bold uppercase tracking-[0.25em] text-orange-600">
+                Une nouvelle expérience client
+              </span>
 
-            <h2 className="mt-4 font-display text-3xl font-bold tracking-tight text-slate-900 sm:text-4xl">
-              Plus d’autonomie pour vos clients,
-              <span className="block">plus de fluidité pour vos équipes.</span>
-            </h2>
+              <h2 className="mt-4 font-display text-3xl font-extrabold leading-tight tracking-tight text-slate-950 sm:text-4xl">
+                Plus d’autonomie pour vos clients,
+                <span className="block text-orange-600">plus de fluidité pour vos équipes.</span>
+              </h2>
+            </div>
 
-            <p className="mt-5 text-lg leading-relaxed text-slate-500">
+            <p className="text-lg leading-relaxed text-slate-600">
               Les bornes interactives permettent à vos clients de découvrir
               vos produits, passer leur commande et avancer dans leur parcours
               d’achat en toute autonomie. Une solution idéale pour réduire
@@ -460,7 +442,7 @@ export function BornesCommande() {
             </p>
           </div>
 
-          <div className="mt-14 grid gap-5 md:grid-cols-3">
+          <div className="mt-14 grid gap-4 md:grid-cols-3">
             {advantages.map((item, index) => {
               const Icon = item.icon;
 
@@ -471,17 +453,21 @@ export function BornesCommande() {
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
                   transition={{ duration: 0.45, delay: index * 0.08 }}
-                  className="rounded-2xl border border-slate-200 bg-slate-50 p-7"
+                  className="group relative border border-slate-200 border-t-4 border-t-orange-500 bg-white p-7 transition-colors duration-300 hover:bg-orange-500"
                 >
-                  <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-white shadow-sm">
-                    <Icon className="h-6 w-6 text-orange-600" />
+                  <span className="absolute right-6 top-6 font-mono text-xs font-bold text-orange-500 transition-colors group-hover:text-white/80">
+                    0{index + 1}
+                  </span>
+
+                  <div className="flex h-12 w-12 items-center justify-center bg-slate-950 text-orange-400 transition-colors group-hover:bg-white group-hover:text-orange-600">
+                    <Icon className="h-6 w-6" />
                   </div>
 
-                  <h3 className="mt-5 font-display text-xl font-semibold text-slate-900">
+                  <h3 className="mt-5 font-display text-xl font-extrabold text-slate-950 transition-colors group-hover:text-white">
                     {item.title}
                   </h3>
 
-                  <p className="mt-3 text-sm leading-relaxed text-slate-500">
+                  <p className="mt-3 text-sm leading-relaxed text-slate-600 transition-colors group-hover:text-orange-50">
                     {item.description}
                   </p>
                 </motion.div>
@@ -496,54 +482,63 @@ export function BornesCommande() {
       ========================================================== */}
       <section
         id="fonctionnalites"
-        className="bg-slate-50 py-20 lg:py-28"
+        className="border-y border-slate-200 bg-slate-100 py-20 lg:py-28"
       >
         <div className="mx-auto max-w-7xl px-6 lg:px-8">
-          <div className="max-w-2xl">
-            <span className="text-sm font-semibold uppercase tracking-wider text-orange-600">
-              Fonctionnalités
-            </span>
+          <div className="grid items-start gap-8 lg:grid-cols-[0.8fr_1.6fr] lg:gap-10">
+            {/* Panneau noir */}
+            <div className="border-t-[6px] border-orange-500 bg-slate-950 p-8 text-white sm:p-10 lg:sticky lg:top-28">
+              <span className="font-mono text-xs font-bold uppercase tracking-[0.25em] text-orange-400">
+                Fonctionnalités
+              </span>
 
-            <h2 className="mt-4 font-display text-3xl font-bold tracking-tight text-slate-900 sm:text-4xl">
-              Une borne pensée pour votre activité.
-            </h2>
+              <h2 className="mt-4 font-display text-3xl font-extrabold leading-tight tracking-tight sm:text-4xl">
+                Une borne pensée <span className="text-orange-400">pour votre activité.</span>
+              </h2>
 
-            <p className="mt-5 text-lg leading-relaxed text-slate-500">
-              Chaque fonctionnalité est conçue pour rendre le parcours client
-              plus simple tout en donnant à vos équipes les outils nécessaires
-              pour piloter votre activité.
-            </p>
-          </div>
+              <p className="mt-5 text-sm leading-7 text-slate-300">
+                Chaque fonctionnalité est conçue pour rendre le parcours client
+                plus simple tout en donnant à vos équipes les outils nécessaires
+                pour piloter votre activité.
+              </p>
 
-          <div className="mt-12 grid gap-5 md:grid-cols-2">
-            {features.map((feature, index) => (
-              <motion.div
-                key={feature.title}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.45, delay: index * 0.07 }}
-              >
-                <FeatureCard {...feature} />
-              </motion.div>
-            ))}
+              <p className="mt-8 font-mono text-6xl font-extrabold text-orange-500">04</p>
+              <p className="text-xs font-bold uppercase tracking-[0.2em] text-slate-400">
+                modules clés
+              </p>
+            </div>
+
+            {/* Grille */}
+            <div className="grid gap-px border border-slate-300 bg-slate-300 md:grid-cols-2">
+              {features.map((feature, index) => (
+                <motion.div
+                  key={feature.title}
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.45, delay: index * 0.07 }}
+                >
+                  <FeatureCard index={`0${index + 1}`} {...feature} />
+                </motion.div>
+              ))}
+            </div>
           </div>
         </div>
       </section>
 
       {/* =========================================================
-          LOGICIEL / PERSONNALISATION
+          LOGICIEL / PERSONNALISATION (bande noire)
       ========================================================== */}
-      <section className="bg-slate-950 py-20 text-white lg:py-28">
+      <section className="border-t-[6px] border-orange-500 bg-slate-950 py-20 text-white lg:py-28">
         <div className="mx-auto max-w-7xl px-6 lg:px-8">
           <div className="grid gap-14 lg:grid-cols-2 lg:items-center">
             <div>
-              <span className="text-sm font-semibold uppercase tracking-wider text-orange-300">
+              <span className="font-mono text-xs font-bold uppercase tracking-[0.25em] text-orange-400">
                 Logiciel & personnalisation
               </span>
 
-              <h2 className="mt-4 font-display text-3xl font-bold tracking-tight sm:text-4xl">
-                Une expérience adaptée à votre marque et à vos clients.
+              <h2 className="mt-4 font-display text-3xl font-extrabold leading-tight tracking-tight sm:text-4xl">
+                Une expérience adaptée <span className="text-orange-400">à votre marque et à vos clients.</span>
               </h2>
 
               <p className="mt-5 max-w-xl text-lg leading-relaxed text-slate-300">
@@ -552,22 +547,25 @@ export function BornesCommande() {
                 et les connexions nécessaires à votre activité.
               </p>
 
-              <div className="mt-8 grid gap-6 sm:grid-cols-2">
+              <div className="mt-8 grid gap-px border border-white/15 bg-white/15 sm:grid-cols-2">
                 {smartFeatures.map((feature) => {
                   const Icon = feature.icon;
 
                   return (
-                    <div key={feature.title} className="flex gap-3">
-                      <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-white/10">
-                        <Icon className="h-5 w-5 text-orange-300" />
+                    <div
+                      key={feature.title}
+                      className="flex gap-3 bg-slate-950 p-5 transition-colors duration-300 hover:bg-slate-900"
+                    >
+                      <div className="flex h-10 w-10 shrink-0 items-center justify-center bg-orange-500 text-white">
+                        <Icon className="h-5 w-5" />
                       </div>
 
                       <div>
-                        <h3 className="font-semibold text-white">
+                        <h3 className="font-bold text-white">
                           {feature.title}
                         </h3>
 
-                        <p className="mt-1 text-sm leading-relaxed text-slate-400">
+                        <p className="mt-1 text-sm leading-relaxed text-slate-300">
                           {feature.description}
                         </p>
                       </div>
@@ -578,42 +576,42 @@ export function BornesCommande() {
             </div>
 
             <div className="relative">
-              <div className="rounded-3xl border border-white/10 bg-white/5 p-6 backdrop-blur-sm sm:p-8">
-                <div className="rounded-2xl border border-white/10 bg-slate-900 p-6">
-                  <div className="flex items-center justify-between border-b border-white/10 pb-5">
+              <div className="border border-white/15 bg-white/5 p-6 sm:p-8">
+                <div className="border-t-4 border-orange-500 bg-slate-900 p-6">
+                  <div className="flex items-center justify-between border-b border-white/15 pb-5">
                     <div>
-                      <p className="text-xs uppercase tracking-wider text-slate-500">
+                      <p className="font-mono text-xs uppercase tracking-[0.2em] text-slate-400">
                         Pilotage
                       </p>
-                      <p className="mt-1 text-lg font-semibold text-white">
+                      <p className="mt-1 text-lg font-bold text-white">
                         Parc de bornes
                       </p>
                     </div>
 
-                    <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-orange-500/10">
-                      <BarChart3 className="h-5 w-5 text-orange-300" />
+                    <div className="flex h-10 w-10 items-center justify-center bg-orange-500 text-white">
+                      <BarChart3 className="h-5 w-5" />
                     </div>
                   </div>
 
-                  <div className="mt-6 grid grid-cols-2 gap-3">
-                    <div className="rounded-xl bg-white/5 p-4">
-                      <p className="text-xs text-slate-500">Bornes actives</p>
-                      <p className="mt-2 text-2xl font-bold text-white">
+                  <div className="mt-6 grid grid-cols-2 gap-px bg-white/15">
+                    <div className="bg-slate-900 p-4">
+                      <p className="text-xs text-slate-400">Bornes actives</p>
+                      <p className="mt-2 text-2xl font-extrabold text-white">
                         Actives
                       </p>
                     </div>
 
-                    <div className="rounded-xl bg-white/5 p-4">
-                      <p className="text-xs text-slate-500">Commandes</p>
-                      <p className="mt-2 text-2xl font-bold text-white">
+                    <div className="bg-slate-900 p-4">
+                      <p className="text-xs text-slate-400">Commandes</p>
+                      <p className="mt-2 text-2xl font-extrabold text-white">
                         Temps réel
                       </p>
                     </div>
                   </div>
 
-                  <div className="mt-3 rounded-xl bg-white/5 p-4">
+                  <div className="mt-px bg-slate-800/60 p-4">
                     <div className="flex items-center justify-between">
-                      <span className="text-sm text-slate-400">
+                      <span className="text-sm text-slate-300">
                         État du système
                       </span>
 
@@ -633,63 +631,69 @@ export function BornesCommande() {
       {/* =========================================================
           RFID
       ========================================================== */}
-      <section className="py-20 lg:py-28">
+      <section className="bg-white py-20 lg:py-28">
         <div className="mx-auto max-w-7xl px-6 lg:px-8">
-          <div className="overflow-hidden rounded-3xl border border-orange-100 bg-orange-50/50">
-            <div className="grid lg:grid-cols-2">
-              <div className="p-8 sm:p-12 lg:p-14">
-                <div className="flex h-14 w-14 items-center justify-center rounded-2xl bg-white shadow-sm">
-                  <Radio className="h-7 w-7 text-orange-600" />
-                </div>
-
-                <span className="mt-7 block text-sm font-semibold uppercase tracking-wider text-orange-600">
-                  Technologie RFID
-                </span>
-
-                <h2 className="mt-3 font-display text-3xl font-bold tracking-tight text-slate-900 sm:text-4xl">
-                  RFID : une technologie pour aller plus loin.
-                </h2>
-
-                <p className="mt-5 text-lg leading-relaxed text-slate-500">
-                  Selon votre activité, la RFID peut compléter votre solution
-                  afin d’automatiser certaines opérations et accélérer
-                  l’identification des produits ou des utilisateurs.
-                </p>
-
-                <ul className="mt-7 space-y-3">
-                  {rfidBenefits.map((benefit) => (
-                    <li
-                      key={benefit}
-                      className="flex items-start gap-3 text-sm text-slate-700"
-                    >
-                      <div className="mt-0.5 flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-orange-600">
-                        <Check className="h-3 w-3 text-white" />
-                      </div>
-
-                      {benefit}
-                    </li>
-                  ))}
-                </ul>
+          <div className="grid border border-slate-200 lg:grid-cols-2">
+            <div className="border-t-[6px] border-orange-500 bg-slate-50 p-8 sm:p-12 lg:p-14">
+              <div className="flex h-14 w-14 items-center justify-center bg-slate-950 text-orange-400">
+                <Radio className="h-7 w-7" />
               </div>
 
-              <div className="relative flex min-h-[350px] items-center justify-center overflow-hidden bg-slate-900 p-10">
-                <div className="absolute inset-0 bg-gradient-to-br from-orange-950/80 to-slate-950" />
+              <span className="mt-7 block font-mono text-xs font-bold uppercase tracking-[0.25em] text-orange-600">
+                Technologie RFID
+              </span>
 
-                <div className="relative text-center">
-                  <div className="mx-auto flex h-28 w-28 items-center justify-center rounded-full border border-orange-400/30 bg-orange-500/10">
-                    <div className="flex h-20 w-20 items-center justify-center rounded-full border border-orange-400/40 bg-orange-500/10">
-                      <Radio className="h-10 w-10 text-orange-300" />
+              <h2 className="mt-3 font-display text-3xl font-extrabold tracking-tight text-slate-950 sm:text-4xl">
+                RFID : une technologie pour aller plus loin.
+              </h2>
+
+              <p className="mt-5 text-lg leading-relaxed text-slate-600">
+                Selon votre activité, la RFID peut compléter votre solution
+                afin d’automatiser certaines opérations et accélérer
+                l’identification des produits ou des utilisateurs.
+              </p>
+
+              <ul className="mt-7 border-t border-slate-200">
+                {rfidBenefits.map((benefit) => (
+                  <li
+                    key={benefit}
+                    className="flex items-start gap-3 border-b border-slate-200 py-3 text-sm font-medium text-slate-800"
+                  >
+                    <div className="mt-0.5 flex h-5 w-5 shrink-0 items-center justify-center bg-orange-600">
+                      <Check className="h-3 w-3 text-white" />
                     </div>
-                  </div>
 
-                  <div className="mt-7">
-                    <p className="text-xl font-semibold text-white">
-                      Identification connectée
-                    </p>
-                    <p className="mt-2 text-sm text-slate-400">
-                      Une technologie disponible selon vos besoins
-                    </p>
+                    {benefit}
+                  </li>
+                ))}
+              </ul>
+            </div>
+
+            <div className="relative flex min-h-[350px] items-center justify-center overflow-hidden bg-slate-950 p-10">
+              <div
+                className="absolute inset-0 opacity-[0.08]"
+                style={{
+                  backgroundImage:
+                    'linear-gradient(to right, #fff 1px, transparent 1px), linear-gradient(to bottom, #fff 1px, transparent 1px)',
+                  backgroundSize: '40px 40px',
+                }}
+                aria-hidden="true"
+              />
+
+              <div className="relative text-center">
+                <div className="mx-auto flex h-28 w-28 items-center justify-center rounded-full border border-orange-400/40 bg-orange-500/10">
+                  <div className="flex h-20 w-20 items-center justify-center rounded-full border border-orange-400/60 bg-orange-500/20">
+                    <Radio className="h-10 w-10 text-orange-400" />
                   </div>
+                </div>
+
+                <div className="mt-7">
+                  <p className="text-xl font-extrabold text-white">
+                    Identification connectée
+                  </p>
+                  <p className="mt-2 text-sm text-slate-300">
+                    Une technologie disponible selon vos besoins
+                  </p>
                 </div>
               </div>
             </div>
@@ -700,24 +704,26 @@ export function BornesCommande() {
       {/* =========================================================
           SECTEURS
       ========================================================== */}
-      <section className="bg-slate-50 py-20 lg:py-28">
+      <section className="border-y border-slate-200 bg-slate-100 py-20 lg:py-28">
         <div className="mx-auto max-w-7xl px-6 lg:px-8">
-          <div className="mx-auto max-w-2xl text-center">
-            <span className="text-sm font-semibold uppercase tracking-wider text-orange-600">
-              Secteurs d’activité
-            </span>
+          <div className="mb-12 flex flex-col gap-4 border-b-2 border-slate-950 pb-6 md:flex-row md:items-end md:justify-between">
+            <div>
+              <span className="font-mono text-xs font-bold uppercase tracking-[0.25em] text-orange-600">
+                Secteurs d’activité
+              </span>
 
-            <h2 className="mt-4 font-display text-3xl font-bold tracking-tight text-slate-900 sm:text-4xl">
-              Une solution adaptée à différents environnements.
-            </h2>
+              <h2 className="mt-3 max-w-2xl font-display text-3xl font-extrabold tracking-tight text-slate-950 sm:text-4xl">
+                Une solution adaptée à différents environnements.
+              </h2>
+            </div>
 
-            <p className="mt-5 text-lg leading-relaxed text-slate-500">
+            <p className="max-w-sm text-sm leading-6 text-slate-600">
               Nous adaptons la borne à votre parcours client, vos contraintes
               et vos objectifs opérationnels.
             </p>
           </div>
 
-          <div className="mt-12 grid gap-5 md:grid-cols-3">
+          <div className="grid gap-4 md:grid-cols-3">
             {sectors.map((sector, index) => (
               <motion.div
                 key={sector.title}
@@ -726,7 +732,7 @@ export function BornesCommande() {
                 viewport={{ once: true }}
                 transition={{ duration: 0.45, delay: index * 0.08 }}
               >
-                <SectorCard {...sector} />
+                <SectorCard index={`0${index + 1}`} {...sector} />
               </motion.div>
             ))}
           </div>
@@ -736,33 +742,33 @@ export function BornesCommande() {
       {/* =========================================================
           ACCOMPAGNEMENT
       ========================================================== */}
-      <section className="py-20 lg:py-28">
+      <section className="bg-white py-20 lg:py-28">
         <div className="mx-auto max-w-7xl px-6 lg:px-8">
           <div className="grid gap-12 lg:grid-cols-[0.8fr_1.2fr] lg:items-center">
             <div>
-              <span className="text-sm font-semibold uppercase tracking-wider text-orange-600">
+              <span className="font-mono text-xs font-bold uppercase tracking-[0.25em] text-orange-600">
                 Notre accompagnement
               </span>
 
-              <h2 className="mt-4 font-display text-3xl font-bold tracking-tight text-slate-900 sm:text-4xl">
+              <h2 className="mt-4 font-display text-3xl font-extrabold tracking-tight text-slate-950 sm:text-4xl">
                 De l’idée au déploiement.
               </h2>
 
-              <p className="mt-5 text-lg leading-relaxed text-slate-500">
+              <p className="mt-5 text-lg leading-relaxed text-slate-600">
                 PC MAROC vous accompagne dans l’étude, la configuration
                 et l’intégration de votre solution de borne interactive.
               </p>
 
               <Link
                 to="/#contact"
-                className="mt-8 inline-flex items-center gap-2 font-semibold text-orange-600 hover:text-orange-700"
+                className="group mt-8 inline-flex items-center gap-3 bg-slate-950 px-6 py-4 text-sm font-bold uppercase tracking-wider text-white transition-colors hover:bg-orange-600"
               >
                 Parler de votre projet
-                <ArrowUpRight className="h-4 w-4" />
+                <ArrowUpRight className="h-4 w-4 transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5" />
               </Link>
             </div>
 
-            <div className="grid gap-4 sm:grid-cols-2">
+            <div className="grid gap-px border border-slate-200 bg-slate-200 sm:grid-cols-2">
               {[
                 {
                   number: '01',
@@ -787,17 +793,17 @@ export function BornesCommande() {
               ].map((step) => (
                 <div
                   key={step.number}
-                  className="rounded-2xl border border-slate-200 bg-white p-6"
+                  className="group bg-white p-7 transition-colors duration-300 hover:bg-slate-950"
                 >
-                  <span className="text-sm font-bold text-orange-600">
+                  <span className="font-mono text-3xl font-extrabold text-orange-500">
                     {step.number}
                   </span>
 
-                  <h3 className="mt-3 font-display text-lg font-semibold text-slate-900">
+                  <h3 className="mt-4 font-display text-lg font-extrabold text-slate-950 transition-colors group-hover:text-white">
                     {step.title}
                   </h3>
 
-                  <p className="mt-2 text-sm leading-relaxed text-slate-500">
+                  <p className="mt-2 text-sm leading-relaxed text-slate-600 transition-colors group-hover:text-slate-300">
                     {step.text}
                   </p>
                 </div>
@@ -810,22 +816,23 @@ export function BornesCommande() {
       {/* =========================================================
           CTA
       ========================================================== */}
-      <section className="px-6 pb-20 lg:px-8 lg:pb-28">
-        <div className="mx-auto max-w-7xl overflow-hidden rounded-3xl bg-slate-900">
+      <section className="bg-white px-6 pb-20 lg:px-8 lg:pb-28">
+        <div className="relative mx-auto max-w-7xl overflow-hidden bg-slate-950">
+          <div className="absolute left-0 top-0 h-2 w-full bg-orange-500" aria-hidden="true" />
+
           <div className="relative px-8 py-14 sm:px-12 lg:px-16 lg:py-16">
-            <div className="absolute -right-20 -top-20 h-64 w-64 rounded-full bg-orange-600/20 blur-3xl" />
-            <div className="absolute -bottom-20 -left-20 h-64 w-64 rounded-full bg-amber-500/10 blur-3xl" />
+            <div className="absolute -right-20 -top-20 h-64 w-64 rounded-full bg-orange-600/25 blur-3xl" />
 
             <div className="relative flex flex-col gap-8 lg:flex-row lg:items-center lg:justify-between">
               <div className="max-w-2xl">
                 <div className="flex items-center gap-3">
-                  <Clock3 className="h-5 w-5 text-orange-300" />
-                  <span className="text-sm font-semibold text-orange-300">
+                  <Clock3 className="h-5 w-5 text-orange-400" />
+                  <span className="font-mono text-xs font-bold uppercase tracking-[0.2em] text-orange-400">
                     Modernisez votre parcours client
                   </span>
                 </div>
 
-                <h2 className="mt-4 font-display text-3xl font-bold tracking-tight text-white sm:text-4xl">
+                <h2 className="mt-4 font-display text-3xl font-extrabold tracking-tight text-white sm:text-4xl">
                   Prêt à intégrer une borne interactive dans votre activité ?
                 </h2>
 
@@ -838,10 +845,10 @@ export function BornesCommande() {
 
               <Link
                 to="/#contact"
-                className="inline-flex shrink-0 items-center justify-center gap-2 rounded-xl bg-white px-6 py-3.5 text-sm font-semibold text-slate-900 transition-all hover:bg-slate-100"
+                className="group inline-flex shrink-0 items-center justify-center gap-3 bg-orange-500 px-7 py-4 text-sm font-bold uppercase tracking-wider text-white transition-all hover:bg-white hover:text-slate-950"
               >
                 Demander une étude
-                <ArrowUpRight className="h-4 w-4" />
+                <ArrowUpRight className="h-4 w-4 transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5" />
               </Link>
             </div>
           </div>
