@@ -39,7 +39,7 @@ export function LogoMark({ className = '' }: { className?: string }) {
   return (
     <svg
       viewBox="0 0 818 447"
-      style={{ height: '3.2em', width: 'auto' }}
+      style={{ height: '2.3em', width: 'auto' }}
       className={`shrink-0 ${className}`}
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
@@ -59,7 +59,7 @@ export function Logo({ className = '', showSubtitle = false }: LogoProps) {
     <div className={`inline-flex items-center justify-center select-none ${className}`}>
       <svg
         viewBox={showSubtitle ? '0 0 1609 290' : '0 0 1609 213'}
-        style={{ height: '3.2em', width: 'auto' }}
+        style={{ height: '2.3em', width: 'auto' }}
         className="shrink-0"
         fill="none"
         xmlns="http://www.w3.org/2000/svg"
