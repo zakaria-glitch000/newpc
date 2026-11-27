@@ -17,8 +17,8 @@ import {
 import "./Kds.css";
 import head from "@/assets/kds.jpeg";
 
-import heads from "@/assets/ds2.jpeg";
-import deux from "@/assets/ds.jpeg";
+import heads from "@/assets/ds.jpeg";
+import deux from "@/assets/ds2.jpeg";
 import trois from "@/assets/ds3.jpeg";
 import caisseImage from "@/assets/00.png";
 import borneImage from "@/assets/bb1.png";

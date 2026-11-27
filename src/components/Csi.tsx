@@ -641,6 +641,9 @@ function MetiersShowcase() {
   const CurrentIcon = current.icon;
   const currentImage = current.image;
   const currentName = current.lines.filter(Boolean).join(' ');
+  /* Lien vers la page Affcsi, avec le métier en cours dans l'URL
+     (ex. /Affcsi?metier=pizzeria) pour pouvoir le présélectionner. */
+  const affHref = `/Affcsi?metier=${current.key}`;
 
   return (
     <section
@@ -703,8 +706,12 @@ function MetiersShowcase() {
           transition={{ duration: 0.6 }}
           className="mt-10 grid gap-6 rounded-[36px] bg-white/[0.04] p-4 ring-1 ring-white/10 backdrop-blur-sm sm:mt-12 sm:p-6 lg:grid-cols-[1.15fr_1fr] lg:gap-8"
         >
-              {/* Visuel */}
-          <div className="relative h-72 overflow-hidden rounded-3xl bg-gradient-to-br from-[#ffb36b] to-[#f26522] sm:h-96 lg:h-[27rem]">
+          {/* Visuel */}
+          <a
+            href={affHref}
+            aria-label={`Découvrir la solution pour ${currentName}`}
+            className="group relative block h-72 cursor-pointer overflow-hidden rounded-3xl bg-gradient-to-br from-[#ffb36b] to-[#f26522] focus:outline-none focus-visible:ring-4 focus-visible:ring-orange-300/60 sm:h-96 lg:h-[27rem]"
+          >
             <AnimatePresence mode="wait">
               <motion.div
                 key={current.key}
@@ -719,7 +726,7 @@ function MetiersShowcase() {
                     src={currentImage}
                     alt={currentName}
                     decoding="async"
-                    className="h-full w-full object-cover"
+                    className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-105"
                   />
                 )}
               </motion.div>
@@ -735,7 +742,11 @@ function MetiersShowcase() {
               {currentName}
             </div>
 
-        
+            {/* indication « cliquable » */}
+            <span className="absolute bottom-4 right-4 inline-flex items-center gap-2 rounded-full bg-white/95 px-4 py-2 text-xs font-bold text-[#d95316] shadow-lg transition-all duration-300 group-hover:bg-[#f26522] group-hover:text-white sm:bottom-5 sm:right-5">
+              Découvrir la solution
+              <ArrowRight className="h-3.5 w-3.5 transition-transform duration-300 group-hover:translate-x-1" />
+            </span>
 
             {/* barre de progression de la rotation auto */}
             {auto && (
@@ -749,7 +760,7 @@ function MetiersShowcase() {
                 />
               </div>
             )}
-          </div>
+          </a>
 
           {/* Détails */}
           <div className="flex flex-col justify-center px-1 pb-2 lg:pr-4">
@@ -802,7 +813,7 @@ function MetiersShowcase() {
                 </div>
 
                 <a
-                  href='/Affcsi'
+                  href={affHref}
                   className="group mt-8 inline-flex w-fit items-center gap-2.5 rounded-full bg-gradient-to-r from-[#f26522] to-[#ff8a1f] px-6 py-3 text-sm font-bold text-white shadow-lg shadow-orange-600/30 transition-all duration-300 hover:-translate-y-0.5 hover:shadow-xl focus:outline-none focus:ring-4 focus:ring-orange-300/40"
                 >
                   Demander une démo pour mon activité
@@ -878,6 +889,7 @@ function MetiersShowcase() {
     </section>
   );
 }
+
 
 /* =====================================================
     LOGOS CLIENTS — CARTE + LIGNE MARQUEE
