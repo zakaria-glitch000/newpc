@@ -6,6 +6,7 @@ import {
   KeyRound, CreditCard, Fingerprint, Monitor, PanelTop,
 } from 'lucide-react';
 import { Link } from 'react-router-dom';
+import heroImage from '@/assets/bn.jpg';
 
 import pcImage from '@/assets/pc.jpeg';
 import caisseImage from '@/assets/00.png';
@@ -121,7 +122,7 @@ export default function OraliPage() {
       <section className="relative isolate flex min-h-[390px] items-center overflow-hidden bg-slate-950 md:min-h-[490px]">
         <div
           className="absolute inset-0 scale-105 bg-cover bg-center blur-[2px]"
-          style={{ backgroundImage: "url('https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?auto=format&fit=crop&w=2000&q=90')" }}
+         style={{ backgroundImage: `url(${heroImage})` }}
           aria-hidden="true"
         />
         <div className="absolute inset-0 bg-slate-950/60" aria-hidden="true" />

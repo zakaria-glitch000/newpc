@@ -42,7 +42,7 @@ import {
   ShoppingBag,
 } from 'lucide-react';
 
-import heroImage from '@/assets/bn.jpg';
+import heroImage from '@/assets/rss.jpeg';
 import caisseImage from '@/assets/ev.jpeg';
 import pdImage from '@/assets/prc.jpeg';
 import kdsImage from '@/assets/orga.jpeg';

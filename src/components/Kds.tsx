@@ -15,10 +15,11 @@ import {
   ArrowRight,
 } from "lucide-react";
 import "./Kds.css";
+import head from "@/assets/kds.jpeg";
 
-import heads from "@/assets/9.jpeg";
-import deux from "@/assets/11.jpeg";
-import trois from "@/assets/10.jpeg";
+import heads from "@/assets/ds2.jpeg";
+import deux from "@/assets/ds.jpeg";
+import trois from "@/assets/ds3.jpeg";
 import caisseImage from "@/assets/00.png";
 import borneImage from "@/assets/bb1.png";
 import padImage from "@/assets/bb33.png";
@@ -76,7 +77,7 @@ export default function KdsPage() {
       <div className="kds-top">
         <img
           className="kds-top__bg"
-          src={heads}
+          src={head}
           alt=""
           aria-hidden="true"
           fetchPriority="high"
