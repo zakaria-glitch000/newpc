@@ -170,17 +170,16 @@ export default function Innoshop() {
               className="absolute -inset-4 -z-10 rounded-[40px] bg-gradient-to-br from-[#ff8a1f]/30 to-[#f26522]/10 blur-2xl"
             />
 
-            <div className="relative overflow-hidden rounded-3xl rounded-tl-[90px] shadow-2xl shadow-black/50 ring-1 ring-white/15">
+            <div className="relative overflow-hidden rounded-3xl bg-[#111113] shadow-2xl shadow-black/50 ring-1 ring-white/15">
               <img
                 src={innoshopImage}
                 alt="Solution de caisse et logiciel de gestion INNOSHOP"
                 decoding="async"
-                className="h-auto w-full object-cover"
+                className="block h-auto w-full"
               />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent" />
 
-              {/* carte sur l'image */}
-              <div className="absolute inset-x-4 bottom-4 flex items-center justify-between gap-3 rounded-2xl bg-black/55 p-4 ring-1 ring-white/15 backdrop-blur-md sm:inset-x-5 sm:bottom-5">
+              {/* bandeau sous l'image (ne cache plus la photo) */}
+              <div className="flex items-center justify-between gap-3 border-t border-white/10 bg-[#111113] p-4 sm:p-5">
                 <div className="min-w-0">
                   <span className="text-[11px] font-semibold uppercase tracking-wider text-orange-300">
                     Solution de gestion
@@ -200,7 +199,7 @@ export default function Innoshop() {
             </div>
 
             {/* badge flottant */}
-            <div className="absolute -bottom-5 left-3 hidden items-center gap-3 rounded-2xl bg-white p-3.5 shadow-xl shadow-black/30 sm:flex sm:-left-5">
+            <div className="absolute -top-5 right-3 hidden items-center gap-3 rounded-2xl bg-white p-3.5 shadow-xl shadow-black/30 sm:flex sm:-right-5">
               <span className="flex h-10 w-10 items-center justify-center rounded-xl bg-orange-50 text-[#f26522]">
                 <TrendingUp className="h-5 w-5" />
               </span>
