@@ -1,4 +1,3 @@
-
 import React, { useState, type ReactNode } from 'react';
 import {
   ShoppingCart,
@@ -46,6 +45,14 @@ import supportImage from '@/assets/supportt.jpeg';
 import commercesImage from '@/assets/shoop.jpeg';
 
 /* =====================================================
+   LIEN DES CARTES MÉTIERS
+   Chemin de la page Innoshop : adaptez-le à votre route réelle
+   (ex. '/innoshop', '/Innoshop', '/solutions/innoshop'...)
+===================================================== */
+
+const INNOSHOP_LINK = '/innoshop';
+
+/* =====================================================
    IMAGES
 ===================================================== */
 
@@ -60,7 +67,7 @@ const IMAGES = {
   bazar: bazarImage,
   parfumerie: parfumerieImage,
   librairie: librairieImage,
-  specialise:commercesImage,
+  specialise: commercesImage,
 };
 
 /* =====================================================
@@ -640,7 +647,7 @@ const mocks: Record<string, ReactNode> = {
 
 export default function InnoShop() {
   const [active, setActive] = useState(0);
-const [activeService, setActiveService] = useState<number | null>(0);
+  const [activeService, setActiveService] = useState<number | null>(0);
   const current = features[active];
 
   const goToContact = () => {
@@ -775,9 +782,20 @@ const [activeService, setActiveService] = useState<number | null>(0);
             </p>
           </div>
 
+          {/* Chaque carte est un lien vers la page Innoshop */}
           <div className="ns-trades-grid">
             {trades.map((trade) => (
-              <article className="ns-trade" key={trade.title} tabIndex={0}>
+              <a
+                href={INNOSHOP_LINK}
+                className="ns-trade"
+                key={trade.title}
+                aria-label={`Découvrir INNOSHOP pour ${trade.title}`}
+                style={{
+                  textDecoration: 'none',
+                  color: 'inherit',
+                  cursor: 'pointer',
+                }}
+              >
                 <img
                   src={trade.img}
                   alt={trade.title}
@@ -793,7 +811,7 @@ const [activeService, setActiveService] = useState<number | null>(0);
 
                   <Bullets items={trade.items} />
                 </div>
-              </article>
+              </a>
             ))}
           </div>
         </div>
