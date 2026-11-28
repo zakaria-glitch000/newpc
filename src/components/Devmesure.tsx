@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
 
-import stockImage from '@/assets/stock.jpeg';
-import eventImage from '@/assets/event.jpeg';
-import reportImage from '@/assets/report.jpeg';
-import gmsImage from '@/assets/GMS.jpeg';
+import stockImage from '@/assets/stockdev.jpeg';
+import eventImage from '@/assets/evendev.jpeg';
+import reportImage from '@/assets/repdev.jpeg';
+import gmsImage from '@/assets/gmsdev.jpeg';
 import devImage from '@/assets/devv.jpeg';
 import teamImage from '@/assets/spoet.jpeg';
 import {
