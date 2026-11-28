@@ -48,6 +48,8 @@ import Gms from '@/components/Gms';
 import Report from '@/components/Report';
 import Gesticlean from '@/components/Gesticlean';
 import Ebel from '@/components/Ebel';
+import Monnayeur from '@/components/Monnayeur';
+
 // ============================================================
 // SCROLL TO TOP
 // ============================================================
@@ -260,7 +262,10 @@ function App() {
               path="/Devmesure"
               element={<Devmesure />}
             />
-
+     <Route
+              path="/Monnayeur"
+              element={<Monnayeur />}
+            />
             {/* SYSTÈMES DE CAISSE & POS */}
             <Route
               path="/solutions/pos"
@@ -284,7 +289,7 @@ function App() {
               path="/solutions/fidelite-client"
               element={<FideliteClient />}
             />
-
+ 
             {/* ANALYSE DES VENTES */}
             <Route
               path="/solutions/analyse-ventes"

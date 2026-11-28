@@ -57,7 +57,7 @@ const products = [
     description: 'Affichez et mettez à jour vos prix en temps réel.',
     image: etiquetteImage,
     icon: Tag,
-    link: '/Etiquette',
+    link: '/Monnayeur',
   },
 
   {

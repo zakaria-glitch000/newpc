@@ -20,10 +20,10 @@ import head from "@/assets/kds.jpeg";
 import heads from "@/assets/ds.jpeg";
 import deux from "@/assets/ds2.jpeg";
 import trois from "@/assets/ds3.jpeg";
-import caisseImage from "@/assets/00.png";
-import borneImage from "@/assets/bb1.png";
-import padImage from "@/assets/bb33.png";
-import kdsImage from "@/assets/4.jpg";
+import caisseImage from "@/assets/0b.png";
+import borneImage from "@/assets/1b.png";
+import padImage from "@/assets/3b.png";
+import kdsImage from "@/assets/4b.png";
 import tkds from "@/assets/supportt.jpeg";
 
 const benefits = [

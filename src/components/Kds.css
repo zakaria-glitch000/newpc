@@ -501,6 +501,8 @@
 
 /* =========================================
    SOLUTION COMPLÈTE (bande noire)
+   Les images (0b / 1b / 3b / 4b .png) sont posées sur un fond
+   dégradé orange, sans aucun blanc.
 ========================================= */
 
 .kds-flow-band {
@@ -542,14 +544,26 @@
   align-items: center;
   justify-content: center;
   margin-bottom: 14px;
-  padding: 16px;
-  background: #fff;
+  padding: 0;
+  overflow: hidden;
+  border-radius: 18px;
+  background: linear-gradient(
+    135deg,
+    #ffa45c 0%,
+    #ff8a1f 45%,
+    #f26522 100%
+  );
+  box-shadow: 0 14px 32px -14px rgba(242, 101, 34, 0.6);
 }
 
 .kds-flow__image img {
   width: 100%;
   height: 100%;
+  padding: 10px;
   object-fit: contain;
+  /* Images en PNG transparent : rien d'autre à faire.
+     Si une image garde un fond blanc, décommente la ligne suivante :
+     mix-blend-mode: multiply; */
 }
 
 .kds-flow__step figcaption {
