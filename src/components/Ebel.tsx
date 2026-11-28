@@ -1,4 +1,3 @@
-
 import React, { useState } from "react";
 import "./Ebel.css";
 
@@ -275,23 +274,41 @@ const FEATURES = [
   { icon: "doc", label: "Documents comptables" },
 ];
 
-const WHEEL = [
-  "Caisse et encaissement",
-  "Gestion des prestations",
-  "Planning intelligent",
-  "Fidélité et promotions",
-  "Reporting et analyses",
-  "Multi-utilisateurs",
-  "Gestion des stocks",
+const TOOLS = [
+  {
+    title: "Caisse et encaissement",
+    text: "Encaissez vite, avec tous les modes de paiement.",
+  },
+  {
+    title: "Gestion des prestations",
+    text: "Soins, forfaits et tarifs gérés en quelques clics.",
+  },
+  {
+    title: "Planning intelligent",
+    text: "Rendez-vous, cabines et équipes parfaitement optimisés.",
+  },
+  {
+    title: "Fidélité et promotions",
+    text: "Cartes, points et offres personnalisées.",
+  },
+  {
+    title: "Reporting et analyses",
+    text: "Chiffre d'affaires et performances en temps réel.",
+  },
+  {
+    title: "Multi-utilisateurs",
+    text: "Droits d'accès par poste et par employé.",
+  },
+  {
+    title: "Gestion des stocks",
+    text: "Produits, entrées / sorties et alertes de stock.",
+  },
 ];
 
 /* =====================================================
    COMPOSANT PRINCIPAL
 ===================================================== */
 export default function Beaute() {
-  const R = 175;
-  const N = 50;
-
   const half = Math.ceil(CLIENT_LOGOS.length / 2);
   const rowOne = CLIENT_LOGOS.slice(0, half);
   const rowTwo = CLIENT_LOGOS.slice(half);
@@ -435,51 +452,64 @@ export default function Beaute() {
       </section>
 
       {/* =====================================================
-          OUTILS
+          OUTILS (design sombre + orange)
       ===================================================== */}
-      <section className="bb-tools">
-        <div className="section-heading">
-          <span className="section-eyebrow">
-            VOTRE SOLUTION
-          </span>
+      <section className="tl-section">
+        <div className="tl-glow tl-glow-one" />
+        <div className="tl-glow tl-glow-two" />
 
-          <h2 className="tools-title">
-            Les outils dont vous avez besoin
-          </h2>
+        <div className="tl-container">
+          <div className="tl-head">
+            <span className="tl-eyebrow">
+              <span className="tl-dot" />
+              VOTRE SOLUTION
+            </span>
 
-          <div className="section-line" />
+            <h2>
+              Les outils dont <span>vous avez besoin</span>
+            </h2>
 
-          <p className="bb-tools-sub">
-            Les fonctionnalités bien pensées pour développer votre activité.
-          </p>
-        </div>
-
-        <div className="wheel">
-          <span className="wheel-ring" />
-
-          <div className="wheel-center">
-            <img src={wheelCenterImg} alt="EasyBeauty" />
+            <p>Les fonctionnalités bien pensées pour développer votre activité.</p>
           </div>
 
-          {WHEEL.map((label, i) => {
-            const angle = (i * 360) / WHEEL.length - 90;
-            const x = Math.cos((angle * Math.PI) / 180) * R;
-            const y = Math.sin((angle * Math.PI) / 180) * R;
+          <div className="tl-layout">
+            {/* Visuel */}
+            <div className="tl-visual">
+              <div className="tl-visual-ring" />
 
-            return (
-              <div
-                className="wheel-node"
-                key={label}
-                style={{
-                  left: `calc(50% + ${x}px - ${N}px)`,
-                  top: `calc(50% + ${y}px - ${N}px)`,
-                }}
-              >
-                <strong>{i + 1}</strong>
-                <span>{label}</span>
+              <div className="tl-visual-frame">
+                <img src={wheelCenterImg} alt="EasyBeauty" loading="lazy" />
               </div>
-            );
-          })}
+
+              <div className="tl-chip tl-chip-top">
+                <strong>7</strong>
+                <span>outils intégrés</span>
+              </div>
+
+              <div className="tl-chip tl-chip-bottom">
+                <strong>1</strong>
+                <span>seule solution</span>
+              </div>
+            </div>
+
+            {/* Liste */}
+            <ul className="tl-list">
+              {TOOLS.map((tool, i) => (
+                <li className="tl-item" key={tool.title}>
+                  <span className="tl-num">
+                    {String(i + 1).padStart(2, "0")}
+                  </span>
+
+                  <div className="tl-item-body">
+                    <h4>{tool.title}</h4>
+                    <p>{tool.text}</p>
+                  </div>
+
+                  <span className="tl-arrow" aria-hidden="true">→</span>
+                </li>
+              ))}
+            </ul>
+          </div>
         </div>
       </section>
 

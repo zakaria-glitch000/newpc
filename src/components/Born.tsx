@@ -23,7 +23,7 @@ import borneStandard from "@/assets/b1.jpeg";
 import bornePremium from "@/assets/b3.jpeg";
 import borneMurale from "@/assets/b2.jpeg";
 import accompagnementImage from "@/assets/supportt.jpeg";
-import resImage from "@/assets/res.webp";
+import resImage from "@/assets/banneborn.jpeg";
 
 import "./Born.css";
 
