@@ -18,7 +18,7 @@ import {
 import "./Balance.css";
 import { Link } from "react-router-dom";
 import logoImage from "@/assets/70.jpeg";
-import heroImage from "@/assets/70.jpeg";
+import heroImage from "@/assets/bannbl.jpeg";
 import integratedImage from "@/assets/71.jpeg";
 import fruitsImage from "@/assets/72.jpeg";
 import boucherieImage from "@/assets/73.jpeg";
